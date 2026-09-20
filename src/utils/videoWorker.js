@@ -1,0 +1,172 @@
+import gifWorkerUrl from 'gif.js/dist/gif.worker.js?url'
+
+const MAX_GIF_DURATION = 15 // secondes — au-delà, mémoire/temps de rendu deviennent déraisonnables côté navigateur.
+
+function loadVideoElement(file) {
+  return new Promise((resolve, reject) => {
+    const video = document.createElement('video')
+    video.muted = true
+    video.playsInline = true
+    video.preload = 'auto'
+    video.src = URL.createObjectURL(file)
+    video.addEventListener('loadedmetadata', () => resolve(video), { once: true })
+    video.addEventListener('error', () => reject(new Error('VIDEO_LOAD_FAILED')), { once: true })
+  })
+}
+
+function seekTo(video, time) {
+  return new Promise((resolve) => {
+    const handleSeeked = () => {
+      video.removeEventListener('seeked', handleSeeked)
+      resolve()
+    }
+    video.addEventListener('seeked', handleSeeked)
+    video.currentTime = time
+  })
+}
+
+/** Charge une vidéo et renvoie ses métadonnées utiles à l'UI (durée,
+ * dimensions) avant de lancer un traitement plus lourd. */
+export async function loadVideoMetadata(file) {
+  const video = await loadVideoElement(file)
+  const metadata = { duration: video.duration, width: video.videoWidth, height: video.videoHeight }
+  URL.revokeObjectURL(video.src)
+  return metadata
+}
+
+/**
+ * Convertit un extrait vidéo (`start`→`end`, en secondes) en GIF animé :
+ * échantillonne des images au débit `fps` demandé en déplaçant le temps de
+ * lecture (`currentTime`) et en dessinant chaque image sur un canvas, puis
+ * les encode via gif.js (Web Worker dédié, aucun serveur). Le clip est
+ * plafonné à `MAX_GIF_DURATION` : au-delà, ni la mémoire ni le temps de
+ * rendu ne resteraient raisonnables dans un onglet de navigateur.
+ */
+export async function videoToGif(file, { start = 0, end, fps = 8, width = 400, onProgress, signal } = {}) {
+  const { default: GIF } = await import('gif.js/dist/gif.js')
+  const video = await loadVideoElement(file)
+
+  try {
+    const clampedEnd = Math.min(end ?? video.duration, video.duration, start + MAX_GIF_DURATION)
+    if (clampedEnd <= start) throw new Error('INVALID_RANGE')
+
+    const ratio = video.videoHeight / video.videoWidth || 1
+    const targetWidth = Math.min(width, video.videoWidth) || width
+    const targetHeight = Math.max(1, Math.round(targetWidth * ratio))
+
+    const canvas = document.createElement('canvas')
+    canvas.width = targetWidth
+    canvas.height = targetHeight
+    const ctx = canvas.getContext('2d')
+
+    const gif = new GIF({
+      workers: 2,
+      quality: 10,
+      width: targetWidth,
+      height: targetHeight,
+      workerScript: gifWorkerUrl,
+    })
+
+    const frameDelay = 1000 / fps
+    const frameCount = Math.max(1, Math.round((clampedEnd - start) * fps))
+
+    for (let i = 0; i < frameCount; i++) {
+      // Si l'appelant a quitté la page (composant démonté), on arrête la
+      // boucle d'échantillonnage tout de suite plutôt que de continuer à
+      // décoder/dessiner des images en arrière-plan pour un résultat que
+      // plus personne n'attend.
+      if (signal?.aborted) throw new Error('ABORTED')
+      const t = Math.min(start + i / fps, video.duration)
+      await seekTo(video, t)
+      ctx.drawImage(video, 0, 0, targetWidth, targetHeight)
+      gif.addFrame(ctx, { copy: true, delay: frameDelay })
+      onProgress?.(i + 1, frameCount)
+    }
+
+    const blob = await new Promise((resolve, reject) => {
+      gif.on('finished', resolve)
+      gif.on('abort', () => reject(new Error('GIF_ENCODING_FAILED')))
+      gif.render()
+    })
+
+    return { blob }
+  } finally {
+    URL.revokeObjectURL(video.src)
+  }
+}
+
+const MUTE_MIME_CANDIDATES = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm', 'video/mp4']
+
+function pickSupportedMimeType() {
+  for (const type of MUTE_MIME_CANDIDATES) {
+    if (window.MediaRecorder?.isTypeSupported(type)) return type
+  }
+  return ''
+}
+
+/**
+ * Ré-exporte une vidéo sans sa piste audio, via `captureStream` (la piste
+ * vidéo seule est reprise dans un nouveau `MediaStream`, sans jamais
+ * inclure l'audio) + `MediaRecorder`. Limite honnête : aucune API
+ * navigateur ne permet un ré-encodage instantané sans lecture — le
+ * traitement dure donc environ la durée de la vidéo, et la sortie est au
+ * format WebM (le mieux supporté par MediaRecorder), quel que soit le
+ * conteneur d'origine.
+ */
+export async function muteVideo(file, { onProgress, signal } = {}) {
+  const video = await loadVideoElement(file)
+
+  const getCaptureStream = video.captureStream?.bind(video) || video.mozCaptureStream?.bind(video)
+  if (!getCaptureStream) throw new Error('CAPTURE_UNSUPPORTED')
+
+  const mimeType = pickSupportedMimeType()
+  if (!mimeType) throw new Error('RECORDING_UNSUPPORTED')
+
+  try {
+    const sourceStream = getCaptureStream()
+    const videoOnlyStream = new MediaStream(sourceStream.getVideoTracks())
+    const recorder = new MediaRecorder(videoOnlyStream, { mimeType })
+    const chunks = []
+    recorder.ondataavailable = (e) => {
+      if (e.data.size > 0) chunks.push(e.data)
+    }
+
+    const resultPromise = new Promise((resolve, reject) => {
+      recorder.onstop = () => resolve(new Blob(chunks, { type: mimeType }))
+      recorder.onerror = (e) => reject(e.error ?? new Error('RECORDING_FAILED'))
+    })
+
+    // Si la page est quittée en cours d'enregistrement, on arrête
+    // immédiatement la lecture et l'enregistreur : sans ça, la vidéo
+    // continuerait à être rejouée et enregistrée en arrière-plan (piste
+    // vidéo décodée en continu) pour un résultat que personne ne
+    // récupérera jamais — exactement le genre de fuite qui ralentit
+    // l'onglet après avoir changé de page.
+    const abortHandler = () => {
+      try {
+        video.pause()
+        if (recorder.state !== 'inactive') recorder.stop()
+      } catch {
+        // Le nettoyage best-effort ne doit jamais faire échouer le flux principal.
+      }
+    }
+    signal?.addEventListener?.('abort', abortHandler)
+
+    video.currentTime = 0
+    video.ontimeupdate = () => onProgress?.(video.currentTime, video.duration)
+
+    recorder.start()
+    await video.play()
+    await new Promise((resolve) => video.addEventListener('ended', resolve, { once: true }))
+    recorder.stop()
+    signal?.removeEventListener?.('abort', abortHandler)
+
+    if (signal?.aborted) throw new Error('ABORTED')
+
+    const blob = await resultPromise
+    const extension = mimeType.startsWith('video/mp4') ? 'mp4' : 'webm'
+    return { blob, extension }
+  } finally {
+    URL.revokeObjectURL(video.src)
+  }
+}

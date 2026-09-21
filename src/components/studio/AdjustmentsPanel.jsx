@@ -14,7 +14,7 @@ function Slider({ label, value, min, max, step = 1, unit = '', onChange }) {
     <div>
       <label className="mb-1.5 flex justify-between text-xs font-medium text-zinc-500 dark:text-zinc-400">
         {label}
-        <span className="font-mono text-zinc-400">
+        <span className="font-mono text-zinc-500 dark:text-zinc-400">
           {value}
           {unit}
         </span>
@@ -54,7 +54,7 @@ export default function AdjustmentsPanel({ values, onChange, onApplyPreset, onAp
         </p>
       )}
 
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">Filtres prédéfinis</p>
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Filtres prédéfinis</p>
       <div className="mb-4 grid grid-cols-3 gap-1.5">
         {PRESETS.map((preset) => (
           <button
@@ -67,7 +67,7 @@ export default function AdjustmentsPanel({ values, onChange, onApplyPreset, onAp
         ))}
       </div>
 
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">Réglages de base</p>
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Réglages de base</p>
       <div className="flex flex-col gap-3">
         <Slider label="Luminosité" value={values.brightness} min={0} max={200} unit="%" onChange={set('brightness')} />
         <Slider label="Contraste" value={values.contrast} min={0} max={200} unit="%" onChange={set('contrast')} />
@@ -77,7 +77,7 @@ export default function AdjustmentsPanel({ values, onChange, onApplyPreset, onAp
         <Slider label="Netteté" value={values.sharpen} min={0} max={100} unit="%" onChange={set('sharpen')} />
       </div>
 
-      <p className="mb-2 mt-5 text-xs font-semibold uppercase tracking-wide text-zinc-400">Niveaux</p>
+      <p className="mb-2 mt-5 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Niveaux</p>
       <div className="flex flex-col gap-3">
         <Slider
           label="Point noir (entrée)"
@@ -103,7 +103,7 @@ export default function AdjustmentsPanel({ values, onChange, onApplyPreset, onAp
         />
       </div>
 
-      <p className="mb-1 mt-5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+      <p className="mb-1 mt-5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
         Courbes (simplifiées)
       </p>
       <div className="flex flex-col gap-3">
@@ -130,7 +130,7 @@ export default function AdjustmentsPanel({ values, onChange, onApplyPreset, onAp
         />
       </div>
 
-      <p className="mb-2 mt-5 text-xs font-semibold uppercase tracking-wide text-zinc-400">Balance des couleurs</p>
+      <p className="mb-2 mt-5 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Balance des couleurs</p>
       <div className="flex flex-col gap-3">
         <Slider
           label="Rouge"
@@ -155,7 +155,7 @@ export default function AdjustmentsPanel({ values, onChange, onApplyPreset, onAp
         />
       </div>
 
-      <p className="mb-2 mt-5 text-xs font-semibold uppercase tracking-wide text-zinc-400">Mappage dégradé</p>
+      <p className="mb-2 mt-5 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Mappage dégradé</p>
       <div className="mb-4 flex items-center gap-2">
         <input
           type="color"

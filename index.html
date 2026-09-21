@@ -1,12 +1,59 @@
 <!doctype html>
-<html lang="en">
+<!-- lang="fr" par défaut (langue de repli de l'app, cf. src/i18n.js) ;
+     src/i18n.js remet à jour cet attribut dynamiquement une fois l'app
+     montée, dès qu'une langue est détectée ou choisie. -->
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
-    <title>ONE</title>
+
+    <title>ONE — Fusionner, compresser et convertir vos fichiers en ligne</title>
+    <meta
+      name="description"
+      content="ONE regroupe des outils gratuits de PDF, image, audio et vidéo (fusionner, compresser, convertir, signer, protéger...) qui traitent vos fichiers 100% localement dans votre navigateur : rien n'est jamais envoyé à un serveur."
+    />
+    <meta name="robots" content="index, follow" />
+    <!-- TODO avant mise en production : remplacer par le nom de domaine réel -->
+    <link rel="canonical" href="https://your-domain.example/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ONE" />
+    <meta property="og:title" content="ONE — Fusionner, compresser et convertir vos fichiers en ligne" />
+    <meta
+      property="og:description"
+      content="Des outils PDF, image, audio et vidéo gratuits qui traitent vos fichiers 100% localement dans votre navigateur."
+    />
+    <meta property="og:url" content="https://your-domain.example/" />
+    <meta property="og:image" content="https://your-domain.example/favicon.svg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ONE — Fusionner, compresser et convertir vos fichiers en ligne" />
+    <meta
+      name="twitter:description"
+      content="Des outils PDF, image, audio et vidéo gratuits qui traitent vos fichiers 100% localement dans votre navigateur."
+    />
+
+    <!-- Données structurées Schema.org : aident les moteurs de recherche et
+         les agents IA à comprendre la nature du site (application web
+         gratuite, catégorie, absence de collecte de fichiers) sans avoir à
+         interpréter le rendu JavaScript. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "ONE",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (runs in a web browser)",
+        "description": "Outils gratuits de PDF, image, audio et vidéo (fusion, compression, conversion, signature, protection...) traitant les fichiers entièrement dans le navigateur de l'utilisateur, sans envoi à un serveur.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

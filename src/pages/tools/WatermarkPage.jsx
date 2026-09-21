@@ -105,7 +105,7 @@ export default function WatermarkPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -141,7 +141,7 @@ export default function WatermarkPage() {
         {step === STEPS.CONFIGURE && file && (
           <div className="flex flex-col gap-6">
             <div>
-              <label htmlFor="watermark-text" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-zinc-400">
+              <label htmlFor="watermark-text" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                 {t('tools.watermark.textLabel')}
               </label>
               <input
@@ -150,13 +150,13 @@ export default function WatermarkPage() {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder={t('tools.watermark.textPlaceholder')}
-                className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-indigo-400 focus:outline-none dark:border-white/10 dark:bg-zinc-800/40 dark:text-white"
+                className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:border-indigo-400 focus:outline-none dark:border-white/10 dark:bg-zinc-800/40 dark:text-white"
               />
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               <div>
-                <label htmlFor="watermark-size" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                <label htmlFor="watermark-size" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                   <span>{t('tools.watermark.size')}</span>
                   <span className="text-zinc-500 dark:text-zinc-300">{fontSize}pt</span>
                 </label>
@@ -172,7 +172,7 @@ export default function WatermarkPage() {
               </div>
 
               <div>
-                <label htmlFor="watermark-opacity" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                <label htmlFor="watermark-opacity" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                   <span>{t('tools.watermark.opacity')}</span>
                   <span className="text-zinc-500 dark:text-zinc-300">{opacity}%</span>
                 </label>
@@ -188,7 +188,7 @@ export default function WatermarkPage() {
               </div>
 
               <div>
-                <label htmlFor="watermark-rotation" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                <label htmlFor="watermark-rotation" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                   <span>{t('tools.watermark.angle')}</span>
                   <span className="text-zinc-500 dark:text-zinc-300">{rotation}°</span>
                 </label>
@@ -204,7 +204,7 @@ export default function WatermarkPage() {
               </div>
 
               <div>
-                <label htmlFor="watermark-color" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                <label htmlFor="watermark-color" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                   <span>{t('tools.watermark.color')}</span>
                   <span className="text-zinc-500 dark:text-zinc-300">{color}</span>
                 </label>
@@ -238,14 +238,14 @@ export default function WatermarkPage() {
             </span>
             <div>
               <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.watermark.doneTitle')}</p>
-              <p className="mt-1 text-sm text-zinc-400">
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
                 {t('tools.watermark.doneDescription', { text: text.trim() })}
               </p>
             </div>
             <DownloadButton fileName="ONE_watermarked.pdf" onDownload={handleDownload} />
             <button
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.watermark.restartLabel')}
             </button>

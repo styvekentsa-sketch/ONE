@@ -217,7 +217,7 @@ export default function SplitPdfPage() {
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -279,7 +279,7 @@ export default function SplitPdfPage() {
 
             {mode === 'extract' && (
               <div>
-                <label htmlFor="page-ranges" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                <label htmlFor="page-ranges" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                   {t('tools.split.pagesToKeep')}
                 </label>
                 <div className="flex gap-2">
@@ -291,7 +291,7 @@ export default function SplitPdfPage() {
                     onBlur={applyRangeInput}
                     onKeyDown={(e) => e.key === 'Enter' && applyRangeInput()}
                     placeholder={t('tools.split.rangePlaceholder')}
-                    className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-indigo-400 focus:outline-none dark:border-white/10 dark:bg-zinc-800/40 dark:text-white"
+                    className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:border-indigo-400 focus:outline-none dark:border-white/10 dark:bg-zinc-800/40 dark:text-white"
                   />
                   <button
                     onClick={applyRangeInput}
@@ -346,7 +346,7 @@ export default function SplitPdfPage() {
                   >
                     <Scissors size={18} /> {t('tools.split.extractButton')}
                   </button>
-                  <p className="text-xs text-zinc-400">
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
                     {selectedPages.size === 0
                       ? t('tools.split.checkPagesHint')
                       : t('tools.split.pagesSelected', { count: selectedPages.size })}
@@ -360,7 +360,7 @@ export default function SplitPdfPage() {
                   >
                     <FileArchive size={18} /> {t('tools.split.downloadZipButton', { count: previews.length })}
                   </button>
-                  <p className="text-xs text-zinc-400">{t('tools.split.splitAllHint')}</p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">{t('tools.split.splitAllHint')}</p>
                 </>
               )}
             </div>
@@ -386,7 +386,7 @@ export default function SplitPdfPage() {
               <p className="text-lg font-semibold text-zinc-800 dark:text-white">
                 {result.kind === 'zip' ? t('tools.split.splitDoneTitle') : t('tools.split.extractDoneTitle')}
               </p>
-              <p className="mt-1 text-sm text-zinc-400">
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
                 {result.kind === 'zip'
                   ? t('tools.split.splitDoneDescription', { count: result.count })
                   : t('tools.split.extractDoneDescription')}
@@ -398,7 +398,7 @@ export default function SplitPdfPage() {
             />
             <button
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.split.restartLabel')}
             </button>

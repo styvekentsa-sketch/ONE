@@ -22,7 +22,9 @@
     "storageTitle": "Almacenamiento local",
     "storageUsed": "Espacio usado",
     "storageUsedValue": "{{size}} KB usados en este navegador",
-    "securityTitle": "Seguridad"
+    "securityTitle": "Seguridad",
+    "privacyTitle": "Privacidad",
+    "manageCookies": "Gestionar cookies"
   },
   "hero": {
     "titleLine1": "Gestiona tus documentos,",
@@ -115,16 +117,41 @@
     "filesAnalyzed_other": "{{count}} archivos analizados",
     "changeLanguage": "Cambiar idioma",
     "moveUp": "Subir",
-    "moveDown": "Bajar"
+    "moveDown": "Bajar",
+    "lastUpdatedLabel": "Última actualización: {{date}}",
+    "skipToContent": "Saltar al contenido principal",
+    "addBlankLayer": "Nueva capa vacía",
+    "addImageLayer": "Añadir una imagen como capa",
+    "toggleMask": "Máscara de fusión",
+    "hideLayer": "Ocultar capa",
+    "showLayer": "Mostrar capa",
+    "duplicateLayer": "Duplicar capa",
+    "deleteLayer": "Eliminar capa"
   },
   "footer": {
     "tagline": "Todos tus documentos, en un solo lugar.",
-    "rights": "© {{year}} ONE. Todos tus documentos, en un solo lugar."
+    "rights": "© {{year}} ONE. Todos tus documentos, en un solo lugar.",
+    "legalLinksTitle": "Información legal",
+    "legalNotice": "Aviso legal",
+    "privacyPolicy": "Privacidad",
+    "termsOfService": "Términos",
+    "cookiePolicy": "Cookies",
+    "refundPolicy": "Reembolsos",
+    "manageCookies": "Gestionar cookies"
   },
   "compressionLevels": {
-    "high": { "label": "Compresión Alta", "description": "Menor calidad, tamaño mínimo" },
-    "recommended": { "label": "Compresión Recomendada", "description": "Buen equilibrio calidad/tamaño" },
-    "low": { "label": "Compresión Baja", "description": "Alta calidad, reducción ligera" }
+    "high": {
+      "label": "Compresión Alta",
+      "description": "Menor calidad, tamaño mínimo"
+    },
+    "recommended": {
+      "label": "Compresión Recomendada",
+      "description": "Buen equilibrio calidad/tamaño"
+    },
+    "low": {
+      "label": "Compresión Baja",
+      "description": "Alta calidad, reducción ligera"
+    }
   },
   "tools": {
     "merge": {
@@ -280,7 +307,10 @@
       "errorInvalid": "Por favor, suelta solo imágenes JPG, PNG o WebP.",
       "errorGeneric": "La generación del PDF falló."
     },
-    "rotate": { "name": "Girar PDF", "description": "Corrige la orientación de tus páginas" },
+    "rotate": {
+      "name": "Girar PDF",
+      "description": "Corrige la orientación de tus páginas"
+    },
     "organize": {
       "name": "Organizar páginas",
       "description": "Reordena, gira o elimina páginas arrastrando y soltando",
@@ -349,7 +379,6 @@
       "protectTab": "Proteger",
       "changeFile": "Elegir otro archivo",
       "errorGeneric": "No se pudo procesar este PDF. Puede estar corrupto.",
-
       "dropHintProtect": "Suelta el PDF a proteger con contraseña",
       "passwordLabel": "Contraseña",
       "passwordPlaceholder": "Elige una contraseña",
@@ -364,7 +393,6 @@
       "doneTitleProtect": "¡PDF protegido!",
       "doneDescriptionProtect": "Ahora se pedirá una contraseña para abrir este archivo.",
       "restartLabelProtect": "Proteger otro archivo",
-
       "dropHintUnlock": "Suelta el PDF protegido a desbloquear",
       "unlockPasswordLabel": "Contraseña del documento",
       "unlockPasswordPlaceholder": "Déjalo en blanco si no la conoces",
@@ -376,7 +404,10 @@
       "restartLabelUnlock": "Desbloquear otro archivo",
       "errorWrongPassword": "Contraseña incorrecta — verifícala e inténtalo de nuevo."
     },
-    "unlock": { "name": "Desbloquear PDF", "description": "Elimina las restricciones de un PDF protegido" },
+    "unlock": {
+      "name": "Desbloquear PDF",
+      "description": "Elimina las restricciones de un PDF protegido"
+    },
     "watermark": {
       "name": "Marca de agua",
       "description": "Superpón un texto (CONFIDENCIAL, MUESTRA…) en tus páginas",
@@ -573,9 +604,18 @@
       "tabResize": "Redimensionar",
       "levelLabel": "Nivel de compresión",
       "levels": {
-        "high": { "label": "Compresión Alta", "description": "Menor calidad, tamaño mínimo (-70% a -90%)" },
-        "recommended": { "label": "Compresión Equilibrada", "description": "Buen equilibrio calidad/tamaño (-40% a -60%)" },
-        "low": { "label": "Compresión Ligera", "description": "Alta calidad, reducción leve (-20%)" }
+        "high": {
+          "label": "Compresión Alta",
+          "description": "Menor calidad, tamaño mínimo (-70% a -90%)"
+        },
+        "recommended": {
+          "label": "Compresión Equilibrada",
+          "description": "Buen equilibrio calidad/tamaño (-40% a -60%)"
+        },
+        "low": {
+          "label": "Compresión Ligera",
+          "description": "Alta calidad, reducción leve (-20%)"
+        }
       },
       "quality": "Calidad",
       "qualityHint": "Una calidad más baja reduce el peso del archivo pero puede introducir artefactos visibles.",
@@ -669,5 +709,240 @@
       "errorGeneric": "Ocurrió un error al procesar el vídeo.",
       "errorUnsupported": "Esta función no es compatible con tu navegador — prueba con una versión reciente de Chrome, Edge o Firefox."
     }
+  },
+  "legal": {
+    "meta": {
+      "lastUpdated": "21 de septiembre de 2026",
+      "backToHome": "Volver al inicio",
+      "tableOfContents": "Índice",
+      "disclaimer": "Este documento se redactó cuidadosamente para reflejar fielmente el funcionamiento real del servicio ONE (procesamiento 100% local, sin recopilación de archivos). No sustituye el asesoramiento de un abogado colegiado en su jurisdicción: hágalo revisar por un profesional del derecho local antes de cualquier explotación comercial, en particular los campos marcados como \"POR COMPLETAR\"."
+    },
+    "legalNotice": {
+      "title": "Aviso legal",
+      "intro": "De conformidad con la normativa vigente, este aviso legal identifica al editor y al proveedor de alojamiento del sitio ONE, así como las condiciones generales de propiedad intelectual y de responsabilidad aplicables a su consulta.",
+      "sections": [
+        {
+          "heading": "1. Editor del sitio",
+          "body": "El sitio y la aplicación \"ONE\" (el \"Servicio\") son editados por:\n[POR COMPLETAR — denominación oficial del editor (nombre completo, o razón social + forma jurídica + número de registro)]\nDirección: [POR COMPLETAR — domicilio del editor, Camerún]\nCorreo de contacto: [POR COMPLETAR — dirección de correo electrónico de contacto dedicada, ej. contact@sudominio.com]\n\nEsta información se completará antes de cualquier explotación comercial del Servicio, conforme a la obligación de identificación del editor."
+        },
+        {
+          "heading": "2. Director de la publicación",
+          "body": "El director de la publicación es la persona identificada en el punto 1 anterior ([POR COMPLETAR — denominación oficial del editor (nombre completo, o razón social + forma jurídica + número de registro)])."
+        },
+        {
+          "heading": "3. Alojamiento",
+          "body": "El Servicio está alojado por:\nVercel Inc. — 340 S Lemon Ave #4133, Walnut, CA 91789, Estados Unidos — https://vercel.com\n\nEsta información procede de los avisos legales públicos del proveedor de alojamiento en el momento de la redacción y debe verificarse periódicamente, ya que la dirección de un proveedor puede cambiar. Vercel actúa como encargado del tratamiento a efectos del RGPD para el alojamiento técnico de los archivos estáticos del Servicio: en ningún momento recibe los archivos (PDF, imagen, audio, vídeo) que usted procesa, ya que estos nunca se transmiten a un servidor (véase la Política de privacidad)."
+        },
+        {
+          "heading": "4. Propiedad intelectual",
+          "body": "La estructura general del Servicio, sus textos, logotipos, marcas (incluida \"ONE\"), gráficos, iconos y el código fuente que lo componen son, salvo indicación en contrario, propiedad exclusiva del editor o de sus licenciantes y están protegidos por el derecho de autor y de marcas aplicable.\n\nQueda prohibida cualquier reproducción, representación, modificación, publicación o adaptación total o parcial de los elementos del Servicio, cualquiera que sea el medio o procedimiento utilizado, sin la autorización previa y por escrito del editor.\n\nLos archivos que usted importa y procesa a través del Servicio (documentos, imágenes, archivos de audio o vídeo) siguen siendo de su exclusiva propiedad y bajo su entera responsabilidad: el editor no adquiere ningún derecho sobre ellos, no accede a ellos ni los almacena."
+        },
+        {
+          "heading": "5. Limitación de responsabilidad",
+          "body": "El Servicio se proporciona \"tal cual\". El editor emplea medios razonables para garantizar la disponibilidad y exactitud de los procesamientos ofrecidos (fusión, compresión, conversión, etc.), sin garantizar una disponibilidad ininterrumpida ni un resultado exento de errores.\n\nEl usuario es el único responsable de los archivos que importa y del resultado obtenido; le corresponde verificar los archivos generados antes de cualquier uso y conservar sus propias copias de seguridad. El editor no podrá ser considerado responsable de los daños directos o indirectos resultantes del uso o de la imposibilidad de uso del Servicio."
+        },
+        {
+          "heading": "6. Legislación aplicable y jurisdicción",
+          "body": "Este aviso legal se rige por el derecho camerunés. Para los usuarios residentes en la Unión Europea, las disposiciones imperativas del derecho de consumo y del Reglamento General de Protección de Datos (RGPD) aplicables en razón de la orientación del sitio hacia su territorio quedan reservadas y prevalecerán en caso de conflicto sobre este punto concreto.\n\nA falta de resolución amistosa, cualquier controversia será competencia exclusiva de los tribunales cameruneses competentes, sin perjuicio de las normas imperativas de protección del consumidor aplicables a los residentes de la UE."
+        },
+        {
+          "heading": "7. Contacto y reclamaciones",
+          "body": "Para cualquier pregunta relativa a este aviso legal, escriba a [POR COMPLETAR — dirección de correo electrónico de contacto dedicada, ej. contact@sudominio.com]."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Política de privacidad",
+      "intro": "ONE fue diseñado bajo el principio de \"privacidad desde el diseño\": la inmensa mayoría de las operaciones —fusionar, comprimir, convertir, editar PDF, imágenes, audio o vídeo— se ejecutan íntegramente en su navegador, en su propio dispositivo. Sus archivos nunca se envían a un servidor. Esta política explica con precisión qué datos se tratan de todos modos, por qué, y cuáles son sus derechos.",
+      "sections": [
+        {
+          "heading": "1. Responsable del tratamiento",
+          "body": "El responsable del tratamiento a efectos del RGPD es [POR COMPLETAR — denominación oficial del editor (nombre completo, o razón social + forma jurídica + número de registro)], contactable en [POR COMPLETAR — dirección de correo electrónico de contacto dedicada, ej. contact@sudominio.com]. Véase el Aviso legal para la identificación completa del editor."
+        },
+        {
+          "heading": "2. Principio fundamental: sus archivos permanecen con usted",
+          "body": "Las herramientas de documentos, imágenes, audio y vídeo que ofrece ONE funcionan exclusivamente del lado del cliente, gracias a tecnologías del navegador (WebAssembly, Web Workers, API de archivos). En concreto:\n- El archivo que usted importa nunca se sube a un servidor del editor.\n- Ninguna copia de su archivo, ni de su contenido, es conservada por el editor, bajo ninguna forma.\n- El procesamiento (fusión, compresión, OCR, conversión, etc.) ocurre en memoria, dentro de la pestaña de su navegador, y el resultado se le ofrece para descargar directamente desde su dispositivo.\n\nEste procesamiento local es el núcleo del funcionamiento del Servicio y no es una opción desactivable."
+        },
+        {
+          "heading": "3. Datos que realmente recopilamos",
+          "body": "De acuerdo con el principio de minimización de datos (art. 5.1.c del RGPD), solo recopilamos lo estrictamente necesario para el funcionamiento del Servicio:\n- Datos almacenados localmente en su navegador (localStorage), que nunca salen de su dispositivo: preferencia de tema (claro/oscuro), idioma elegido, historial de sus últimas 20 operaciones (herramienta utilizada, nombre de archivo, marca de tiempo —nunca el contenido del archivo—) y su elección respecto al banner de cookies.\n- Datos técnicos de conexión recopilados de forma estándar por nuestro proveedor de alojamiento (Vercel) para la prestación del Servicio y la seguridad de la infraestructura: dirección IP, tipo de navegador, páginas visitadas, marcas de tiempo de las solicitudes. Estos registros de servidor son gestionados por el proveedor según su propia política y no son explotados por el editor con fines comerciales.\n- Actualmente no se recopila ningún dato de cuenta: la función \"Mi cuenta\" figura como \"próximamente\" y hoy no recopila ninguna información.\n\nNo recopilamos ni inferimos ningún dato sensible ni de geolocalización precisa, y no utilizamos ninguna herramienta de análisis de audiencia de terceros (ni Google Analytics ni equivalente) ni publicidad dirigida a la fecha de esta política."
+        },
+        {
+          "heading": "4. Finalidades del tratamiento",
+          "body": "Los datos mencionados se tratan únicamente para las siguientes finalidades:\n- Prestar, operar y proteger el Servicio (datos técnicos de conexión);\n- Recordar sus preferencias de visualización e idioma para mejorar su comodidad entre sesiones (localStorage);\n- Permitirle encontrar el historial de sus operaciones recientes directamente en su dispositivo;\n- Registrar su consentimiento (o su ausencia) respecto al almacenamiento local no estrictamente necesario, conforme a la normativa aplicable."
+        },
+        {
+          "heading": "5. Base jurídica del tratamiento",
+          "body": "De conformidad con el artículo 6 del RGPD, cada tratamiento se basa en una base jurídica identificada:\n- La ejecución del servicio solicitado por el usuario (art. 6.1.b) para el procesamiento local de sus archivos y el almacenamiento de las preferencias funcionales indispensables para el Servicio;\n- El interés legítimo del editor (art. 6.1.f) para los registros técnicos de seguridad y la prevención de abusos;\n- Su consentimiento (art. 6.1.a), cuando se requiera, para cualquier almacenamiento local o cookie que no sea estrictamente necesario para el funcionamiento del Servicio, recabado mediante el módulo de gestión de cookies."
+        },
+        {
+          "heading": "6. Destinatarios de los datos",
+          "body": "Sus datos no se venden, alquilan ni comparten con fines comerciales con terceros. Los únicos destinatarios posibles son:\n- Nuestro proveedor de alojamiento, Vercel Inc., que actúa como encargado del tratamiento para el alojamiento técnico del Servicio;\n- Las autoridades administrativas o judiciales competentes, únicamente cuando la ley nos obligue a ello."
+        },
+        {
+          "heading": "7. Transferencias de datos fuera de su país de residencia",
+          "body": "Nuestro proveedor de alojamiento opera una infraestructura global que puede implicar el tratamiento de los registros técnicos de conexión en Estados Unidos u otros países donde Vercel disponga de servidores. En la medida en que esto afecte a datos personales de residentes de la UE, dicha transferencia se basa en las garantías adecuadas previstas por el RGPD (cláusulas contractuales tipo o mecanismo equivalente reconocido por la Comisión Europea). Sus archivos en sí nunca son objeto de transferencia alguna, ya que nunca se envían a un servidor."
+        },
+        {
+          "heading": "8. Plazo de conservación",
+          "body": "Los archivos que usted procesa nunca se conservan: existen únicamente en la memoria de trabajo de su navegador durante el tiempo del procesamiento, y se eliminan al cerrar la pestaña o el navegador. Los datos de preferencia y el historial local permanecen en su dispositivo hasta que usted mismo los elimine (página Ajustes, botón \"Vaciar historial\") o borre los datos de navegación de su navegador; el historial local además se limita automáticamente a las 20 operaciones más recientes. Los registros técnicos de conexión del proveedor de alojamiento se conservan durante el plazo estándar aplicado por Vercel para operar y proteger su infraestructura."
+        },
+        {
+          "heading": "9. Seguridad de los datos",
+          "body": "La decisión arquitectónica de un procesamiento 100% local reduce intrínsecamente la exposición de sus datos: al no enviarse nunca ningún archivo a un servidor, no existe ninguna base de datos con sus documentos que pueda ser vulnerada o filtrada. Además, el Servicio se sirve exclusivamente mediante HTTPS (transporte cifrado). El almacenamiento local (localStorage) sigue sujeto a los mecanismos de seguridad de su propio navegador y dispositivo: le recomendamos mantener su navegador actualizado y proteger el acceso físico a su dispositivo."
+        },
+        {
+          "heading": "10. Sus derechos",
+          "body": "De conformidad con el RGPD y, en su caso, con la legislación camerunesa aplicable en materia de protección de datos personales, usted dispone de los siguientes derechos sobre los datos que realmente conservamos sobre usted (datos técnicos de conexión):\n- Derecho de acceso;\n- Derecho de rectificación de datos inexactos;\n- Derecho de supresión (\"derecho al olvido\");\n- Derecho a la limitación del tratamiento;\n- Derecho de oposición por motivos legítimos;\n- Derecho a la portabilidad, cuando sea aplicable;\n- Derecho a presentar una reclamación ante la autoridad de control competente (por ejemplo, su autoridad nacional de protección de datos en la UE, o la autoridad camerunesa competente en la materia).\n\nPara cualquier dato almacenado localmente (tema, idioma, historial), usted ejerce estos derechos directamente y en cualquier momento desde la página Ajustes del Servicio o desde la configuración de privacidad de su navegador, sin necesidad de contactarnos. Para cualquier otra solicitud, escriba a [POR COMPLETAR — dirección de correo electrónico de contacto dedicada, ej. contact@sudominio.com]."
+        },
+        {
+          "heading": "11. Menores",
+          "body": "El Servicio no está específicamente dirigido a menores y no recopila datos dirigidos deliberadamente a menores. Si considera que un menor nos ha facilitado datos personales sin el consentimiento requerido, contáctenos para que podamos proceder a su eliminación."
+        },
+        {
+          "heading": "12. Cookies y tecnologías similares",
+          "body": "El detalle de las cookies y del almacenamiento local utilizados por el Servicio, así como la forma de gestionar sus preferencias, se recoge en una Política de cookies específica."
+        },
+        {
+          "heading": "13. Modificaciones de esta política",
+          "body": "Esta política puede actualizarse para reflejar cambios en el Servicio (por ejemplo, la incorporación de una cuenta de usuario o de una función que implique tratamiento en servidor). Cualquier modificación sustancial se indicará en esta página, actualizando la fecha de última revisión que figura a continuación."
+        },
+        {
+          "heading": "14. Contacto",
+          "body": "Para cualquier pregunta sobre esta política de privacidad, o para ejercer sus derechos, contáctenos en [POR COMPLETAR — dirección de correo electrónico de contacto dedicada, ej. contact@sudominio.com]."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Términos y Condiciones de Uso",
+      "intro": "Los presentes Términos y Condiciones de Uso (\"Términos\") rigen el acceso y uso del sitio y la aplicación ONE. Al acceder o utilizar el Servicio, usted acepta sin reservas estos Términos. Si no los acepta, no utilice el Servicio.",
+      "sections": [
+        {
+          "heading": "1. Objeto",
+          "body": "ONE es una aplicación web utilitaria que permite realizar, directamente en su navegador, operaciones habituales sobre sus documentos PDF, imágenes, archivos de audio y vídeo: fusión, división, compresión, conversión de formato, protección, firma, extracción de texto o imágenes, edición y otras herramientas que figuran en el Servicio."
+        },
+        {
+          "heading": "2. Aceptación de estos Términos",
+          "body": "El uso del Servicio, con o sin creación de cuenta, implica la aceptación plena de estos Términos en su versión vigente en el momento del uso. Estos Términos pueden completarse con condiciones particulares propias de determinadas herramientas, indicadas en la página correspondiente."
+        },
+        {
+          "heading": "3. Descripción y funcionamiento del Servicio",
+          "body": "Salvo indicación expresa en contrario en una página concreta, todos los procesamientos ofrecidos por ONE se ejecutan localmente en su navegador: sus archivos no pasan por un servidor del editor. El Servicio requiere un navegador reciente y compatible y una conexión a Internet para cargar la aplicación; el propio procesamiento no requiere después ninguna conexión adicional."
+        },
+        {
+          "heading": "4. Cuenta de usuario",
+          "body": "A la fecha de estos Términos, no se requiere la creación de una cuenta para utilizar las herramientas del Servicio; la sección \"Mi cuenta\" está en desarrollo. Si en el futuro se introduce un sistema de cuentas, estos Términos se actualizarán para precisar las condiciones aplicables (credenciales, seguridad de la contraseña, cancelación, etc.)."
+        },
+        {
+          "heading": "5. Obligaciones y compromisos del usuario",
+          "body": "Al utilizar el Servicio, usted se compromete a:\n- Utilizar el Servicio conforme a su finalidad y respetando las leyes y reglamentos aplicables;\n- Procesar mediante el Servicio únicamente archivos sobre los que posea legalmente los derechos o la autorización de uso (derechos de autor, derechos afines, derecho a la imagen, datos personales de terceros, secreto de las comunicaciones, etc.);\n- No utilizar el Servicio con fines ilícitos o fraudulentos, ni para producir, modificar o difundir contenidos ilegales (falsificación, contenidos alterados con fines de fraude, contenidos que vulneren derechos de terceros, etc.);\n- No intentar perturbar, sobrecargar, eludir las medidas de seguridad ni realizar ingeniería inversa del Servicio más allá de lo permitido por la ley."
+        },
+        {
+          "heading": "6. Propiedad intelectual",
+          "body": "El Servicio (código, interfaz, marca, logotipo) está protegido por el derecho de propiedad intelectual y sigue siendo propiedad del editor, en los términos precisados en el Aviso legal.\n\nUsted conserva la totalidad de sus derechos sobre los archivos que importa y sobre los archivos resultantes del procesamiento: el editor no reivindica ningún derecho de propiedad ni licencia de explotación sobre dichos contenidos, que nunca almacena ni consulta."
+        },
+        {
+          "heading": "7. Disponibilidad y evolución del Servicio",
+          "body": "El editor se esfuerza por garantizar un acceso continuo al Servicio, pero no garantiza una disponibilidad ininterrumpida (mantenimiento, actualizaciones, fuerza mayor, incidencias del proveedor de alojamiento, etc.). El editor se reserva el derecho de modificar, suspender o interrumpir la totalidad o parte del Servicio, o de una herramienta concreta, en cualquier momento, con o sin previo aviso, en particular por motivos técnicos o de seguridad."
+        },
+        {
+          "heading": "8. Limitación de responsabilidad",
+          "body": "El Servicio se proporciona \"tal cual\" y \"según disponibilidad\", sin garantía de ausencia de errores en los archivos generados. Corresponde al usuario verificar sistemáticamente el resultado de cada procesamiento antes de cualquier uso y conservar una copia de seguridad de sus archivos originales antes del procesamiento.\n\nEn la medida permitida por la ley aplicable, el editor no podrá ser considerado responsable de los daños indirectos (pérdida de datos, pérdida de negocio, pérdida de oportunidad, perjuicio comercial) resultantes del uso del Servicio. Esta limitación no se aplica a los daños derivados de dolo o negligencia grave del editor, ni a los derechos imperativos de los consumidores que no puedan limitarse contractualmente."
+        },
+        {
+          "heading": "9. Precios",
+          "body": "A la fecha de estos Términos, todas las herramientas del Servicio se ofrecen de forma gratuita, sin pago ni suscripción. Si en el futuro se introdujera una oferta de pago, sus condiciones específicas (tarifas, medios de pago, derecho de desistimiento) se establecerían en Condiciones Generales de Venta independientes y en una Política de reembolsos actualizada, que se le comunicarían antes de cualquier pago."
+        },
+        {
+          "heading": "10. Suspensión y resolución",
+          "body": "El editor se reserva el derecho de restringir o suspender el acceso al Servicio, sin previo aviso, en caso de incumplimiento grave o reiterado de estos Términos, uso fraudulento, o atentado contra la seguridad o integridad del Servicio."
+        },
+        {
+          "heading": "11. Modificación de estos Términos",
+          "body": "El editor puede modificar estos Términos en cualquier momento para reflejar un cambio legal, técnico o funcional del Servicio. La versión aplicable es la publicada en esta página en el momento de uso del Servicio; la fecha de última actualización figura a continuación."
+        },
+        {
+          "heading": "12. Legislación aplicable y resolución de conflictos",
+          "body": "Estos Términos se rigen por el derecho camerunés, sin perjuicio, para los usuarios consumidores residentes en la Unión Europea, de las disposiciones imperativas de protección del consumidor de su país de residencia que resulten más favorables. A falta de resolución amistosa, cualquier controversia será competencia de los tribunales cameruneses, salvo disposición de orden público en contrario aplicable a un usuario consumidor."
+        },
+        {
+          "heading": "13. Contacto",
+          "body": "Para cualquier pregunta sobre estos Términos, contáctenos en [POR COMPLETAR — dirección de correo electrónico de contacto dedicada, ej. contact@sudominio.com]."
+        }
+      ]
+    },
+    "cookiePolicy": {
+      "title": "Política de cookies",
+      "intro": "Esta política explica qué son las cookies y las tecnologías de almacenamiento local, cuáles utiliza ONE, por qué, y cómo puede gestionarlas. Complementa nuestra Política de privacidad.",
+      "sections": [
+        {
+          "heading": "1. ¿Qué son las cookies y el almacenamiento local?",
+          "body": "Una \"cookie\" es un pequeño archivo de texto que un sitio web guarda en su dispositivo. El \"almacenamiento local\" (localStorage) es una tecnología similar, más moderna, que permite a un sitio conservar información directamente en su navegador, sin fecha de caducidad automática. ONE no utiliza cookies de seguimiento clásicas, sino que se apoya en el almacenamiento local del navegador, sujeto al mismo marco normativo (Directiva ePrivacy / RGPD)."
+        },
+        {
+          "heading": "2. Lo que no utilizamos",
+          "body": "A la fecha de esta política, ONE no utiliza:\n- Ninguna cookie o rastreador publicitario;\n- Ninguna herramienta de análisis de audiencia de terceros (como Google Analytics, Meta Pixel, etc.);\n- Ninguna cookie de redes sociales;\n- Ningún revendedor de datos ni intermediario publicitario externo.\n\nSi esto cambiara, esta política se actualizaría previamente y se solicitaría su consentimiento cuando proceda."
+        },
+        {
+          "heading": "3. Detalle de lo almacenado localmente en su dispositivo",
+          "body": "Los únicos elementos guardados en el almacenamiento local de su navegador son:\n- one-theme — recuerda su preferencia de visualización claro/oscuro. Estrictamente necesario para el funcionamiento esperado de la interfaz; no requiere consentimiento.\n- one-language — recuerda el idioma que ha elegido. Estrictamente necesario; no requiere consentimiento.\n- one-history — recuerda el historial de sus últimas 20 operaciones (nombre de la herramienta, nombre de archivo, fecha), para la comodidad de la función \"Historial\" que usted solicitó. Funcional, activado por defecto por tratarse de un servicio explícitamente solicitado por el usuario; puede vaciarlo en cualquier momento desde Ajustes.\n- one-cookie-consent — recuerda la elección que usted expresó mediante el banner de consentimiento, para no volver a mostrárselo en cada visita."
+        },
+        {
+          "heading": "4. Base jurídica y consentimiento",
+          "body": "Los elementos estrictamente necesarios para el funcionamiento del Servicio (tema, idioma) están exentos de consentimiento previo en virtud de la normativa ePrivacy. El historial local, aunque no es indispensable para mostrar el Servicio, corresponde a una función explícitamente solicitada por el usuario al abrir el panel de Historial; no obstante, recabamos su elección global mediante el banner de consentimiento por transparencia, y puede desactivarlo en cualquier momento vaciando el historial desde Ajustes."
+        },
+        {
+          "heading": "5. Cómo gestionar sus preferencias",
+          "body": "En cualquier momento puede:\n- Modificar su elección mediante el enlace \"Gestionar cookies\" disponible en el pie de página del Servicio;\n- Vaciar el historial local desde la página Ajustes del Servicio;\n- Eliminar todo el almacenamiento local relativo a ONE desde la configuración de privacidad de su navegador (\"Borrar datos de navegación\" / \"Cookies y datos de sitios\");\n- Configurar su navegador para bloquear por defecto todo almacenamiento local, a costa, potencialmente, de perder sus preferencias entre visitas."
+        },
+        {
+          "heading": "6. Plazo de conservación",
+          "body": "Los datos de almacenamiento local no tienen fecha de caducidad automática: permanecen en su dispositivo hasta que usted los elimine manualmente o borre los datos de navegación. El historial local, además, se limita automáticamente a las 20 operaciones más recientes."
+        },
+        {
+          "heading": "7. Modificaciones de esta política",
+          "body": "Esta política de cookies puede actualizarse si evolucionan las tecnologías utilizadas por el Servicio (por ejemplo, la futura incorporación de una herramienta de análisis de audiencia). Cualquier cambio significativo dará lugar a una nueva solicitud de consentimiento cuando proceda."
+        }
+      ]
+    },
+    "refund": {
+      "title": "Política de reembolsos",
+      "intro": "Esta página precisa las condiciones de reembolso aplicables a las eventuales transacciones realizadas en ONE.",
+      "sections": [
+        {
+          "heading": "1. Servicio actualmente gratuito",
+          "body": "A la fecha de esta política, todas las herramientas ofrecidas por ONE son totalmente gratuitas: no se recopila ninguna información de pago y no se realiza ninguna transacción financiera en el Servicio. Al no existir pago alguno, actualmente no aplica ningún reembolso."
+        },
+        {
+          "heading": "2. Marco aplicable en caso de introducirse en el futuro una oferta de pago",
+          "body": "Si en el futuro se introdujera una oferta de pago (suscripción, compra puntual o donación), se aplicarían los siguientes principios, sujetos a unas Condiciones Generales de Venta específicas publicadas antes del lanzamiento de dicha oferta:\n- Para los consumidores residentes en la Unión Europea, se aplicaría un derecho de desistimiento de 14 días naturales a las compras de contenido digital, salvo que usted solicite expresamente el inicio inmediato de la prestación y renuncie así a su derecho de desistimiento una vez que el servicio digital se haya ejecutado por completo (artículo L221-28 del Código de Consumo francés, o disposición equivalente de su legislación nacional);\n- Para el resto de usuarios, las condiciones de reembolso se precisarían en las Condiciones Generales de Venta aplicables en el momento de la compra, conforme al derecho camerunés y al derecho aplicable en el lugar de residencia del comprador;\n- Quedaría excluido cualquier reembolso en caso de uso abusivo del Servicio, fraude probado, o cuando el servicio digital se haya ejecutado íntegramente con el acuerdo expreso y previo del usuario."
+        },
+        {
+          "heading": "3. Cómo solicitar un reembolso",
+          "body": "Si cree que se le ha cobrado por error, o desea formular una solicitud relacionada con un pago, contáctenos sin demora en [POR COMPLETAR — dirección de correo electrónico de contacto dedicada, ej. contact@sudominio.com], indicando la fecha, el importe y el medio de pago utilizado. Nos comprometemos a tramitar de buena fe cualquier solicitud en un plazo razonable."
+        },
+        {
+          "heading": "4. Actualización de esta política",
+          "body": "Esta política se revisará íntegramente y se volverá a publicar antes de introducir cualquier función de pago, para reflejar con precisión las condiciones de facturación y reembolso entonces aplicables."
+        }
+      ]
+    }
+  },
+  "cookieConsent": {
+    "bannerTitle": "Su privacidad, respetada por diseño",
+    "bannerDescription": "ONE procesa sus archivos 100% localmente, en su navegador: nunca se envían a un servidor. Solo utilizamos el almacenamiento local necesario para el funcionamiento del sitio (tema, idioma) y un historial local opcional. No se utiliza ninguna cookie publicitaria ni rastreador de terceros.",
+    "acceptAll": "Aceptar todo",
+    "rejectNonEssential": "Rechazar lo no esencial",
+    "customize": "Personalizar",
+    "save": "Guardar mis opciones",
+    "learnMore": "Ver política de cookies",
+    "preferencesTitle": "Preferencias de privacidad",
+    "preferencesDescription": "Elija las categorías de almacenamiento local que autoriza. Puede modificar esta elección en cualquier momento desde el pie de página.",
+    "necessaryTitle": "Estrictamente necesarias",
+    "necessaryDescription": "Recuerda el tema (claro/oscuro), el idioma y su elección de consentimiento. Indispensables para el funcionamiento del sitio, siempre activas.",
+    "alwaysActive": "Siempre activo",
+    "historyTitle": "Historial local de operaciones",
+    "historyDescription": "Conserva en su dispositivo la lista de sus últimas 20 operaciones para que pueda encontrarlas fácilmente. Nada se envía nunca a un servidor.",
+    "closeLabel": "Cerrar"
   }
 }

@@ -106,7 +106,7 @@ export default function ImageBatchPage() {
     <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/image"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> Retour aux outils Image
       </Link>
@@ -133,7 +133,7 @@ export default function ImageBatchPage() {
         {files.length > 0 && <p className="text-sm text-zinc-500 dark:text-zinc-400">{files.length} fichier(s) sélectionné(s)</p>}
 
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">Préréglage</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Préréglage</p>
           <div className="grid grid-cols-2 gap-2">
             {PRESETS.map((preset) => (
               <button
@@ -152,7 +152,7 @@ export default function ImageBatchPage() {
         </div>
 
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">Format de sortie</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Format de sortie</p>
           <div className="grid grid-cols-3 gap-2">
             {['jpeg', 'png', 'webp'].map((f) => (
               <button

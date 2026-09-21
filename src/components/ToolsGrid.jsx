@@ -8,7 +8,7 @@ export default function ToolsGrid({ tools, showEasyMode, onOpenAssistant }) {
 
   if (tools.length === 0) {
     return (
-      <div className="flex flex-col items-center gap-3 py-20 text-center text-zinc-400">
+      <div className="flex flex-col items-center gap-3 py-20 text-center text-zinc-500 dark:text-zinc-400">
         <SearchX size={40} />
         <p className="text-sm">{t('search.noResults')}</p>
       </div>

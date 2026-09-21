@@ -29,4 +29,14 @@ i18n
     },
   })
 
+// Synchronise l'attribut lang du document avec la langue active : requis
+// pour l'accessibilité (WCAG 3.1.1, prononciation correcte par les lecteurs
+// d'écran) et pour que les moteurs de recherche / agents IA indexant la
+// page connaissent sa langue réelle plutôt que le "en" figé du HTML statique.
+const syncDocumentLang = (lng) => {
+  if (typeof document !== 'undefined') document.documentElement.lang = lng
+}
+i18n.on('languageChanged', syncDocumentLang)
+if (i18n.resolvedLanguage) syncDocumentLang(i18n.resolvedLanguage)
+
 export default i18n

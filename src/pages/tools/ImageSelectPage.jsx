@@ -320,7 +320,7 @@ export default function ImageSelectPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link to="/image" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200">
+      <Link to="/image" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200">
         <ArrowLeft size={16} /> Retour aux outils Image
       </Link>
 
@@ -382,7 +382,7 @@ export default function ImageSelectPage() {
                     </button>
                   ))}
                 </div>
-                <span className="text-xs text-zinc-400">Peignez pour révéler ou masquer l'image du dessus (plume non incluse).</span>
+                <span className="text-xs text-zinc-500 dark:text-zinc-400">Peignez pour révéler ou masquer l'image du dessus (plume non incluse).</span>
                 <button onClick={handleDownloadMask} className="ml-auto inline-flex items-center gap-2 rounded-full bg-indigo-500 px-4 py-2 text-sm font-semibold text-white">
                   <Download size={14} /> Télécharger
                 </button>
@@ -423,7 +423,7 @@ export default function ImageSelectPage() {
                     Tolérance
                     <input type="range" min={1} max={128} value={tolerance} onChange={(e) => setTolerance(Number(e.target.value))} className="w-28 accent-indigo-500" />
                   </label>
-                  <span className="text-xs text-zinc-400">Cliquez pour sélectionner par couleur, glissez pour étendre (sélection rapide).</span>
+                  <span className="text-xs text-zinc-500 dark:text-zinc-400">Cliquez pour sélectionner par couleur, glissez pour étendre (sélection rapide).</span>
                 </>
               )}
               {tab === 'lasso' && (
@@ -435,7 +435,7 @@ export default function ImageSelectPage() {
                       </button>
                     ))}
                   </div>
-                  <span className="text-xs text-zinc-400">
+                  <span className="text-xs text-zinc-500 dark:text-zinc-400">
                     {lassoMode === 'polygon' ? 'Cliquez pour ajouter des points, double-cliquez pour fermer.' : 'Glissez pour tracer la sélection.'} Lasso magnétique non inclus.
                   </span>
                 </>
@@ -453,7 +453,7 @@ export default function ImageSelectPage() {
             </div>
           </div>
 
-          <button onClick={() => setFile(null)} className="self-start text-sm font-medium text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
+          <button onClick={() => setFile(null)} className="self-start text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
             Changer d'image
           </button>
         </div>

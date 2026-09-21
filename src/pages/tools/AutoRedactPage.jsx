@@ -109,7 +109,7 @@ export default function AutoRedactPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -150,7 +150,7 @@ export default function AutoRedactPage() {
         {step === STEPS.CONFIGURE && file && (
           <div className="flex flex-col gap-6">
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                 {t('tools.auto-redact.whatToHide')}
               </p>
               <div className="flex flex-col gap-2">
@@ -176,7 +176,7 @@ export default function AutoRedactPage() {
             </div>
 
             <div>
-              <label htmlFor="keywords" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-zinc-400">
+              <label htmlFor="keywords" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                 {t('tools.auto-redact.customWords')}
               </label>
               <textarea
@@ -185,7 +185,7 @@ export default function AutoRedactPage() {
                 onChange={(e) => setKeywordsInput(e.target.value)}
                 placeholder={t('tools.auto-redact.customWordsPlaceholder')}
                 rows={3}
-                className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-indigo-400 focus:outline-none dark:border-white/10 dark:bg-zinc-800/40 dark:text-white"
+                className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:border-indigo-400 focus:outline-none dark:border-white/10 dark:bg-zinc-800/40 dark:text-white"
               />
             </div>
 
@@ -217,7 +217,7 @@ export default function AutoRedactPage() {
                   ? t('tools.auto-redact.zonesHidden', { count: result.redactionCount })
                   : t('tools.auto-redact.noMatchTitle')}
               </p>
-              <p className="mt-1 text-sm text-zinc-400">
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
                 {result.redactionCount > 0
                   ? t('tools.auto-redact.zonesHiddenDescription')
                   : t('tools.auto-redact.noMatchDescription')}
@@ -226,7 +226,7 @@ export default function AutoRedactPage() {
             <DownloadButton fileName="ONE_redacted.pdf" onDownload={handleDownload} />
             <button
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.auto-redact.restartLabel')}
             </button>

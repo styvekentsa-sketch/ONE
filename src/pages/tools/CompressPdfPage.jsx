@@ -106,7 +106,7 @@ export default function CompressPdfPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -142,19 +142,19 @@ export default function CompressPdfPage() {
         {step === STEPS.CONFIGURE && file && (
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-3 rounded-xl bg-zinc-100 px-4 py-3 dark:bg-zinc-800/60">
-              <FileText size={20} className="shrink-0 text-zinc-400" />
+              <FileText size={20} className="shrink-0 text-zinc-500 dark:text-zinc-400" />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-zinc-700 dark:text-zinc-200">
                   {file.name}
                 </p>
-                <p className="text-xs text-zinc-400">
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
                   {t('tools.compress.initialSize', { size: formatBytes(file.size) })}
                 </p>
               </div>
             </div>
 
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                 {t('tools.compress.compressionLevel')}
               </p>
               <CompressionLevelSelector levels={compressionLevels} value={level} onChange={setLevel} />
@@ -176,7 +176,7 @@ export default function CompressPdfPage() {
               title={t('tools.compress.processingTitle')}
               description={t('tools.compress.levelLabel', { level: selectedLevel.label })}
             />
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
               {t('tools.compress.estimatedSize', { size: formatBytes(estimatedSize) })}
             </p>
           </div>
@@ -191,7 +191,7 @@ export default function CompressPdfPage() {
               <p className="text-lg font-semibold text-zinc-800 dark:text-white">
                 {t('tools.compress.doneTitle', { percent: reductionPercent })}
               </p>
-              <p className="mt-1 text-sm text-zinc-400">
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
                 {t('tools.compress.sizeComparison', {
                   original: formatBytes(result.originalSize),
                   compressed: formatBytes(result.compressedSize),
@@ -201,7 +201,7 @@ export default function CompressPdfPage() {
             <DownloadButton fileName="ONE_compressed.pdf" onDownload={handleDownload} />
             <button
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.compress.restartLabel')}
             </button>

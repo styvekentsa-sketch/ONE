@@ -17,17 +17,17 @@ const STEPS = {
 function FileSlot({ label, file, onFiles, onClear, dropLabel, t }) {
   return (
     <div>
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">{label}</p>
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{label}</p>
       {file ? (
         <div className="flex items-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-3 dark:border-white/10 dark:bg-zinc-800/40">
-          <FileText size={18} className="shrink-0 text-zinc-400" />
+          <FileText size={18} className="shrink-0 text-zinc-500 dark:text-zinc-400" />
           <span className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-700 dark:text-zinc-200">
             {file.name}
           </span>
           <button
             onClick={onClear}
             aria-label={`${t('actions.remove')} ${label}`}
-            className="shrink-0 text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+            className="shrink-0 text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
           >
             <X size={16} />
           </button>
@@ -83,7 +83,7 @@ export default function ComparePdfPage() {
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -177,7 +177,7 @@ export default function ComparePdfPage() {
               </span>
             </div>
 
-            <div className="sticky top-0 z-10 grid grid-cols-2 gap-4 rounded-lg bg-white/90 py-1 text-center text-xs font-semibold uppercase tracking-wide text-zinc-400 backdrop-blur-sm dark:bg-zinc-900/90">
+            <div className="sticky top-0 z-10 grid grid-cols-2 gap-4 rounded-lg bg-white/90 py-1 text-center text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400 backdrop-blur-sm dark:bg-zinc-900/90">
               <span>{t('tools.compare.originalLabel')}</span>
               <span>{t('tools.compare.modifiedLabel')}</span>
             </div>
@@ -196,7 +196,7 @@ export default function ComparePdfPage() {
 
             <button
               onClick={handleRestart}
-              className="mx-auto text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="mx-auto text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.compare.restartLabel')}
             </button>
@@ -214,7 +214,7 @@ function PagePreview({ pageNumber, image, isDifferent, t }) {
         isDifferent ? 'border-amber-400/70' : 'border-transparent'
       }`}
     >
-      <div className="flex items-center justify-between px-2 py-1 text-[11px] font-medium text-zinc-400">
+      <div className="flex items-center justify-between px-2 py-1 text-[11px] font-medium text-zinc-500 dark:text-zinc-400">
         <span>Page {pageNumber}</span>
         {isDifferent ? (
           <span className="text-amber-500">{t('tools.compare.different')}</span>
@@ -234,7 +234,7 @@ function PagePreview({ pageNumber, image, isDifferent, t }) {
             className="h-full w-full object-contain"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center px-4 text-center text-xs text-zinc-400">
+          <div className="flex h-full w-full items-center justify-center px-4 text-center text-xs text-zinc-500 dark:text-zinc-400">
             {t('tools.compare.missingPage')}
           </div>
         )}

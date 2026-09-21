@@ -140,10 +140,10 @@ function GifPanel({ t }) {
       {step === STEPS.CONFIGURE && (
         <div className="flex flex-col gap-4">
           <p className="truncate text-sm font-medium text-zinc-700 dark:text-zinc-200">{file.name}</p>
-          <p className="text-xs text-zinc-400">{t('tools.video-hub.maxDurationHint', { seconds: MAX_GIF_DURATION })}</p>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">{t('tools.video-hub.maxDurationHint', { seconds: MAX_GIF_DURATION })}</p>
 
           <div>
-            <label className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-400">
+            <label className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
               {t('tools.video-hub.start')}
               <span className="font-mono text-zinc-500 dark:text-zinc-400">{formatTime(start)}</span>
             </label>
@@ -159,7 +159,7 @@ function GifPanel({ t }) {
           </div>
 
           <div>
-            <label className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-400">
+            <label className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
               {t('tools.video-hub.end')}
               <span className="font-mono text-zinc-500 dark:text-zinc-400">{formatTime(end)}</span>
             </label>
@@ -182,7 +182,7 @@ function GifPanel({ t }) {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">{t('tools.video-hub.fps')}</p>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{t('tools.video-hub.fps')}</p>
               <div className="flex flex-wrap gap-1.5">
                 {FPS_OPTIONS.map((f) => (
                   <button
@@ -198,7 +198,7 @@ function GifPanel({ t }) {
               </div>
             </div>
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">{t('tools.video-hub.width')}</p>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{t('tools.video-hub.width')}</p>
               <div className="flex flex-wrap gap-1.5">
                 {WIDTH_OPTIONS.map((w) => (
                   <button
@@ -242,13 +242,13 @@ function GifPanel({ t }) {
           </span>
           <div>
             <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.video-hub.gifDoneTitle')}</p>
-            <p className="mt-1 text-sm text-zinc-400">{t('tools.video-hub.gifDoneDescription')}</p>
+            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{t('tools.video-hub.gifDoneDescription')}</p>
           </div>
           {result?.url && <img src={result.url} alt="GIF généré" className="max-h-64 rounded-xl border border-zinc-200 dark:border-white/10" />}
           <DownloadButton fileName={`${file.name.replace(/\.[^.]+$/, '')}.gif`} onDownload={handleDownload} />
           <button
             onClick={handleRestart}
-            className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+            className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
           >
             {t('tools.video-hub.restartLabel')}
           </button>
@@ -379,13 +379,13 @@ function MutePanel({ t }) {
           </span>
           <div>
             <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.video-hub.muteDoneTitle')}</p>
-            <p className="mt-1 text-sm text-zinc-400">{t('tools.video-hub.muteDoneDescription', { format: result?.extension?.toUpperCase() })}</p>
+            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{t('tools.video-hub.muteDoneDescription', { format: result?.extension?.toUpperCase() })}</p>
           </div>
           {result?.url && <video src={result.url} controls muted className="max-h-64 rounded-xl border border-zinc-200 dark:border-white/10" />}
           <DownloadButton fileName={`${file.name.replace(/\.[^.]+$/, '')}_muet.${result?.extension}`} onDownload={handleDownload} />
           <button
             onClick={handleRestart}
-            className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+            className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
           >
             {t('tools.video-hub.restartLabel')}
           </button>
@@ -403,7 +403,7 @@ export default function VideoHubPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link to="/" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200">
+      <Link to="/" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200">
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
 

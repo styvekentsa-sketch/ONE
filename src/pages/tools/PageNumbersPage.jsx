@@ -126,7 +126,7 @@ export default function PageNumbersPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -162,7 +162,7 @@ export default function PageNumbersPage() {
         {step === STEPS.CONFIGURE && file && (
           <div className="flex flex-col gap-6">
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                 {t('tools.page-numbers.position')}
               </p>
               <div className="inline-flex rounded-full border border-zinc-200 bg-zinc-100 p-1 dark:border-white/10 dark:bg-zinc-800/60">
@@ -183,7 +183,7 @@ export default function PageNumbersPage() {
             </div>
 
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                 {t('tools.page-numbers.alignment')}
               </p>
               <div className="inline-flex rounded-full border border-zinc-200 bg-zinc-100 p-1 dark:border-white/10 dark:bg-zinc-800/60">
@@ -206,7 +206,7 @@ export default function PageNumbersPage() {
             </div>
 
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                 {t('tools.page-numbers.format')}
               </p>
               <div className="grid gap-3 sm:grid-cols-3">
@@ -228,7 +228,7 @@ export default function PageNumbersPage() {
 
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label htmlFor="page-numbers-size" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                <label htmlFor="page-numbers-size" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                   <span>{t('tools.page-numbers.size')}</span>
                   <span className="text-zinc-500 dark:text-zinc-300">{fontSize}pt</span>
                 </label>
@@ -244,7 +244,7 @@ export default function PageNumbersPage() {
               </div>
 
               <div>
-                <label htmlFor="page-numbers-margin" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                <label htmlFor="page-numbers-margin" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                   <span>{t('tools.page-numbers.margin')}</span>
                   <span className="text-zinc-500 dark:text-zinc-300">{margin}pt</span>
                 </label>
@@ -280,12 +280,12 @@ export default function PageNumbersPage() {
             </span>
             <div>
               <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.page-numbers.doneTitle')}</p>
-              <p className="mt-1 text-sm text-zinc-400">{t('tools.page-numbers.doneDescription')}</p>
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{t('tools.page-numbers.doneDescription')}</p>
             </div>
             <DownloadButton fileName="ONE_numbered.pdf" onDownload={handleDownload} />
             <button
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.page-numbers.restartLabel')}
             </button>

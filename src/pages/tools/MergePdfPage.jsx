@@ -108,7 +108,7 @@ export default function MergePdfPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -151,7 +151,7 @@ export default function MergePdfPage() {
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-zinc-100 text-xs font-semibold text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
                     {index + 1}
                   </span>
-                  <FileText size={18} className="shrink-0 text-zinc-400" />
+                  <FileText size={18} className="shrink-0 text-zinc-500 dark:text-zinc-400" />
                   <span className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-700 dark:text-zinc-200">
                     {file.name}
                   </span>
@@ -160,7 +160,7 @@ export default function MergePdfPage() {
                       onClick={() => moveFile(index, -1)}
                       disabled={index === 0}
                       aria-label={t('common.moveUp')}
-                      className="rounded p-1 text-zinc-400 transition-colors duration-200 hover:text-zinc-700 disabled:opacity-30 dark:hover:text-zinc-200"
+                      className="rounded p-1 text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-700 disabled:opacity-30 dark:hover:text-zinc-200"
                     >
                       <ArrowUp size={14} />
                     </button>
@@ -168,14 +168,14 @@ export default function MergePdfPage() {
                       onClick={() => moveFile(index, 1)}
                       disabled={index === files.length - 1}
                       aria-label={t('common.moveDown')}
-                      className="rounded p-1 text-zinc-400 transition-colors duration-200 hover:text-zinc-700 disabled:opacity-30 dark:hover:text-zinc-200"
+                      className="rounded p-1 text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-700 disabled:opacity-30 dark:hover:text-zinc-200"
                     >
                       <ArrowDown size={14} />
                     </button>
                     <button
                       onClick={() => removeFile(index)}
                       aria-label={t('actions.remove')}
-                      className="rounded p-1 text-zinc-400 transition-colors duration-200 hover:text-red-500"
+                      className="rounded p-1 text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-red-500"
                     >
                       <X size={14} />
                     </button>
@@ -204,7 +204,7 @@ export default function MergePdfPage() {
                   : t('tools.merge.mergeButtonDefault')}
               </button>
               {files.length < 2 && (
-                <p className="text-xs text-zinc-400">{t('tools.merge.minFilesHint')}</p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">{t('tools.merge.minFilesHint')}</p>
               )}
             </div>
           </div>
@@ -225,14 +225,14 @@ export default function MergePdfPage() {
             </span>
             <div>
               <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.merge.doneTitle')}</p>
-              <p className="mt-1 text-sm text-zinc-400">
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
                 {t('tools.merge.doneDescription', { count: files.length })}
               </p>
             </div>
             <DownloadButton fileName="ONE_merged.pdf" onDownload={handleDownload} />
             <button
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.merge.restartLabel')}
             </button>

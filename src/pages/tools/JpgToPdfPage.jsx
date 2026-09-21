@@ -128,7 +128,7 @@ export default function JpgToPdfPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -215,7 +215,7 @@ export default function JpgToPdfPage() {
 
             <div className="grid gap-5 sm:grid-cols-3">
               <div>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                   {t('tools.jpg-to-pdf.pageFormat')}
                 </p>
                 <div className="flex flex-col gap-1.5">
@@ -236,7 +236,7 @@ export default function JpgToPdfPage() {
               </div>
 
               <div className={pageSize === 'original' ? 'opacity-40' : ''}>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                   {t('tools.jpg-to-pdf.orientation')}
                 </p>
                 <div className="flex flex-col gap-1.5">
@@ -258,7 +258,7 @@ export default function JpgToPdfPage() {
               </div>
 
               <div>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                   {t('tools.jpg-to-pdf.margins')}
                 </p>
                 <div className="flex flex-col gap-1.5">
@@ -303,14 +303,14 @@ export default function JpgToPdfPage() {
             </span>
             <div>
               <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.jpg-to-pdf.doneTitle')}</p>
-              <p className="mt-1 text-sm text-zinc-400">
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
                 {t('tools.jpg-to-pdf.doneDescription', { count: images.length })}
               </p>
             </div>
             <DownloadButton fileName="ONE_images.pdf" onDownload={handleDownload} />
             <button
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.jpg-to-pdf.restartLabel')}
             </button>

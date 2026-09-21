@@ -31,7 +31,7 @@ function formatTime(seconds) {
 function FormatPicker({ format, onChange, t }) {
   return (
     <div>
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">{t('tools.audio-hub.exportFormat')}</p>
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{t('tools.audio-hub.exportFormat')}</p>
       <div className="grid grid-cols-2 gap-2">
         {['wav', 'mp3'].map((f) => (
           <button
@@ -47,7 +47,7 @@ function FormatPicker({ format, onChange, t }) {
           </button>
         ))}
       </div>
-      {format === 'mp3' && <p className="mt-2 text-xs text-zinc-400">{t('tools.audio-hub.mp3Hint')}</p>}
+      {format === 'mp3' && <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">{t('tools.audio-hub.mp3Hint')}</p>}
     </div>
   )
 }
@@ -60,13 +60,13 @@ function ResultPanel({ result, fileLabel, onDownload, onRestart, t }) {
       </span>
       <div>
         <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.audio-hub.doneTitle')}</p>
-        <p className="mt-1 text-sm text-zinc-400">{t('tools.audio-hub.doneDescription')}</p>
+        <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{t('tools.audio-hub.doneDescription')}</p>
       </div>
       {result?.url && <audio controls src={result.url} className="w-full max-w-xs" />}
       <DownloadButton fileName={fileLabel} onDownload={onDownload} />
       <button
         onClick={onRestart}
-        className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         {t('tools.audio-hub.restartLabel')}
       </button>
@@ -155,7 +155,7 @@ function TrimPanel({ t }) {
           <p className="truncate text-sm font-medium text-zinc-700 dark:text-zinc-200">{file.name}</p>
 
           <div>
-            <label className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-400">
+            <label className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
               {t('tools.audio-hub.start')}
               <span className="font-mono text-zinc-500 dark:text-zinc-400">{formatTime(start)}</span>
             </label>
@@ -171,7 +171,7 @@ function TrimPanel({ t }) {
           </div>
 
           <div>
-            <label className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-400">
+            <label className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
               {t('tools.audio-hub.end')}
               <span className="font-mono text-zinc-500 dark:text-zinc-400">{formatTime(end)}</span>
             </label>
@@ -400,7 +400,7 @@ export default function AudioHubPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link to="/" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200">
+      <Link to="/" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200">
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
 

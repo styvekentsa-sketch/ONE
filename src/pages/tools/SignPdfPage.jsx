@@ -278,7 +278,7 @@ export default function SignPdfPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -350,14 +350,14 @@ export default function SignPdfPage() {
                 />
                 <button
                   onClick={handleClearDrawing}
-                  className="mx-auto inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+                  className="mx-auto inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
                 >
                   <Eraser size={14} /> {t('tools.sign.clearDrawing')}
                 </button>
               </div>
             ) : (
               <label className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-zinc-300 bg-zinc-50 p-8 text-center transition-colors duration-200 hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900/50">
-                <Upload size={24} className="text-zinc-400" />
+                <Upload size={24} className="text-zinc-500 dark:text-zinc-400" />
                 <span className="text-sm text-zinc-500 dark:text-zinc-400">
                   {sigFile ? sigFile.name : t('tools.sign.chooseImage')}
                 </span>
@@ -425,7 +425,7 @@ export default function SignPdfPage() {
                 />
               </div>
             </div>
-            <p className="text-center text-xs text-zinc-400">{t('tools.sign.dragResizeHint')}</p>
+            <p className="text-center text-xs text-zinc-500 dark:text-zinc-400">{t('tools.sign.dragResizeHint')}</p>
 
             <button
               onClick={handleApply}
@@ -447,12 +447,12 @@ export default function SignPdfPage() {
             </span>
             <div>
               <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.sign.doneTitle')}</p>
-              <p className="mt-1 text-sm text-zinc-400">{t('tools.sign.doneDescription')}</p>
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{t('tools.sign.doneDescription')}</p>
             </div>
             <DownloadButton fileName="ONE_signed.pdf" onDownload={handleDownload} />
             <button
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.sign.restartLabel')}
             </button>

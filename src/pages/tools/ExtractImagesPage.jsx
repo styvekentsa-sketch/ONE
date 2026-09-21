@@ -115,7 +115,7 @@ export default function ExtractImagesPage() {
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -166,7 +166,7 @@ export default function ExtractImagesPage() {
             )}
 
             {images.length === 0 ? (
-              <div className="flex flex-col items-center gap-3 py-10 text-center text-zinc-400">
+              <div className="flex flex-col items-center gap-3 py-10 text-center text-zinc-500 dark:text-zinc-400">
                 <ImageOff size={32} />
                 <p className="text-sm">{t('tools.extract-images.noImagesFound')}</p>
               </div>
@@ -211,7 +211,7 @@ export default function ExtractImagesPage() {
 
             <button
               onClick={handleRestart}
-              className="mx-auto text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="mx-auto text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.extract-images.restartLabel')}
             </button>

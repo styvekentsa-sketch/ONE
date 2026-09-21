@@ -168,7 +168,7 @@ export default function ImageDrawPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link to="/image" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200">
+      <Link to="/image" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200">
         <ArrowLeft size={16} /> Retour aux outils Image
       </Link>
 
@@ -265,7 +265,7 @@ export default function ImageDrawPage() {
                       </div>
                       <input type="color" value={gradientColors.from} onChange={(e) => setGradientColors((g) => ({ ...g, from: e.target.value }))} className="h-8 w-10 cursor-pointer rounded border border-zinc-200 dark:border-zinc-700" />
                       <input type="color" value={gradientColors.to} onChange={(e) => setGradientColors((g) => ({ ...g, to: e.target.value }))} className="h-8 w-10 cursor-pointer rounded border border-zinc-200 dark:border-zinc-700" />
-                      <span className="text-xs text-zinc-400">Cliquez-glissez sur l'image</span>
+                      <span className="text-xs text-zinc-500 dark:text-zinc-400">Cliquez-glissez sur l'image</span>
                     </>
                   )}
                 </>
@@ -279,14 +279,14 @@ export default function ImageDrawPage() {
                   <button onClick={insertText} disabled={!textDraft.pending} className="rounded-full bg-indigo-500 px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-40">
                     {textDraft.pending ? 'Insérer ici' : 'Cliquez sur l\'image'}
                   </button>
-                  <p className="w-full text-xs text-zinc-400">Vectorisation (texte en tracés éditables) non incluse (bientôt disponible).</p>
+                  <p className="w-full text-xs text-zinc-500 dark:text-zinc-400">Vectorisation (texte en tracés éditables) non incluse (bientôt disponible).</p>
                 </>
               )}
             </div>
           </div>
 
           <div className="flex items-center justify-between">
-            <button onClick={() => setFile(null)} className="text-sm font-medium text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
+            <button onClick={() => setFile(null)} className="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
               Changer d'image
             </button>
             <button

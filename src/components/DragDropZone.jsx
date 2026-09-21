@@ -94,7 +94,7 @@ export default function DragDropZone({
         <p className="font-semibold text-zinc-700 dark:text-zinc-200">
           {isDragging ? t('common.dragDropActive') : (label ?? t('common.dragDrop'))}
         </p>
-        <p className="mt-1 text-sm text-zinc-400">
+        <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
           {hint ?? (
             <>
               {t('common.browsePrefix')}{' '}

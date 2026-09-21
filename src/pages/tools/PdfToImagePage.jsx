@@ -137,7 +137,7 @@ export default function PdfToImagePage() {
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -173,14 +173,14 @@ export default function PdfToImagePage() {
         {step === STEPS.CONFIGURE && file && (
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-3 rounded-xl bg-zinc-100 px-4 py-3 dark:bg-zinc-800/60">
-              <ImageIcon size={18} className="shrink-0 text-zinc-400" />
+              <ImageIcon size={18} className="shrink-0 text-zinc-500 dark:text-zinc-400" />
               <span className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-700 dark:text-zinc-200">
                 {file.name}
               </span>
             </div>
 
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                 {t('tools.pdf-to-jpg.resolution')}
               </p>
               <div className="grid gap-3 sm:grid-cols-3">
@@ -278,7 +278,7 @@ export default function PdfToImagePage() {
 
             <button
               onClick={handleRestart}
-              className="mx-auto text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="mx-auto text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.pdf-to-jpg.restartLabel')}
             </button>

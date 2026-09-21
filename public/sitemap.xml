@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO avant mise en production : remplacer https://your-domain.example par le nom de domaine réel. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://your-domain.example/</loc><priority>1.0</priority></url>
+  <url><loc>https://your-domain.example/tools</loc><priority>0.9</priority></url>
+  <url><loc>https://your-domain.example/pdf</loc><priority>0.8</priority></url>
+  <url><loc>https://your-domain.example/image</loc><priority>0.8</priority></url>
+  <url><loc>https://your-domain.example/video</loc><priority>0.8</priority></url>
+  <url><loc>https://your-domain.example/audio</loc><priority>0.8</priority></url>
+  <url><loc>https://your-domain.example/easy-mode</loc><priority>0.6</priority></url>
+
+  <url><loc>https://your-domain.example/tool/merge-pdf</loc><priority>0.7</priority></url>
+  <url><loc>https://your-domain.example/tool/split-pdf</loc><priority>0.7</priority></url>
+  <url><loc>https://your-domain.example/tool/compress-pdf</loc><priority>0.7</priority></url>
+  <url><loc>https://your-domain.example/tool/clean-metadata</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/auto-redact</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/compare-pdf</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/protect-pdf</loc><priority>0.7</priority></url>
+  <url><loc>https://your-domain.example/tool/pdf-to-image</loc><priority>0.7</priority></url>
+  <url><loc>https://your-domain.example/tool/watermark-pdf</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/page-numbers</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/delete-pages</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/sign-pdf</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/pdf-to-text</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/extract-images</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/organize-pdf</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/jpg-to-pdf</loc><priority>0.7</priority></url>
+  <url><loc>https://your-domain.example/tool/word-to-pdf</loc><priority>0.7</priority></url>
+  <url><loc>https://your-domain.example/tool/pdf-to-word</loc><priority>0.7</priority></url>
+  <url><loc>https://your-domain.example/tool/excel-to-pdf</loc><priority>0.7</priority></url>
+  <url><loc>https://your-domain.example/tool/ocr-pdf</loc><priority>0.7</priority></url>
+  <url><loc>https://your-domain.example/tool/image-adjust</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/image-retouch</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/image-select</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/image-transform</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/image-draw</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/image-layers</loc><priority>0.6</priority></url>
+  <url><loc>https://your-domain.example/tool/image-hdr-panorama</loc><priority>0.5</priority></url>
+  <url><loc>https://your-domain.example/tool/image-batch</loc><priority>0.5</priority></url>
+
+  <url><loc>https://your-domain.example/legal-notice</loc><priority>0.3</priority></url>
+  <url><loc>https://your-domain.example/privacy-policy</loc><priority>0.4</priority></url>
+  <url><loc>https://your-domain.example/terms-of-service</loc><priority>0.4</priority></url>
+  <url><loc>https://your-domain.example/cookie-policy</loc><priority>0.4</priority></url>
+  <url><loc>https://your-domain.example/refund-policy</loc><priority>0.3</priority></url>
+</urlset>

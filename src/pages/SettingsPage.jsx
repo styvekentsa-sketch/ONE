@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Globe, HardDrive, Lock, Moon, Sun, Trash2 } from 'lucide-react'
+import { Cookie, FileText, Globe, HardDrive, Lock, Moon, Sun, Trash2 } from 'lucide-react'
 import ThemeToggle from '../components/ThemeToggle'
 import { useTheme } from '../context/ThemeContext'
 import { useHistory } from '../hooks/useHistory'
+import { requestOpenPreferences } from '../utils/cookieConsent'
 
 const LANGUAGES = [
   { code: 'fr', label: 'Français' },
@@ -30,7 +32,7 @@ function getLocalStorageUsage() {
 function SettingsGroup({ title, children }) {
   return (
     <div className="mt-6 first:mt-0">
-      <h2 className="mb-2 px-1 text-xs font-semibold uppercase tracking-wide text-zinc-400 dark:text-zinc-500">
+      <h2 className="mb-2 px-1 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
         {title}
       </h2>
       <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white dark:border-white/10 dark:bg-zinc-900">
@@ -50,7 +52,7 @@ function SettingsRow({ icon: Icon, label, sub, children, last = false }) {
       </span>
       <div className="min-w-0 flex-1">
         <p className="text-sm font-medium text-zinc-800 dark:text-zinc-100">{label}</p>
-        {sub && <p className="truncate text-xs text-zinc-400">{sub}</p>}
+        {sub && <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">{sub}</p>}
       </div>
       {children}
     </div>
@@ -128,6 +130,27 @@ export default function SettingsPage() {
 
       <SettingsGroup title={t('settings.securityTitle')}>
         <SettingsRow icon={Lock} label={t('common.localSecurity')} last />
+      </SettingsGroup>
+
+      <SettingsGroup title={t('settings.privacyTitle')}>
+        <button
+          onClick={requestOpenPreferences}
+          className="flex w-full items-center gap-3 px-4 py-3.5 text-left text-sm font-medium text-zinc-800 transition-colors duration-200 hover:bg-zinc-50 dark:text-zinc-100 dark:hover:bg-white/5"
+        >
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+            <Cookie size={16} />
+          </span>
+          {t('settings.manageCookies')}
+        </button>
+        <Link
+          to="/privacy-policy"
+          className="flex w-full items-center gap-3 border-t border-zinc-100 px-4 py-3.5 text-left text-sm font-medium text-zinc-800 transition-colors duration-200 hover:bg-zinc-50 dark:border-white/5 dark:text-zinc-100 dark:hover:bg-white/5"
+        >
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+            <FileText size={16} />
+          </span>
+          {t('footer.privacyPolicy')}
+        </Link>
       </SettingsGroup>
     </div>
   )

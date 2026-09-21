@@ -1,0 +1,20 @@
+# ONE
+
+> Application web utilitaire gratuite regroupant des outils de manipulation de fichiers PDF, image, audio et vidéo (fusion, division, compression, conversion de format, protection, signature, OCR, retouche...). Tous les traitements s'exécutent localement dans le navigateur de l'utilisateur : aucun fichier n'est jamais envoyé à un serveur.
+
+## Points clés pour un agent
+
+- Aucune création de compte n'est requise pour utiliser les outils.
+- Le service est entièrement gratuit à ce jour ; aucun paiement n'est demandé.
+- Les fichiers traités ne sont ni transmis, ni stockés côté serveur : voir /privacy-policy pour le détail exact des données réellement collectées (préférences locales, historique local optionnel).
+- L'interface est disponible en français, anglais et espagnol.
+
+## Pages
+
+- [Accueil et recherche d'outils](/)
+- [Catalogue complet des outils](/tools)
+- [Mentions légales](/legal-notice)
+- [Politique de confidentialité](/privacy-policy)
+- [Conditions Générales d'Utilisation](/terms-of-service)
+- [Politique de cookies](/cookie-policy)
+- [Politique de remboursement](/refund-policy)

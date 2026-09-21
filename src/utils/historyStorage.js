@@ -1,3 +1,5 @@
+import { getConsent, onConsentChange } from './cookieConsent'
+
 const STORAGE_KEY = 'one-history'
 const MAX_ENTRIES = 20
 const UPDATE_EVENT = 'one:history-updated'
@@ -24,9 +26,13 @@ function writeEntries(entries) {
 /**
  * Ajoute une entrée d'historique. 100% local (localStorage) : rien n'est
  * jamais envoyé à un serveur. Ne conserve que les `MAX_ENTRIES` plus
- * récentes pour éviter une croissance illimitée.
+ * récentes pour éviter une croissance illimitée. Respecte le choix exprimé
+ * dans la bannière de cookies : si l'utilisateur a refusé cette catégorie
+ * "fonctionnelle", aucune nouvelle entrée n'est écrite.
  */
 export function addHistoryEntry({ toolId, toolName, message }) {
+  if (!getConsent().history) return null
+
   const entry = {
     id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
     toolId,
@@ -45,6 +51,13 @@ export function getHistory() {
 export function clearHistory() {
   writeEntries([])
 }
+
+// Si l'utilisateur refuse la catégorie "historique" (ou la révoque plus
+// tard depuis les préférences de cookies), on efface aussitôt les entrées
+// déjà stockées plutôt que de les laisser traîner sans plus être alimentées.
+onConsentChange(() => {
+  if (!getConsent().history) clearHistory()
+})
 
 export function onHistoryChange(callback) {
   window.addEventListener(UPDATE_EVENT, callback)

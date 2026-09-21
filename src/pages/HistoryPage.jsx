@@ -24,7 +24,7 @@ export default function HistoryPage() {
 
       <div className="mt-6">
         {entries.length === 0 ? (
-          <p className="py-16 text-center text-sm text-zinc-400">{t('common.noActivity')}</p>
+          <p className="py-16 text-center text-sm text-zinc-500 dark:text-zinc-400">{t('common.noActivity')}</p>
         ) : (
           <div className="flex flex-col gap-2">
             {entries.map((entry) => {
@@ -42,7 +42,7 @@ export default function HistoryPage() {
                     <p className="truncate text-sm font-medium text-zinc-800 dark:text-zinc-100">
                       {entry.message}
                     </p>
-                    <p className="text-xs text-zinc-400">{formatRelativeTime(entry.timestamp)}</p>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400">{formatRelativeTime(entry.timestamp)}</p>
                   </div>
                 </div>
               )

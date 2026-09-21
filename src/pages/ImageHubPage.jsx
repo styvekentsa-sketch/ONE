@@ -171,7 +171,7 @@ export default function ImageHubPage() {
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -289,7 +289,7 @@ export default function ImageHubPage() {
             {tab === 'compress' && (
               <div className="flex flex-col gap-5">
                 <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                     {t('tools.image-hub.levelLabel')}
                   </p>
                   <div className="grid grid-cols-1 gap-2">
@@ -317,7 +317,7 @@ export default function ImageHubPage() {
                 <div>
                   <label
                     htmlFor="image-quality"
-                    className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-400"
+                    className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400"
                   >
                     {t('tools.image-hub.quality')}
                     <span className="font-mono text-zinc-500 dark:text-zinc-400">{quality}%</span>
@@ -331,11 +331,11 @@ export default function ImageHubPage() {
                     onChange={(e) => setQuality(Number(e.target.value))}
                     className="w-full accent-indigo-500"
                   />
-                  <p className="mt-2 text-xs text-zinc-400">{t('tools.image-hub.qualityHint')}</p>
+                  <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">{t('tools.image-hub.qualityHint')}</p>
                 </div>
 
                 <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                     {t('tools.image-hub.resolution')}
                   </p>
                   <div className="grid grid-cols-3 gap-2">
@@ -353,11 +353,11 @@ export default function ImageHubPage() {
                       </button>
                     ))}
                   </div>
-                  <p className="mt-2 text-xs text-zinc-400">{t('tools.image-hub.resolutionHint')}</p>
+                  <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">{t('tools.image-hub.resolutionHint')}</p>
                 </div>
 
                 <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                     {t('tools.image-hub.compressFormat')}
                   </p>
                   <div className="grid grid-cols-4 gap-2">
@@ -384,7 +384,7 @@ export default function ImageHubPage() {
 
             {tab === 'convert' && (
               <div>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                   {t('tools.image-hub.targetFormat')}
                 </p>
                 <div className="grid grid-cols-3 gap-2">
@@ -427,7 +427,7 @@ export default function ImageHubPage() {
                   <div>
                     <label
                       htmlFor="image-percentage"
-                      className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-400"
+                      className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400"
                     >
                       {t('tools.image-hub.percentage')}
                       <span className="font-mono text-zinc-500 dark:text-zinc-400">{percentage}%</span>
@@ -446,7 +446,7 @@ export default function ImageHubPage() {
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-3">
                       <div className="flex-1">
-                        <label htmlFor="image-width" className="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                        <label htmlFor="image-width" className="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                           {t('tools.image-hub.width')}
                         </label>
                         <input
@@ -460,7 +460,7 @@ export default function ImageHubPage() {
                         />
                       </div>
                       <div className="flex-1">
-                        <label htmlFor="image-height" className="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                        <label htmlFor="image-height" className="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                           {t('tools.image-hub.height')}
                         </label>
                         <input

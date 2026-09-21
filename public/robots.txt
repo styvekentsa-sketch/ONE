@@ -1,0 +1,8 @@
+# ONE est une application 100% côté client : aucune page ne nécessite
+# d'authentification et aucun contenu utilisateur n'est jamais généré côté
+# serveur, donc rien à exclure de l'indexation.
+User-agent: *
+Allow: /
+
+# TODO avant mise en production : remplacer par le nom de domaine réel.
+Sitemap: https://your-domain.example/sitemap.xml

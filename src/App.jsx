@@ -46,6 +46,11 @@ const EasyModePage = lazy(() => import('./pages/EasyModePage'))
 const SettingsPage = lazy(() => import('./pages/SettingsPage'))
 const Account = lazy(() => import('./pages/Account'))
 const NotFound = lazy(() => import('./pages/NotFound'))
+const LegalNotice = lazy(() => import('./pages/legal/LegalNotice'))
+const PrivacyPolicy = lazy(() => import('./pages/legal/PrivacyPolicy'))
+const TermsOfService = lazy(() => import('./pages/legal/TermsOfService'))
+const CookiePolicy = lazy(() => import('./pages/legal/CookiePolicy'))
+const RefundPolicy = lazy(() => import('./pages/legal/RefundPolicy'))
 
 function App() {
   return (
@@ -107,6 +112,12 @@ function App() {
             {/* Page générique pour tous les autres outils */}
             <Route path="/tools/:toolId" element={<ToolPage />} />
             <Route path="/account" element={<Account />} />
+            {/* Pages légales */}
+            <Route path="/legal-notice" element={<LegalNotice />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

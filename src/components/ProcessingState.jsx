@@ -27,7 +27,7 @@ export default function ProcessingState({
 
       <div>
         <p className="font-semibold text-zinc-800 dark:text-white">{resolvedTitle}</p>
-        {description && <p className="mt-1 text-sm text-zinc-400">{description}</p>}
+        {description && <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{description}</p>}
       </div>
 
       <ProgressBar progress={progress} />

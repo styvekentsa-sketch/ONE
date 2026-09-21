@@ -123,7 +123,7 @@ export default function ImageRetouchPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link to="/image" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200">
+      <Link to="/image" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200">
         <ArrowLeft size={16} /> Retour aux outils Image
       </Link>
 
@@ -188,18 +188,18 @@ export default function ImageRetouchPage() {
                     Taille
                     <input type="range" min={10} max={120} value={brushSize} onChange={(e) => setBrushSize(Number(e.target.value))} className="w-24 accent-indigo-500" />
                   </label>
-                  <span className="w-full text-xs text-zinc-400">
+                  <span className="w-full text-xs text-zinc-500 dark:text-zinc-400">
                     Alt/Option + clic pour définir la source, puis peignez pour dupliquer. Outil pièce non inclus (bientôt disponible).
                   </span>
                 </>
               ) : (
-                <span className="text-xs text-zinc-400">Cliquez-glissez sur chaque œil rouge pour l'atténuer.</span>
+                <span className="text-xs text-zinc-500 dark:text-zinc-400">Cliquez-glissez sur chaque œil rouge pour l'atténuer.</span>
               )}
             </div>
           </div>
 
           <div className="flex items-center justify-between">
-            <button onClick={() => setFile(null)} className="text-sm font-medium text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
+            <button onClick={() => setFile(null)} className="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
               Changer d'image
             </button>
             <button

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Copy, Eye, EyeOff, Image as ImageIcon, Plus, Trash2, Blend as MaskIcon, ChevronDown, ChevronUp } from 'lucide-react'
 import { BLEND_MODES } from '../../utils/canvasEngine'
 
@@ -24,23 +25,26 @@ export default function LayersPanel({
   onToggleMask,
   onRename,
 }) {
+  const { t } = useTranslation()
   // Affichage du dernier calque (dessus) en premier dans la liste.
   const reversed = [...layers].reverse()
 
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between border-b border-zinc-200 px-3 py-2.5 dark:border-zinc-800">
-        <p className="text-xs font-semibold uppercase tracking-wide text-zinc-400">Calques</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Calques</p>
         <div className="flex items-center gap-1">
           <button
             onClick={onAddBlank}
             title="Nouveau calque vide"
+            aria-label={t('common.addBlankLayer')}
             className="flex h-7 w-7 items-center justify-center rounded-lg text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <Plus size={15} />
           </button>
           <label
             title="Ajouter une image comme calque"
+            aria-label={t('common.addImageLayer')}
             className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <ImageIcon size={15} />
@@ -76,7 +80,8 @@ export default function LayersPanel({
                     e.stopPropagation()
                     onToggleVisible(layer.id)
                   }}
-                  className="shrink-0 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
+                  aria-label={layer.visible ? t('common.hideLayer') : t('common.showLayer')}
+                  className="shrink-0 text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
                 >
                   {layer.visible ? <Eye size={14} /> : <EyeOff size={14} />}
                 </button>
@@ -96,7 +101,8 @@ export default function LayersPanel({
                     onToggleMask(layer.id)
                   }}
                   title="Masque de fusion"
-                  className={`shrink-0 rounded p-1 ${layer.maskCanvas ? 'text-indigo-500' : 'text-zinc-300 dark:text-zinc-600'} hover:text-indigo-500`}
+                  aria-label={t('common.toggleMask')}
+                  className={`shrink-0 rounded p-1 ${layer.maskCanvas ? 'text-indigo-500' : 'text-zinc-500 dark:text-zinc-600'} hover:text-indigo-500`}
                 >
                   <MaskIcon size={13} />
                 </button>
@@ -108,7 +114,8 @@ export default function LayersPanel({
                       onMoveUp(layer.id)
                     }}
                     disabled={isTop}
-                    className="rounded p-1 text-zinc-400 hover:text-zinc-700 disabled:opacity-20 dark:hover:text-zinc-200"
+                    aria-label={t('common.moveUp')}
+                    className="rounded p-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 disabled:opacity-20 dark:hover:text-zinc-200"
                   >
                     <ChevronUp size={13} />
                   </button>
@@ -118,7 +125,8 @@ export default function LayersPanel({
                       onMoveDown(layer.id)
                     }}
                     disabled={isBottom}
-                    className="rounded p-1 text-zinc-400 hover:text-zinc-700 disabled:opacity-20 dark:hover:text-zinc-200"
+                    aria-label={t('common.moveDown')}
+                    className="rounded p-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 disabled:opacity-20 dark:hover:text-zinc-200"
                   >
                     <ChevronDown size={13} />
                   </button>
@@ -127,7 +135,8 @@ export default function LayersPanel({
                       e.stopPropagation()
                       onDuplicate(layer.id)
                     }}
-                    className="rounded p-1 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+                    aria-label={t('common.duplicateLayer')}
+                    className="rounded p-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
                   >
                     <Copy size={13} />
                   </button>
@@ -136,7 +145,8 @@ export default function LayersPanel({
                       e.stopPropagation()
                       onDelete(layer.id)
                     }}
-                    className="rounded p-1 text-zinc-400 hover:text-red-500"
+                    aria-label={t('common.deleteLayer')}
+                    className="rounded p-1 text-zinc-500 dark:text-zinc-400 hover:text-red-500"
                   >
                     <Trash2 size={13} />
                   </button>
@@ -165,7 +175,7 @@ export default function LayersPanel({
                   onChange={(e) => onOpacityChange(layer.id, Number(e.target.value) / 100)}
                   className="w-full accent-indigo-500"
                 />
-                <span className="w-8 shrink-0 text-right font-mono text-[11px] text-zinc-400">
+                <span className="w-8 shrink-0 text-right font-mono text-[11px] text-zinc-500 dark:text-zinc-400">
                   {Math.round(layer.opacity * 100)}%
                 </span>
               </div>

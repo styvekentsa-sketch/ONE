@@ -18,8 +18,8 @@ export default function ThemeToggle() {
       >
         {isDark ? <Moon size={16} /> : <Sun size={16} />}
       </span>
-      <Sun size={14} className="absolute left-2 text-zinc-400" />
-      <Moon size={14} className="absolute right-2 text-zinc-400" />
+      <Sun size={14} className="absolute left-2 text-zinc-500 dark:text-zinc-400" />
+      <Moon size={14} className="absolute right-2 text-zinc-500 dark:text-zinc-400" />
     </button>
   )
 }

@@ -43,12 +43,12 @@ export default function SuggestionResults({ files, primary, secondary, onRestart
           </button>
         </div>
       ) : (
-        <p className="text-center text-sm text-zinc-400">{t('common.noExactMatch')}</p>
+        <p className="text-center text-sm text-zinc-500 dark:text-zinc-400">{t('common.noExactMatch')}</p>
       )}
 
       {secondary?.length > 0 && (
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
             {primary ? t('common.otherOptions') : t('common.suggestedTools')}
           </p>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -72,7 +72,7 @@ export default function SuggestionResults({ files, primary, secondary, onRestart
 
       <button
         onClick={onRestart}
-        className="mx-auto flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mx-auto flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <RefreshCcw size={14} /> {t('common.analyzeOtherFiles')}
       </button>

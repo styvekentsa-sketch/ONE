@@ -32,13 +32,13 @@ function PasswordInput({ id, label, placeholder, value, onChange, show, onToggle
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           autoComplete="new-password"
-          className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-2.5 pr-11 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-indigo-400 focus:outline-none dark:border-white/10 dark:bg-zinc-800/60 dark:text-white"
+          className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-2.5 pr-11 text-sm text-zinc-900 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:border-indigo-400 focus:outline-none dark:border-white/10 dark:bg-zinc-800/60 dark:text-white"
         />
         <button
           type="button"
           onClick={onToggleShow}
           aria-label={show ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
         >
           {show ? <EyeOff size={16} /> : <Eye size={16} />}
         </button>
@@ -231,12 +231,12 @@ function ProtectPanel({ t }) {
           </span>
           <div>
             <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.protect.doneTitleProtect')}</p>
-            <p className="mt-1 text-sm text-zinc-400">{t('tools.protect.doneDescriptionProtect')}</p>
+            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{t('tools.protect.doneDescriptionProtect')}</p>
           </div>
           <DownloadButton fileName="ONE_protege.pdf" onDownload={handleDownload} />
           <button
             onClick={handleRestart}
-            className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+            className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
           >
             {t('tools.protect.restartLabelProtect')}
           </button>
@@ -357,7 +357,7 @@ function UnlockPanel({ t }) {
               show={showPassword}
               onToggleShow={() => setShowPassword((s) => !s)}
             />
-            <p className="mt-1.5 text-xs text-zinc-400">{t('tools.protect.unlockPasswordHint')}</p>
+            <p className="mt-1.5 text-xs text-zinc-500 dark:text-zinc-400">{t('tools.protect.unlockPasswordHint')}</p>
           </div>
 
           <button
@@ -380,12 +380,12 @@ function UnlockPanel({ t }) {
           </span>
           <div>
             <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.protect.doneTitleUnlock')}</p>
-            <p className="mt-1 text-sm text-zinc-400">{t('tools.protect.doneDescriptionUnlock')}</p>
+            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{t('tools.protect.doneDescriptionUnlock')}</p>
           </div>
           <DownloadButton fileName="ONE_deverrouille.pdf" onDownload={handleDownload} />
           <button
             onClick={handleRestart}
-            className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+            className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
           >
             {t('tools.protect.restartLabelUnlock')}
           </button>
@@ -410,7 +410,7 @@ export default function ProtectPdfPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>

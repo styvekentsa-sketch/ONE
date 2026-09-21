@@ -103,7 +103,7 @@ export default function OcrPdfPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -119,7 +119,7 @@ export default function OcrPdfPage() {
       </div>
 
       <PrivacyBadge className="mt-5" />
-      <p className="mt-3 text-xs text-zinc-400">{t('tools.ocr.modelDisclosure')}</p>
+      <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">{t('tools.ocr.modelDisclosure')}</p>
 
       <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-zinc-900">
         {error && (
@@ -171,7 +171,7 @@ export default function OcrPdfPage() {
 
             <button
               onClick={handleRestart}
-              className="mx-auto text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="mx-auto text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.ocr.restartLabel')}
             </button>

@@ -188,7 +188,7 @@ export default function ImageTransformPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/image"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> Retour aux outils Image
       </Link>
@@ -260,7 +260,7 @@ export default function ImageTransformPage() {
                 <button onClick={applyCrop} disabled={!cropRect} className="rounded-full bg-indigo-500 px-4 py-1.5 text-sm font-semibold text-white disabled:opacity-40">
                   Appliquer le recadrage
                 </button>
-                <span className="text-xs text-zinc-400">Glissez sur l'image pour définir la zone à recadrer</span>
+                <span className="text-xs text-zinc-500 dark:text-zinc-400">Glissez sur l'image pour définir la zone à recadrer</span>
               </div>
             ) : (
               <div className="mt-4 flex flex-wrap items-center gap-4">
@@ -281,13 +281,13 @@ export default function ImageTransformPage() {
                 <button onClick={applyFreeTransform} className="rounded-full bg-indigo-500 px-4 py-1.5 text-sm font-semibold text-white">
                   Appliquer
                 </button>
-                <p className="w-full text-xs text-zinc-400">Déformation et perspective non incluses (bientôt disponible).</p>
+                <p className="w-full text-xs text-zinc-500 dark:text-zinc-400">Déformation et perspective non incluses (bientôt disponible).</p>
               </div>
             )}
           </div>
 
           <div className="flex items-center justify-between">
-            <button onClick={() => setFile(null)} className="text-sm font-medium text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
+            <button onClick={() => setFile(null)} className="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
               Changer d'image
             </button>
             <button

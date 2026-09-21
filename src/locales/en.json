@@ -22,7 +22,9 @@
     "storageTitle": "Local storage",
     "storageUsed": "Storage used",
     "storageUsedValue": "{{size}} KB used in this browser",
-    "securityTitle": "Security"
+    "securityTitle": "Security",
+    "privacyTitle": "Privacy",
+    "manageCookies": "Manage cookies"
   },
   "hero": {
     "titleLine1": "Manage your documents,",
@@ -115,16 +117,41 @@
     "filesAnalyzed_other": "{{count}} files analyzed",
     "changeLanguage": "Change language",
     "moveUp": "Move up",
-    "moveDown": "Move down"
+    "moveDown": "Move down",
+    "lastUpdatedLabel": "Last updated: {{date}}",
+    "skipToContent": "Skip to main content",
+    "addBlankLayer": "New blank layer",
+    "addImageLayer": "Add an image as a layer",
+    "toggleMask": "Blend mask",
+    "hideLayer": "Hide layer",
+    "showLayer": "Show layer",
+    "duplicateLayer": "Duplicate layer",
+    "deleteLayer": "Delete layer"
   },
   "footer": {
     "tagline": "All your documents, in one place.",
-    "rights": "© {{year}} ONE. All your documents, in one place."
+    "rights": "© {{year}} ONE. All your documents, in one place.",
+    "legalLinksTitle": "Legal information",
+    "legalNotice": "Legal notice",
+    "privacyPolicy": "Privacy",
+    "termsOfService": "Terms",
+    "cookiePolicy": "Cookies",
+    "refundPolicy": "Refunds",
+    "manageCookies": "Manage cookies"
   },
   "compressionLevels": {
-    "high": { "label": "High Compression", "description": "Lower quality, smallest size" },
-    "recommended": { "label": "Recommended Compression", "description": "Good quality/size balance" },
-    "low": { "label": "Low Compression", "description": "High quality, slight reduction" }
+    "high": {
+      "label": "High Compression",
+      "description": "Lower quality, smallest size"
+    },
+    "recommended": {
+      "label": "Recommended Compression",
+      "description": "Good quality/size balance"
+    },
+    "low": {
+      "label": "Low Compression",
+      "description": "High quality, slight reduction"
+    }
   },
   "tools": {
     "merge": {
@@ -280,7 +307,10 @@
       "errorInvalid": "Please only drop JPG, PNG or WebP images.",
       "errorGeneric": "PDF generation failed."
     },
-    "rotate": { "name": "Rotate PDF", "description": "Fix the orientation of your pages" },
+    "rotate": {
+      "name": "Rotate PDF",
+      "description": "Fix the orientation of your pages"
+    },
     "organize": {
       "name": "Organize pages",
       "description": "Reorder, rotate or remove pages by drag-and-drop",
@@ -349,7 +379,6 @@
       "protectTab": "Protect",
       "changeFile": "Choose another file",
       "errorGeneric": "Couldn't process this PDF. It may be corrupted.",
-
       "dropHintProtect": "Drop the PDF to protect with a password",
       "passwordLabel": "Password",
       "passwordPlaceholder": "Choose a password",
@@ -364,7 +393,6 @@
       "doneTitleProtect": "PDF protected!",
       "doneDescriptionProtect": "A password will now be required to open this file.",
       "restartLabelProtect": "Protect another file",
-
       "dropHintUnlock": "Drop the protected PDF to unlock",
       "unlockPasswordLabel": "Document password",
       "unlockPasswordPlaceholder": "Leave blank if you don't know it",
@@ -376,7 +404,10 @@
       "restartLabelUnlock": "Unlock another file",
       "errorWrongPassword": "Wrong password — check it and try again."
     },
-    "unlock": { "name": "Unlock PDF", "description": "Remove restrictions from a protected PDF" },
+    "unlock": {
+      "name": "Unlock PDF",
+      "description": "Remove restrictions from a protected PDF"
+    },
     "watermark": {
       "name": "Watermark",
       "description": "Overlay text (CONFIDENTIAL, SAMPLE…) on your pages",
@@ -573,9 +604,18 @@
       "tabResize": "Resize",
       "levelLabel": "Compression level",
       "levels": {
-        "high": { "label": "High Compression", "description": "Lower quality, minimal size (-70% to -90%)" },
-        "recommended": { "label": "Balanced Compression", "description": "Good quality/size trade-off (-40% to -60%)" },
-        "low": { "label": "Light Compression", "description": "High quality, slight reduction (-20%)" }
+        "high": {
+          "label": "High Compression",
+          "description": "Lower quality, minimal size (-70% to -90%)"
+        },
+        "recommended": {
+          "label": "Balanced Compression",
+          "description": "Good quality/size trade-off (-40% to -60%)"
+        },
+        "low": {
+          "label": "Light Compression",
+          "description": "High quality, slight reduction (-20%)"
+        }
       },
       "quality": "Quality",
       "qualityHint": "Lower quality reduces file size but may introduce visible artifacts.",
@@ -669,5 +709,240 @@
       "errorGeneric": "Something went wrong while processing the video.",
       "errorUnsupported": "This feature isn't supported by your browser — try a recent version of Chrome, Edge or Firefox."
     }
+  },
+  "legal": {
+    "meta": {
+      "lastUpdated": "September 21, 2026",
+      "backToHome": "Back to home",
+      "tableOfContents": "Table of contents",
+      "disclaimer": "This document was drafted carefully to accurately reflect how the ONE service actually works (100% local processing, no file collection). It does not replace advice from a lawyer licensed in your jurisdiction: have it reviewed by local counsel before any commercial launch, especially for fields marked \"TO BE COMPLETED\"."
+    },
+    "legalNotice": {
+      "title": "Legal Notice",
+      "intro": "In accordance with applicable law, this legal notice identifies the publisher and host of the ONE website, as well as the general intellectual property and liability terms applicable to browsing it.",
+      "sections": [
+        {
+          "heading": "1. Website publisher",
+          "body": "The \"ONE\" website and application (the \"Service\") is published by:\n[TO BE COMPLETED — official name of the publisher (full name, or company name + legal form + registration number)]\nAddress: [TO BE COMPLETED — registered address of the publisher, Cameroon]\nContact email: [TO BE COMPLETED — dedicated contact email address, e.g. contact@yourdomain.com]\n\nThis information will be completed before any commercial operation of the Service, in line with the legal obligation to identify the publisher."
+        },
+        {
+          "heading": "2. Publication director",
+          "body": "The publication director is the person identified in section 1 above ([TO BE COMPLETED — official name of the publisher (full name, or company name + legal form + registration number)])."
+        },
+        {
+          "heading": "3. Hosting",
+          "body": "The Service is hosted by:\nVercel Inc. — 340 S Lemon Ave #4133, Walnut, CA 91789, United States — https://vercel.com\n\nThis information is taken from the host’s public legal notices at the time of writing and should be periodically verified, as a host’s address may change. Vercel acts as a technical processor (data processor under the GDPR) for hosting the Service’s static files: it never receives the files (PDF, image, audio, video) that you process, since these are never transmitted to a server (see the Privacy Policy)."
+        },
+        {
+          "heading": "4. Intellectual property",
+          "body": "The overall structure of the Service, its text, logos, trademarks (including \"ONE\"), graphics, icons and source code are, unless stated otherwise, the exclusive property of the publisher or its licensors and are protected by applicable copyright and trademark law.\n\nAny reproduction, representation, modification, publication or adaptation of all or part of the Service’s elements, by any means or process, is prohibited without the publisher’s prior written authorization.\n\nFiles you upload and process through the Service (documents, images, audio or video files) remain your exclusive property and your sole responsibility: the publisher acquires no rights over them, never accesses them, and never stores them."
+        },
+        {
+          "heading": "5. Limitation of liability",
+          "body": "The Service is provided \"as is\". The publisher uses reasonable efforts to ensure the availability and accuracy of the processing operations offered (merging, compression, conversion, etc.), without guaranteeing uninterrupted availability or an error-free result.\n\nThe user is solely responsible for the files they import and for the resulting output; it is their responsibility to check produced files before any use and to keep their own backup copies. The publisher cannot be held liable for direct or indirect damages resulting from the use, or inability to use, the Service."
+        },
+        {
+          "heading": "6. Governing law and jurisdiction",
+          "body": "This legal notice is governed by Cameroonian law. For users residing in the European Union, mandatory consumer-protection provisions and the General Data Protection Regulation (GDPR) applicable due to the targeting of their territory remain reserved and shall prevail in case of conflict on this specific point.\n\nFailing an amicable resolution, any dispute falls under the exclusive jurisdiction of the competent Cameroonian courts, subject to mandatory consumer-protection rules applicable to EU-resident consumers."
+        },
+        {
+          "heading": "7. Contact and complaints",
+          "body": "For any question regarding this legal notice, write to [TO BE COMPLETED — dedicated contact email address, e.g. contact@yourdomain.com]."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "ONE was designed with \"privacy by design\" in mind: the vast majority of operations — merging, compressing, converting, editing PDFs, images, audio or video — run entirely inside your browser, on your own device. Your files are never sent to a server. This policy explains precisely what data is nonetheless processed, why, and what your rights are.",
+      "sections": [
+        {
+          "heading": "1. Data controller",
+          "body": "The data controller within the meaning of the GDPR is [TO BE COMPLETED — official name of the publisher (full name, or company name + legal form + registration number)], reachable at [TO BE COMPLETED — dedicated contact email address, e.g. contact@yourdomain.com]. See the Legal Notice for the publisher’s full identification."
+        },
+        {
+          "heading": "2. Core principle: your files stay with you",
+          "body": "The document, image, audio and video tools offered by ONE run exclusively on the client side, using browser technologies (WebAssembly, Web Workers, File API). Specifically:\n- The file you import is never uploaded to a publisher server.\n- No copy of your file, or of its content, is retained by the publisher, in any form whatsoever.\n- Processing (merging, compression, OCR, conversion, etc.) happens in memory, inside your browser tab, and the result is offered for download directly from your device.\n\nThis local-processing approach is core to how the Service works and is not a switchable option."
+        },
+        {
+          "heading": "3. Data we actually collect",
+          "body": "Consistent with the data-minimization principle (GDPR art. 5.1.c), we only collect what is strictly necessary for the Service to function:\n- Data stored locally in your browser (localStorage), which never leaves your device: theme preference (light/dark), chosen language, a history of your last 20 operations (tool used, file name, timestamp — never the file content), and your choice regarding the cookie banner.\n- Standard technical connection data collected by our host (Vercel) to provide the Service and secure the infrastructure: IP address, browser type, pages visited, request timestamps. These server logs are managed by the host under its own policy and are not used by the publisher for commercial purposes.\n- No account data is currently collected: the \"My account\" feature is marked \"coming soon\" and does not collect any information today.\n\nWe do not collect or infer any sensitive data or precise geolocation data, and we do not use any third-party audience-analytics tool (no Google Analytics or equivalent) or targeted advertising as of the date of this policy."
+        },
+        {
+          "heading": "4. Purposes of processing",
+          "body": "The data mentioned above is processed for the following purposes only:\n- Providing, operating and securing the Service (technical connection data);\n- Remembering your display and language preferences to improve your comfort across sessions (localStorage);\n- Letting you find your recent operation history directly on your device;\n- Recording your consent (or lack thereof) regarding local storage that is not strictly necessary, as required by applicable regulation."
+        },
+        {
+          "heading": "5. Legal basis for processing",
+          "body": "In accordance with Article 6 of the GDPR, each processing activity rests on an identified legal basis:\n- Performance of the service requested by the user (art. 6.1.b) for local processing of your files and for storing the functional preferences essential to the Service;\n- The publisher’s legitimate interest (art. 6.1.f) for technical security logs and abuse prevention;\n- Your consent (art. 6.1.a), where required, for any local storage or cookie that is not strictly necessary for the Service to function — collected through the cookie management module."
+        },
+        {
+          "heading": "6. Recipients of data",
+          "body": "Your data is never sold, rented, or shared for commercial purposes with third parties. The only possible recipients are:\n- Our host, Vercel Inc., acting as a processor for the technical hosting of the Service;\n- Competent administrative or judicial authorities, only where required by law."
+        },
+        {
+          "heading": "7. Transfers outside your country of residence",
+          "body": "Our host operates a global infrastructure that may involve processing of technical connection logs in the United States or other countries where Vercel operates servers. To the extent this involves personal data of EU residents, such transfer relies on appropriate safeguards under the GDPR (standard contractual clauses or an equivalent mechanism recognized by the European Commission). Your files themselves are never transferred anywhere, since they are never sent to a server."
+        },
+        {
+          "heading": "8. Retention period",
+          "body": "Files you process are never retained: they exist only in your browser’s working memory for the duration of processing, then are cleared when the tab or browser is closed. Preference data and local history stay on your device until you delete them yourself (Settings page, \"Clear history\" button) or clear your browser’s browsing data; local history is additionally auto-capped at the 20 most recent operations. The host’s technical connection logs are kept for the standard duration applied by Vercel for operating and securing its infrastructure."
+        },
+        {
+          "heading": "9. Data security",
+          "body": "The architectural choice of 100% local processing inherently reduces your data’s exposure: since no file is ever sent to a server, there is no database containing your documents that could be breached or leaked. The Service is also served exclusively over HTTPS (encrypted transport). Local storage (localStorage) remains subject to your own browser’s and device’s security mechanisms: we recommend keeping your browser up to date and securing physical access to your device."
+        },
+        {
+          "heading": "10. Your rights",
+          "body": "In accordance with the GDPR and, where applicable, Cameroonian legislation on the protection of personal data, you have the following rights over data we actually hold about you (technical connection data):\n- Right of access;\n- Right of rectification of inaccurate data;\n- Right to erasure (\"right to be forgotten\");\n- Right to restriction of processing;\n- Right to object on legitimate grounds;\n- Right to data portability, where applicable;\n- Right to lodge a complaint with the competent supervisory authority (e.g. your national data protection authority in the EU, or the competent Cameroonian authority for data protection).\n\nFor any data stored locally (theme, language, history), you exercise these rights yourself, directly and at any time, from the Service’s Settings page or your browser’s privacy settings, with no need to contact us. For any other request, write to [TO BE COMPLETED — dedicated contact email address, e.g. contact@yourdomain.com]."
+        },
+        {
+          "heading": "11. Minors",
+          "body": "The Service is not specifically directed at minors and does not knowingly target children for data collection. If you believe a minor has provided us with personal data without the required consent, please contact us so we can delete it."
+        },
+        {
+          "heading": "12. Cookies and similar technologies",
+          "body": "Details of the cookies and local storage used by the Service, and how to manage your preferences, are covered in a dedicated Cookie Policy."
+        },
+        {
+          "heading": "13. Changes to this policy",
+          "body": "This policy may be updated to reflect changes to the Service (for example, the addition of a user account or a feature involving server-side processing). Any material change will be flagged on this page, with the \"last updated\" date below revised accordingly."
+        },
+        {
+          "heading": "14. Contact",
+          "body": "For any question about this privacy policy, or to exercise your rights, contact us at [TO BE COMPLETED — dedicated contact email address, e.g. contact@yourdomain.com]."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "intro": "These Terms of Service (\"Terms\") govern access to and use of the ONE website and application. By accessing or using the Service, you accept these Terms without reservation. If you do not accept these Terms, please do not use the Service.",
+      "sections": [
+        {
+          "heading": "1. Purpose",
+          "body": "ONE is a web utility application that lets you perform, directly in your browser, common operations on your PDF documents, images, audio and video files: merging, splitting, compression, format conversion, protection, signing, text or image extraction, editing, and other tools listed on the Service."
+        },
+        {
+          "heading": "2. Acceptance of these Terms",
+          "body": "Using the Service, with or without creating an account, constitutes full acceptance of these Terms as in force at the time of use. These Terms may be supplemented by specific conditions applicable to certain tools, disclosed on the relevant page."
+        },
+        {
+          "heading": "3. Description and operation of the Service",
+          "body": "Unless explicitly stated otherwise on a given page, all processing offered by ONE runs locally in your browser: your files do not pass through a publisher server. The Service requires a recent, compatible browser and an internet connection to load the application; the processing itself then requires no further connection."
+        },
+        {
+          "heading": "4. User account",
+          "body": "As of the date of these Terms, no account creation is required to use the Service’s tools; the \"My account\" section is under development. If an account system is introduced later, these Terms will be updated to specify the applicable rules (credentials, password security, termination, etc.)."
+        },
+        {
+          "heading": "5. User obligations and commitments",
+          "body": "By using the Service, you agree to:\n- Use the Service in accordance with its intended purpose and in compliance with applicable laws and regulations;\n- Only process, through the Service, files for which you legally hold the rights or authorization of use (copyright, related rights, image rights, third-party personal data, confidentiality of correspondence, etc.);\n- Not use the Service for unlawful or fraudulent purposes, or to produce, alter or distribute illegal content (counterfeiting, content falsified for fraud, content infringing third-party rights, etc.);\n- Not attempt to disrupt, overload, bypass security measures of, or reverse-engineer the Service beyond what the law permits."
+        },
+        {
+          "heading": "6. Intellectual property",
+          "body": "The Service (code, interface, trademark, logo) is protected by intellectual property law and remains the property of the publisher, under the terms specified in the Legal Notice.\n\nYou retain all your rights over the files you import and over the files resulting from processing: the publisher claims no ownership or license over this content, which it never stores or accesses."
+        },
+        {
+          "heading": "7. Availability and evolution of the Service",
+          "body": "The publisher strives to ensure continuous access to the Service but does not guarantee uninterrupted availability (maintenance, updates, force majeure, host outages, etc.). The publisher reserves the right to change, suspend or discontinue all or part of the Service, or a specific tool, at any time, with or without notice, particularly for technical or security reasons."
+        },
+        {
+          "heading": "8. Limitation of liability",
+          "body": "The Service is provided \"as is\" and \"as available\", with no guarantee that produced files will be error-free. It is the user’s responsibility to systematically check the result of each processing operation before any use, and to keep a backup copy of original files before processing.\n\nTo the extent permitted by applicable law, the publisher shall not be liable for indirect damages (data loss, loss of business, loss of opportunity, commercial harm) resulting from use of the Service. This limitation does not apply to damages resulting from the publisher’s intentional misconduct or gross negligence, nor to mandatory consumer rights that cannot be limited by contract."
+        },
+        {
+          "heading": "9. Pricing",
+          "body": "As of the date of these Terms, all tools of the Service are offered free of charge, with no payment or subscription. Should a paid offering be introduced in the future, its specific terms (pricing, payment methods, right of withdrawal) would be set out in separate Terms of Sale and an up-to-date Refund Policy, disclosed to you before any payment."
+        },
+        {
+          "heading": "10. Suspension and termination",
+          "body": "The publisher reserves the right to restrict or suspend access to the Service, without notice, in the event of a serious or repeated breach of these Terms, fraudulent use, or a threat to the security or integrity of the Service."
+        },
+        {
+          "heading": "11. Changes to these Terms",
+          "body": "The publisher may amend these Terms at any time to reflect a legal, technical or functional change to the Service. The applicable version is the one published on this page at the time you use the Service; the last-updated date appears below."
+        },
+        {
+          "heading": "12. Governing law and dispute resolution",
+          "body": "These Terms are governed by Cameroonian law, subject, for consumer users residing in the European Union, to mandatory consumer-protection provisions of their country of residence that would remain more favorable. Failing an amicable resolution, any dispute falls under the jurisdiction of Cameroonian courts, except where mandatory public-policy rules applicable to a consumer user provide otherwise."
+        },
+        {
+          "heading": "13. Contact",
+          "body": "For any question about these Terms, contact us at [TO BE COMPLETED — dedicated contact email address, e.g. contact@yourdomain.com]."
+        }
+      ]
+    },
+    "cookiePolicy": {
+      "title": "Cookie Policy",
+      "intro": "This policy explains what cookies and local-storage technologies are, which ones ONE uses, why, and how you can manage them. It complements our Privacy Policy.",
+      "sections": [
+        {
+          "heading": "1. What are cookies and local storage?",
+          "body": "A \"cookie\" is a small text file placed by a website on your device. \"Local storage\" (localStorage) is a similar, more modern technology that lets a website store information directly in your browser, with no automatic expiry date. ONE does not use classic tracking cookies but relies on browser local storage, which is subject to the same regulatory framework (ePrivacy Directive / GDPR)."
+        },
+        {
+          "heading": "2. What we do not use",
+          "body": "As of the date of this policy, ONE does not use:\n- Any advertising cookie or tracker;\n- Any third-party audience-analytics tool (such as Google Analytics, Meta Pixel, etc.);\n- Any social-network cookie;\n- Any data reseller or third-party ad broker.\n\nShould this change, this policy will be updated beforehand and your consent will be requested where applicable."
+        },
+        {
+          "heading": "3. What is stored locally on your device",
+          "body": "The only items stored in your browser’s local storage are:\n- one-theme — remembers your light/dark display preference. Strictly necessary for the interface to work as expected; no consent required.\n- one-language — remembers your chosen language. Strictly necessary; no consent required.\n- one-history — remembers your last 20 operations (tool name, file name, date), for the \"History\" feature you requested. Functional, on by default because it is a service you explicitly requested; you can clear it at any time from Settings.\n- one-cookie-consent — remembers the choice you made through the consent banner, so it is not shown again on every visit."
+        },
+        {
+          "heading": "4. Legal basis and consent",
+          "body": "Items strictly necessary for the Service to work (theme, language) are exempt from prior consent under ePrivacy regulation. Local history, while not indispensable to displaying the Service, corresponds to a feature explicitly requested by the user when opening the History panel; we nonetheless collect your overall choice through the consent banner for the sake of transparency, and you can disable it at any time by clearing your history from Settings."
+        },
+        {
+          "heading": "5. How to manage your preferences",
+          "body": "You can, at any time:\n- Change your choice via the \"Manage cookies\" link available in the Service’s footer;\n- Clear your local history from the Service’s Settings page;\n- Delete all local storage related to ONE from your browser’s privacy settings (\"Clear browsing data\" / \"Cookies and site data\");\n- Configure your browser to block local storage by default, at the possible cost of losing your preferences between visits."
+        },
+        {
+          "heading": "6. Retention period",
+          "body": "Local storage data has no automatic expiry: it stays on your device until you delete it manually or clear your browsing data. Local history is additionally auto-capped at the 20 most recent operations."
+        },
+        {
+          "heading": "7. Changes to this policy",
+          "body": "This cookie policy may be updated if the technologies used by the Service evolve (for example, the future addition of an audience-analytics tool). Any significant change will trigger a new consent request where applicable."
+        }
+      ]
+    },
+    "refund": {
+      "title": "Refund Policy",
+      "intro": "This page specifies the refund terms applicable to any transactions carried out on ONE.",
+      "sections": [
+        {
+          "heading": "1. Currently a free service",
+          "body": "As of the date of this policy, all tools offered by ONE are entirely free: no payment information is collected and no financial transaction takes place on the Service. In the absence of any payment, no refund currently applies."
+        },
+        {
+          "heading": "2. Framework applicable should a paid offering be introduced in the future",
+          "body": "Should a paid offering (subscription, one-time purchase, or donation) be introduced in the future, the following principles would apply, subject to dedicated Terms of Sale published before that offering launches:\n- For consumers residing in the European Union, a 14-calendar-day right of withdrawal would apply to purchases of digital content, unless you expressly request immediate performance and thereby waive your right of withdrawal once the digital service has been fully performed (Article L221-28 of the French Consumer Code, or the equivalent provision of your national law);\n- For other users, refund terms would be specified in the Terms of Sale applicable at the time of purchase, in accordance with Cameroonian law and the law applicable at the buyer’s place of residence;\n- Any refund would remain excluded in cases of abusive use of the Service, proven fraud, or where the digital service has been fully performed with the user’s prior, express agreement."
+        },
+        {
+          "heading": "3. How to request a refund",
+          "body": "If you believe you were charged in error, or wish to raise a request related to a payment, contact us promptly at [TO BE COMPLETED — dedicated contact email address, e.g. contact@yourdomain.com], specifying the date, amount and payment method used. We commit to handling any good-faith request within a reasonable timeframe."
+        },
+        {
+          "heading": "4. Updates to this policy",
+          "body": "This policy will be fully revised and republished before any payment feature is introduced, to accurately reflect the billing and refund terms then applicable."
+        }
+      ]
+    }
+  },
+  "cookieConsent": {
+    "bannerTitle": "Your privacy, respected by design",
+    "bannerDescription": "ONE processes your files 100% locally, in your browser: they are never sent to a server. We only use local storage necessary for the site to work (theme, language) and an optional local history. No advertising cookie or third-party tracker is used.",
+    "acceptAll": "Accept all",
+    "rejectNonEssential": "Reject non-essential",
+    "customize": "Customize",
+    "save": "Save my choices",
+    "learnMore": "View cookie policy",
+    "preferencesTitle": "Privacy preferences",
+    "preferencesDescription": "Choose which categories of local storage you allow. You can change this choice at any time from the footer.",
+    "necessaryTitle": "Strictly necessary",
+    "necessaryDescription": "Remembers your theme (light/dark), language and consent choice. Essential for the site to work, always active.",
+    "alwaysActive": "Always active",
+    "historyTitle": "Local operation history",
+    "historyDescription": "Keeps a list of your last 20 operations on your device so you can easily find them again. Nothing is ever sent to a server.",
+    "closeLabel": "Close"
   }
 }

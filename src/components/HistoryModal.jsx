@@ -18,7 +18,7 @@ export default function HistoryModal({ open, onClose }) {
       subtitle={t('common.localOnlyHistory')}
     >
       {entries.length === 0 ? (
-        <p className="py-8 text-center text-sm text-zinc-400">
+        <p className="py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
           {t('common.noActivity')}
         </p>
       ) : (
@@ -38,7 +38,7 @@ export default function HistoryModal({ open, onClose }) {
                   <p className="truncate text-sm font-medium text-zinc-800 dark:text-zinc-100">
                     {entry.message}
                   </p>
-                  <p className="text-xs text-zinc-400">{formatRelativeTime(entry.timestamp)}</p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">{formatRelativeTime(entry.timestamp)}</p>
                 </div>
               </div>
             )

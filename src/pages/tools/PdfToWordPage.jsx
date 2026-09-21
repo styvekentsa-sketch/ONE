@@ -77,7 +77,7 @@ export default function PdfToWordPage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
       >
         <ArrowLeft size={16} /> {t('common.backToTools')}
       </Link>
@@ -125,12 +125,12 @@ export default function PdfToWordPage() {
             </span>
             <div>
               <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.pdf-to-word.doneTitle')}</p>
-              <p className="mt-1 text-sm text-zinc-400">{t('tools.pdf-to-word.doneDescription')}</p>
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{t('tools.pdf-to-word.doneDescription')}</p>
             </div>
             <DownloadButton fileName="ONE_document.docx" onDownload={handleDownload} />
             <button
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
             >
               {t('tools.pdf-to-word.restartLabel')}
             </button>

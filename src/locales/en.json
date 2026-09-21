@@ -100,8 +100,6 @@
     "clearHistory": "Clear history",
     "notFoundMessage": "This page doesn't exist.",
     "backHome": "Back home",
-    "myAccount": "My Account",
-    "comingSoon": "Coming soon.",
     "toolOptimizingTitle": "This tool is being optimized",
     "toolOptimizingDescription": "It isn't available from this page yet. Head back home to find every tool that's already fully working.",
     "recommendation": "Our recommendation",
@@ -123,7 +121,6 @@
     "showLayer": "Show layer",
     "duplicateLayer": "Duplicate layer",
     "deleteLayer": "Delete layer",
-    "dropzoneSecurityBadge": "100% local & confidential — files processed on your device",
     "chooseOptionBelow": "or choose an option below",
     "browseFilesButton": "Browse my files",
     "acceptedFormats": "Accepted formats: {{formats}}",
@@ -583,13 +580,9 @@
       "name": "Convert Image",
       "description": "Switch between JPG, PNG and WebP"
     },
-    "resize-image": {
-      "name": "Resize Image",
-      "description": "Adjust dimensions in pixels or by percentage"
-    },
     "image-hub": {
       "name": "Image Tools",
-      "subtitle": "Compress, convert and resize your images, 100% in the browser",
+      "subtitle": "Compress and convert your images, 100% in the browser",
       "dropHint": "Drop an image (JPG, PNG or WebP)",
       "changeFile": "Change image",
       "errorInvalidFile": "Please drop an image (JPG, PNG or WebP).",
@@ -603,7 +596,6 @@
       "downloadButton": "Download image",
       "tabCompress": "Compress",
       "tabConvert": "Convert",
-      "tabResize": "Resize",
       "levelLabel": "Compression level",
       "levels": {
         "high": {
@@ -625,15 +617,7 @@
       "resolutionHint": "Reducing resolution is the most effective lever to shrink an image.",
       "compressFormat": "Output format",
       "formatAuto": "Auto",
-      "targetFormat": "Target format",
-      "resizeMode": {
-        "percentage": "Percentage",
-        "pixels": "Pixels"
-      },
-      "percentage": "Scale",
-      "width": "Width",
-      "height": "Height",
-      "maintainAspectRatio": "Keep aspect ratio"
+      "targetFormat": "Target format"
     },
     "trim-audio": {
       "name": "Trim Audio",
@@ -656,9 +640,6 @@
       "dropHintTrim": "Drop an audio file (MP3, WAV, AAC, OGG…)",
       "dropHintExtract": "Drop a video (MP4, WebM, MOV…) to extract its sound",
       "dropHintConvert": "Drop an audio file to convert",
-      "analyzingTitle": "Analyzing file…",
-      "start": "Start",
-      "end": "End",
       "exportFormat": "Export format",
       "mp3Hint": "MP3 encoding via a local JavaScript encoder (lamejs) — nothing is ever uploaded to a server.",
       "trimButton": "Trim and download",
@@ -688,12 +669,7 @@
       "tabMute": "Remove sound",
       "dropHintGif": "Drop a video (MP4, WebM, MOV…)",
       "dropHintMute": "Drop the video you want to remove the sound from",
-      "analyzingTitle": "Reading video info…",
       "errorLoad": "Couldn't read this video. Your browser may not support this format.",
-      "maxDurationHint": "Clips are capped at {{seconds}} seconds to stay smooth in the browser.",
-      "start": "Start",
-      "end": "End",
-      "clipTruncated": "The clip will be capped at {{seconds}} seconds.",
       "fps": "Frames/second",
       "width": "Width",
       "gifButton": "Generate GIF",
@@ -767,7 +743,7 @@
         },
         {
           "heading": "3. Data we actually collect",
-          "body": "Consistent with the data-minimization principle (GDPR art. 5.1.c), we only collect what is strictly necessary for the Service to function:\n- Data stored locally in your browser (localStorage), which never leaves your device: theme preference (light/dark), chosen language, a history of your last 20 operations (tool used, file name, timestamp — never the file content), and your choice regarding the cookie banner.\n- Standard technical connection data collected by our host (Vercel) to provide the Service and secure the infrastructure: IP address, browser type, pages visited, request timestamps. These server logs are managed by the host under its own policy and are not used by the publisher for commercial purposes.\n- No account data is currently collected: the \"My account\" feature is marked \"coming soon\" and does not collect any information today.\n\nWe do not collect or infer any sensitive data or precise geolocation data, and we do not use any third-party audience-analytics tool (no Google Analytics or equivalent) or targeted advertising as of the date of this policy."
+          "body": "Consistent with the data-minimization principle (GDPR art. 5.1.c), we only collect what is strictly necessary for the Service to function:\n- Data stored locally in your browser (localStorage), which never leaves your device: theme preference (light/dark), chosen language, a history of your last 20 operations (tool used, file name, timestamp — never the file content), and your choice regarding the cookie banner.\n- Standard technical connection data collected by our host (Vercel) to provide the Service and secure the infrastructure: IP address, browser type, pages visited, request timestamps. These server logs are managed by the host under its own policy and are not used by the publisher for commercial purposes.\n- If you create an account (optional feature): your name, email address and a session identifier, stored only in your browser's local storage — never sent to a server, never synced across devices or browsers. Your password is never stored in clear text: only its SHA-256 hash is kept locally.\n\nWe do not collect or infer any sensitive data or precise geolocation data, and we do not use any third-party audience-analytics tool (no Google Analytics or equivalent) or targeted advertising as of the date of this policy."
         },
         {
           "heading": "4. Purposes of processing",
@@ -833,7 +809,7 @@
         },
         {
           "heading": "4. User account",
-          "body": "As of the date of these Terms, no account creation is required to use the Service’s tools; the \"My account\" section is under development. If an account system is introduced later, these Terms will be updated to specify the applicable rules (credentials, password security, termination, etc.)."
+          "body": "An optional account can be created directly from the \"My account\" page, to personalize your experience (display name, history tied to a profile). This account is stored entirely in your browser's local storage: it is not a secure server-side account, it is not synced across devices or browsers, and it is lost if you clear this browser's data. You remain solely responsible for the confidentiality of the password you choose for this local account."
         },
         {
           "heading": "5. User obligations and commitments",
@@ -946,5 +922,49 @@
     "historyTitle": "Local operation history",
     "historyDescription": "Keeps a list of your last 20 operations on your device so you can easily find them again. Nothing is ever sent to a server.",
     "closeLabel": "Close"
+  },
+  "auth": {
+    "createAccountTitle": "Create an account",
+    "createAccountSubtitle": "Join ONE to keep your preferences wherever you go.",
+    "loginTitle": "Log in",
+    "loginSubtitle": "Welcome back.",
+    "orWithEmail": "or with your email",
+    "fullName": "Full name",
+    "fullNamePlaceholder": "Jane Doe",
+    "email": "Email address",
+    "password": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "submitRegister": "Create my account",
+    "submitLogin": "Log in",
+    "submitting": "Please wait…",
+    "alreadyMember": "Already a member?",
+    "noAccountYet": "Don't have an account yet?",
+    "switchToLogin": "Log in",
+    "switchToRegister": "Sign up",
+    "errorNameRequired": "Please enter your full name.",
+    "errorInvalidEmail": "Invalid email address.",
+    "errorPasswordLength": "Password must be at least {{count}} characters.",
+    "errorEmailTaken": "This email address is already in use.",
+    "errorInvalidCredentials": "Incorrect email or password.",
+    "errorGeneric": "Something went wrong. Please try again.",
+    "socialComingSoon": "Social login is coming soon — please use your email for now.",
+    "marketingTitle": "Your PDF, Image & Media tools in one place",
+    "marketingSubtitle": "Create an account to keep your theme, language and history wherever you use this device.",
+    "feature": {
+      "pdf": "Complete PDF tools",
+      "image": "Image editing",
+      "video": "Video editing",
+      "audio": "Audio tools"
+    }
+  },
+  "profile": {
+    "planLabel": "Account status",
+    "free": "Free",
+    "memberSince": "Member since {{date}}",
+    "recentActivity": "Recent files",
+    "noActivity": "No activity yet.",
+    "logout": "Log out",
+    "localAccountNotice": "This account is stored locally in this browser only — it is not synced anywhere else. See the Privacy Policy."
   }
 }

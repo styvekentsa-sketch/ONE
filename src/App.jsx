@@ -1,6 +1,7 @@
 import { lazy } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AssistantProvider } from './context/AssistantContext'
+import { AuthProvider } from './context/AuthContext'
 import MainLayout from './layouts/MainLayout'
 import Home from './pages/Home'
 
@@ -54,9 +55,10 @@ const RefundPolicy = lazy(() => import('./pages/legal/RefundPolicy'))
 
 function App() {
   return (
-    <AssistantProvider>
-      <BrowserRouter>
-        <Routes>
+    <AuthProvider>
+      <AssistantProvider>
+        <BrowserRouter>
+          <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             {/* Pages sur mesure pour les outils avec une logique spécifique */}
@@ -120,9 +122,10 @@ function App() {
             <Route path="/refund-policy" element={<RefundPolicy />} />
             <Route path="*" element={<NotFound />} />
           </Route>
-        </Routes>
-      </BrowserRouter>
-    </AssistantProvider>
+          </Routes>
+        </BrowserRouter>
+      </AssistantProvider>
+    </AuthProvider>
   )
 }
 

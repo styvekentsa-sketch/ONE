@@ -5,9 +5,11 @@ import ThemeToggle from './ThemeToggle'
 import Logo from './Logo'
 import PrivacyBadge from './PrivacyBadge'
 import LanguageSelector from './LanguageSelector'
+import { useAuth } from '../context/AuthContext'
 
 export default function Header({ onOpenHistory }) {
   const { t } = useTranslation()
+  const { user, isAuthenticated } = useAuth()
 
   return (
     <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/80 backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/90">
@@ -44,9 +46,12 @@ export default function Header({ onOpenHistory }) {
           <PrivacyBadge compact />
           <LanguageSelector />
           <ThemeToggle />
-          <button className="rounded-full bg-indigo-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98]">
-            {t('nav.login')}
-          </button>
+          <Link
+            to="/account"
+            className="rounded-full bg-indigo-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98]"
+          >
+            {isAuthenticated ? user.name.split(' ')[0] : t('nav.login')}
+          </Link>
         </div>
 
         {/* Tablette uniquement : contrôles condensés (la navigation

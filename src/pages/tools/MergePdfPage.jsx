@@ -5,7 +5,6 @@ import { ArrowDown, ArrowLeft, ArrowUp, CheckCircle2, Combine, FileText, X } fro
 import DragDropZone from '../../components/DragDropZone'
 import ProcessingState from '../../components/ProcessingState'
 import DownloadButton from '../../components/DownloadButton'
-import PrivacyBadge from '../../components/PrivacyBadge'
 import { mergePdfs } from '../../utils/pdfWorker'
 import { addHistoryEntry } from '../../utils/historyStorage'
 
@@ -122,8 +121,6 @@ export default function MergePdfPage() {
           <p className="text-zinc-500 dark:text-zinc-400">{t('tools.merge.subtitle')}</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-zinc-900">
         {error && (

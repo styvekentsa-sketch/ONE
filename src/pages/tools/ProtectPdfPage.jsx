@@ -5,7 +5,6 @@ import { ArrowLeft, CheckCircle2, Eye, EyeOff, FileText, Lock, LockOpen, X } fro
 import DragDropZone from '../../components/DragDropZone'
 import ProcessingState from '../../components/ProcessingState'
 import DownloadButton from '../../components/DownloadButton'
-import PrivacyBadge from '../../components/PrivacyBadge'
 import { protectPdf, unlockPdfWithPassword } from '../../utils/qpdf'
 import { addHistoryEntry } from '../../utils/historyStorage'
 
@@ -426,8 +425,6 @@ export default function ProtectPdfPage() {
           <p className="text-zinc-500 dark:text-zinc-400">{t('tools.protect.subtitle')}</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       <div className="mt-6 inline-flex rounded-full border border-zinc-200 bg-zinc-100 p-1 dark:border-white/10 dark:bg-zinc-800/60">
         {TABS.map(({ id, label, icon: Icon }) => (

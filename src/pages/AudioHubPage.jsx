@@ -5,8 +5,8 @@ import { ArrowLeft, CheckCircle2, Music, RefreshCw, Scissors, Volume2 } from 'lu
 import DragDropZone from '../components/DragDropZone'
 import ProcessingState from '../components/ProcessingState'
 import DownloadButton from '../components/DownloadButton'
-import PrivacyBadge from '../components/PrivacyBadge'
-import { decodeAudio, trimAudio, extractAudio, convertAudioFormat } from '../utils/audioWorker'
+import MediaEditorStudio from '../components/studio/MediaEditorStudio'
+import { trimAudio, extractAudio, convertAudioFormat } from '../utils/audioWorker'
 import { addHistoryEntry } from '../utils/historyStorage'
 
 const TABS = [
@@ -21,11 +21,6 @@ const STEPS = {
   CONFIGURE: 'configure',
   PROCESSING: 'processing',
   DONE: 'done',
-}
-
-function formatTime(seconds) {
-  const s = Math.max(0, Math.floor(seconds))
-  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
 }
 
 function FormatPicker({ format, onChange, t }) {
@@ -77,9 +72,7 @@ function ResultPanel({ result, fileLabel, onDownload, onRestart, t }) {
 function TrimPanel({ t }) {
   const [step, setStep] = useState(STEPS.UPLOAD)
   const [file, setFile] = useState(null)
-  const [duration, setDuration] = useState(0)
-  const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(0)
+  const [editState, setEditState] = useState(null)
   const [format, setFormat] = useState('wav')
   const [error, setError] = useState(null)
   const [result, setResult] = useState(null)
@@ -87,42 +80,42 @@ function TrimPanel({ t }) {
 
   useEffect(() => () => urlRef.current && URL.revokeObjectURL(urlRef.current), [])
 
-  const handleFiles = async (files) => {
+  const handleFiles = (files) => {
     const [audioFile] = files
     setError(null)
     setFile(audioFile)
-    setStep(STEPS.ANALYZING)
-    try {
-      const buffer = await decodeAudio(audioFile)
-      setDuration(buffer.duration)
-      setStart(0)
-      setEnd(buffer.duration)
-      setStep(STEPS.CONFIGURE)
-    } catch {
-      setError(t('tools.audio-hub.errorDecode'))
-      setStep(STEPS.UPLOAD)
-    }
+    setEditState(null)
+    setStep(STEPS.CONFIGURE)
   }
 
   const handleSubmit = async () => {
+    if (!editState) return
     setError(null)
     setStep(STEPS.PROCESSING)
     try {
-      const { blob, extension } = await trimAudio(file, { start, end, format })
+      const { blob, extension } = await trimAudio(file, {
+        start: editState.start,
+        end: editState.end,
+        format,
+        fadeIn: editState.fadeIn,
+        fadeOut: editState.fadeOut,
+        mode: editState.mode,
+      })
       if (urlRef.current) URL.revokeObjectURL(urlRef.current)
       const url = URL.createObjectURL(blob)
       urlRef.current = url
       setResult({ url, blob, extension })
       addHistoryEntry({ toolId: 'trim-audio', toolName: t('tools.trim-audio.name'), message: `Audio découpé — ${file.name}` })
       setStep(STEPS.DONE)
-    } catch {
-      setError(t('tools.audio-hub.errorGeneric'))
+    } catch (err) {
+      setError(err?.message === 'DECODE_UNSUPPORTED' ? t('tools.audio-hub.errorDecode') : t('tools.audio-hub.errorGeneric'))
       setStep(STEPS.CONFIGURE)
     }
   }
 
   const handleRestart = () => {
     setFile(null)
+    setEditState(null)
     setResult(null)
     setError(null)
     setStep(STEPS.UPLOAD)
@@ -148,43 +141,14 @@ function TrimPanel({ t }) {
         <DragDropZone onFiles={handleFiles} multiple={false} accept="audio/*" hint={t('tools.audio-hub.dropHintTrim')} />
       )}
 
-      {step === STEPS.ANALYZING && <ProcessingState icon={Scissors} title={t('tools.audio-hub.analyzingTitle')} duration={900} />}
-
       {step === STEPS.CONFIGURE && (
         <div className="flex flex-col gap-4">
-          <p className="truncate text-sm font-medium text-zinc-700 dark:text-zinc-200">{file.name}</p>
-
-          <div>
-            <label className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
-              {t('tools.audio-hub.start')}
-              <span className="font-mono text-zinc-500 dark:text-zinc-400">{formatTime(start)}</span>
-            </label>
-            <input
-              type="range"
-              min={0}
-              max={duration}
-              step={0.1}
-              value={start}
-              onChange={(e) => setStart(Math.min(Number(e.target.value), end - 0.1))}
-              className="w-full accent-indigo-500"
-            />
-          </div>
-
-          <div>
-            <label className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
-              {t('tools.audio-hub.end')}
-              <span className="font-mono text-zinc-500 dark:text-zinc-400">{formatTime(end)}</span>
-            </label>
-            <input
-              type="range"
-              min={0}
-              max={duration}
-              step={0.1}
-              value={end}
-              onChange={(e) => setEnd(Math.max(Number(e.target.value), start + 0.1))}
-              className="w-full accent-indigo-500"
-            />
-          </div>
+          <MediaEditorStudio
+            mediaType="audio"
+            file={file}
+            onChange={setEditState}
+            onTrackError={() => setError(t('tools.audio-hub.errorDecode'))}
+          />
 
           <FormatPicker format={format} onChange={setFormat} t={t} />
 
@@ -413,8 +377,6 @@ export default function AudioHubPage() {
           <p className="text-zinc-500 dark:text-zinc-400">{t('tools.audio-hub.subtitle')}</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       <div className="mt-6 inline-flex rounded-full border border-zinc-200 bg-zinc-100 p-1 dark:border-white/10 dark:bg-zinc-800/60">
         {TABS.map(({ id, icon: Icon }) => (

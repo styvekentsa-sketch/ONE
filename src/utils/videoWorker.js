@@ -25,15 +25,6 @@ function seekTo(video, time) {
   })
 }
 
-/** Charge une vidéo et renvoie ses métadonnées utiles à l'UI (durée,
- * dimensions) avant de lancer un traitement plus lourd. */
-export async function loadVideoMetadata(file) {
-  const video = await loadVideoElement(file)
-  const metadata = { duration: video.duration, width: video.videoWidth, height: video.videoHeight }
-  URL.revokeObjectURL(video.src)
-  return metadata
-}
-
 /**
  * Convertit un extrait vidéo (`start`→`end`, en secondes) en GIF animé :
  * échantillonne des images au débit `fps` demandé en déplaçant le temps de
@@ -41,8 +32,14 @@ export async function loadVideoMetadata(file) {
  * les encode via gif.js (Web Worker dédié, aucun serveur). Le clip est
  * plafonné à `MAX_GIF_DURATION` : au-delà, ni la mémoire ni le temps de
  * rendu ne resteraient raisonnables dans un onglet de navigateur.
+ *
+ * `effectFilter` (chaîne CSS `filter`, ex. "grayscale(1)") et `aspectRatio`
+ * (largeur/hauteur cible, ex. 9/16 — recadrage centré sur l'image source)
+ * sont appliqués frame par frame via l'API Canvas 2D (`ctx.filter` et un
+ * `drawImage` avec rectangle source recadré) : ce ne sont pas de simples
+ * aperçus, le rendu exporté les reflète réellement.
  */
-export async function videoToGif(file, { start = 0, end, fps = 8, width = 400, onProgress, signal } = {}) {
+export async function videoToGif(file, { start = 0, end, fps = 8, width = 400, effectFilter = 'none', aspectRatio = null, onProgress, signal } = {}) {
   const { default: GIF } = await import('gif.js/dist/gif.js')
   const video = await loadVideoElement(file)
 
@@ -50,14 +47,29 @@ export async function videoToGif(file, { start = 0, end, fps = 8, width = 400, o
     const clampedEnd = Math.min(end ?? video.duration, video.duration, start + MAX_GIF_DURATION)
     if (clampedEnd <= start) throw new Error('INVALID_RANGE')
 
-    const ratio = video.videoHeight / video.videoWidth || 1
-    const targetWidth = Math.min(width, video.videoWidth) || width
-    const targetHeight = Math.max(1, Math.round(targetWidth * ratio))
+    const sourceRatio = video.videoWidth / video.videoHeight || 1
+    const targetRatio = aspectRatio || sourceRatio
+
+    // Recadrage centré : on prend le plus grand rectangle de ratio
+    // `targetRatio` qui tient dans l'image source, plutôt que de déformer
+    // l'image pour forcer le ratio demandé.
+    let cropWidth = video.videoWidth
+    let cropHeight = video.videoWidth / targetRatio
+    if (cropHeight > video.videoHeight) {
+      cropHeight = video.videoHeight
+      cropWidth = video.videoHeight * targetRatio
+    }
+    const cropX = (video.videoWidth - cropWidth) / 2
+    const cropY = (video.videoHeight - cropHeight) / 2
+
+    const targetWidth = Math.min(width, video.videoWidth)
+    const targetHeight = Math.max(1, Math.round(targetWidth / targetRatio))
 
     const canvas = document.createElement('canvas')
     canvas.width = targetWidth
     canvas.height = targetHeight
     const ctx = canvas.getContext('2d')
+    ctx.filter = effectFilter || 'none'
 
     const gif = new GIF({
       workers: 2,
@@ -78,7 +90,7 @@ export async function videoToGif(file, { start = 0, end, fps = 8, width = 400, o
       if (signal?.aborted) throw new Error('ABORTED')
       const t = Math.min(start + i / fps, video.duration)
       await seekTo(video, t)
-      ctx.drawImage(video, 0, 0, targetWidth, targetHeight)
+      ctx.drawImage(video, cropX, cropY, cropWidth, cropHeight, 0, 0, targetWidth, targetHeight)
       gif.addFrame(ctx, { copy: true, delay: frameDelay })
       onProgress?.(i + 1, frameCount)
     }

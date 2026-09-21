@@ -29,14 +29,11 @@ import {
   Film,
   Aperture,
   GalleryHorizontal,
-  Contrast,
   SlidersHorizontal,
   Palette,
   Blend,
-  Sparkles,
   Package,
   Bandage,
-  Crop,
   Paintbrush,
   PaintBucket,
   Type,
@@ -257,15 +254,6 @@ const toolDefinitions = [
     customRoute: '/tool/image-basic?tab=convert',
   },
   {
-    id: 'resize-image',
-    name: 'Redimensionner Image',
-    description: 'Ajustez les dimensions en pixels ou en pourcentage',
-    icon: Maximize2,
-    category: 'Éditer',
-    mediaType: 'image',
-    customRoute: '/tool/image-basic?tab=resize',
-  },
-  {
     id: 'trim-audio',
     name: 'Découper Audio',
     description: 'Extrayez un passage précis (début/fin) de votre fichier audio',
@@ -312,19 +300,15 @@ const toolDefinitions = [
   },
 
   // --- Studio Image avancé -------------------------------------------------
-  // 18 fiches organisées par badge, chacune un vrai outil (Canvas2D natif).
+  // 14 fiches organisées par badge, chacune un vrai outil (Canvas2D natif).
+  // Volontairement limité aux fonctions absentes d'une galerie Android/iOS
+  // (pas de luminosité/contraste isolé, redimensionnement simple, recadrage
+  // seul ou filtres préréglages basiques : ces gestes basiques restent
+  // couverts par les OS mobiles eux-mêmes) — voir les paliers avancés
+  // (courbes, calques, sélection, HDR/panorama, traitement par lots...).
   // Plusieurs fiches proches partagent une même page dédiée via ?tab=
   // (même convention que Protéger/Déverrouiller -> protect-pdf) : ce n'est
-  // pas 18 pages séparées, mais 18 entrées cliquables bien distinctes.
-  {
-    id: 'brightness-contrast',
-    name: 'Luminosité & Contraste',
-    description: 'Ajustez la luminosité et le contraste avec des curseurs en direct',
-    icon: Contrast,
-    category: 'Ajustements & Couleurs',
-    mediaType: 'image',
-    customRoute: '/tool/image-adjust?tab=basic',
-  },
+  // pas 14 pages séparées, mais 14 entrées cliquables bien distinctes.
   {
     id: 'levels-curves',
     name: 'Niveaux & Courbes',
@@ -398,22 +382,13 @@ const toolDefinitions = [
     customRoute: '/tool/image-select?tab=masks',
   },
   {
-    id: 'crop-straighten',
-    name: 'Recadrage & Redressement',
-    description: 'Recadrez et redressez votre image par glissement',
-    icon: Crop,
-    category: 'Transformation & Géométrie',
-    mediaType: 'image',
-    customRoute: '/tool/image-transform?tab=crop',
-  },
-  {
     id: 'transform-geometry',
-    name: 'Rotation, Échelle, Déformation & Perspective',
-    description: 'Faites pivoter, redimensionnez ou retournez l’image (déformation à venir)',
+    name: 'Rotation, Échelle & Miroir',
+    description: 'Faites pivoter, redimensionnez ou retournez l’image (déformation et perspective à venir)',
     icon: Maximize2,
     category: 'Transformation & Géométrie',
     mediaType: 'image',
-    customRoute: '/tool/image-transform?tab=free',
+    customRoute: '/tool/image-transform',
   },
   {
     id: 'brush-tools',
@@ -450,15 +425,6 @@ const toolDefinitions = [
     category: 'Calques & Effets',
     mediaType: 'image',
     customRoute: '/tool/image-layers',
-  },
-  {
-    id: 'filters-styles',
-    name: 'Filtres & Styles de Calque',
-    description: 'Appliquez un filtre prédéfini (N&B, Sépia, Vif…)',
-    icon: Sparkles,
-    category: 'Calques & Effets',
-    mediaType: 'image',
-    customRoute: '/tool/image-adjust?tab=presets',
   },
   {
     id: 'hdr-panorama',

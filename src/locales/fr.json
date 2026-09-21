@@ -100,8 +100,6 @@
     "clearHistory": "Vider l’historique",
     "notFoundMessage": "Cette page n’existe pas.",
     "backHome": "Retour à l’accueil",
-    "myAccount": "Mon Compte",
-    "comingSoon": "Bientôt disponible.",
     "toolOptimizingTitle": "Cet outil est en cours d’optimisation",
     "toolOptimizingDescription": "Il n’est pas encore disponible depuis cette page. Revenez à l’accueil pour retrouver tous les outils déjà pleinement fonctionnels.",
     "recommendation": "Notre recommandation",
@@ -123,7 +121,6 @@
     "showLayer": "Afficher le calque",
     "duplicateLayer": "Dupliquer le calque",
     "deleteLayer": "Supprimer le calque",
-    "dropzoneSecurityBadge": "100% local et confidentiel — fichiers traités sur votre appareil",
     "chooseOptionBelow": "ou choisissez une option ci-dessous",
     "browseFilesButton": "Parcourir mes fichiers",
     "acceptedFormats": "Formats acceptés : {{formats}}",
@@ -583,13 +580,9 @@
       "name": "Convertir Image",
       "description": "Basculez entre JPG, PNG et WebP"
     },
-    "resize-image": {
-      "name": "Redimensionner Image",
-      "description": "Ajustez les dimensions en pixels ou en pourcentage"
-    },
     "image-hub": {
       "name": "Outils Image",
-      "subtitle": "Compressez, convertissez et redimensionnez vos images, 100% dans le navigateur",
+      "subtitle": "Compressez et convertissez vos images, 100% dans le navigateur",
       "dropHint": "Déposez une image (JPG, PNG ou WebP)",
       "changeFile": "Changer d’image",
       "errorInvalidFile": "Merci de déposer une image (JPG, PNG ou WebP).",
@@ -603,7 +596,6 @@
       "downloadButton": "Télécharger l’image",
       "tabCompress": "Compresser",
       "tabConvert": "Convertir",
-      "tabResize": "Redimensionner",
       "levelLabel": "Palier de compression",
       "levels": {
         "high": {
@@ -625,15 +617,7 @@
       "resolutionHint": "Réduire la résolution est le levier le plus efficace pour alléger une image.",
       "compressFormat": "Format de sortie",
       "formatAuto": "Auto",
-      "targetFormat": "Format cible",
-      "resizeMode": {
-        "percentage": "Pourcentage",
-        "pixels": "Pixels"
-      },
-      "percentage": "Échelle",
-      "width": "Largeur",
-      "height": "Hauteur",
-      "maintainAspectRatio": "Conserver le ratio hauteur/largeur"
+      "targetFormat": "Format cible"
     },
     "trim-audio": {
       "name": "Découper Audio",
@@ -656,9 +640,6 @@
       "dropHintTrim": "Déposez un fichier audio (MP3, WAV, AAC, OGG…)",
       "dropHintExtract": "Déposez une vidéo (MP4, WebM, MOV…) pour en extraire le son",
       "dropHintConvert": "Déposez un fichier audio à convertir",
-      "analyzingTitle": "Analyse du fichier…",
-      "start": "Début",
-      "end": "Fin",
       "exportFormat": "Format d’export",
       "mp3Hint": "Encodage MP3 via un encodeur JavaScript local (lamejs) — aucun envoi sur un serveur.",
       "trimButton": "Découper et télécharger",
@@ -688,12 +669,7 @@
       "tabMute": "Supprimer le son",
       "dropHintGif": "Déposez une vidéo (MP4, WebM, MOV…)",
       "dropHintMute": "Déposez la vidéo dont vous voulez retirer le son",
-      "analyzingTitle": "Lecture des informations de la vidéo…",
       "errorLoad": "Impossible de lire cette vidéo. Le format n’est peut-être pas pris en charge par votre navigateur.",
-      "maxDurationHint": "Extrait limité à {{seconds}} secondes pour rester fluide dans le navigateur.",
-      "start": "Début",
-      "end": "Fin",
-      "clipTruncated": "L’extrait sera limité à {{seconds}} secondes.",
       "fps": "Images/seconde",
       "width": "Largeur",
       "gifButton": "Générer le GIF",
@@ -767,7 +743,7 @@
         },
         {
           "heading": "3. Données que nous collectons réellement",
-          "body": "En cohérence avec le principe de minimisation des données (art. 5.1.c du RGPD), nous ne collectons que le strict nécessaire au fonctionnement du Service :\n- Données stockées localement dans votre navigateur (localStorage), qui ne quittent jamais votre appareil : préférence de thème (clair/sombre), langue choisie, historique des 20 dernières opérations effectuées (nom de l’outil utilisé, nom de fichier, horodatage — jamais le contenu du fichier), et votre choix concernant la bannière de cookies.\n- Données techniques de connexion collectées de façon standard par notre hébergeur (Vercel) pour la fourniture du Service et la sécurité de l’infrastructure : adresse IP, type de navigateur, pages consultées, horodatage des requêtes. Ces journaux serveur sont gérés par l’hébergeur selon sa propre politique et ne sont pas exploités par l’éditeur à des fins commerciales.\n- Aucune donnée de compte n’est actuellement collectée : la fonctionnalité « Mon compte » est indiquée « bientôt disponible » et ne collecte aujourd’hui aucune information.\n\nNous ne collectons ni ne déduisons aucune donnée sensible, aucune donnée de géolocalisation précise, et n’utilisons aucun outil d’analyse d’audience tiers (pas de Google Analytics ni équivalent) ni de publicité ciblée à la date de rédaction de cette politique."
+          "body": "En cohérence avec le principe de minimisation des données (art. 5.1.c du RGPD), nous ne collectons que le strict nécessaire au fonctionnement du Service :\n- Données stockées localement dans votre navigateur (localStorage), qui ne quittent jamais votre appareil : préférence de thème (clair/sombre), langue choisie, historique des 20 dernières opérations effectuées (nom de l’outil utilisé, nom de fichier, horodatage — jamais le contenu du fichier), et votre choix concernant la bannière de cookies.\n- Données techniques de connexion collectées de façon standard par notre hébergeur (Vercel) pour la fourniture du Service et la sécurité de l’infrastructure : adresse IP, type de navigateur, pages consultées, horodatage des requêtes. Ces journaux serveur sont gérés par l’hébergeur selon sa propre politique et ne sont pas exploités par l’éditeur à des fins commerciales.\n- Si vous créez un compte (fonctionnalité optionnelle) : votre nom, votre adresse email et un identifiant de session, stockés uniquement dans le stockage local de votre navigateur — jamais transmis à un serveur, jamais synchronisés entre appareils ou navigateurs. Votre mot de passe n’est jamais stocké en clair : seule son empreinte (hachage SHA-256) est conservée localement.\n\nNous ne collectons ni ne déduisons aucune donnée sensible, aucune donnée de géolocalisation précise, et n’utilisons aucun outil d’analyse d’audience tiers (pas de Google Analytics ni équivalent) ni de publicité ciblée à la date de rédaction de cette politique."
         },
         {
           "heading": "4. Finalités du traitement",
@@ -833,7 +809,7 @@
         },
         {
           "heading": "4. Compte utilisateur",
-          "body": "À la date de rédaction des présentes CGU, aucune création de compte n’est requise pour utiliser les outils du Service ; la rubrique « Mon compte » est en cours de développement. Si un système de compte est introduit ultérieurement, les présentes CGU seront mises à jour pour en préciser les modalités (identifiants, sécurité du mot de passe, résiliation, etc.)."
+          "body": "Un compte optionnel peut être créé directement depuis la page « Mon compte », afin de personnaliser votre expérience (nom affiché, historique associé à un profil). Ce compte est intégralement stocké dans le stockage local de votre navigateur : il ne s’agit pas d’un compte serveur sécurisé, il n’est pas synchronisé entre appareils ou navigateurs, et il est perdu si vous effacez les données de ce navigateur. Vous restez seul responsable de la confidentialité du mot de passe choisi pour ce compte local."
         },
         {
           "heading": "5. Obligations et engagements de l’utilisateur",
@@ -946,5 +922,49 @@
     "historyTitle": "Historique local des opérations",
     "historyDescription": "Conserve sur votre appareil la liste de vos 20 dernières opérations pour vous permettre d’y revenir facilement. Rien n’est jamais envoyé à un serveur.",
     "closeLabel": "Fermer"
+  },
+  "auth": {
+    "createAccountTitle": "Créer un compte",
+    "createAccountSubtitle": "Rejoignez ONE pour retrouver vos préférences partout.",
+    "loginTitle": "Connexion",
+    "loginSubtitle": "Heureux de vous revoir.",
+    "orWithEmail": "ou avec votre email",
+    "fullName": "Nom complet",
+    "fullNamePlaceholder": "Jeanne Dupont",
+    "email": "Adresse email",
+    "password": "Mot de passe",
+    "showPassword": "Afficher le mot de passe",
+    "hidePassword": "Masquer le mot de passe",
+    "submitRegister": "Créer mon compte",
+    "submitLogin": "Se connecter",
+    "submitting": "Veuillez patienter…",
+    "alreadyMember": "Déjà membre ?",
+    "noAccountYet": "Pas encore de compte ?",
+    "switchToLogin": "Se connecter",
+    "switchToRegister": "S'inscrire",
+    "errorNameRequired": "Merci d’indiquer votre nom complet.",
+    "errorInvalidEmail": "Adresse email invalide.",
+    "errorPasswordLength": "Le mot de passe doit contenir au moins {{count}} caractères.",
+    "errorEmailTaken": "Cette adresse email est déjà utilisée.",
+    "errorInvalidCredentials": "Email ou mot de passe incorrect.",
+    "errorGeneric": "Une erreur est survenue. Merci de réessayer.",
+    "socialComingSoon": "La connexion sociale sera bientôt disponible — utilisez votre email pour l’instant.",
+    "marketingTitle": "Vos outils PDF, Image & Média au même endroit",
+    "marketingSubtitle": "Créez un compte pour retrouver votre thème, votre langue et votre historique où que vous soyez sur cet appareil.",
+    "feature": {
+      "pdf": "Outils PDF complets",
+      "image": "Retouche d'image",
+      "video": "Édition vidéo",
+      "audio": "Outils audio"
+    }
+  },
+  "profile": {
+    "planLabel": "Statut du compte",
+    "free": "Gratuit",
+    "memberSince": "Membre depuis {{date}}",
+    "recentActivity": "Fichiers récents",
+    "noActivity": "Aucune activité pour le moment.",
+    "logout": "Se déconnecter",
+    "localAccountNotice": "Ce compte est stocké localement dans ce navigateur uniquement — il n’est pas synchronisé ailleurs. Voir la Politique de confidentialité."
   }
 }

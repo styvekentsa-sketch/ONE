@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { ArrowLeft, Check, Copy, Download, ScanText } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
 import ProcessingState from '../../components/ProcessingState'
-import PrivacyBadge from '../../components/PrivacyBadge'
 import { ocrPdf, mapUiLangToTesseract } from '../../utils/ocr'
 import { addHistoryEntry } from '../../utils/historyStorage'
 
@@ -118,7 +117,6 @@ export default function OcrPdfPage() {
         </div>
       </div>
 
-      <PrivacyBadge className="mt-5" />
       <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">{t('tools.ocr.modelDisclosure')}</p>
 
       <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-zinc-900">

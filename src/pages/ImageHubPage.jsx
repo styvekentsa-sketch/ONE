@@ -1,18 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, Image as ImageIcon, Loader2, Maximize2, Minimize2, RefreshCw } from 'lucide-react'
+import { ArrowLeft, Image as ImageIcon, Loader2, Minimize2, RefreshCw } from 'lucide-react'
 import DragDropZone from '../components/DragDropZone'
 import DownloadButton from '../components/DownloadButton'
-import PrivacyBadge from '../components/PrivacyBadge'
-import { compressImage, convertImageFormat, resizeImage } from '../utils/imageWorker'
+import { compressImage, convertImageFormat } from '../utils/imageWorker'
 import { imageCompressionLevels, DEFAULT_IMAGE_COMPRESSION_LEVEL } from '../data/imageCompressionLevels'
 import { addHistoryEntry } from '../utils/historyStorage'
 
 const TABS = [
   { id: 'compress', icon: Minimize2 },
   { id: 'convert', icon: RefreshCw },
-  { id: 'resize', icon: Maximize2 },
 ]
 
 const FORMATS = ['jpeg', 'png', 'webp']
@@ -42,11 +40,6 @@ export default function ImageHubPage() {
   const [resolutionPercent, setResolutionPercent] = useState(100)
   const [compressFormat, setCompressFormat] = useState('auto')
   const [targetFormat, setTargetFormat] = useState('jpeg')
-  const [resizeMode, setResizeMode] = useState('percentage') // 'percentage' | 'pixels'
-  const [percentage, setPercentage] = useState(100)
-  const [width, setWidth] = useState('')
-  const [height, setHeight] = useState('')
-  const [maintainAspectRatio, setMaintainAspectRatio] = useState(true)
 
   const resultUrlRef = useRef(null)
   const originalUrlRef = useRef(null)
@@ -76,9 +69,6 @@ export default function ImageHubPage() {
     setOriginalUrl(url)
     setResult(null)
     setTargetFormat(imageFile.type === 'image/png' ? 'webp' : imageFile.type === 'image/webp' ? 'jpeg' : 'jpeg')
-    setPercentage(100)
-    setWidth('')
-    setHeight('')
     setLevelId(DEFAULT_IMAGE_COMPRESSION_LEVEL)
     setQuality(Math.round(defaultLevel.quality * 100))
     setResolutionPercent(100)
@@ -117,14 +107,8 @@ export default function ImageHubPage() {
             scalePercent: resolutionPercent,
             format: compressFormat,
           })
-        } else if (tab === 'convert') {
-          outcome = await convertImageFormat(file, targetFormat)
         } else {
-          const opts =
-            resizeMode === 'percentage'
-              ? { percentage, maintainAspectRatio: true }
-              : { width: width ? Number(width) : undefined, height: height ? Number(height) : undefined, maintainAspectRatio }
-          outcome = await resizeImage(file, opts)
+          outcome = await convertImageFormat(file, targetFormat)
         }
 
         if (resultUrlRef.current) URL.revokeObjectURL(resultUrlRef.current)
@@ -142,7 +126,7 @@ export default function ImageHubPage() {
 
     return () => clearTimeout(debounceRef.current)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [file, tab, quality, resolutionPercent, compressFormat, levelId, targetFormat, resizeMode, percentage, width, height, maintainAspectRatio])
+  }, [file, tab, quality, resolutionPercent, compressFormat, levelId, targetFormat])
 
   const handleDownload = () => {
     if (!result) return
@@ -185,8 +169,6 @@ export default function ImageHubPage() {
           <p className="text-zinc-500 dark:text-zinc-400">{t('tools.image-hub.subtitle')}</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       {error && (
         <p className="mt-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">
@@ -253,7 +235,7 @@ export default function ImageHubPage() {
               </div>
             )}
 
-            {result && (tab === 'convert' || tab === 'resize') && (
+            {result && tab === 'convert' && (
               <div className="rounded-xl border border-zinc-100 bg-zinc-50 px-4 py-3 text-sm text-zinc-500 dark:border-white/5 dark:bg-zinc-800/40 dark:text-zinc-400">
                 {result.width} × {result.height} px · {result.format.toUpperCase()} · {formatBytes(result.blob.size)}
               </div>
@@ -402,89 +384,6 @@ export default function ImageHubPage() {
                     </button>
                   ))}
                 </div>
-              </div>
-            )}
-
-            {tab === 'resize' && (
-              <div className="flex flex-col gap-4">
-                <div className="inline-flex self-start rounded-full border border-zinc-200 bg-zinc-100 p-1 text-xs dark:border-white/10 dark:bg-zinc-800/60">
-                  {['percentage', 'pixels'].map((mode) => (
-                    <button
-                      key={mode}
-                      onClick={() => setResizeMode(mode)}
-                      className={`rounded-full px-3 py-1 font-medium transition-all duration-200 ease-in-out ${
-                        resizeMode === mode
-                          ? 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white'
-                          : 'text-zinc-500 dark:text-zinc-400'
-                      }`}
-                    >
-                      {t(`tools.image-hub.resizeMode.${mode}`)}
-                    </button>
-                  ))}
-                </div>
-
-                {resizeMode === 'percentage' ? (
-                  <div>
-                    <label
-                      htmlFor="image-percentage"
-                      className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400"
-                    >
-                      {t('tools.image-hub.percentage')}
-                      <span className="font-mono text-zinc-500 dark:text-zinc-400">{percentage}%</span>
-                    </label>
-                    <input
-                      id="image-percentage"
-                      type="range"
-                      min={1}
-                      max={200}
-                      value={percentage}
-                      onChange={(e) => setPercentage(Number(e.target.value))}
-                      className="w-full accent-indigo-500"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex flex-col gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="flex-1">
-                        <label htmlFor="image-width" className="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
-                          {t('tools.image-hub.width')}
-                        </label>
-                        <input
-                          id="image-width"
-                          type="number"
-                          min={1}
-                          value={width}
-                          onChange={(e) => setWidth(e.target.value)}
-                          placeholder="px"
-                          className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 focus:border-indigo-400 focus:outline-none dark:border-white/10 dark:bg-zinc-800/60 dark:text-white"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <label htmlFor="image-height" className="mb-1 block text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
-                          {t('tools.image-hub.height')}
-                        </label>
-                        <input
-                          id="image-height"
-                          type="number"
-                          min={1}
-                          value={height}
-                          onChange={(e) => setHeight(e.target.value)}
-                          placeholder="px"
-                          className="w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 focus:border-indigo-400 focus:outline-none dark:border-white/10 dark:bg-zinc-800/60 dark:text-white"
-                        />
-                      </div>
-                    </div>
-                    <label className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300">
-                      <input
-                        type="checkbox"
-                        checked={maintainAspectRatio}
-                        onChange={(e) => setMaintainAspectRatio(e.target.checked)}
-                        className="h-4 w-4 accent-indigo-500"
-                      />
-                      {t('tools.image-hub.maintainAspectRatio')}
-                    </label>
-                  </div>
-                )}
               </div>
             )}
           </div>

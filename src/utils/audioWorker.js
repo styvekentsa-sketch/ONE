@@ -43,6 +43,20 @@ export function sliceAudioBuffer(audioBuffer, startSec, endSec) {
   return sliced
 }
 
+/** Concatène deux AudioBuffers bout à bout (nouveau buffer). Suppose le même
+ * `sampleRate` (les deux viennent toujours du même fichier source ici). */
+function concatAudioBuffers(a, b) {
+  const ctx = getAudioContext()
+  const numberOfChannels = Math.max(a.numberOfChannels, b.numberOfChannels)
+  const out = ctx.createBuffer(numberOfChannels, a.length + b.length, a.sampleRate)
+  for (let channel = 0; channel < numberOfChannels; channel++) {
+    const data = out.getChannelData(channel)
+    data.set(channel < a.numberOfChannels ? a.getChannelData(channel) : new Float32Array(a.length), 0)
+    data.set(channel < b.numberOfChannels ? b.getChannelData(channel) : new Float32Array(b.length), a.length)
+  }
+  return out
+}
+
 function floatTo16BitPCM(float32Array) {
   const output = new Int16Array(float32Array.length)
   for (let i = 0; i < float32Array.length; i++) {
@@ -135,15 +149,53 @@ async function exportAudioBuffer(audioBuffer, format) {
   return { blob: audioBufferToWav(audioBuffer), extension: 'wav' }
 }
 
-/** Découpe un fichier audio entre `start`/`end` (secondes) et l'exporte
- * au format demandé ('wav' | 'mp3'). */
-export async function trimAudio(file, { start, end, format = 'wav' }) {
+/** Applique un fondu d'entrée/sortie linéaire (en secondes) directement sur
+ * les échantillons d'un AudioBuffer — modifie le buffer en place, aucune
+ * dépendance à OfflineAudioContext nécessaire pour un simple ramp de gain. */
+function applyFade(audioBuffer, { fadeIn = 0, fadeOut = 0 } = {}) {
+  if (!fadeIn && !fadeOut) return audioBuffer
+  const length = audioBuffer.length
+  const fadeInSamples = Math.min(length, Math.floor(fadeIn * audioBuffer.sampleRate))
+  const fadeOutSamples = Math.min(length, Math.floor(fadeOut * audioBuffer.sampleRate))
+
+  for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
+    const data = audioBuffer.getChannelData(channel)
+    for (let i = 0; i < fadeInSamples; i++) {
+      data[i] *= i / fadeInSamples
+    }
+    for (let i = 0; i < fadeOutSamples; i++) {
+      data[length - 1 - i] *= i / fadeOutSamples
+    }
+  }
+  return audioBuffer
+}
+
+/**
+ * Découpe un fichier audio entre `start`/`end` (secondes) et l'exporte au
+ * format demandé ('wav' | 'mp3'), avec fondu d'entrée/sortie optionnel
+ * (`fadeIn`/`fadeOut`, en secondes, appliqué après la découpe).
+ *
+ * `mode: 'keep'` (par défaut) conserve l'intervalle [start, end]. `mode:
+ * 'remove'` fait l'inverse — sélection réellement supprimée : les segments
+ * avant `start` et après `end` sont concaténés, pas juste masqués.
+ */
+export async function trimAudio(file, { start, end, format = 'wav', fadeIn = 0, fadeOut = 0, mode = 'keep' }) {
   const buffer = await decodeAudio(file)
   const clampedEnd = Math.min(end, buffer.duration)
   if (start >= clampedEnd) throw new Error('INVALID_RANGE')
 
-  const sliced = sliceAudioBuffer(buffer, start, clampedEnd)
-  return exportAudioBuffer(sliced, format)
+  let result
+  if (mode === 'remove') {
+    const before = start > 0 ? sliceAudioBuffer(buffer, 0, start) : null
+    const after = clampedEnd < buffer.duration ? sliceAudioBuffer(buffer, clampedEnd, buffer.duration) : null
+    if (!before && !after) throw new Error('INVALID_RANGE')
+    result = before && after ? concatAudioBuffers(before, after) : (before ?? after)
+  } else {
+    result = sliceAudioBuffer(buffer, start, clampedEnd)
+  }
+
+  applyFade(result, { fadeIn, fadeOut })
+  return exportAudioBuffer(result, format)
 }
 
 /** Extrait la piste audio complète d'une vidéo (ou ré-exporte un fichier

@@ -100,8 +100,6 @@
     "clearHistory": "Vaciar el historial",
     "notFoundMessage": "Esta página no existe.",
     "backHome": "Volver al inicio",
-    "myAccount": "Mi Cuenta",
-    "comingSoon": "Próximamente.",
     "toolOptimizingTitle": "Esta herramienta está en optimización",
     "toolOptimizingDescription": "Todavía no está disponible desde esta página. Vuelve al inicio para encontrar todas las herramientas ya totalmente operativas.",
     "recommendation": "Nuestra recomendación",
@@ -123,7 +121,6 @@
     "showLayer": "Mostrar capa",
     "duplicateLayer": "Duplicar capa",
     "deleteLayer": "Eliminar capa",
-    "dropzoneSecurityBadge": "100% local y confidencial — archivos procesados en tu dispositivo",
     "chooseOptionBelow": "o elige una opción a continuación",
     "browseFilesButton": "Explorar mis archivos",
     "acceptedFormats": "Formatos aceptados: {{formats}}",
@@ -583,13 +580,9 @@
       "name": "Convertir Imagen",
       "description": "Cambia entre JPG, PNG y WebP"
     },
-    "resize-image": {
-      "name": "Redimensionar Imagen",
-      "description": "Ajusta las dimensiones en píxeles o por porcentaje"
-    },
     "image-hub": {
       "name": "Herramientas de Imagen",
-      "subtitle": "Comprime, convierte y redimensiona tus imágenes, 100% en el navegador",
+      "subtitle": "Comprime y convierte tus imágenes, 100% en el navegador",
       "dropHint": "Suelta una imagen (JPG, PNG o WebP)",
       "changeFile": "Cambiar imagen",
       "errorInvalidFile": "Por favor, suelta una imagen (JPG, PNG o WebP).",
@@ -603,7 +596,6 @@
       "downloadButton": "Descargar imagen",
       "tabCompress": "Comprimir",
       "tabConvert": "Convertir",
-      "tabResize": "Redimensionar",
       "levelLabel": "Nivel de compresión",
       "levels": {
         "high": {
@@ -625,15 +617,7 @@
       "resolutionHint": "Reducir la resolución es la palanca más eficaz para aligerar una imagen.",
       "compressFormat": "Formato de salida",
       "formatAuto": "Auto",
-      "targetFormat": "Formato de destino",
-      "resizeMode": {
-        "percentage": "Porcentaje",
-        "pixels": "Píxeles"
-      },
-      "percentage": "Escala",
-      "width": "Ancho",
-      "height": "Alto",
-      "maintainAspectRatio": "Mantener la relación de aspecto"
+      "targetFormat": "Formato de destino"
     },
     "trim-audio": {
       "name": "Recortar Audio",
@@ -656,9 +640,6 @@
       "dropHintTrim": "Suelta un archivo de audio (MP3, WAV, AAC, OGG…)",
       "dropHintExtract": "Suelta un vídeo (MP4, WebM, MOV…) para extraer su sonido",
       "dropHintConvert": "Suelta un archivo de audio a convertir",
-      "analyzingTitle": "Analizando archivo…",
-      "start": "Inicio",
-      "end": "Fin",
       "exportFormat": "Formato de exportación",
       "mp3Hint": "Codificación MP3 mediante un codificador JavaScript local (lamejs) — nada se envía a un servidor.",
       "trimButton": "Recortar y descargar",
@@ -688,12 +669,7 @@
       "tabMute": "Quitar sonido",
       "dropHintGif": "Suelta un vídeo (MP4, WebM, MOV…)",
       "dropHintMute": "Suelta el vídeo al que quieres quitarle el sonido",
-      "analyzingTitle": "Leyendo la información del vídeo…",
       "errorLoad": "No se pudo leer este vídeo. Tu navegador puede no admitir este formato.",
-      "maxDurationHint": "Los fragmentos se limitan a {{seconds}} segundos para mantenerse fluidos en el navegador.",
-      "start": "Inicio",
-      "end": "Fin",
-      "clipTruncated": "El fragmento se limitará a {{seconds}} segundos.",
       "fps": "Fotogramas/segundo",
       "width": "Ancho",
       "gifButton": "Generar GIF",
@@ -767,7 +743,7 @@
         },
         {
           "heading": "3. Datos que realmente recopilamos",
-          "body": "De acuerdo con el principio de minimización de datos (art. 5.1.c del RGPD), solo recopilamos lo estrictamente necesario para el funcionamiento del Servicio:\n- Datos almacenados localmente en su navegador (localStorage), que nunca salen de su dispositivo: preferencia de tema (claro/oscuro), idioma elegido, historial de sus últimas 20 operaciones (herramienta utilizada, nombre de archivo, marca de tiempo —nunca el contenido del archivo—) y su elección respecto al banner de cookies.\n- Datos técnicos de conexión recopilados de forma estándar por nuestro proveedor de alojamiento (Vercel) para la prestación del Servicio y la seguridad de la infraestructura: dirección IP, tipo de navegador, páginas visitadas, marcas de tiempo de las solicitudes. Estos registros de servidor son gestionados por el proveedor según su propia política y no son explotados por el editor con fines comerciales.\n- Actualmente no se recopila ningún dato de cuenta: la función \"Mi cuenta\" figura como \"próximamente\" y hoy no recopila ninguna información.\n\nNo recopilamos ni inferimos ningún dato sensible ni de geolocalización precisa, y no utilizamos ninguna herramienta de análisis de audiencia de terceros (ni Google Analytics ni equivalente) ni publicidad dirigida a la fecha de esta política."
+          "body": "De acuerdo con el principio de minimización de datos (art. 5.1.c del RGPD), solo recopilamos lo estrictamente necesario para el funcionamiento del Servicio:\n- Datos almacenados localmente en su navegador (localStorage), que nunca salen de su dispositivo: preferencia de tema (claro/oscuro), idioma elegido, historial de sus últimas 20 operaciones (herramienta utilizada, nombre de archivo, marca de tiempo —nunca el contenido del archivo—) y su elección respecto al banner de cookies.\n- Datos técnicos de conexión recopilados de forma estándar por nuestro proveedor de alojamiento (Vercel) para la prestación del Servicio y la seguridad de la infraestructura: dirección IP, tipo de navegador, páginas visitadas, marcas de tiempo de las solicitudes. Estos registros de servidor son gestionados por el proveedor según su propia política y no son explotados por el editor con fines comerciales.\n- Si crea una cuenta (función opcional): su nombre, dirección de correo electrónico y un identificador de sesión, almacenados únicamente en el almacenamiento local de su navegador — nunca enviados a un servidor, nunca sincronizados entre dispositivos o navegadores. Su contraseña nunca se almacena en texto claro: solo se conserva localmente su huella (hash SHA-256).\n\nNo recopilamos ni inferimos ningún dato sensible ni de geolocalización precisa, y no utilizamos ninguna herramienta de análisis de audiencia de terceros (ni Google Analytics ni equivalente) ni publicidad dirigida a la fecha de esta política."
         },
         {
           "heading": "4. Finalidades del tratamiento",
@@ -833,7 +809,7 @@
         },
         {
           "heading": "4. Cuenta de usuario",
-          "body": "A la fecha de estos Términos, no se requiere la creación de una cuenta para utilizar las herramientas del Servicio; la sección \"Mi cuenta\" está en desarrollo. Si en el futuro se introduce un sistema de cuentas, estos Términos se actualizarán para precisar las condiciones aplicables (credenciales, seguridad de la contraseña, cancelación, etc.)."
+          "body": "Se puede crear una cuenta opcional directamente desde la página \"Mi cuenta\", para personalizar su experiencia (nombre mostrado, historial asociado a un perfil). Esta cuenta se almacena íntegramente en el almacenamiento local de su navegador: no se trata de una cuenta segura de servidor, no se sincroniza entre dispositivos o navegadores, y se pierde si borra los datos de este navegador. Usted es el único responsable de la confidencialidad de la contraseña elegida para esta cuenta local."
         },
         {
           "heading": "5. Obligaciones y compromisos del usuario",
@@ -946,5 +922,49 @@
     "historyTitle": "Historial local de operaciones",
     "historyDescription": "Conserva en su dispositivo la lista de sus últimas 20 operaciones para que pueda encontrarlas fácilmente. Nada se envía nunca a un servidor.",
     "closeLabel": "Cerrar"
+  },
+  "auth": {
+    "createAccountTitle": "Crear una cuenta",
+    "createAccountSubtitle": "Únete a ONE para conservar tus preferencias donde vayas.",
+    "loginTitle": "Iniciar sesión",
+    "loginSubtitle": "Bienvenido de nuevo.",
+    "orWithEmail": "o con tu correo electrónico",
+    "fullName": "Nombre completo",
+    "fullNamePlaceholder": "Juana Pérez",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
+    "submitRegister": "Crear mi cuenta",
+    "submitLogin": "Iniciar sesión",
+    "submitting": "Un momento…",
+    "alreadyMember": "¿Ya tienes una cuenta?",
+    "noAccountYet": "¿Aún no tienes una cuenta?",
+    "switchToLogin": "Iniciar sesión",
+    "switchToRegister": "Registrarse",
+    "errorNameRequired": "Indica tu nombre completo.",
+    "errorInvalidEmail": "Dirección de correo no válida.",
+    "errorPasswordLength": "La contraseña debe tener al menos {{count}} caracteres.",
+    "errorEmailTaken": "Esta dirección de correo ya está en uso.",
+    "errorInvalidCredentials": "Correo o contraseña incorrectos.",
+    "errorGeneric": "Ha ocurrido un error. Inténtalo de nuevo.",
+    "socialComingSoon": "El inicio de sesión social estará disponible pronto — usa tu correo por ahora.",
+    "marketingTitle": "Tus herramientas de PDF, imagen y multimedia en un solo lugar",
+    "marketingSubtitle": "Crea una cuenta para conservar tu tema, idioma e historial en este dispositivo.",
+    "feature": {
+      "pdf": "Herramientas PDF completas",
+      "image": "Edición de imágenes",
+      "video": "Edición de vídeo",
+      "audio": "Herramientas de audio"
+    }
+  },
+  "profile": {
+    "planLabel": "Estado de la cuenta",
+    "free": "Gratis",
+    "memberSince": "Miembro desde {{date}}",
+    "recentActivity": "Archivos recientes",
+    "noActivity": "Sin actividad todavía.",
+    "logout": "Cerrar sesión",
+    "localAccountNotice": "Esta cuenta se almacena solo localmente en este navegador — no se sincroniza en ningún otro sitio. Consulta la Política de privacidad."
   }
 }

@@ -5,8 +5,8 @@ import { ArrowLeft, CheckCircle2, Film, Video as VideoIcon, VolumeX } from 'luci
 import DragDropZone from '../components/DragDropZone'
 import ProcessingState from '../components/ProcessingState'
 import DownloadButton from '../components/DownloadButton'
-import PrivacyBadge from '../components/PrivacyBadge'
-import { loadVideoMetadata, videoToGif, muteVideo } from '../utils/videoWorker'
+import MediaEditorStudio from '../components/studio/MediaEditorStudio'
+import { videoToGif, muteVideo } from '../utils/videoWorker'
 import { addHistoryEntry } from '../utils/historyStorage'
 
 const TABS = [
@@ -34,9 +34,7 @@ function formatTime(seconds) {
 function GifPanel({ t }) {
   const [step, setStep] = useState(STEPS.UPLOAD)
   const [file, setFile] = useState(null)
-  const [duration, setDuration] = useState(0)
-  const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(0)
+  const [editState, setEditState] = useState(null)
   const [fps, setFps] = useState(8)
   const [width, setWidth] = useState(320)
   const [progress, setProgress] = useState({ done: 0, total: 0 })
@@ -59,36 +57,28 @@ function GifPanel({ t }) {
     [],
   )
 
-  const handleFiles = async (files) => {
+  const handleFiles = (files) => {
     const [videoFile] = files
     setError(null)
     setFile(videoFile)
-    setStep(STEPS.ANALYZING)
-    try {
-      const meta = await loadVideoMetadata(videoFile)
-      if (!isMountedRef.current) return
-      setDuration(meta.duration)
-      setStart(0)
-      setEnd(Math.min(meta.duration, MAX_GIF_DURATION))
-      setStep(STEPS.CONFIGURE)
-    } catch {
-      if (!isMountedRef.current) return
-      setError(t('tools.video-hub.errorLoad'))
-      setStep(STEPS.UPLOAD)
-    }
+    setEditState(null)
+    setStep(STEPS.CONFIGURE)
   }
 
   const handleSubmit = async () => {
+    if (!editState) return
     setError(null)
     setProgress({ done: 0, total: 0 })
     setStep(STEPS.PROCESSING)
     abortControllerRef.current = new AbortController()
     try {
       const { blob } = await videoToGif(file, {
-        start,
-        end,
+        start: editState.start,
+        end: editState.end,
         fps,
         width,
+        effectFilter: editState.effectFilter,
+        aspectRatio: editState.aspectRatioValue,
         signal: abortControllerRef.current.signal,
         onProgress: (done, total) => isMountedRef.current && setProgress({ done, total }),
       })
@@ -108,6 +98,7 @@ function GifPanel({ t }) {
 
   const handleRestart = () => {
     setFile(null)
+    setEditState(null)
     setResult(null)
     setError(null)
     setStep(STEPS.UPLOAD)
@@ -123,8 +114,6 @@ function GifPanel({ t }) {
     link.remove()
   }
 
-  const clipTooLong = end - start > MAX_GIF_DURATION
-
   return (
     <div className="flex flex-col gap-5">
       {error && (
@@ -135,50 +124,15 @@ function GifPanel({ t }) {
         <DragDropZone onFiles={handleFiles} multiple={false} accept="video/*" hint={t('tools.video-hub.dropHintGif')} />
       )}
 
-      {step === STEPS.ANALYZING && <ProcessingState icon={Film} title={t('tools.video-hub.analyzingTitle')} duration={900} />}
-
       {step === STEPS.CONFIGURE && (
         <div className="flex flex-col gap-4">
-          <p className="truncate text-sm font-medium text-zinc-700 dark:text-zinc-200">{file.name}</p>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">{t('tools.video-hub.maxDurationHint', { seconds: MAX_GIF_DURATION })}</p>
-
-          <div>
-            <label className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
-              {t('tools.video-hub.start')}
-              <span className="font-mono text-zinc-500 dark:text-zinc-400">{formatTime(start)}</span>
-            </label>
-            <input
-              type="range"
-              min={0}
-              max={duration}
-              step={0.1}
-              value={start}
-              onChange={(e) => setStart(Math.min(Number(e.target.value), end - 0.5))}
-              className="w-full accent-indigo-500"
-            />
-          </div>
-
-          <div>
-            <label className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
-              {t('tools.video-hub.end')}
-              <span className="font-mono text-zinc-500 dark:text-zinc-400">{formatTime(end)}</span>
-            </label>
-            <input
-              type="range"
-              min={0}
-              max={duration}
-              step={0.1}
-              value={end}
-              onChange={(e) => setEnd(Math.max(Number(e.target.value), start + 0.5))}
-              className="w-full accent-indigo-500"
-            />
-          </div>
-
-          {clipTooLong && (
-            <p className="text-xs text-amber-600 dark:text-amber-400">
-              {t('tools.video-hub.clipTruncated', { seconds: MAX_GIF_DURATION })}
-            </p>
-          )}
+          <MediaEditorStudio
+            mediaType="video"
+            file={file}
+            maxRangeDuration={MAX_GIF_DURATION}
+            onChange={setEditState}
+            onTrackError={() => setError(t('tools.video-hub.errorLoad'))}
+          />
 
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -416,8 +370,6 @@ export default function VideoHubPage() {
           <p className="text-zinc-500 dark:text-zinc-400">{t('tools.video-hub.subtitle')}</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       <div className="mt-6 inline-flex rounded-full border border-zinc-200 bg-zinc-100 p-1 dark:border-white/10 dark:bg-zinc-800/60">
         {TABS.map(({ id, icon: Icon }) => (

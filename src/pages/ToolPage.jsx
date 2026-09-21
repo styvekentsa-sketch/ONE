@@ -2,7 +2,6 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft, Wrench } from 'lucide-react'
 import { getToolById } from '../data/tools'
-import PrivacyBadge from '../components/PrivacyBadge'
 
 /**
  * Page générique de secours pour un id d'outil sans page dédiée. En temps
@@ -41,8 +40,6 @@ export default function ToolPage() {
           <p className="text-zinc-500 dark:text-zinc-400">{toolDescription}</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       <div className="mt-6 flex flex-col items-center gap-3 rounded-2xl border border-zinc-200 bg-white p-10 text-center shadow-sm dark:border-white/10 dark:bg-zinc-900">
         <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-600 dark:bg-zinc-800/80 dark:text-zinc-300">

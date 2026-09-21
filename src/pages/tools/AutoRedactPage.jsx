@@ -5,7 +5,6 @@ import { AlertTriangle, ArrowLeft, CheckCircle2, EyeOff } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
 import ProcessingState from '../../components/ProcessingState'
 import DownloadButton from '../../components/DownloadButton'
-import PrivacyBadge from '../../components/PrivacyBadge'
 import { redactPdf } from '../../utils/pdfWorker'
 import { addHistoryEntry } from '../../utils/historyStorage'
 
@@ -123,8 +122,6 @@ export default function AutoRedactPage() {
           <p className="text-zinc-500 dark:text-zinc-400">{t('tools.auto-redact.subtitle')}</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       <div className="mt-4 flex items-start gap-2 rounded-xl border border-amber-500/20 bg-amber-500/5 px-4 py-3 text-xs text-amber-700 dark:text-amber-400">
         <AlertTriangle size={16} className="mt-0.5 shrink-0" />

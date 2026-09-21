@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { ArrowLeft, GalleryHorizontal } from 'lucide-react'
-import PrivacyBadge from '../../components/PrivacyBadge'
 
 /**
  * Fusion HDR et assemblage panoramique reposent sur des algorithmes de
@@ -28,8 +27,6 @@ export default function ImageHdrPanoramaPage() {
           <p className="text-zinc-500 dark:text-zinc-400">Multi-expositions et assemblage panoramique</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       <div className="mt-6 flex flex-col items-center gap-3 rounded-2xl border border-zinc-200 bg-white p-10 text-center shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
         <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-600 dark:bg-zinc-800/80 dark:text-zinc-300">

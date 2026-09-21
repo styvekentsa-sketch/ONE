@@ -12,23 +12,19 @@ const LEGAL_LINKS = [
 ]
 
 /**
- * Visible sur toutes les tailles d'écran (y compris mobile, où elle précède
- * la barre de navigation fixe `BottomNav` — d'où le padding bas
- * supplémentaire qui reprend la même hauteur réservée pour elle dans
- * `MainLayout`, sans quoi son dernier contenu resterait masqué derrière).
- *
- * La rangée de liens légaux, elle, ne s'affiche qu'à partir de `md:` : en
- * dessous, mobile et tablette portrait ont déjà un accès direct à ces pages
- * depuis la section "Informations légales" de Réglages (onglet toujours
- * présent dans BottomNav/TabletNav) — les répéter ici encombrerait un pied
- * de page censé rester minimal sur petit écran. Le desktop (`lg:`), qui n'a
- * pas d'entrée "Réglages" dans le Header, garde donc son seul point d'accès.
+ * Réservé au desktop (`lg:` et plus) : mobile et tablette tactile (portrait
+ * ou paysage) ont déjà un accès direct aux pages légales depuis la section
+ * "Informations légales" de Réglages (onglet toujours présent dans
+ * BottomNav/TabletNav) — répéter ce pied de page complet en dessous de
+ * `lg:` ne ferait qu'encombrer l'écran au-dessus de la tab bar fixe. Le
+ * desktop, qui n'a pas d'entrée "Réglages" dans le Header, garde donc son
+ * seul point d'accès ici.
  */
 export default function Footer() {
   const { t } = useTranslation()
 
   return (
-    <footer className="border-t border-zinc-200 bg-white pb-[calc(4.5rem+env(safe-area-inset-bottom))] dark:border-white/10 dark:bg-zinc-950 md:pb-10">
+    <footer className="hidden border-t border-zinc-200 bg-white dark:border-white/10 dark:bg-zinc-950 lg:block">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <Logo size="sm" />
@@ -39,7 +35,7 @@ export default function Footer() {
 
         <nav
           aria-label={t('footer.legalLinksTitle')}
-          className="mt-6 hidden flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-zinc-100 pt-6 dark:border-white/5 md:flex"
+          className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-zinc-100 pt-6 dark:border-white/5"
         >
           {LEGAL_LINKS.map(({ to, key }) => (
             <Link

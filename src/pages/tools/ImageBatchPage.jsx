@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Loader2, Package } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
-import PrivacyBadge from '../../components/PrivacyBadge'
 import { buildCssFilter, bakeFilter, exportCanvasToBlob } from '../../utils/canvasEngine'
 import { addHistoryEntry } from '../../utils/historyStorage'
 
@@ -120,8 +119,6 @@ export default function ImageBatchPage() {
           <p className="text-zinc-500 dark:text-zinc-400">Appliquez un préréglage à plusieurs images et exportez en ZIP</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       {error && (
         <p className="mt-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">{error}</p>

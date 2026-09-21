@@ -2,7 +2,6 @@ import { useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ArrowLeft, Bandage, Download, Focus, Stamp } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
-import PrivacyBadge from '../../components/PrivacyBadge'
 import { applyRedEyeReduction, exportCanvasToBlob } from '../../utils/canvasEngine'
 import { addHistoryEntry } from '../../utils/historyStorage'
 
@@ -136,8 +135,6 @@ export default function ImageRetouchPage() {
           <p className="text-zinc-500 dark:text-zinc-400">Clonage, correcteur et yeux rouges</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       {error && <p className="mt-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">{error}</p>}
 

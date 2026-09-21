@@ -5,7 +5,6 @@ import { ArrowLeft, CheckCircle2, FileText, Minimize2 } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
 import ProcessingState from '../../components/ProcessingState'
 import DownloadButton from '../../components/DownloadButton'
-import PrivacyBadge from '../../components/PrivacyBadge'
 import CompressionLevelSelector from '../../components/CompressionLevelSelector'
 import { compressionLevels, DEFAULT_COMPRESSION_LEVEL } from '../../data/compressionLevels'
 import { compressPdf } from '../../utils/pdfWorker'
@@ -120,8 +119,6 @@ export default function CompressPdfPage() {
           <p className="text-zinc-500 dark:text-zinc-400">{t('tools.compress.subtitle')}</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-zinc-900">
         {error && (

@@ -1,7 +1,6 @@
 import { useCallback, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Download, Layers as LayersIcon } from 'lucide-react'
-import PrivacyBadge from '../../components/PrivacyBadge'
 import LayersPanel from '../../components/studio/LayersPanel'
 import { createLayer, compositeLayers, exportCanvasToBlob } from '../../utils/canvasEngine'
 import { addHistoryEntry } from '../../utils/historyStorage'
@@ -149,8 +148,6 @@ export default function ImageLayersPage() {
           <p className="text-zinc-500 dark:text-zinc-400">Empilez des images avec opacité et modes de fusion réels</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       {!hasDoc ? (
         <div className="mt-6 flex flex-col items-center gap-4 rounded-2xl border border-zinc-200 bg-white p-10 text-center shadow-sm dark:border-zinc-800 dark:bg-zinc-900">

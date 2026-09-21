@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ArrowLeft, Contrast, Download } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
-import PrivacyBadge from '../../components/PrivacyBadge'
 import AdjustmentsPanel from '../../components/studio/AdjustmentsPanel'
 import {
   buildCssFilter, bakeFilter, sharpenImageData, buildLevelsLUT, buildSimplifiedCurveLUT,
@@ -118,7 +117,7 @@ export default function ImageAdjustPage() {
     link.click()
     link.remove()
     URL.revokeObjectURL(url)
-    addHistoryEntry({ toolId: 'brightness-contrast', toolName: 'Ajustements Image', message: `Image ajustée — ${file.name}` })
+    addHistoryEntry({ toolId: 'levels-curves', toolName: 'Ajustements Image', message: `Image ajustée — ${file.name}` })
   }
 
   return (
@@ -139,8 +138,6 @@ export default function ImageAdjustPage() {
           <p className="text-zinc-500 dark:text-zinc-400">Réglages réels (pixel par pixel), aperçu en direct</p>
         </div>
       </div>
-
-      <PrivacyBadge className="mt-5" />
 
       {error && (
         <p className="mt-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">{error}</p>

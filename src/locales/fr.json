@@ -86,11 +86,7 @@
   "common": {
     "backToTools": "Retour aux outils",
     "dragDrop": "Glissez-déposez vos fichiers ici",
-    "dragDropActive": "Déposez vos fichiers ici",
-    "browse": "parcourez",
-    "browseHint": "ou {{browse}} depuis votre appareil",
-    "browsePrefix": "ou",
-    "browseSuffix": "depuis votre appareil",
+    "dragDropActive": "Relâchez pour ajouter vos fichiers !",
     "localSecurity": "Traitement 100% local — vos fichiers ne quittent jamais votre appareil.",
     "localSecurityCompact": "100% local",
     "downloadResult": "Télécharger le résultat",
@@ -126,7 +122,13 @@
     "hideLayer": "Masquer le calque",
     "showLayer": "Afficher le calque",
     "duplicateLayer": "Dupliquer le calque",
-    "deleteLayer": "Supprimer le calque"
+    "deleteLayer": "Supprimer le calque",
+    "dropzoneSecurityBadge": "100% local et confidentiel — fichiers traités sur votre appareil",
+    "chooseOptionBelow": "ou choisissez une option ci-dessous",
+    "browseFilesButton": "Parcourir mes fichiers",
+    "acceptedFormats": "Formats acceptés : {{formats}}",
+    "unlimitedBadge": "Illimité",
+    "localProcessingBadge": "Traitement local"
   },
   "footer": {
     "tagline": "Tous vos documents, un seul endroit.",

@@ -86,11 +86,7 @@
   "common": {
     "backToTools": "Back to tools",
     "dragDrop": "Drag and drop your files here",
-    "dragDropActive": "Drop your files here",
-    "browse": "browse",
-    "browseHint": "or {{browse}} from your device",
-    "browsePrefix": "or",
-    "browseSuffix": "from your device",
+    "dragDropActive": "Drop your files to add them!",
     "localSecurity": "100% local processing — your files never leave your device.",
     "localSecurityCompact": "100% local",
     "downloadResult": "Download result",
@@ -126,7 +122,13 @@
     "hideLayer": "Hide layer",
     "showLayer": "Show layer",
     "duplicateLayer": "Duplicate layer",
-    "deleteLayer": "Delete layer"
+    "deleteLayer": "Delete layer",
+    "dropzoneSecurityBadge": "100% local & confidential — files processed on your device",
+    "chooseOptionBelow": "or choose an option below",
+    "browseFilesButton": "Browse my files",
+    "acceptedFormats": "Accepted formats: {{formats}}",
+    "unlimitedBadge": "Unlimited",
+    "localProcessingBadge": "Processed locally"
   },
   "footer": {
     "tagline": "All your documents, in one place.",

@@ -86,11 +86,7 @@
   "common": {
     "backToTools": "Volver a las herramientas",
     "dragDrop": "Arrastra y suelta tus archivos aquí",
-    "dragDropActive": "Suelta tus archivos aquí",
-    "browse": "explora",
-    "browseHint": "o {{browse}} desde tu dispositivo",
-    "browsePrefix": "o",
-    "browseSuffix": "desde tu dispositivo",
+    "dragDropActive": "¡Suelta tus archivos para añadirlos!",
     "localSecurity": "Procesamiento 100% local — tus archivos nunca salen de tu dispositivo.",
     "localSecurityCompact": "100% local",
     "downloadResult": "Descargar el resultado",
@@ -126,7 +122,13 @@
     "hideLayer": "Ocultar capa",
     "showLayer": "Mostrar capa",
     "duplicateLayer": "Duplicar capa",
-    "deleteLayer": "Eliminar capa"
+    "deleteLayer": "Eliminar capa",
+    "dropzoneSecurityBadge": "100% local y confidencial — archivos procesados en tu dispositivo",
+    "chooseOptionBelow": "o elige una opción a continuación",
+    "browseFilesButton": "Explorar mis archivos",
+    "acceptedFormats": "Formatos aceptados: {{formats}}",
+    "unlimitedBadge": "Ilimitado",
+    "localProcessingBadge": "Procesamiento local"
   },
   "footer": {
     "tagline": "Todos tus documentos, en un solo lugar.",

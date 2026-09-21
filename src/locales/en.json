@@ -23,8 +23,8 @@
     "storageUsed": "Storage used",
     "storageUsedValue": "{{size}} KB used in this browser",
     "securityTitle": "Security",
-    "privacyTitle": "Privacy",
-    "manageCookies": "Manage cookies"
+    "cookiesHistoryOn": "History enabled",
+    "cookiesHistoryOff": "History disabled"
   },
   "hero": {
     "titleLine1": "Manage your documents,",

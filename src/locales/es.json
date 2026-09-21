@@ -23,8 +23,8 @@
     "storageUsed": "Espacio usado",
     "storageUsedValue": "{{size}} KB usados en este navegador",
     "securityTitle": "Seguridad",
-    "privacyTitle": "Privacidad",
-    "manageCookies": "Gestionar cookies"
+    "cookiesHistoryOn": "Historial activado",
+    "cookiesHistoryOff": "Historial desactivado"
   },
   "hero": {
     "titleLine1": "Gestiona tus documentos,",

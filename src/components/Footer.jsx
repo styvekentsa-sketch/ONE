@@ -12,10 +12,17 @@ const LEGAL_LINKS = [
 ]
 
 /**
- * Visible sur toutes les tailles d'écran (y compris mobile, où elle
- * précède la barre de navigation fixe `BottomNav` — d'où le padding bas
+ * Visible sur toutes les tailles d'écran (y compris mobile, où elle précède
+ * la barre de navigation fixe `BottomNav` — d'où le padding bas
  * supplémentaire qui reprend la même hauteur réservée pour elle dans
  * `MainLayout`, sans quoi son dernier contenu resterait masqué derrière).
+ *
+ * La rangée de liens légaux, elle, ne s'affiche qu'à partir de `md:` : en
+ * dessous, mobile et tablette portrait ont déjà un accès direct à ces pages
+ * depuis la section "Informations légales" de Réglages (onglet toujours
+ * présent dans BottomNav/TabletNav) — les répéter ici encombrerait un pied
+ * de page censé rester minimal sur petit écran. Le desktop (`lg:`), qui n'a
+ * pas d'entrée "Réglages" dans le Header, garde donc son seul point d'accès.
  */
 export default function Footer() {
   const { t } = useTranslation()
@@ -32,7 +39,7 @@ export default function Footer() {
 
         <nav
           aria-label={t('footer.legalLinksTitle')}
-          className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-zinc-100 pt-6 dark:border-white/5"
+          className="mt-6 hidden flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-zinc-100 pt-6 dark:border-white/5 md:flex"
         >
           {LEGAL_LINKS.map(({ to, key }) => (
             <Link

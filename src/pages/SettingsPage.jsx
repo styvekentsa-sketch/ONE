@@ -1,10 +1,25 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Cookie, FileText, Globe, HardDrive, Lock, Moon, Sun, Trash2 } from 'lucide-react'
+import {
+  ChevronRight,
+  Cookie,
+  FileText,
+  Globe,
+  HardDrive,
+  Lock,
+  Moon,
+  Receipt,
+  Scale,
+  ShieldCheck,
+  SlidersHorizontal,
+  Sun,
+  Trash2,
+} from 'lucide-react'
 import ThemeToggle from '../components/ThemeToggle'
 import { useTheme } from '../context/ThemeContext'
 import { useHistory } from '../hooks/useHistory'
+import { useCookieConsent } from '../hooks/useCookieConsent'
 import { requestOpenPreferences } from '../utils/cookieConsent'
 
 const LANGUAGES = [
@@ -59,10 +74,56 @@ function SettingsRow({ icon: Icon, label, sub, children, last = false }) {
   )
 }
 
+/**
+ * Ligne façon menu de réglages natif (iOS/Android) : badge d'icône teinté,
+ * libellé + sous-texte d'état optionnel, chevron de divulgation à droite.
+ * `to` -> navigation vers une page ; `onClick` -> ouverture d'une feuille
+ * (ex. les préférences de cookies) sans quitter la page. Les deux gardent
+ * un chevron, l'un et l'autre menant à un nouvel écran/panneau du point de
+ * vue de l'utilisateur.
+ */
+function LegalRow({ icon: Icon, iconClassName, label, sub, to, onClick, last = false }) {
+  const rowClassName = `group flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 active:bg-zinc-100 dark:active:bg-white/10 ${
+    last ? '' : 'border-b border-zinc-100 dark:border-white/5'
+  } hover:bg-zinc-50 dark:hover:bg-white/5`
+
+  const content = (
+    <>
+      <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${iconClassName}`}>
+        <Icon size={17} aria-hidden="true" />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block text-sm font-medium text-zinc-800 dark:text-zinc-100">{label}</span>
+        {sub && <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">{sub}</span>}
+      </span>
+      <ChevronRight
+        size={16}
+        aria-hidden="true"
+        className="shrink-0 text-zinc-300 transition-transform duration-150 group-hover:translate-x-0.5 dark:text-zinc-600"
+      />
+    </>
+  )
+
+  if (to) {
+    return (
+      <Link to={to} className={rowClassName}>
+        {content}
+      </Link>
+    )
+  }
+
+  return (
+    <button type="button" onClick={onClick} className={rowClassName}>
+      {content}
+    </button>
+  )
+}
+
 export default function SettingsPage() {
   const { t, i18n } = useTranslation()
   const { theme, toggleTheme } = useTheme()
   const { entries, clear } = useHistory()
+  const { consent } = useCookieConsent()
   const [usage, setUsage] = useState(0)
 
   useEffect(() => {
@@ -132,25 +193,45 @@ export default function SettingsPage() {
         <SettingsRow icon={Lock} label={t('common.localSecurity')} last />
       </SettingsGroup>
 
-      <SettingsGroup title={t('settings.privacyTitle')}>
-        <button
-          onClick={requestOpenPreferences}
-          className="flex w-full items-center gap-3 px-4 py-3.5 text-left text-sm font-medium text-zinc-800 transition-colors duration-200 hover:bg-zinc-50 dark:text-zinc-100 dark:hover:bg-white/5"
-        >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
-            <Cookie size={16} />
-          </span>
-          {t('settings.manageCookies')}
-        </button>
-        <Link
+      <SettingsGroup title={t('footer.legalLinksTitle')}>
+        <LegalRow
+          icon={Scale}
+          iconClassName="bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300"
+          label={t('footer.legalNotice')}
+          to="/legal-notice"
+        />
+        <LegalRow
+          icon={ShieldCheck}
+          iconClassName="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+          label={t('footer.privacyPolicy')}
           to="/privacy-policy"
-          className="flex w-full items-center gap-3 border-t border-zinc-100 px-4 py-3.5 text-left text-sm font-medium text-zinc-800 transition-colors duration-200 hover:bg-zinc-50 dark:border-white/5 dark:text-zinc-100 dark:hover:bg-white/5"
-        >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
-            <FileText size={16} />
-          </span>
-          {t('footer.privacyPolicy')}
-        </Link>
+        />
+        <LegalRow
+          icon={FileText}
+          iconClassName="bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
+          label={t('footer.termsOfService')}
+          to="/terms-of-service"
+        />
+        <LegalRow
+          icon={Cookie}
+          iconClassName="bg-amber-500/10 text-amber-600 dark:text-amber-400"
+          label={t('footer.cookiePolicy')}
+          to="/cookie-policy"
+        />
+        <LegalRow
+          icon={Receipt}
+          iconClassName="bg-rose-500/10 text-rose-600 dark:text-rose-400"
+          label={t('footer.refundPolicy')}
+          to="/refund-policy"
+        />
+        <LegalRow
+          icon={SlidersHorizontal}
+          iconClassName="bg-violet-500/10 text-violet-600 dark:text-violet-400"
+          label={t('footer.manageCookies')}
+          sub={consent.history ? t('settings.cookiesHistoryOn') : t('settings.cookiesHistoryOff')}
+          onClick={requestOpenPreferences}
+          last
+        />
       </SettingsGroup>
     </div>
   )

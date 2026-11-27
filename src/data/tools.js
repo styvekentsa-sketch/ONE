@@ -1,4 +1,5 @@
 import {
+  Archive,
   BookOpen,
   Cpu,
   FormInput,
@@ -104,6 +105,14 @@ const toolDefinitions = [
     icon: ListOrdered,
     category: ADVANCED_CATEGORY,
     customRoute: '/tool/bates-numbering',
+  },
+  {
+    id: 'pdfa',
+    name: 'Conversion au format PDF/A',
+    description: 'Convertissez et validez vos documents au format d\u2019archivage longue durée ISO 19005 (PDF/A-1b, PDF/A-2b, PDF/A-3b) avec métadonnées XMP et profil colorimétrique sRGB en local',
+    icon: Archive,
+    category: ADVANCED_CATEGORY,
+    customRoute: '/tool/pdf-to-pdfa',
   },
   {
     id: 'merge',

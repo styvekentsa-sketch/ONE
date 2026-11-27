@@ -609,6 +609,200 @@
       },
       "historyMessage": "Bates numbering — {{count}} document(s), {{first}} → {{last}}"
     },
+    "pdfa": {
+      "name": "Convert to PDF/A",
+      "description": "Convert and check your documents for ISO 19005 long-term archiving (PDF/A-1b, PDF/A-2b, PDF/A-3b) with XMP metadata and sRGB colour profile, locally",
+      "subtitle": "ISO 19005 long-term archiving, diagnosis and conversion, locally",
+      "dropHint": "Drop the PDF to convert to PDF/A",
+      "analyzing": "Running compliance diagnosis…",
+      "pageCount_one": "{{count}} page",
+      "pageCount_other": "{{count}} pages",
+      "status": {
+        "declared": "Already declares {{level}}",
+        "required": "Changes required for archiving"
+      },
+      "recommended": "Recommended",
+      "sections": {
+        "level": "ISO 19005 conformance level",
+        "audit": "Diagnosis for {{level}}",
+        "mode": "Conversion mode",
+        "metadata": "Document metadata",
+        "attachments": "Associated files (PDF/A-3)"
+      },
+      "levels": {
+        "1b": {
+          "standard": "ISO 19005-1 — Universal compatibility",
+          "description": "Historic standard based on PDF 1.4, no transparency. Ideal for the strictest administrative filings."
+        },
+        "2b": {
+          "standard": "ISO 19005-2 — Recommended",
+          "description": "Based on PDF 1.7: transparency, JPEG2000 compression and OpenType fonts allowed."
+        },
+        "3b": {
+          "standard": "ISO 19005-3 — With attachments",
+          "description": "Same as PDF/A-2b, with embedded source files (e.g. XML or JSON invoice)."
+        }
+      },
+      "auditScope": "Common checks, not exhaustive",
+      "encryptedAdvice": "Encryption is forbidden in PDF/A. Unlock the document, or use secure mode, which rebuilds an unencrypted file.",
+      "unlockLink": "Unlock the PDF",
+      "modes": {
+        "structural": {
+          "title": "Structural",
+          "description": "Keeps vector, selectable text: adds XMP and sRGB profile, removes JavaScript, flattens forms and annotations."
+        },
+        "raster": {
+          "title": "Secure (rasterisation)",
+          "description": "Each page becomes a high-definition image wrapped in PDF/A. Fully self-contained rendering, even with non-embedded fonts."
+        }
+      },
+      "structuralWarning": "The diagnosis reports issues structural mode cannot fix: the output will not be compliant. Secure mode is advised.",
+      "dpi": "Resolution",
+      "rasterNote": "Text will no longer be selectable or searchable.",
+      "meta": {
+        "title": "Title",
+        "author": "Author",
+        "subject": "Subject",
+        "keywords": "Keywords",
+        "creator": "Original application",
+        "dates": "Creation date kept: {{created}}. The modification date will be the conversion date (ISO-8601 format).",
+        "now": "conversion date"
+      },
+      "attach": {
+        "add": "Add files",
+        "empty": "No associated files. Add for example the source data of an invoice (XML, JSON, CSV).",
+        "relationship": "Relationship to the document",
+        "remove": "Remove",
+        "relationships": {
+          "Source": "Source",
+          "Data": "Data",
+          "Alternative": "Alternative version",
+          "Supplement": "Supplement",
+          "Unspecified": "Unspecified"
+        }
+      },
+      "changeFile": "Choose another file",
+      "convert": "Convert to {{level}}",
+      "processing": "Converting to {{level}}…",
+      "fix": {
+        "auto": "Fixed during conversion",
+        "raster": "Secure mode required"
+      },
+      "checks": {
+        "encryption": {
+          "label": "Encryption",
+          "ok": "Document not encrypted.",
+          "issue": "Protected document: forbidden in PDF/A."
+        },
+        "xmp": {
+          "label": "XMP metadata and PDF/A identification",
+          "ok": "{{detail}} declaration present.",
+          "issue": "No PDF/A identification",
+          "state": {
+            "none": "no XMP stream",
+            "noPdfaid": "XMP present without pdfaid"
+          }
+        },
+        "outputIntent": {
+          "label": "Colour profile (OutputIntent)",
+          "ok": "OutputIntent present.",
+          "issue": "No output profile: an sRGB OutputIntent will be added."
+        },
+        "javascript": {
+          "label": "JavaScript and forbidden actions",
+          "ok": "No forbidden actions.",
+          "issue_one": "{{count}} forbidden action (JavaScript, launch…).",
+          "issue_other": "{{count}} forbidden actions (JavaScript, launch…)."
+        },
+        "forms": {
+          "label": "Active forms",
+          "ok": "No interactive fields.",
+          "issue_one": "{{count}} active form field.",
+          "issue_other": "{{count}} active form fields."
+        },
+        "annotations": {
+          "label": "Dynamic annotations",
+          "ok": "No annotations to flatten.",
+          "issue_one": "{{count}} annotation to flatten into the page.",
+          "issue_other": "{{count}} annotations to flatten into the pages."
+        },
+        "multimedia": {
+          "label": "Multimedia content",
+          "ok": "No audio, video or 3D content.",
+          "issue_one": "{{count}} forbidden multimedia item.",
+          "issue_other": "{{count}} forbidden multimedia items."
+        },
+        "embeddedFiles": {
+          "label": "Attachments",
+          "ok": "No attachments forbidden at this level.",
+          "issue_one": "{{count}} forbidden attachment (only allowed in PDF/A-3).",
+          "issue_other": "{{count}} forbidden attachments (only allowed in PDF/A-3)."
+        },
+        "fonts": {
+          "label": "Font embedding",
+          "ok": "All fonts are embedded.",
+          "issue_one": "{{count}} font not embedded: {{detail}}.",
+          "issue_other": "{{count}} fonts not embedded: {{detail}}."
+        },
+        "transparency": {
+          "label": "Transparency",
+          "ok": "No transparency forbidden at this level.",
+          "issue_one": "{{count}} transparent element, forbidden in PDF/A-1.",
+          "issue_other": "{{count}} transparent elements, forbidden in PDF/A-1."
+        },
+        "lzw": {
+          "label": "LZW compression",
+          "ok": "No LZW compression.",
+          "issue_one": "{{count}} LZW-compressed stream (forbidden).",
+          "issue_other": "{{count}} LZW-compressed streams (forbidden)."
+        },
+        "optionalContent": {
+          "label": "Optional content",
+          "ok": "No layers forbidden at this level.",
+          "issue": "Optional content (OCG) forbidden in PDF/A-1: it will be removed."
+        },
+        "fileId": {
+          "label": "File identifier",
+          "ok": "/ID identifier present.",
+          "issue": "Missing /ID identifier: it will be generated."
+        }
+      },
+      "log": {
+        "rasterized": "Pages rasterised at {{dpi}} DPI then wrapped",
+        "flattened": "Forms and annotations flattened into the pages",
+        "actionsRemoved_one": "{{count}} JavaScript or forbidden action removed",
+        "actionsRemoved_other": "{{count}} JavaScript or forbidden actions removed",
+        "embeddedRemoved": "Attachments removed (forbidden at this level)",
+        "embeddedKept": "Attachments kept and declared as associated files (/AF)",
+        "ocgRemoved": "Optional content (OCG) removed",
+        "attached_one": "{{count}} associated file embedded",
+        "attached_other": "{{count}} associated files embedded",
+        "metadata": "Document metadata normalised (ISO-8601 dates)",
+        "xmp": "ISO 19005-{{part}}:{{conformance}} XMP stream injected",
+        "outputIntent": "sRGB IEC 61966-2.1 colour profile added (GTS_PDFA1 OutputIntent)",
+        "header": "PDF {{version}} header and /ID file identifier written"
+      },
+      "done": {
+        "title": "{{level}} file ready",
+        "text": "All fixes were applied and ONE’s audit no longer detects any issue.",
+        "partialTitle": "Partial {{level}} conversion",
+        "partialText": "The PDF/A structure was added, but some issues remain (see below). Run again in secure mode for a compliant file.",
+        "originalSize": "Original size",
+        "finalSize": "Final size",
+        "download": "Download PDF/A",
+        "logTitle": "Applied fixes log",
+        "auditTitle": "Post-conversion check",
+        "validatorNote": "ONE checks the most common non-conformities. For an official filing, a full validation can be done with a dedicated validator such as veraPDF.",
+        "adjust": "Adjust settings",
+        "restart": "Convert another PDF"
+      },
+      "errors": {
+        "read": "Unable to read this PDF (corrupted file?).",
+        "convert": "Conversion failed. Try secure mode.",
+        "raster": "Rasterisation failed: the document may be protected by an open password."
+      },
+      "historyMessage": "PDF/A conversion — {{name}} ({{level}})"
+    },
     "merge": {
       "name": "Merge PDF",
       "description": "Combine several files into a single PDF",

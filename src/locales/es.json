@@ -609,6 +609,200 @@
       },
       "historyMessage": "Numeración Bates — {{count}} documento(s), {{first}} → {{last}}"
     },
+    "pdfa": {
+      "name": "Convertir a PDF/A",
+      "description": "Convierta y verifique sus documentos para el archivo a largo plazo ISO 19005 (PDF/A-1b, PDF/A-2b, PDF/A-3b) con metadatos XMP y perfil de color sRGB, en local",
+      "subtitle": "Archivo a largo plazo ISO 19005, diagnóstico y conversión en local",
+      "dropHint": "Suelte el PDF que desea convertir a PDF/A",
+      "analyzing": "Diagnóstico de conformidad en curso…",
+      "pageCount_one": "{{count}} página",
+      "pageCount_other": "{{count}} páginas",
+      "status": {
+        "declared": "Ya declara {{level}}",
+        "required": "Cambios necesarios para el archivo"
+      },
+      "recommended": "Recomendado",
+      "sections": {
+        "level": "Nivel de conformidad ISO 19005",
+        "audit": "Diagnóstico para {{level}}",
+        "mode": "Modo de conversión",
+        "metadata": "Metadatos del documento",
+        "attachments": "Archivos asociados (PDF/A-3)"
+      },
+      "levels": {
+        "1b": {
+          "standard": "ISO 19005-1 — Compatibilidad universal",
+          "description": "Estándar histórico basado en PDF 1.4, sin transparencias. Ideal para los registros administrativos más estrictos."
+        },
+        "2b": {
+          "standard": "ISO 19005-2 — Recomendado",
+          "description": "Basado en PDF 1.7: se admiten transparencias, compresión JPEG2000 y fuentes OpenType."
+        },
+        "3b": {
+          "standard": "ISO 19005-3 — Con adjuntos",
+          "description": "Igual que PDF/A-2b, con archivos fuente incrustados (p. ej. factura XML o JSON)."
+        }
+      },
+      "auditScope": "Controles habituales, no exhaustivos",
+      "encryptedAdvice": "El cifrado está prohibido en PDF/A. Desbloquee el documento o use el modo seguro, que reconstruye un archivo sin cifrar.",
+      "unlockLink": "Desbloquear el PDF",
+      "modes": {
+        "structural": {
+          "title": "Estructural",
+          "description": "Conserva el texto vectorial y seleccionable: añade XMP y perfil sRGB, elimina el JavaScript y aplana formularios y anotaciones."
+        },
+        "raster": {
+          "title": "Seguro (rasterización)",
+          "description": "Cada página se convierte en una imagen de alta definición encapsulada en PDF/A. Renderizado 100 % autónomo, incluso con fuentes no incrustadas."
+        }
+      },
+      "structuralWarning": "El diagnóstico señala defectos que el modo estructural no puede corregir: el archivo resultante no será conforme. Se aconseja el modo seguro.",
+      "dpi": "Resolución",
+      "rasterNote": "El texto ya no se podrá seleccionar ni buscar.",
+      "meta": {
+        "title": "Título",
+        "author": "Autor",
+        "subject": "Asunto",
+        "keywords": "Palabras clave",
+        "creator": "Aplicación de origen",
+        "dates": "Fecha de creación conservada: {{created}}. La fecha de modificación será la de la conversión (formato ISO-8601).",
+        "now": "fecha de la conversión"
+      },
+      "attach": {
+        "add": "Añadir archivos",
+        "empty": "Ningún archivo asociado. Añada por ejemplo los datos fuente de una factura (XML, JSON, CSV).",
+        "relationship": "Relación con el documento",
+        "remove": "Quitar",
+        "relationships": {
+          "Source": "Fuente",
+          "Data": "Datos",
+          "Alternative": "Versión alternativa",
+          "Supplement": "Complemento",
+          "Unspecified": "Sin especificar"
+        }
+      },
+      "changeFile": "Elegir otro archivo",
+      "convert": "Convertir a {{level}}",
+      "processing": "Convirtiendo a {{level}}…",
+      "fix": {
+        "auto": "Corregido en la conversión",
+        "raster": "Requiere modo seguro"
+      },
+      "checks": {
+        "encryption": {
+          "label": "Cifrado",
+          "ok": "Documento sin cifrar.",
+          "issue": "Documento protegido: prohibido en PDF/A."
+        },
+        "xmp": {
+          "label": "Metadatos XMP e identificación PDF/A",
+          "ok": "Declaración {{detail}} presente.",
+          "issue": "Ninguna identificación PDF/A",
+          "state": {
+            "none": "sin flujo XMP",
+            "noPdfaid": "XMP presente sin pdfaid"
+          }
+        },
+        "outputIntent": {
+          "label": "Perfil de color (OutputIntent)",
+          "ok": "OutputIntent presente.",
+          "issue": "Sin perfil de salida: se añadirá un OutputIntent sRGB."
+        },
+        "javascript": {
+          "label": "JavaScript y acciones prohibidas",
+          "ok": "Ninguna acción prohibida.",
+          "issue_one": "{{count}} acción prohibida (JavaScript, ejecución…).",
+          "issue_other": "{{count}} acciones prohibidas (JavaScript, ejecución…)."
+        },
+        "forms": {
+          "label": "Formularios activos",
+          "ok": "Ningún campo interactivo.",
+          "issue_one": "{{count}} campo de formulario activo.",
+          "issue_other": "{{count}} campos de formulario activos."
+        },
+        "annotations": {
+          "label": "Anotaciones dinámicas",
+          "ok": "Ninguna anotación que fijar.",
+          "issue_one": "{{count}} anotación que fijar en la página.",
+          "issue_other": "{{count}} anotaciones que fijar en las páginas."
+        },
+        "multimedia": {
+          "label": "Contenido multimedia",
+          "ok": "Sin contenido de audio, vídeo o 3D.",
+          "issue_one": "{{count}} contenido multimedia prohibido.",
+          "issue_other": "{{count}} contenidos multimedia prohibidos."
+        },
+        "embeddedFiles": {
+          "label": "Adjuntos",
+          "ok": "Ningún adjunto prohibido en este nivel.",
+          "issue_one": "{{count}} adjunto prohibido (solo permitido en PDF/A-3).",
+          "issue_other": "{{count}} adjuntos prohibidos (solo permitidos en PDF/A-3)."
+        },
+        "fonts": {
+          "label": "Incrustación de fuentes",
+          "ok": "Todas las fuentes están incrustadas.",
+          "issue_one": "{{count}} fuente no incrustada: {{detail}}.",
+          "issue_other": "{{count}} fuentes no incrustadas: {{detail}}."
+        },
+        "transparency": {
+          "label": "Transparencia",
+          "ok": "Ninguna transparencia prohibida en este nivel.",
+          "issue_one": "{{count}} elemento transparente, prohibido en PDF/A-1.",
+          "issue_other": "{{count}} elementos transparentes, prohibidos en PDF/A-1."
+        },
+        "lzw": {
+          "label": "Compresión LZW",
+          "ok": "Sin compresión LZW.",
+          "issue_one": "{{count}} flujo comprimido en LZW (prohibido).",
+          "issue_other": "{{count}} flujos comprimidos en LZW (prohibido)."
+        },
+        "optionalContent": {
+          "label": "Capas opcionales",
+          "ok": "Ninguna capa prohibida en este nivel.",
+          "issue": "Capas opcionales (OCG) prohibidas en PDF/A-1: se eliminarán."
+        },
+        "fileId": {
+          "label": "Identificador de archivo",
+          "ok": "Identificador /ID presente.",
+          "issue": "Falta el identificador /ID: se generará."
+        }
+      },
+      "log": {
+        "rasterized": "Páginas rasterizadas a {{dpi}} DPI y encapsuladas",
+        "flattened": "Formularios y anotaciones aplanados en las páginas",
+        "actionsRemoved_one": "{{count}} acción JavaScript o prohibida eliminada",
+        "actionsRemoved_other": "{{count}} acciones JavaScript o prohibidas eliminadas",
+        "embeddedRemoved": "Adjuntos eliminados (prohibidos en este nivel)",
+        "embeddedKept": "Adjuntos conservados y declarados como archivos asociados (/AF)",
+        "ocgRemoved": "Capas opcionales (OCG) eliminadas",
+        "attached_one": "{{count}} archivo asociado incrustado",
+        "attached_other": "{{count}} archivos asociados incrustados",
+        "metadata": "Metadatos del documento normalizados (fechas ISO-8601)",
+        "xmp": "Flujo XMP ISO 19005-{{part}}:{{conformance}} insertado",
+        "outputIntent": "Perfil de color sRGB IEC 61966-2.1 añadido (OutputIntent GTS_PDFA1)",
+        "header": "Encabezado PDF {{version}} e identificador de archivo /ID escritos"
+      },
+      "done": {
+        "title": "Archivo {{level}} listo",
+        "text": "Se aplicaron todas las correcciones y la auditoría de ONE ya no detecta ningún defecto.",
+        "partialTitle": "Conversión {{level}} parcial",
+        "partialText": "Se añadió la estructura PDF/A, pero quedan defectos (ver abajo). Vuelva a lanzar con el modo seguro para obtener un archivo conforme.",
+        "originalSize": "Tamaño original",
+        "finalSize": "Tamaño final",
+        "download": "Descargar el PDF/A",
+        "logTitle": "Registro de correcciones aplicadas",
+        "auditTitle": "Control tras la conversión",
+        "validatorNote": "ONE verifica los puntos de no conformidad más habituales. Para un registro oficial, puede realizarse una validación completa con un validador específico como veraPDF.",
+        "adjust": "Modificar los ajustes",
+        "restart": "Convertir otro PDF"
+      },
+      "errors": {
+        "read": "No se puede leer este PDF (¿archivo dañado?).",
+        "convert": "La conversión ha fallado. Pruebe el modo seguro.",
+        "raster": "La rasterización ha fallado: puede que el documento esté protegido con contraseña de apertura."
+      },
+      "historyMessage": "Conversión PDF/A — {{name}} ({{level}})"
+    },
     "merge": {
       "name": "Combinar PDF",
       "description": "Combina varios archivos en un solo PDF",

@@ -28,20 +28,26 @@ async function getQpdf() {
  * virtuel du module (réinitialisé entre deux exécutions par `mount`/`unlink`
  * n'étant pas nécessaire ici : on écrase simplement les mêmes chemins).
  */
-async function runQpdf(inputBytes, args) {
+/**
+ * Codes de sortie qpdf : 0 = succès, 2 = erreur, 3 = succès avec
+ * avertissements (fichier produit malgré des défauts mineurs réparés).
+ */
+async function execQpdf(inputBytes, args) {
   const qpdf = await getQpdf()
   qpdf.FS.writeFile(INPUT_PATH, inputBytes)
-
-  let exitCode
   try {
-    exitCode = qpdf.callMain(args)
+    return { qpdf, exitCode: qpdf.callMain(args) }
   } catch (err) {
     // Emscripten peut lever une exception interne (ex: appel à exit())
     // plutôt que de renvoyer proprement un code non nul selon les cas.
     throw new Error('QPDF_EXECUTION_FAILED', { cause: err })
   }
+}
 
-  if (exitCode !== 0) {
+export async function runQpdf(inputBytes, args, { allowWarnings = false } = {}) {
+  const { qpdf, exitCode } = await execQpdf(inputBytes, args)
+
+  if (exitCode !== 0 && !(allowWarnings && exitCode === 3)) {
     throw new Error('QPDF_EXECUTION_FAILED')
   }
 
@@ -49,6 +55,19 @@ async function runQpdf(inputBytes, args) {
   // Copie indépendante : le buffer retourné par FS.readFile pointe dans la
   // mémoire WASM et peut être invalidé par un appel qpdf ultérieur.
   return new Uint8Array(output)
+}
+
+/** Chemins virtuels attendus par `runQpdf` (entrée / sortie). */
+export const QPDF_PATHS = { input: INPUT_PATH, output: OUTPUT_PATH }
+
+/**
+ * Lance une commande de contrôle (sans fichier de sortie) et renvoie
+ * uniquement son code de sortie. Le texte produit par qpdf part dans la
+ * console : ce build WASM ne permet pas de le capturer.
+ */
+export async function checkQpdf(inputBytes, args) {
+  const { exitCode } = await execQpdf(inputBytes, args)
+  return exitCode
 }
 
 /**

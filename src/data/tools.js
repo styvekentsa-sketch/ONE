@@ -45,6 +45,7 @@ import {
   Layers,
   Lasso,
   Wand2,
+  Zap,
   Stamp,
 } from 'lucide-react'
 
@@ -109,10 +110,18 @@ const toolDefinitions = [
   {
     id: 'pdfa',
     name: 'Conversion au format PDF/A',
-    description: 'Convertissez et validez vos documents au format d\u2019archivage longue durée ISO 19005 (PDF/A-1b, PDF/A-2b, PDF/A-3b) avec métadonnées XMP et profil colorimétrique sRGB en local',
+    description: 'Convertissez et validez vos documents au format d’archivage longue durée ISO 19005 (PDF/A-1b, PDF/A-2b, PDF/A-3b) avec métadonnées XMP et profil colorimétrique sRGB en local',
     icon: Archive,
     category: ADVANCED_CATEGORY,
     customRoute: '/tool/pdf-to-pdfa',
+  },
+  {
+    id: 'linearize',
+    name: 'Linéarisation (Fast Web View)',
+    description: 'Optimisez vos PDF pour le streaming web (Fast Web View) afin d’afficher la première page instantanément avant le téléchargement complet, 100 % en local',
+    icon: Zap,
+    category: ADVANCED_CATEGORY,
+    customRoute: '/tool/linearize-pdf',
   },
   {
     id: 'merge',

@@ -35,6 +35,7 @@ const AnnotatePdfTool = lazy(() => import('./pages/tools/AnnotatePdfTool'))
 const PdfFormsTool = lazy(() => import('./pages/tools/PdfFormsTool'))
 const BatesNumberingTool = lazy(() => import('./pages/tools/BatesNumberingTool'))
 const PdfToPdfaTool = lazy(() => import('./pages/tools/PdfToPdfaTool'))
+const LinearizePdfTool = lazy(() => import('./pages/tools/LinearizePdfTool'))
 const ToolsPage = lazy(() => import('./pages/ToolsPage'))
 const MediaHubPage = lazy(() => import('./pages/MediaHubPage'))
 const ImageHubPage = lazy(() => import('./pages/ImageHubPage'))
@@ -94,6 +95,7 @@ function App() {
             <Route path="/tool/pdf-forms" element={<PdfFormsTool />} />
             <Route path="/tool/bates-numbering" element={<BatesNumberingTool />} />
             <Route path="/tool/pdf-to-pdfa" element={<PdfToPdfaTool />} />
+            <Route path="/tool/linearize-pdf" element={<LinearizePdfTool />} />
             <Route path="/tool/image-basic" element={<ImageHubPage />} />
             <Route path="/tool/audio-basic" element={<AudioHubPage />} />
             <Route path="/tool/video-basic" element={<VideoHubPage />} />

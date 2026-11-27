@@ -803,6 +803,90 @@
       },
       "historyMessage": "Conversion PDF/A — {{name}} ({{level}})"
     },
+    "linearize": {
+      "name": "Linéarisation (Fast Web View)",
+      "description": "Optimisez vos PDF pour le streaming web (Fast Web View) afin d’afficher la première page instantanément avant le téléchargement complet, 100 % en local",
+      "subtitle": "Affichage de la première page avant la fin du téléchargement, en local",
+      "dropHint": "Déposez un ou plusieurs PDF à optimiser pour le Web",
+      "analyzing": "Analyse de la structure…",
+      "addMore": "Ajouter d’autres PDF",
+      "remove": "Retirer",
+      "clear": "Tout retirer",
+      "status": {
+        "notOptimized": "Non optimisé pour le Web",
+        "broken": "Linéarisation rompue",
+        "linearized": "Déjà linéarisé (Fast Web View actif)",
+        "verified": "Fast Web View : activé et vérifié",
+        "verifyFailed": "Vérification échouée"
+      },
+      "metrics": {
+        "version": "Version",
+        "pages": "Pages",
+        "size": "Taille totale",
+        "firstPage": "Poids de la 1re page",
+        "firstPageExact": "Valeur exacte (/E)",
+        "firstPageEstimate": "Estimation après optimisation"
+      },
+      "explain": {
+        "notOptimized": "Un lecteur web doit télécharger les {{size}} du fichier avant d’afficher la moindre page.",
+        "broken": "Le fichier a été modifié après sa linéarisation : les lecteurs ignorent l’optimisation existante.",
+        "linearized": "La première page peut s’afficher dès que ses données sont reçues.",
+        "revisions_one": "{{count}} révision incrémentale détectée.",
+        "revisions_other": "{{count}} révisions incrémentales détectées.",
+        "encrypted": "Document chiffré : le traitement nécessite qu’il s’ouvre sans mot de passe."
+      },
+      "options": {
+        "title": "Options d’optimisation",
+        "linearize": {
+          "title": "Linéarisation standard (--linearize)",
+          "description": "Place le dictionnaire /Linearized, la table de références croisées principale, le catalogue et toutes les ressources de la page 1 en tête de fichier, avec une table d’indices pour les pages suivantes."
+        },
+        "compress": {
+          "title": "Recompression des flux",
+          "description": "Compresse les flux internes non compressés et recompresse les autres au niveau maximal (--stream-data=compress)."
+        },
+        "cleanup": {
+          "title": "Purge et compactage des objets",
+          "description": "Retire des pages les ressources inutilisées et regroupe les petits objets en flux d’objets pour alléger le fichier."
+        },
+        "revisionsNote": "Dans tous les cas, le fichier est entièrement réécrit : l’historique des sauvegardes incrémentales et les objets orphelins sont supprimés, sans altérer le rendu."
+      },
+      "process_one": "Optimiser {{count}} PDF",
+      "process_other": "Optimiser {{count}} PDF",
+      "processing": "Linéarisation en cours…",
+      "verify": {
+        "dict": "Dictionnaire /Linearized en tête, longueur conforme",
+        "hint": "Table d’indices (hint stream) présente",
+        "qpdf": "Contrôle d’intégrité qpdf réussi"
+      },
+      "networks": {
+        "3g": "Mobile 3G (≈ 1,6 Mbit/s)",
+        "4g": "Mobile 4G (≈ 12 Mbit/s)"
+      },
+      "compare": {
+        "before": "Avant",
+        "after": "Après"
+      },
+      "done": {
+        "download": "Télécharger le PDF optimisé",
+        "originalSize": "Taille originale",
+        "finalSize": "Taille finale",
+        "bytesBefore": "À charger avant (1re page)",
+        "bytesAfter": "À charger après (1re page)",
+        "simulation": "Premier affichage simulé",
+        "simulationNote": "Simulation indicative (débit et latence moyens). Le gain réel suppose que le serveur qui héberge le PDF accepte les requêtes partielles (Byte-Range), ce qui est le cas de la plupart des hébergeurs.",
+        "zip": "Tout télécharger (.zip)",
+        "adjust": "Modifier les options",
+        "restart": "Optimiser d’autres PDF"
+      },
+      "errors": {
+        "someIgnored": "Certains fichiers ne sont pas des PDF et ont été ignorés.",
+        "unreadable": "Fichier illisible (corrompu ?)",
+        "encrypted": "document protégé par un mot de passe d’ouverture. Déverrouillez-le d’abord.",
+        "processing": "la linéarisation a échoué (structure trop endommagée)."
+      },
+      "historyMessage": "Linéarisation Fast Web View — {{count}} fichier(s) : {{names}}"
+    },
     "merge": {
       "name": "Fusionner PDF",
       "description": "Combinez plusieurs fichiers en un seul PDF",

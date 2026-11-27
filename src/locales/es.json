@@ -803,6 +803,90 @@
       },
       "historyMessage": "Conversión PDF/A — {{name}} ({{level}})"
     },
+    "linearize": {
+      "name": "Linealización (Fast Web View)",
+      "description": "Optimice sus PDF para la transmisión web (Fast Web View) y muestre la primera página al instante antes de la descarga completa, 100 % en local",
+      "subtitle": "Muestre la primera página antes de terminar la descarga, en local",
+      "dropHint": "Suelte uno o varios PDF para optimizarlos para la web",
+      "analyzing": "Analizando la estructura…",
+      "addMore": "Añadir más PDF",
+      "remove": "Quitar",
+      "clear": "Quitar todo",
+      "status": {
+        "notOptimized": "No optimizado para la web",
+        "broken": "Linealización rota",
+        "linearized": "Ya linealizado (Fast Web View activo)",
+        "verified": "Fast Web View: activado y verificado",
+        "verifyFailed": "Verificación fallida"
+      },
+      "metrics": {
+        "version": "Versión",
+        "pages": "Páginas",
+        "size": "Tamaño total",
+        "firstPage": "Peso de la 1.ª página",
+        "firstPageExact": "Valor exacto (/E)",
+        "firstPageEstimate": "Estimación tras la optimización"
+      },
+      "explain": {
+        "notOptimized": "Un visor web debe descargar los {{size}} del archivo antes de mostrar cualquier página.",
+        "broken": "El archivo se modificó después de linealizarlo: los visores ignoran la optimización existente.",
+        "linearized": "La primera página puede mostrarse en cuanto llegan sus datos.",
+        "revisions_one": "{{count}} revisión incremental detectada.",
+        "revisions_other": "{{count}} revisiones incrementales detectadas.",
+        "encrypted": "Documento cifrado: el procesamiento requiere que se abra sin contraseña."
+      },
+      "options": {
+        "title": "Opciones de optimización",
+        "linearize": {
+          "title": "Linealización estándar (--linearize)",
+          "description": "Coloca el diccionario /Linearized, la tabla de referencias cruzadas principal, el catálogo y todos los recursos de la página 1 al principio del archivo, con una tabla de índices para las páginas siguientes."
+        },
+        "compress": {
+          "title": "Recompresión de flujos",
+          "description": "Comprime los flujos internos sin comprimir y recomprime los demás al nivel máximo (--stream-data=compress)."
+        },
+        "cleanup": {
+          "title": "Purga y compactación de objetos",
+          "description": "Elimina de las páginas los recursos no utilizados y agrupa los objetos pequeños en flujos de objetos para aligerar el archivo."
+        },
+        "revisionsNote": "En todos los casos el archivo se reescribe por completo: se eliminan el historial de guardados incrementales y los objetos huérfanos, sin alterar el renderizado."
+      },
+      "process_one": "Optimizar {{count}} PDF",
+      "process_other": "Optimizar {{count}} PDF",
+      "processing": "Linealizando…",
+      "verify": {
+        "dict": "Diccionario /Linearized al principio, longitud conforme",
+        "hint": "Tabla de índices (hint stream) presente",
+        "qpdf": "Control de integridad de qpdf superado"
+      },
+      "networks": {
+        "3g": "Móvil 3G (≈ 1,6 Mbit/s)",
+        "4g": "Móvil 4G (≈ 12 Mbit/s)"
+      },
+      "compare": {
+        "before": "Antes",
+        "after": "Después"
+      },
+      "done": {
+        "download": "Descargar el PDF optimizado",
+        "originalSize": "Tamaño original",
+        "finalSize": "Tamaño final",
+        "bytesBefore": "Necesario antes (pág. 1)",
+        "bytesAfter": "Necesario después (pág. 1)",
+        "simulation": "Primera visualización simulada",
+        "simulationNote": "Simulación orientativa (ancho de banda y latencia medios). La mejora real requiere que el servidor que aloja el PDF acepte solicitudes parciales (Byte-Range), algo habitual en la mayoría de alojamientos.",
+        "zip": "Descargar todo (.zip)",
+        "adjust": "Cambiar las opciones",
+        "restart": "Optimizar otros PDF"
+      },
+      "errors": {
+        "someIgnored": "Algunos archivos no son PDF y se han ignorado.",
+        "unreadable": "Archivo ilegible (¿dañado?)",
+        "encrypted": "documento protegido con contraseña de apertura. Desbloquéelo primero.",
+        "processing": "la linealización ha fallado (estructura demasiado dañada)."
+      },
+      "historyMessage": "Linealización Fast Web View — {{count}} archivo(s): {{names}}"
+    },
     "merge": {
       "name": "Combinar PDF",
       "description": "Combina varios archivos en un solo PDF",

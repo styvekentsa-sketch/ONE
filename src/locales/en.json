@@ -803,6 +803,90 @@
       },
       "historyMessage": "PDF/A conversion — {{name}} ({{level}})"
     },
+    "linearize": {
+      "name": "Linearization (Fast Web View)",
+      "description": "Optimise your PDFs for web streaming (Fast Web View) so the first page displays instantly before the full download, 100% locally",
+      "subtitle": "Show the first page before the download finishes, locally",
+      "dropHint": "Drop one or more PDFs to optimise for the web",
+      "analyzing": "Analysing structure…",
+      "addMore": "Add more PDFs",
+      "remove": "Remove",
+      "clear": "Remove all",
+      "status": {
+        "notOptimized": "Not optimised for the web",
+        "broken": "Broken linearization",
+        "linearized": "Already linearized (Fast Web View on)",
+        "verified": "Fast Web View: enabled and verified",
+        "verifyFailed": "Verification failed"
+      },
+      "metrics": {
+        "version": "Version",
+        "pages": "Pages",
+        "size": "Total size",
+        "firstPage": "First page weight",
+        "firstPageExact": "Exact value (/E)",
+        "firstPageEstimate": "Estimate after optimisation"
+      },
+      "explain": {
+        "notOptimized": "A web viewer must download all {{size}} of the file before showing any page.",
+        "broken": "The file was modified after being linearized: viewers ignore the existing optimisation.",
+        "linearized": "The first page can be shown as soon as its data arrives.",
+        "revisions_one": "{{count}} incremental revision detected.",
+        "revisions_other": "{{count}} incremental revisions detected.",
+        "encrypted": "Encrypted document: processing requires it to open without a password."
+      },
+      "options": {
+        "title": "Optimisation options",
+        "linearize": {
+          "title": "Standard linearization (--linearize)",
+          "description": "Puts the /Linearized dictionary, the main cross-reference table, the catalog and all page 1 resources at the start of the file, with a hint table for the following pages."
+        },
+        "compress": {
+          "title": "Stream recompression",
+          "description": "Compresses uncompressed internal streams and recompresses the others at maximum level (--stream-data=compress)."
+        },
+        "cleanup": {
+          "title": "Object purge and compaction",
+          "description": "Removes unused resources from pages and packs small objects into object streams to slim the file."
+        },
+        "revisionsNote": "In every case the file is fully rewritten: incremental save history and orphan objects are removed without altering the rendering."
+      },
+      "process_one": "Optimise {{count}} PDF",
+      "process_other": "Optimise {{count}} PDFs",
+      "processing": "Linearizing…",
+      "verify": {
+        "dict": "/Linearized dictionary at the start, matching length",
+        "hint": "Hint stream present",
+        "qpdf": "qpdf integrity check passed"
+      },
+      "networks": {
+        "3g": "Mobile 3G (≈ 1.6 Mbit/s)",
+        "4g": "Mobile 4G (≈ 12 Mbit/s)"
+      },
+      "compare": {
+        "before": "Before",
+        "after": "After"
+      },
+      "done": {
+        "download": "Download optimised PDF",
+        "originalSize": "Original size",
+        "finalSize": "Final size",
+        "bytesBefore": "Needed before (page 1)",
+        "bytesAfter": "Needed after (page 1)",
+        "simulation": "Simulated first display",
+        "simulationNote": "Indicative simulation (average bandwidth and latency). The real gain requires the server hosting the PDF to accept partial requests (Byte-Range), which most hosts do.",
+        "zip": "Download all (.zip)",
+        "adjust": "Change options",
+        "restart": "Optimise other PDFs"
+      },
+      "errors": {
+        "someIgnored": "Some files are not PDFs and were ignored.",
+        "unreadable": "Unreadable file (corrupted?)",
+        "encrypted": "document protected by an open password. Unlock it first.",
+        "processing": "linearization failed (structure too damaged)."
+      },
+      "historyMessage": "Fast Web View linearization — {{count}} file(s): {{names}}"
+    },
     "merge": {
       "name": "Merge PDF",
       "description": "Combine several files into a single PDF",

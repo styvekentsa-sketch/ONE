@@ -43,7 +43,8 @@
     "Convertir": "Convert",
     "Sécuriser": "Secure",
     "Éditer": "Edit",
-    "Sécurité & Confidentialité": "Security & Privacy"
+    "Sécurité & Confidentialité": "Security & Privacy",
+    "Outils Avancés": "Advanced Tools"
   },
   "mediaTypes": {
     "pdf": "PDFs",
@@ -237,6 +238,55 @@
         "size": "File size",
         "pageSize": "Size (page 1)"
       }
+    },
+    "flatten": {
+      "name": "Flatten PDF",
+      "description": "Lock forms, annotations and layers into a final PDF",
+      "subtitle": "Make a PDF final: no more fields or editable elements",
+      "dropHint": "Drop the PDF to flatten",
+      "analyzingTitle": "Analysing document…",
+      "analyzingDescription": "Detecting form fields and annotations, locally.",
+      "pageCount_one": "{{count}} page",
+      "pageCount_other": "{{count}} pages",
+      "fieldsDetected_one": "{{count}} form field detected, ready to be flattened",
+      "fieldsDetected_other": "{{count}} form fields detected, ready to be flattened",
+      "annotationsDetected_one": "{{count}} annotation detected (highlight, drawing, stamp…)",
+      "annotationsDetected_other": "{{count}} annotations detected (highlights, drawings, stamps…)",
+      "nothingDetected": "No form field or interactive annotation detected. Full flattening is still useful to remove text, layers and hidden elements.",
+      "xfaWarning": "XFA form detected: its dynamic data will be removed. Use full flattening to keep exactly what is displayed.",
+      "encryptedWarning": "Protected document: only full flattening (rasterisation) is possible.",
+      "modeLabel": "Flattening mode",
+      "modes": {
+        "interactive": {
+          "title": "Interactive flattening",
+          "badge": "Fast",
+          "description": "Merges filled fields, checkboxes, signatures and annotations into the pages. Text stays selectable and the file stays light."
+        },
+        "raster": {
+          "title": "Full flattening",
+          "badge": "Secure",
+          "description": "Turns every page into a high-definition image. No hidden layer, invisible text or editable element remains."
+        }
+      },
+      "dpiLabel": "Resolution",
+      "dpiHint": {
+        "150": "Good balance for screen and email.",
+        "200": "Sharper for everyday printing.",
+        "300": "Professional print quality (larger file)."
+      },
+      "changeFile": "Choose another file",
+      "flattenButton": "Flatten PDF",
+      "processingTitle": "Flattening…",
+      "doneTitle": "Your PDF is flattened",
+      "doneInteractive": "Fields and annotations are now part of the page content.",
+      "doneRaster": "Every page is now an image: nothing can be edited anymore.",
+      "originalSize": "Original size",
+      "finalSize": "Final size",
+      "downloadButton": "Download flattened file",
+      "restartLabel": "Flatten another PDF",
+      "errorRead": "Unable to read this PDF (corrupted file?).",
+      "errorGeneric": "Flattening failed. Try full flattening.",
+      "historyMessage": "PDF flattened — {{name}} ({{mode}})"
     },
     "merge": {
       "name": "Merge PDF",

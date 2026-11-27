@@ -1,5 +1,6 @@
 import {
   BookOpen,
+  Cpu,
   Combine,
   Scissors,
   Minimize2,
@@ -50,6 +51,15 @@ import {
 // l'Assistant Magique se génèrent automatiquement, sans code supplémentaire.
 // Le style visuel (icône neutre + accent) est géré une seule fois par les
 // composants (ToolCard, SuggestionResults...), pas ici.
+// Section mise en avant dans les filtres (icône dédiée, voir CATEGORY_ICONS).
+export const ADVANCED_CATEGORY = 'Outils Avancés'
+
+// Icône lucide-react facultative affichée devant une catégorie dans les
+// filtres. Seules les sections à mettre en valeur en déclarent une.
+export const CATEGORY_ICONS = {
+  [ADVANCED_CATEGORY]: Cpu,
+}
+
 const toolDefinitions = [
   // Outil prioritaire : premier de la liste PDF (carte affichée en tête du hub).
   {
@@ -59,6 +69,15 @@ const toolDefinitions = [
     icon: BookOpen,
     category: 'Éditer',
     customRoute: '/tool/pdf-reader',
+  },
+  // --- Outils Avancés ------------------------------------------------------
+  {
+    id: 'flatten',
+    name: 'Aplatir (Flatten)',
+    description: 'Figez formulaires, annotations et calques dans un PDF définitif',
+    icon: Layers,
+    category: ADVANCED_CATEGORY,
+    customRoute: '/tool/flatten-pdf',
   },
   {
     id: 'merge',

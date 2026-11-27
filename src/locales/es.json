@@ -43,7 +43,8 @@
     "Convertir": "Convertir",
     "Sécuriser": "Proteger",
     "Éditer": "Editar",
-    "Sécurité & Confidentialité": "Seguridad y Privacidad"
+    "Sécurité & Confidentialité": "Seguridad y Privacidad",
+    "Outils Avancés": "Herramientas Avanzadas"
   },
   "mediaTypes": {
     "pdf": "PDFs",
@@ -237,6 +238,55 @@
         "size": "Tamaño del archivo",
         "pageSize": "Formato (página 1)"
       }
+    },
+    "flatten": {
+      "name": "Aplanar (Flatten)",
+      "description": "Fije formularios, anotaciones y capas en un PDF definitivo",
+      "subtitle": "Convierta un PDF en definitivo: sin campos ni elementos editables",
+      "dropHint": "Suelte el PDF que desea aplanar",
+      "analyzingTitle": "Analizando el documento…",
+      "analyzingDescription": "Detección de campos de formulario y anotaciones, en local.",
+      "pageCount_one": "{{count}} página",
+      "pageCount_other": "{{count}} páginas",
+      "fieldsDetected_one": "{{count}} campo de formulario detectado, listo para fijarse",
+      "fieldsDetected_other": "{{count}} campos de formulario detectados, listos para fijarse",
+      "annotationsDetected_one": "{{count}} anotación detectada (resaltado, dibujo, sello…)",
+      "annotationsDetected_other": "{{count}} anotaciones detectadas (resaltados, dibujos, sellos…)",
+      "nothingDetected": "No se detectó ningún campo ni anotación interactiva. El aplanado completo sigue siendo útil para eliminar texto, capas y elementos ocultos.",
+      "xfaWarning": "Formulario XFA detectado: sus datos dinámicos se eliminarán. Use el aplanado completo para conservar exactamente lo que se muestra.",
+      "encryptedWarning": "Documento protegido: solo es posible el aplanado completo (rasterización).",
+      "modeLabel": "Modo de aplanado",
+      "modes": {
+        "interactive": {
+          "title": "Aplanado interactivo",
+          "badge": "Rápido",
+          "description": "Fusiona campos rellenados, casillas, firmas y anotaciones en las páginas. El texto sigue siendo seleccionable y el archivo ligero."
+        },
+        "raster": {
+          "title": "Aplanado completo",
+          "badge": "Seguro",
+          "description": "Convierte cada página en una imagen de alta definición. No queda ninguna capa oculta, texto invisible ni elemento editable."
+        }
+      },
+      "dpiLabel": "Resolución",
+      "dpiHint": {
+        "150": "Buen equilibrio para pantalla y correo.",
+        "200": "Mayor nitidez para la impresión habitual.",
+        "300": "Calidad de impresión profesional (archivo más pesado)."
+      },
+      "changeFile": "Elegir otro archivo",
+      "flattenButton": "Aplanar el PDF",
+      "processingTitle": "Aplanando…",
+      "doneTitle": "Su PDF está aplanado",
+      "doneInteractive": "Los campos y anotaciones ahora forman parte del contenido de las páginas.",
+      "doneRaster": "Cada página es ahora una imagen: ya no se puede editar nada.",
+      "originalSize": "Tamaño original",
+      "finalSize": "Tamaño final",
+      "downloadButton": "Descargar el archivo aplanado",
+      "restartLabel": "Aplanar otro PDF",
+      "errorRead": "No se puede leer este PDF (¿archivo dañado?).",
+      "errorGeneric": "El aplanado ha fallado. Pruebe el aplanado completo.",
+      "historyMessage": "PDF aplanado — {{name}} ({{mode}})"
     },
     "merge": {
       "name": "Combinar PDF",

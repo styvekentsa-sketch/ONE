@@ -43,7 +43,8 @@
     "Convertir": "Convertir",
     "Sécuriser": "Sécuriser",
     "Éditer": "Éditer",
-    "Sécurité & Confidentialité": "Sécurité & Confidentialité"
+    "Sécurité & Confidentialité": "Sécurité & Confidentialité",
+    "Outils Avancés": "Outils Avancés"
   },
   "mediaTypes": {
     "pdf": "PDFs",
@@ -237,6 +238,55 @@
         "size": "Taille du fichier",
         "pageSize": "Format (page 1)"
       }
+    },
+    "flatten": {
+      "name": "Aplatir (Flatten)",
+      "description": "Figez formulaires, annotations et calques dans un PDF définitif",
+      "subtitle": "Rendez un PDF définitif : plus aucun champ ni élément modifiable",
+      "dropHint": "Déposez le PDF à aplatir",
+      "analyzingTitle": "Analyse du document…",
+      "analyzingDescription": "Détection des champs de formulaire et des annotations, en local.",
+      "pageCount_one": "{{count}} page",
+      "pageCount_other": "{{count}} pages",
+      "fieldsDetected_one": "{{count}} champ de formulaire détecté, prêt à être figé",
+      "fieldsDetected_other": "{{count}} champs de formulaire détectés prêts à être figés",
+      "annotationsDetected_one": "{{count}} annotation détectée (surlignage, dessin, tampon…)",
+      "annotationsDetected_other": "{{count}} annotations détectées (surlignages, dessins, tampons…)",
+      "nothingDetected": "Aucun champ ni annotation interactive détecté. L’aplatissement intégral reste utile pour supprimer le texte, les calques et les éléments cachés.",
+      "xfaWarning": "Formulaire XFA détecté : ses données dynamiques seront supprimées. Utilisez l’aplatissement intégral pour conserver exactement le rendu affiché.",
+      "encryptedWarning": "Document protégé : seul l’aplatissement intégral (rastérisation) est possible.",
+      "modeLabel": "Mode d’aplatissement",
+      "modes": {
+        "interactive": {
+          "title": "Aplatissement interactif",
+          "badge": "Rapide",
+          "description": "Fusionne champs remplis, cases à cocher, signatures et annotations dans les pages. Le texte reste sélectionnable et le fichier léger."
+        },
+        "raster": {
+          "title": "Aplatissement intégral",
+          "badge": "Sécurisé",
+          "description": "Convertit chaque page en image haute définition. Aucun calque caché, texte invisible ou élément modifiable ne subsiste."
+        }
+      },
+      "dpiLabel": "Résolution",
+      "dpiHint": {
+        "150": "Bon compromis pour l’écran et l’e-mail.",
+        "200": "Netteté accrue pour l’impression courante.",
+        "300": "Qualité impression professionnelle (fichier plus lourd)."
+      },
+      "changeFile": "Choisir un autre fichier",
+      "flattenButton": "Aplatir le PDF",
+      "processingTitle": "Aplatissement en cours…",
+      "doneTitle": "Votre PDF est aplati",
+      "doneInteractive": "Champs et annotations sont désormais intégrés au contenu des pages.",
+      "doneRaster": "Chaque page est désormais une image : plus rien n’est modifiable.",
+      "originalSize": "Taille originale",
+      "finalSize": "Taille finale",
+      "downloadButton": "Télécharger le fichier aplati",
+      "restartLabel": "Aplatir un autre PDF",
+      "errorRead": "Impossible de lire ce PDF (fichier corrompu ?).",
+      "errorGeneric": "L’aplatissement a échoué. Essayez l’aplatissement intégral.",
+      "historyMessage": "PDF aplati — {{name}} ({{mode}})"
     },
     "merge": {
       "name": "Fusionner PDF",

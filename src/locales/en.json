@@ -508,6 +508,107 @@
       },
       "historyMessage": "PDF form updated — {{name}} ({{count}} fields)"
     },
+    "bates": {
+      "name": "Bates Numbering",
+      "description": "Sequentially index and stamp your legal and accounting documents with unique Bates identifiers (prefix, counter, suffix) locally",
+      "subtitle": "Unique, continuous identifiers across one or more PDFs, locally",
+      "dropHint": "Drop one or more PDFs to index",
+      "pageOfTemplate": "Page {x} of {y}",
+      "sections": {
+        "files": "Documents ({{count}})",
+        "format": "Identifier format",
+        "position": "Position and style",
+        "pages": "Pages to number",
+        "preview": "Live preview"
+      },
+      "totalPages_one": "{{count}} page indexed",
+      "totalPages_other": "{{count}} pages indexed",
+      "pages_one": "{{count}} page",
+      "pages_other": "{{count}} pages",
+      "counting": "Reading document…",
+      "noPagesNumbered": "no pages numbered",
+      "showPreview": "Show in preview",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "remove": "Remove from queue",
+      "addMore": "Add more PDFs",
+      "format": {
+        "prefix": "Prefix",
+        "start": "Start number",
+        "digits": "Number of digits",
+        "suffix": "Suffix",
+        "secondary": "Secondary line",
+        "secondaryText": "Secondary line text",
+        "secondaryPlaceholder": "E.g. Exhibit produced",
+        "example": "Example (first → last number)",
+        "overflow": "The last number exceeds {{digits}} digits: it will be shown without extra leading zeros."
+      },
+      "secondary": {
+        "none": "None",
+        "date": "Today’s date ({{date}})",
+        "pageOf": "Page X of Y of the document",
+        "custom": "Custom text"
+      },
+      "position": {
+        "label": "Placement",
+        "tl": "Header left",
+        "tc": "Header centre",
+        "tr": "Header right",
+        "bl": "Footer left",
+        "bc": "Footer centre",
+        "br": "Footer right",
+        "margins": "Margins",
+        "unit": "Unit",
+        "marginX": "Horizontal",
+        "marginY": "Vertical"
+      },
+      "style": {
+        "font": "Font",
+        "size": "Size",
+        "color": "Text colour",
+        "background": "Opaque background",
+        "backgroundHint": "White box behind the identifier, readable even on a busy page."
+      },
+      "colors": {
+        "black": "Black",
+        "darkGray": "Dark grey",
+        "red": "Red",
+        "navy": "Navy blue"
+      },
+      "range": {
+        "all": "All pages",
+        "skipFirst": "Skip cover page",
+        "custom": "Custom range",
+        "customLabel": "Pages of each document",
+        "customHint": "E.g. 1-3, 5, 8- (8- = to the end)",
+        "invalid": "Invalid range.",
+        "note": "Excluded pages are neither stamped nor counted: the sequence stays continuous from one document to the next."
+      },
+      "preview": {
+        "excluded": "Page not numbered",
+        "prev": "Previous page",
+        "next": "Next page"
+      },
+      "process_one": "Number {{count}} page",
+      "process_other": "Number {{count}} pages",
+      "processing": "Stamping identifiers…",
+      "done": {
+        "title_one": "{{count}} page indexed",
+        "title_other": "{{count}} pages indexed",
+        "download": "Download numbered PDF",
+        "zip": "Download all (.zip)",
+        "separately": "Download separately",
+        "downloadOne": "Download {{name}}",
+        "adjust": "Adjust settings",
+        "restart": "New batch"
+      },
+      "errors": {
+        "someIgnored": "Some files are not PDFs and were ignored.",
+        "unreadable": "Unreadable file (corrupted?)",
+        "processing": "Numbering failed. Check the files and try again."
+      },
+      "historyMessage": "Bates numbering — {{count}} document(s), {{first}} → {{last}}"
+    },
     "merge": {
       "name": "Merge PDF",
       "description": "Combine several files into a single PDF",

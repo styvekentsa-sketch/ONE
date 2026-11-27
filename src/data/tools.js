@@ -2,6 +2,7 @@ import {
   BookOpen,
   Cpu,
   FormInput,
+  ListOrdered,
   Combine,
   Scissors,
   Minimize2,
@@ -95,6 +96,14 @@ const toolDefinitions = [
     icon: FormInput,
     category: ADVANCED_CATEGORY,
     customRoute: '/tool/pdf-forms',
+  },
+  {
+    id: 'bates',
+    name: 'Numérotation Bates',
+    description: 'Indexez et horodatez séquentiellement vos documents juridiques et comptables avec des identifiants Bates uniques (préfixe, compteur, suffixe) en local',
+    icon: ListOrdered,
+    category: ADVANCED_CATEGORY,
+    customRoute: '/tool/bates-numbering',
   },
   {
     id: 'merge',

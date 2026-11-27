@@ -508,6 +508,107 @@
       },
       "historyMessage": "Formulaire PDF mis à jour — {{name}} ({{count}} champs)"
     },
+    "bates": {
+      "name": "Numérotation Bates",
+      "description": "Indexez et horodatez séquentiellement vos documents juridiques et comptables avec des identifiants Bates uniques (préfixe, compteur, suffixe) en local",
+      "subtitle": "Identifiants uniques et continus sur un ou plusieurs PDF, en local",
+      "dropHint": "Déposez un ou plusieurs PDF à indexer",
+      "pageOfTemplate": "Page {x} / {y}",
+      "sections": {
+        "files": "Documents ({{count}})",
+        "format": "Format de l’identifiant",
+        "position": "Position et style",
+        "pages": "Pages à numéroter",
+        "preview": "Aperçu en direct"
+      },
+      "totalPages_one": "{{count}} page indexée",
+      "totalPages_other": "{{count}} pages indexées",
+      "pages_one": "{{count}} page",
+      "pages_other": "{{count}} pages",
+      "counting": "Lecture du document…",
+      "noPagesNumbered": "aucune page numérotée",
+      "showPreview": "Afficher dans l’aperçu",
+      "moveUp": "Monter",
+      "moveDown": "Descendre",
+      "remove": "Retirer de la file",
+      "addMore": "Ajouter d’autres PDF",
+      "format": {
+        "prefix": "Préfixe",
+        "start": "Numéro de départ",
+        "digits": "Nombre de chiffres",
+        "suffix": "Suffixe",
+        "secondary": "Ligne secondaire",
+        "secondaryText": "Texte de la ligne secondaire",
+        "secondaryPlaceholder": "Ex. : Pièce produite au dossier",
+        "example": "Exemple (premier → dernier numéro)",
+        "overflow": "Le dernier numéro dépasse {{digits}} chiffres : il sera affiché sans zéros de complément supplémentaires."
+      },
+      "secondary": {
+        "none": "Aucune",
+        "date": "Date du jour ({{date}})",
+        "pageOf": "Page X / Y du document",
+        "custom": "Texte personnalisé"
+      },
+      "position": {
+        "label": "Emplacement",
+        "tl": "En-tête gauche",
+        "tc": "En-tête centre",
+        "tr": "En-tête droite",
+        "bl": "Pied de page gauche",
+        "bc": "Pied de page centre",
+        "br": "Pied de page droite",
+        "margins": "Marges",
+        "unit": "Unité",
+        "marginX": "Horizontale",
+        "marginY": "Verticale"
+      },
+      "style": {
+        "font": "Police",
+        "size": "Taille",
+        "color": "Couleur du texte",
+        "background": "Fond opaque",
+        "backgroundHint": "Boîte blanche derrière l’identifiant, lisible même sur une page chargée."
+      },
+      "colors": {
+        "black": "Noir",
+        "darkGray": "Gris foncé",
+        "red": "Rouge",
+        "navy": "Bleu marine"
+      },
+      "range": {
+        "all": "Toutes les pages",
+        "skipFirst": "Ignorer la page de garde",
+        "custom": "Plage personnalisée",
+        "customLabel": "Pages de chaque document",
+        "customHint": "Ex. : 1-3, 5, 8- (8- = jusqu’à la fin)",
+        "invalid": "Plage invalide.",
+        "note": "Les pages exclues ne sont ni tamponnées ni comptées : la séquence reste continue d’un document à l’autre."
+      },
+      "preview": {
+        "excluded": "Page non numérotée",
+        "prev": "Page précédente",
+        "next": "Page suivante"
+      },
+      "process_one": "Numéroter {{count}} page",
+      "process_other": "Numéroter {{count}} pages",
+      "processing": "Incrustation des identifiants…",
+      "done": {
+        "title_one": "{{count}} page indexée",
+        "title_other": "{{count}} pages indexées",
+        "download": "Télécharger le PDF numéroté",
+        "zip": "Tout télécharger (.zip)",
+        "separately": "Télécharger séparément",
+        "downloadOne": "Télécharger {{name}}",
+        "adjust": "Modifier les réglages",
+        "restart": "Nouveau lot"
+      },
+      "errors": {
+        "someIgnored": "Certains fichiers ne sont pas des PDF et ont été ignorés.",
+        "unreadable": "Fichier illisible (corrompu ?)",
+        "processing": "La numérotation a échoué. Vérifiez les fichiers et réessayez."
+      },
+      "historyMessage": "Numérotation Bates — {{count}} document(s), {{first}} → {{last}}"
+    },
     "merge": {
       "name": "Fusionner PDF",
       "description": "Combinez plusieurs fichiers en un seul PDF",

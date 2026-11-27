@@ -21,7 +21,7 @@ import {
   X,
 } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
-import { loadPdfDocument } from '../../utils/pdfRender'
+import { loadPdfDocument, destroyPdfDocument } from '../../utils/pdfRender'
 import {
   COLORS,
   FONTS,
@@ -124,7 +124,7 @@ function LivePreview({ doc, pageNumber, number, config, fonts, dateText, b }) {
     let cancelled = false
     loadPdfDocument(doc.bytes)
       .then((loaded) => {
-        if (cancelled) loaded.destroy()
+        if (cancelled) destroyPdfDocument(loaded)
         else {
           current = loaded
           setPdf(loaded)
@@ -133,7 +133,7 @@ function LivePreview({ doc, pageNumber, number, config, fonts, dateText, b }) {
       .catch((err) => console.error(err))
     return () => {
       cancelled = true
-      current?.destroy()
+      destroyPdfDocument(current)
     }
   }, [doc])
 

@@ -16,6 +16,18 @@ export async function loadPdfDocument(pdfBuffer) {
 }
 
 /**
+ * Libère un document pdf.js et son worker. Depuis pdfjs-dist v6, le
+ * document (PDFDocumentProxy) n'a plus de méthode destroy() : la
+ * destruction passe par sa tâche de chargement. Sans danger sur null.
+ */
+export function destroyPdfDocument(pdfDoc) {
+  if (!pdfDoc) return
+  const task = pdfDoc.loadingTask
+  if (typeof task?.destroy === 'function') task.destroy().catch(() => {})
+  else if (typeof pdfDoc.destroy === 'function') pdfDoc.destroy()
+}
+
+/**
  * Texte d'une page avec la position brute de chaque fragment (repère PDF,
  * origine en bas à gauche, échelle 1) — directement compatible avec les
  * coordonnées utilisées par pdf-lib pour dessiner sur la même page.

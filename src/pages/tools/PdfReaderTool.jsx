@@ -39,7 +39,7 @@ import {
 import DragDropZone from '../../components/DragDropZone'
 import ProcessingState from '../../components/ProcessingState'
 import Modal from '../../components/Modal'
-import { loadPdfDocument } from '../../utils/pdfRender'
+import { loadPdfDocument, destroyPdfDocument } from '../../utils/pdfRender'
 import {
   buildPageSearchIndex,
   exportAnnotatedPdf,
@@ -1448,7 +1448,7 @@ export default function PdfReaderTool() {
   useEffect(() => {
     docRef.current = doc
   }, [doc])
-  useEffect(() => () => docRef.current?.pdf.destroy(), [])
+  useEffect(() => () => destroyPdfDocument(docRef.current?.pdf), [])
 
   const handleFiles = async (files) => {
     const [file] = files
@@ -1480,7 +1480,7 @@ export default function PdfReaderTool() {
   }
 
   const handleClose = () => {
-    doc?.pdf.destroy()
+    destroyPdfDocument(doc?.pdf)
     setDoc(null)
   }
 

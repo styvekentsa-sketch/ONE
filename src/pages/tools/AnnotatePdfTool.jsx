@@ -32,7 +32,7 @@ import {
 import DragDropZone from '../../components/DragDropZone'
 import ProcessingState from '../../components/ProcessingState'
 import Modal from '../../components/Modal'
-import { loadPdfDocument } from '../../utils/pdfRender'
+import { loadPdfDocument, destroyPdfDocument } from '../../utils/pdfRender'
 import {
   BASELINE,
   FONT_FAMILIES,
@@ -1527,7 +1527,7 @@ export default function AnnotatePdfTool() {
   useEffect(() => {
     docRef.current = doc
   }, [doc])
-  useEffect(() => () => docRef.current?.pdf.destroy(), [])
+  useEffect(() => () => destroyPdfDocument(docRef.current?.pdf), [])
 
   const handleFiles = async (files) => {
     const [file] = files
@@ -1577,7 +1577,7 @@ export default function AnnotatePdfTool() {
           key={doc.file.name + doc.file.lastModified}
           doc={doc}
           onClose={() => {
-            doc.pdf.destroy()
+            destroyPdfDocument(doc.pdf)
             setDoc(null)
           }}
         />

@@ -27,7 +27,7 @@ import {
   ZoomOut,
 } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
-import { loadPdfDocument } from '../../utils/pdfRender'
+import { loadPdfDocument, destroyPdfDocument } from '../../utils/pdfRender'
 import { createBaseLayer, readLayers, writeLayers } from '../../utils/pdfLayersWorker'
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
@@ -235,13 +235,13 @@ export default function PdfLayersTool() {
   useEffect(() => {
     docRef.current = doc
   }, [doc])
-  useEffect(() => () => docRef.current?.pdf.destroy(), [])
+  useEffect(() => () => destroyPdfDocument(docRef.current?.pdf), [])
 
   /** (Re)charge un document : aperçu pdf.js + structure des calques pdf-lib. */
   const openBytes = async (bytes, sourceFile) => {
     const pdf = await loadPdfDocument(bytes)
     const [ocConfig, info, firstPage] = await Promise.all([pdf.getOptionalContentConfig(), readLayers(bytes.slice()), pdf.getPage(1)])
-    docRef.current?.pdf.destroy()
+    destroyPdfDocument(docRef.current?.pdf)
     const pageWidth = firstPage.getViewport({ scale: 1 }).width * CSS_UNITS
     const available = window.matchMedia('(min-width: 1024px)').matches ? window.innerWidth - 560 : window.innerWidth - 64
     setZoom(clamp(Math.round((available / pageWidth) * 4) / 4, 0.5, 1.25))
@@ -320,7 +320,7 @@ export default function PdfLayersTool() {
   }
 
   const restart = () => {
-    docRef.current?.pdf.destroy()
+    destroyPdfDocument(docRef.current?.pdf)
     setDoc(null)
     setFile(null)
     setLayers([])

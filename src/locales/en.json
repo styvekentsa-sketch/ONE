@@ -967,6 +967,168 @@
       },
       "historyMessage": "Layers updated — {{name}} ({{count}} layer(s), {{purged}} purged)"
     },
+    "repair": {
+      "name": "Repair PDF",
+      "description": "Analyse and repair corrupted or unreadable PDF files: XREF table rebuild, object recovery and page rescue, locally",
+      "subtitle": "Diagnosis and recovery of damaged PDFs, locally",
+      "dropHint": "Drop the damaged or unreadable PDF",
+      "analyzing": "Structural audit of the file…",
+      "processing": {
+        "structural": "Structural repair in progress…",
+        "rebuild": "Rebuilding pages…",
+        "visual": "Rescuing pages…"
+      },
+      "severity": {
+        "healthy": "No issues detected",
+        "minor": "Minor issues",
+        "major": "Damaged structure",
+        "critical": "Severely damaged file",
+        "locked": "Encrypted file"
+      },
+      "sections": {
+        "diagnosis": "Structural diagnosis",
+        "console": "Diagnostic log (qpdf --check)",
+        "modes": "Repair mode",
+        "repairConsole": "Repair log (qpdf)"
+      },
+      "metrics": {
+        "version": "Version",
+        "size": "Size",
+        "objects": "Complete objects",
+        "pages": "Expected pages"
+      },
+      "checks": {
+        "header": {
+          "label": "%PDF- header",
+          "ok": "Signature present at the start of the file."
+        },
+        "eof": {
+          "label": "%%EOF end marker",
+          "ok": "End of file present."
+        },
+        "xref": {
+          "label": "Cross-reference table (startxref)",
+          "ok": "Valid pointer to the XREF table."
+        },
+        "integrity": {
+          "label": "Object integrity",
+          "ok": "No truncated object."
+        },
+        "catalog": {
+          "label": "Trailer and catalog",
+          "ok": "Document root found."
+        },
+        "qpdf": {
+          "label": "qpdf structural check",
+          "ok": "No errors reported."
+        },
+        "encryption": {
+          "label": "Encryption",
+          "ok": "Document not encrypted."
+        },
+        "incremental": {
+          "label": "Incremental saves",
+          "ok": ""
+        }
+      },
+      "issues": {
+        "headerMissing": "%PDF- signature not found in the first kilobyte.",
+        "headerGarbage_one": "{{count}} stray byte before the %PDF- signature.",
+        "headerGarbage_other": "{{count}} stray bytes before the %PDF- signature.",
+        "eofMissing": "%%EOF marker missing: download probably interrupted.",
+        "startxrefMissing": "startxref pointer missing: XREF table absent.",
+        "startxrefInvalid": "startxref ({{detail}}) does not point to an XREF table: wrong offsets.",
+        "truncatedObject": "The last object is cut off: truncated file.",
+        "trailerMissing": "No usable trailer: the document root cannot be found.",
+        "catalogMissing": "The catalog referenced by the trailer is missing.",
+        "qpdfErrors": "qpdf refuses to open the structure as is (see the log).",
+        "qpdfWarnings_one": "{{count}} structural warning.",
+        "qpdfWarnings_other": "{{count}} structural warnings.",
+        "passwordRequired": "Open password required: repair impossible without unlocking it.",
+        "encrypted": "Encrypted document (no open password): repair possible, encryption kept.",
+        "incremental_one": "{{count}} incremental save (added revision).",
+        "incremental_other": "{{count}} incremental saves (added revisions)."
+      },
+      "readable": {
+        "yes_one": "A tolerant PDF viewer can still open it ({{count}} page).",
+        "yes_other": "A tolerant PDF viewer can still open it ({{count}} pages).",
+        "no": "The file no longer opens in a PDF viewer at all."
+      },
+      "console": {
+        "clean": "No messages: the structure is sound.",
+        "empty": "qpdf produced no messages."
+      },
+      "lockedAdvice": "This PDF is protected by an open password: unlock it first, then run the repair again.",
+      "unlockLink": "Unlock the PDF",
+      "recommended": "Recommended",
+      "modes": {
+        "structural": {
+          "title": "Structural repair",
+          "level": "Level 1 — qpdf",
+          "description": "Rebuilds the XREF table and offsets, cleans corrupted saves and rewrites a clean file. Text, links and fonts are kept."
+        },
+        "rebuild": {
+          "title": "Page rebuild",
+          "level": "Level 2 — pdf-lib",
+          "description": "Copies the valid pages one by one into a new document. Useful if the catalog structure is rejected."
+        },
+        "visual": {
+          "title": "Visual rescue",
+          "level": "Level 3 — pdf.js",
+          "description": "Renders every still-readable page as an image and assembles a sound PDF. Last resort for a badly damaged file."
+        }
+      },
+      "dpi": "Resolution",
+      "visualNote": "Rescued pages become images: text is no longer selectable.",
+      "changeFile": "Choose another file",
+      "repairButton": "Repair the file",
+      "status": {
+        "success": "Repaired successfully",
+        "successText": "All expected pages are readable (mode: {{mode}}).",
+        "partial": "Partial recovery: {{saved}}/{{total}} pages rescued",
+        "partialText": "The missing pages could not be recovered with the “{{mode}}” mode. Another mode may give a better result.",
+        "failed": "File unrecoverable with this mode",
+        "failedText": "The “{{mode}}” mode recovered no readable page. Try another mode below."
+      },
+      "log": {
+        "headerFixed_one": "Header fixed: {{count}} stray byte removed",
+        "headerFixed_other": "Header fixed: {{count}} stray bytes removed",
+        "xrefRebuilt_one": "XREF table rebuilt from {{count}} recovered object",
+        "xrefRebuilt_other": "XREF table rebuilt from {{count}} recovered objects",
+        "xrefRewritten": "XREF table and byte offsets rewritten",
+        "truncatedDropped": "Truncated object at the end of the file discarded",
+        "catalogCreated": "Document catalog recreated",
+        "pageTreeRebuilt_one": "Page tree rebuilt ({{count}} page found)",
+        "pageTreeRebuilt_other": "Page tree rebuilt ({{count}} pages found)",
+        "qpdfFallback": "Final write done by pdf-lib (qpdf rejected the rebuilt file)",
+        "eofRestored": "%%EOF marker restored",
+        "qpdfWarnings_one": "{{count}} structural issue fixed by qpdf",
+        "qpdfWarnings_other": "{{count}} structural issues fixed by qpdf",
+        "rewritten": "Object tree cleanly rewritten",
+        "pagesCopied_one": "{{count}} page copied into a new document",
+        "pagesCopied_other": "{{count}} pages copied into a new document",
+        "pagesSkipped_one": "{{count}} unrecoverable page skipped (no. {{pages}})",
+        "pagesSkipped_other": "{{count}} unrecoverable pages skipped (nos. {{pages}})",
+        "pagesRendered_one": "{{count}} page rescued by rendering at {{dpi}} DPI",
+        "pagesRendered_other": "{{count}} pages rescued by rendering at {{dpi}} DPI"
+      },
+      "done": {
+        "originalSize": "Original size",
+        "finalSize": "Final size",
+        "download": "Download repaired PDF",
+        "preview": "Preview of the repaired file",
+        "fixes": "Issues fixed",
+        "verifyOk": "The repaired file passes the qpdf structural check",
+        "verifyWarn": "The file opens, but qpdf still reports minor defects in some streams",
+        "tryMode": "Try: {{mode}}",
+        "backToReport": "Back to diagnosis",
+        "restart": "Repair another file"
+      },
+      "errors": {
+        "analyze": "Unable to analyse this file."
+      },
+      "historyMessage": "PDF repair — {{name}} ({{saved}}/{{total}} pages)"
+    },
     "merge": {
       "name": "Merge PDF",
       "description": "Combine several files into a single PDF",

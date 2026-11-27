@@ -5,6 +5,17 @@ const OUTPUT_PATH = '/output.pdf'
 
 let modulePromise = null
 
+// Ce build WASM lie sa sortie standard / d'erreur à console.log et
+// console.error au moment de son instanciation (pas d'option print). On
+// installe donc un relais pendant l'instanciation : il renvoie vers la
+// console d'origine en temps normal, et vers `captureSink` pendant une
+// exécution dont on veut récupérer les messages (journal de diagnostic).
+let captureSink = null
+const relay = (original) => (...args) => {
+  if (captureSink) captureSink.push(args.join(' '))
+  else original(...args)
+}
+
 /**
  * Instancie qpdf (vrai binaire qpdf compilé en WASM, cf.
  * https://github.com/neslinesli93/qpdf-wasm) à la demande, une seule fois.
@@ -14,9 +25,17 @@ let modulePromise = null
  */
 async function getQpdf() {
   if (!modulePromise) {
-    modulePromise = import('@neslinesli93/qpdf-wasm').then(({ default: createModule }) =>
-      createModule({ locateFile: () => qpdfWasmUrl, noInitialRun: true }),
-    )
+    modulePromise = import('@neslinesli93/qpdf-wasm').then(async ({ default: createModule }) => {
+      const { log, error } = console
+      console.log = relay(log)
+      console.error = relay(error)
+      try {
+        return await createModule({ locateFile: () => qpdfWasmUrl, noInitialRun: true })
+      } finally {
+        console.log = log
+        console.error = error
+      }
+    })
   }
   return modulePromise
 }
@@ -36,12 +55,46 @@ async function execQpdf(inputBytes, args) {
   const qpdf = await getQpdf()
   qpdf.FS.writeFile(INPUT_PATH, inputBytes)
   try {
-    return { qpdf, exitCode: qpdf.callMain(args) }
+    qpdf.FS.unlink(OUTPUT_PATH)
+  } catch {
+    // pas de sortie précédente
+  }
+  const lines = []
+  captureSink = lines
+  try {
+    return { qpdf, exitCode: qpdf.callMain(args), output: lines }
   } catch (err) {
     // Emscripten peut lever une exception interne (ex: appel à exit())
     // plutôt que de renvoyer proprement un code non nul selon les cas.
     throw new Error('QPDF_EXECUTION_FAILED', { cause: err })
+  } finally {
+    captureSink = null
   }
+}
+
+/**
+ * Exécution avec journal : renvoie le code de sortie, les messages de qpdf
+ * et, si un fichier a été produit, ses octets. Ne lève pas d'erreur sur un
+ * code non nul : c'est à l'appelant d'interpréter le résultat.
+ */
+export async function runQpdfLogged(inputBytes, args) {
+  const { qpdf, exitCode, output } = await execQpdf(inputBytes, args)
+  let bytes = null
+  try {
+    bytes = new Uint8Array(qpdf.FS.readFile(OUTPUT_PATH))
+  } catch {
+    bytes = null
+  }
+  // Le préfixe « programme: chemin: » de qpdf n'apporte rien à l'utilisateur.
+  const log = output
+    .map((line) =>
+      line
+        .replace(/^(?!WARNING)[^\s:]+:\s+(?=\/input\.pdf)/, '')
+        .replace(/\/input\.pdf:?\s*/g, '')
+        .trim(),
+    )
+    .filter(Boolean)
+  return { exitCode, log, bytes }
 }
 
 export async function runQpdf(inputBytes, args, { allowWarnings = false } = {}) {
@@ -62,8 +115,7 @@ export const QPDF_PATHS = { input: INPUT_PATH, output: OUTPUT_PATH }
 
 /**
  * Lance une commande de contrôle (sans fichier de sortie) et renvoie
- * uniquement son code de sortie. Le texte produit par qpdf part dans la
- * console : ce build WASM ne permet pas de le capturer.
+ * uniquement son code de sortie (messages disponibles via runQpdfLogged).
  */
 export async function checkQpdf(inputBytes, args) {
   const { exitCode } = await execQpdf(inputBytes, args)

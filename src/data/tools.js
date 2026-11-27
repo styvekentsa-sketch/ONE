@@ -45,6 +45,7 @@ import {
   Layers,
   Lasso,
   Wand2,
+  Wrench,
   Zap,
   Stamp,
 } from 'lucide-react'
@@ -130,6 +131,14 @@ const toolDefinitions = [
     icon: Layers,
     category: ADVANCED_CATEGORY,
     customRoute: '/tool/pdf-layers',
+  },
+  {
+    id: 'repair',
+    name: 'Réparation PDF',
+    description: 'Analysez et réparez les fichiers PDF corrompus ou illisibles : reconstruction de la table XREF, récupération des objets et sauvetage des pages en local',
+    icon: Wrench,
+    category: ADVANCED_CATEGORY,
+    customRoute: '/tool/repair-pdf',
   },
   {
     id: 'merge',

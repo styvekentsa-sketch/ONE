@@ -12,7 +12,7 @@ import {
   pushGraphicsState,
 } from 'pdf-lib'
 import { AnnotationMode } from 'pdfjs-dist'
-import { loadPdfDocument } from './pdfRender'
+import { loadPdfDocument, destroyPdfDocument } from './pdfRender'
 
 /**
  * Aplatissement de PDF, 100 % local. Deux stratégies :
@@ -269,7 +269,7 @@ export async function flattenRaster(buffer, { dpi = 150, onProgress = () => {} }
       onProgress(n / source.numPages)
     }
   } finally {
-    source.destroy()
+    destroyPdfDocument(source)
   }
 
   return output.save()

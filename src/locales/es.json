@@ -967,6 +967,168 @@
       },
       "historyMessage": "Capas actualizadas — {{name}} ({{count}} capa(s), {{purged}} purgada(s))"
     },
+    "repair": {
+      "name": "Reparar PDF",
+      "description": "Analice y repare archivos PDF dañados o ilegibles: reconstrucción de la tabla XREF, recuperación de objetos y rescate de páginas en local",
+      "subtitle": "Diagnóstico y recuperación de PDF dañados, en local",
+      "dropHint": "Suelte el PDF dañado o ilegible",
+      "analyzing": "Auditoría estructural del archivo…",
+      "processing": {
+        "structural": "Reparación estructural en curso…",
+        "rebuild": "Reconstruyendo las páginas…",
+        "visual": "Rescatando las páginas…"
+      },
+      "severity": {
+        "healthy": "No se detectó ninguna anomalía",
+        "minor": "Anomalías menores",
+        "major": "Estructura dañada",
+        "critical": "Archivo gravemente dañado",
+        "locked": "Archivo cifrado"
+      },
+      "sections": {
+        "diagnosis": "Diagnóstico estructural",
+        "console": "Registro de diagnóstico (qpdf --check)",
+        "modes": "Modo de reparación",
+        "repairConsole": "Registro de reparación (qpdf)"
+      },
+      "metrics": {
+        "version": "Versión",
+        "size": "Tamaño",
+        "objects": "Objetos completos",
+        "pages": "Páginas esperadas"
+      },
+      "checks": {
+        "header": {
+          "label": "Encabezado %PDF-",
+          "ok": "Firma presente al inicio del archivo."
+        },
+        "eof": {
+          "label": "Marcador de fin %%EOF",
+          "ok": "Fin de archivo presente."
+        },
+        "xref": {
+          "label": "Tabla de referencias cruzadas (startxref)",
+          "ok": "Puntero válido hacia la tabla XREF."
+        },
+        "integrity": {
+          "label": "Integridad de los objetos",
+          "ok": "Ningún objeto truncado."
+        },
+        "catalog": {
+          "label": "Trailer y catálogo",
+          "ok": "Raíz del documento encontrada."
+        },
+        "qpdf": {
+          "label": "Control estructural de qpdf",
+          "ok": "No se señaló ningún error."
+        },
+        "encryption": {
+          "label": "Cifrado",
+          "ok": "Documento sin cifrar."
+        },
+        "incremental": {
+          "label": "Guardados incrementales",
+          "ok": ""
+        }
+      },
+      "issues": {
+        "headerMissing": "No se encuentra la firma %PDF- en el primer kilobyte.",
+        "headerGarbage_one": "{{count}} byte parásito antes de la firma %PDF-.",
+        "headerGarbage_other": "{{count}} bytes parásitos antes de la firma %PDF-.",
+        "eofMissing": "Falta el marcador %%EOF: descarga probablemente interrumpida.",
+        "startxrefMissing": "Falta el puntero startxref: no hay tabla XREF.",
+        "startxrefInvalid": "startxref ({{detail}}) no apunta a una tabla XREF: desplazamientos erróneos.",
+        "truncatedObject": "El último objeto está cortado: archivo truncado.",
+        "trailerMissing": "Ningún trailer utilizable: no se encuentra la raíz del documento.",
+        "catalogMissing": "Falta el catálogo indicado por el trailer.",
+        "qpdfErrors": "qpdf se niega a abrir la estructura tal cual (ver el registro).",
+        "qpdfWarnings_one": "{{count}} advertencia estructural.",
+        "qpdfWarnings_other": "{{count}} advertencias estructurales.",
+        "passwordRequired": "Se requiere contraseña de apertura: reparación imposible sin desbloquearlo.",
+        "encrypted": "Documento cifrado (sin contraseña de apertura): reparación posible, cifrado conservado.",
+        "incremental_one": "{{count}} guardado incremental (revisión añadida).",
+        "incremental_other": "{{count}} guardados incrementales (revisiones añadidas)."
+      },
+      "readable": {
+        "yes_one": "Un visor PDF tolerante todavía puede abrirlo ({{count}} página).",
+        "yes_other": "Un visor PDF tolerante todavía puede abrirlo ({{count}} páginas).",
+        "no": "El archivo ya no se abre en ningún visor PDF."
+      },
+      "console": {
+        "clean": "Ningún mensaje: la estructura está sana.",
+        "empty": "qpdf no produjo ningún mensaje."
+      },
+      "lockedAdvice": "Este PDF está protegido con contraseña de apertura: desbloquéelo primero y vuelva a lanzar la reparación.",
+      "unlockLink": "Desbloquear el PDF",
+      "recommended": "Recomendado",
+      "modes": {
+        "structural": {
+          "title": "Reparación estructural",
+          "level": "Nivel 1 — qpdf",
+          "description": "Reconstruye la tabla XREF y los desplazamientos, limpia los guardados dañados y reescribe un archivo limpio. Conserva texto, enlaces y fuentes."
+        },
+        "rebuild": {
+          "title": "Reconstrucción de páginas",
+          "level": "Nivel 2 — pdf-lib",
+          "description": "Copia las páginas válidas una a una en un documento nuevo. Útil si se rechaza la estructura del catálogo."
+        },
+        "visual": {
+          "title": "Rescate visual",
+          "level": "Nivel 3 — pdf.js",
+          "description": "Renderiza como imagen cada página aún legible y monta un PDF sano. Último recurso para un archivo muy dañado."
+        }
+      },
+      "dpi": "Resolución",
+      "visualNote": "Las páginas rescatadas se convierten en imágenes: el texto ya no se puede seleccionar.",
+      "changeFile": "Elegir otro archivo",
+      "repairButton": "Reparar el archivo",
+      "status": {
+        "success": "Reparado con éxito",
+        "successText": "Todas las páginas esperadas son legibles (modo: {{mode}}).",
+        "partial": "Recuperación parcial: {{saved}}/{{total}} páginas rescatadas",
+        "partialText": "Las páginas que faltan no se pudieron recuperar con el modo «{{mode}}». Otro modo puede dar un mejor resultado.",
+        "failed": "Archivo irrecuperable con este modo",
+        "failedText": "El modo «{{mode}}» no recuperó ninguna página legible. Pruebe otro modo a continuación."
+      },
+      "log": {
+        "headerFixed_one": "Encabezado corregido: {{count}} byte parásito eliminado",
+        "headerFixed_other": "Encabezado corregido: {{count}} bytes parásitos eliminados",
+        "xrefRebuilt_one": "Tabla XREF reconstruida a partir de {{count}} objeto recuperado",
+        "xrefRebuilt_other": "Tabla XREF reconstruida a partir de {{count}} objetos recuperados",
+        "xrefRewritten": "Tabla XREF y desplazamientos de bytes reescritos",
+        "truncatedDropped": "Objeto truncado al final del archivo descartado",
+        "catalogCreated": "Catálogo del documento recreado",
+        "pageTreeRebuilt_one": "Árbol de páginas reconstruido ({{count}} página encontrada)",
+        "pageTreeRebuilt_other": "Árbol de páginas reconstruido ({{count}} páginas encontradas)",
+        "qpdfFallback": "Escritura final realizada por pdf-lib (qpdf rechazó el archivo reconstruido)",
+        "eofRestored": "Marcador %%EOF restaurado",
+        "qpdfWarnings_one": "{{count}} anomalía estructural corregida por qpdf",
+        "qpdfWarnings_other": "{{count}} anomalías estructurales corregidas por qpdf",
+        "rewritten": "Árbol de objetos reescrito correctamente",
+        "pagesCopied_one": "{{count}} página copiada en un documento nuevo",
+        "pagesCopied_other": "{{count}} páginas copiadas en un documento nuevo",
+        "pagesSkipped_one": "{{count}} página irrecuperable omitida (n.º {{pages}})",
+        "pagesSkipped_other": "{{count}} páginas irrecuperables omitidas (n.º {{pages}})",
+        "pagesRendered_one": "{{count}} página rescatada mediante renderizado a {{dpi}} DPI",
+        "pagesRendered_other": "{{count}} páginas rescatadas mediante renderizado a {{dpi}} DPI"
+      },
+      "done": {
+        "originalSize": "Tamaño original",
+        "finalSize": "Tamaño final",
+        "download": "Descargar el PDF reparado",
+        "preview": "Vista previa del archivo reparado",
+        "fixes": "Anomalías corregidas",
+        "verifyOk": "El archivo reparado supera el control estructural de qpdf",
+        "verifyWarn": "El archivo se abre, pero qpdf aún señala defectos menores en algunos flujos",
+        "tryMode": "Probar: {{mode}}",
+        "backToReport": "Volver al diagnóstico",
+        "restart": "Reparar otro archivo"
+      },
+      "errors": {
+        "analyze": "No se puede analizar este archivo."
+      },
+      "historyMessage": "Reparación PDF — {{name}} ({{saved}}/{{total}} páginas)"
+    },
     "merge": {
       "name": "Combinar PDF",
       "description": "Combina varios archivos en un solo PDF",

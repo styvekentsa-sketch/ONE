@@ -887,6 +887,86 @@
       },
       "historyMessage": "Fast Web View linearization — {{count}} file(s): {{names}}"
     },
+    "pdf-layers": {
+      "name": "Layer Management (OCG)",
+      "description": "Inspect, show, hide, lock, rename or merge the internal layers (Optional Content Groups) of your drawings and technical PDFs locally",
+      "subtitle": "Layers of drawings and technical PDFs: preview, editing and purge, locally",
+      "dropHint": "Drop a layered PDF (drawing, CAD, multilingual document…)",
+      "loading": "Reading layers…",
+      "encrypted": "Protected document: the preview works, but exporting requires unlocking it first.",
+      "unlockLink": "Unlock the PDF",
+      "empty": {
+        "title": "This PDF document contains no embedded OCG layers",
+        "text": "You can place all its content in a new layer (hideable in any viewer), or add elements with the Annotate tool.",
+        "create": "Create a layer from the content",
+        "annotate": "Open the Annotate tool",
+        "defaultLayerName": "Original content"
+      },
+      "panel": {
+        "title_one": "{{count}} layer",
+        "title_other": "{{count}} layers",
+        "changeFile": "Change file",
+        "hint": "The eye only affects the preview; “On opening” sets the state saved in the file."
+      },
+      "actions": {
+        "showAll": "Show all",
+        "hideAll": "Hide all",
+        "previewAsDefault": "Preview → default state"
+      },
+      "row": {
+        "showPreview": "Show in preview",
+        "hidePreview": "Hide in preview",
+        "rename": "Rename",
+        "confirm": "Confirm",
+        "isolate": "Isolate this layer",
+        "lock": "Lock",
+        "unlock": "Unlock",
+        "defaultState": "On opening:",
+        "merge": "Merge into content",
+        "unmerge": "Cancel merge"
+      },
+      "state": {
+        "visible": "Visible",
+        "hidden": "Hidden",
+        "locked": "Locked",
+        "merged": "Will be merged into the content on export (always visible, no longer a layer)."
+      },
+      "preview": {
+        "prev": "Previous page",
+        "next": "Next page",
+        "page": "Page {{page}} / {{total}}",
+        "zoom": "Zoom level",
+        "zoomIn": "Zoom in",
+        "zoomOut": "Zoom out"
+      },
+      "purge": {
+        "label": "Permanently delete hidden layers on export",
+        "list": "Layers affected (“Hidden” on opening): {{names}}.",
+        "none": "No layer is hidden on opening: nothing will be deleted.",
+        "warning": "Their content (text, images, annotations) will be erased from the file, irreversibly."
+      },
+      "export": {
+        "button": "Export PDF",
+        "noChanges": "Edit a layer or enable the purge to export.",
+        "working": "Updating the layer structure…",
+        "done": "PDF updated",
+        "dismiss": "Close",
+        "originalSize": "Original size",
+        "finalSize": "Final size",
+        "summary": "{{remaining}} layer(s) in the exported file.",
+        "purged_one": "{{count}} hidden layer permanently deleted.",
+        "purged_other": "{{count}} hidden layers permanently deleted.",
+        "download": "Download PDF",
+        "merged_one": "{{count}} layer merged into the content.",
+        "merged_other": "{{count}} layers merged into the content."
+      },
+      "errors": {
+        "open": "Unable to open this PDF (corrupted or password-protected file).",
+        "create": "Creating the layer failed.",
+        "export": "Export failed: the document structure could not be rewritten."
+      },
+      "historyMessage": "Layers updated — {{name}} ({{count}} layer(s), {{purged}} purged)"
+    },
     "merge": {
       "name": "Merge PDF",
       "description": "Combine several files into a single PDF",

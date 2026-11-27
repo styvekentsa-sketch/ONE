@@ -887,6 +887,86 @@
       },
       "historyMessage": "Linealización Fast Web View — {{count}} archivo(s): {{names}}"
     },
+    "pdf-layers": {
+      "name": "Gestión de capas (OCG)",
+      "description": "Inspeccione, muestre, oculte, bloquee, renombre o fusione las capas internas (Optional Content Groups) de sus planos y PDF técnicos en local",
+      "subtitle": "Capas de planos y PDF técnicos: vista previa, edición y purga, en local",
+      "dropHint": "Suelte un PDF con capas (plano, CAD, documento multilingüe…)",
+      "loading": "Leyendo las capas…",
+      "encrypted": "Documento protegido: la vista previa funciona, pero para exportar hay que desbloquearlo primero.",
+      "unlockLink": "Desbloquear el PDF",
+      "empty": {
+        "title": "Este documento PDF no contiene ninguna capa OCG integrada",
+        "text": "Puede colocar todo su contenido en una capa nueva (ocultable en cualquier visor) o añadir elementos con la herramienta Anotar.",
+        "create": "Crear una capa a partir del contenido",
+        "annotate": "Abrir la herramienta Anotar",
+        "defaultLayerName": "Contenido original"
+      },
+      "panel": {
+        "title_one": "{{count}} capa",
+        "title_other": "{{count}} capas",
+        "changeFile": "Cambiar de archivo",
+        "hint": "El ojo solo afecta a la vista previa; «Al abrir» define el estado guardado en el archivo."
+      },
+      "actions": {
+        "showAll": "Mostrar todo",
+        "hideAll": "Ocultar todo",
+        "previewAsDefault": "Vista previa → estado por defecto"
+      },
+      "row": {
+        "showPreview": "Mostrar en la vista previa",
+        "hidePreview": "Ocultar en la vista previa",
+        "rename": "Renombrar",
+        "confirm": "Confirmar",
+        "isolate": "Aislar esta capa",
+        "lock": "Bloquear",
+        "unlock": "Desbloquear",
+        "defaultState": "Al abrir:",
+        "merge": "Fusionar con el contenido",
+        "unmerge": "Anular la fusión"
+      },
+      "state": {
+        "visible": "Visible",
+        "hidden": "Oculta",
+        "locked": "Bloqueada",
+        "merged": "Se fusionará con el contenido al exportar (siempre visible, ya no será una capa)."
+      },
+      "preview": {
+        "prev": "Página anterior",
+        "next": "Página siguiente",
+        "page": "Página {{page}} / {{total}}",
+        "zoom": "Nivel de zoom",
+        "zoomIn": "Acercar",
+        "zoomOut": "Alejar"
+      },
+      "purge": {
+        "label": "Eliminar definitivamente las capas ocultas al exportar",
+        "list": "Capas afectadas (estado «Oculta» al abrir): {{names}}.",
+        "none": "Ninguna capa está oculta al abrir: no se eliminará nada.",
+        "warning": "Su contenido (textos, imágenes, anotaciones) se borrará del archivo de forma irreversible."
+      },
+      "export": {
+        "button": "Exportar el PDF",
+        "noChanges": "Modifique una capa o active la purga para exportar.",
+        "working": "Actualizando la estructura de capas…",
+        "done": "PDF actualizado",
+        "dismiss": "Cerrar",
+        "originalSize": "Tamaño original",
+        "finalSize": "Tamaño final",
+        "summary": "{{remaining}} capa(s) en el archivo exportado.",
+        "purged_one": "{{count}} capa oculta eliminada definitivamente.",
+        "purged_other": "{{count}} capas ocultas eliminadas definitivamente.",
+        "download": "Descargar el PDF",
+        "merged_one": "{{count}} capa fusionada con el contenido.",
+        "merged_other": "{{count}} capas fusionadas con el contenido."
+      },
+      "errors": {
+        "open": "No se puede abrir este PDF (archivo dañado o protegido con contraseña).",
+        "create": "La creación de la capa ha fallado.",
+        "export": "La exportación ha fallado: no se pudo reescribir la estructura del documento."
+      },
+      "historyMessage": "Capas actualizadas — {{name}} ({{count}} capa(s), {{purged}} purgada(s))"
+    },
     "merge": {
       "name": "Combinar PDF",
       "description": "Combina varios archivos en un solo PDF",

@@ -887,6 +887,86 @@
       },
       "historyMessage": "Linéarisation Fast Web View — {{count}} fichier(s) : {{names}}"
     },
+    "pdf-layers": {
+      "name": "Gestion des calques (OCG)",
+      "description": "Inspectez, affichez, masquez, verrouillez, renommez ou fusionnez les calques internes (Optional Content Groups) de vos plans et PDF techniques en local",
+      "subtitle": "Calques de plans et PDF techniques : aperçu, édition et purge, en local",
+      "dropHint": "Déposez un PDF à calques (plan, CAO, document multilingue…)",
+      "loading": "Lecture des calques…",
+      "encrypted": "Document protégé : l’aperçu fonctionne, mais l’export nécessite de le déverrouiller d’abord.",
+      "unlockLink": "Déverrouiller le PDF",
+      "empty": {
+        "title": "Ce document PDF ne contient aucun calque OCG intégré",
+        "text": "Vous pouvez placer tout son contenu dans un nouveau calque (masquable dans n’importe quel lecteur), ou ajouter des éléments avec l’outil Annoter.",
+        "create": "Créer un calque à partir du contenu",
+        "annotate": "Ouvrir l’outil Annoter",
+        "defaultLayerName": "Contenu d’origine"
+      },
+      "panel": {
+        "title_one": "{{count}} calque",
+        "title_other": "{{count}} calques",
+        "changeFile": "Changer de fichier",
+        "hint": "L’œil agit sur l’aperçu uniquement ; « À l’ouverture » définit l’état enregistré dans le fichier."
+      },
+      "actions": {
+        "showAll": "Tout afficher",
+        "hideAll": "Tout masquer",
+        "previewAsDefault": "Aperçu → état par défaut"
+      },
+      "row": {
+        "showPreview": "Afficher dans l’aperçu",
+        "hidePreview": "Masquer dans l’aperçu",
+        "rename": "Renommer",
+        "confirm": "Valider",
+        "isolate": "Isoler ce calque",
+        "lock": "Verrouiller",
+        "unlock": "Déverrouiller",
+        "defaultState": "À l’ouverture :",
+        "merge": "Fusionner dans le contenu",
+        "unmerge": "Annuler la fusion"
+      },
+      "state": {
+        "visible": "Visible",
+        "hidden": "Masqué",
+        "locked": "Verrouillé",
+        "merged": "Sera fusionné dans le contenu à l’export (toujours visible, plus de calque)."
+      },
+      "preview": {
+        "prev": "Page précédente",
+        "next": "Page suivante",
+        "page": "Page {{page}} / {{total}}",
+        "zoom": "Niveau de zoom",
+        "zoomIn": "Zoom avant",
+        "zoomOut": "Zoom arrière"
+      },
+      "purge": {
+        "label": "Supprimer définitivement les calques masqués lors de l’export",
+        "list": "Calques concernés (état « Masqué » à l’ouverture) : {{names}}.",
+        "none": "Aucun calque n’est masqué à l’ouverture : rien ne sera supprimé.",
+        "warning": "Leur contenu (textes, images, annotations) sera effacé du fichier, de manière irréversible."
+      },
+      "export": {
+        "button": "Exporter le PDF",
+        "noChanges": "Modifiez un calque ou activez la purge pour exporter.",
+        "working": "Mise à jour de la structure des calques…",
+        "done": "PDF mis à jour",
+        "dismiss": "Fermer",
+        "originalSize": "Taille originale",
+        "finalSize": "Taille finale",
+        "summary": "{{remaining}} calque(s) dans le fichier exporté.",
+        "purged_one": "{{count}} calque masqué supprimé définitivement.",
+        "purged_other": "{{count}} calques masqués supprimés définitivement.",
+        "download": "Télécharger le PDF",
+        "merged_one": "{{count}} calque fusionné dans le contenu.",
+        "merged_other": "{{count}} calques fusionnés dans le contenu."
+      },
+      "errors": {
+        "open": "Impossible d’ouvrir ce PDF (fichier corrompu ou protégé par mot de passe).",
+        "create": "La création du calque a échoué.",
+        "export": "L’export a échoué : la structure du document n’a pas pu être réécrite."
+      },
+      "historyMessage": "Calques mis à jour — {{name}} ({{count}} calque(s), {{purged}} purgé(s))"
+    },
     "merge": {
       "name": "Fusionner PDF",
       "description": "Combinez plusieurs fichiers en un seul PDF",

@@ -124,6 +124,14 @@ const toolDefinitions = [
     customRoute: '/tool/linearize-pdf',
   },
   {
+    id: 'pdf-layers',
+    name: 'Gestion des calques (OCG)',
+    description: 'Inspectez, affichez, masquez, verrouillez, renommez ou fusionnez les calques internes (Optional Content Groups) de vos plans et PDF techniques en local',
+    icon: Layers,
+    category: ADVANCED_CATEGORY,
+    customRoute: '/tool/pdf-layers',
+  },
+  {
     id: 'merge',
     name: 'Fusionner PDF',
     description: 'Combinez plusieurs fichiers en un seul PDF',

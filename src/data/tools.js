@@ -80,6 +80,14 @@ const toolDefinitions = [
     customRoute: '/tool/flatten-pdf',
   },
   {
+    id: 'annotate',
+    name: 'Annoter',
+    description: 'Ajoutez des formes, flèches, zones de texte, tampons, surlignages et signatures précises sur vos PDF en local',
+    icon: PenTool,
+    category: ADVANCED_CATEGORY,
+    customRoute: '/tool/annotate-pdf',
+  },
+  {
     id: 'merge',
     name: 'Fusionner PDF',
     description: 'Combinez plusieurs fichiers en un seul PDF',

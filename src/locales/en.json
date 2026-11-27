@@ -288,6 +288,114 @@
       "errorGeneric": "Flattening failed. Try full flattening.",
       "historyMessage": "PDF flattened — {{name}} ({{mode}})"
     },
+    "annotate": {
+      "name": "Annotate",
+      "description": "Add shapes, arrows, text boxes, stamps, highlights and precise signatures to your PDFs locally",
+      "subtitle": "Vector annotation studio, 100% in your browser",
+      "dropHint": "Drop the PDF to annotate",
+      "loading": "Opening document…",
+      "loadingDescription": "Preparing pages, locally.",
+      "errorOpen": "Unable to open this PDF (corrupted or password-protected file).",
+      "defaultText": "Text",
+      "confirmClose": "Unexported annotations will be lost. Close the document?",
+      "annotationCount_one": "{{count}} annotation",
+      "annotationCount_other": "{{count}} annotations",
+      "historyMessage": "PDF annotated — {{name}} ({{count}} annotations)",
+      "tools": {
+        "select": "Select and move",
+        "text": "Free text",
+        "highlight": "Highlighter",
+        "pen": "Pen",
+        "rect": "Rectangle",
+        "ellipse": "Ellipse",
+        "line": "Line",
+        "arrow": "Arrow",
+        "stamp": "Stamp",
+        "signature": "Signature"
+      },
+      "types": {
+        "text": "Text",
+        "highlight": "Highlight",
+        "pen": "Drawing",
+        "rect": "Rectangle",
+        "ellipse": "Ellipse",
+        "line": "Line",
+        "arrow": "Arrow",
+        "stamp": "Stamp",
+        "signature": "Signature"
+      },
+      "toolbar": {
+        "pages": "Pages",
+        "undo": "Undo (Ctrl+Z)",
+        "redo": "Redo (Ctrl+Y)",
+        "zoomIn": "Zoom in",
+        "zoomOut": "Zoom out",
+        "zoom": "Zoom level",
+        "export": "Export PDF",
+        "close": "Close document",
+        "duplicate": "Duplicate (Ctrl+D)",
+        "delete": "Delete (Del)"
+      },
+      "props": {
+        "stroke": "Stroke",
+        "width": "Thickness",
+        "fill": "Fill",
+        "none": "None",
+        "color": "Colour",
+        "opacity": "Opacity",
+        "content": "Text content",
+        "font": "Font",
+        "size": "Size",
+        "background": "Background",
+        "transparent": "Transparent",
+        "withDate": "Automatic date",
+        "highlightMode": {
+          "free": "Freehand",
+          "rect": "Straight"
+        }
+      },
+      "hints": {
+        "select": "Click an annotation to select, move or resize it.",
+        "stamp": "Click the page to place the stamp.",
+        "signature": "Click the page to place your signature."
+      },
+      "stamps": {
+        "approved": "APPROVED",
+        "confidential": "CONFIDENTIAL",
+        "draft": "DRAFT",
+        "urgent": "URGENT",
+        "signed": "SIGNED"
+      },
+      "colors": {
+        "yellow": "Yellow",
+        "emerald": "Emerald green",
+        "cyan": "Cyan",
+        "pink": "Pink",
+        "orange": "Orange",
+        "black": "Black",
+        "red": "Red",
+        "blue": "Blue",
+        "white": "White"
+      },
+      "signature": {
+        "title": "Your signature",
+        "subtitle": "Draw it once, then place it on any page.",
+        "clear": "Clear",
+        "save": "Use this signature",
+        "draw": "Draw my signature",
+        "redraw": "Redraw"
+      },
+      "export": {
+        "title": "Export annotated PDF",
+        "working": "Merging annotations into the document…",
+        "error": "Export failed. Please try again.",
+        "annotations": "Annotations",
+        "pages": "Annotated pages",
+        "finalSize": "Final size",
+        "originalSize": "Original size: {{size}}",
+        "download": "Download annotated PDF"
+      }
+    },
     "merge": {
       "name": "Merge PDF",
       "description": "Combine several files into a single PDF",

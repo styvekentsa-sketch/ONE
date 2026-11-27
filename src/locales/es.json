@@ -288,6 +288,114 @@
       "errorGeneric": "El aplanado ha fallado. Pruebe el aplanado completo.",
       "historyMessage": "PDF aplanado — {{name}} ({{mode}})"
     },
+    "annotate": {
+      "name": "Anotar",
+      "description": "Añada formas, flechas, cuadros de texto, sellos, resaltados y firmas precisas a sus PDF en local",
+      "subtitle": "Estudio de anotación vectorial, 100 % en su navegador",
+      "dropHint": "Suelte el PDF que desea anotar",
+      "loading": "Abriendo el documento…",
+      "loadingDescription": "Preparando las páginas, en local.",
+      "errorOpen": "No se puede abrir este PDF (archivo dañado o protegido con contraseña).",
+      "defaultText": "Texto",
+      "confirmClose": "Las anotaciones no exportadas se perderán. ¿Cerrar el documento?",
+      "annotationCount_one": "{{count}} anotación",
+      "annotationCount_other": "{{count}} anotaciones",
+      "historyMessage": "PDF anotado — {{name}} ({{count}} anotaciones)",
+      "tools": {
+        "select": "Seleccionar y mover",
+        "text": "Texto libre",
+        "highlight": "Resaltador",
+        "pen": "Lápiz",
+        "rect": "Rectángulo",
+        "ellipse": "Elipse",
+        "line": "Línea",
+        "arrow": "Flecha",
+        "stamp": "Sello",
+        "signature": "Firma"
+      },
+      "types": {
+        "text": "Texto",
+        "highlight": "Resaltado",
+        "pen": "Dibujo",
+        "rect": "Rectángulo",
+        "ellipse": "Elipse",
+        "line": "Línea",
+        "arrow": "Flecha",
+        "stamp": "Sello",
+        "signature": "Firma"
+      },
+      "toolbar": {
+        "pages": "Páginas",
+        "undo": "Deshacer (Ctrl+Z)",
+        "redo": "Rehacer (Ctrl+Y)",
+        "zoomIn": "Acercar",
+        "zoomOut": "Alejar",
+        "zoom": "Nivel de zoom",
+        "export": "Exportar PDF",
+        "close": "Cerrar documento",
+        "duplicate": "Duplicar (Ctrl+D)",
+        "delete": "Eliminar (Supr)"
+      },
+      "props": {
+        "stroke": "Contorno",
+        "width": "Grosor",
+        "fill": "Relleno",
+        "none": "Ninguno",
+        "color": "Color",
+        "opacity": "Opacidad",
+        "content": "Contenido del texto",
+        "font": "Fuente",
+        "size": "Tamaño",
+        "background": "Fondo",
+        "transparent": "Transparente",
+        "withDate": "Fecha automática",
+        "highlightMode": {
+          "free": "Libre",
+          "rect": "Rectilíneo"
+        }
+      },
+      "hints": {
+        "select": "Haga clic en una anotación para seleccionarla, moverla o redimensionarla.",
+        "stamp": "Haga clic en la página para colocar el sello.",
+        "signature": "Haga clic en la página para colocar su firma."
+      },
+      "stamps": {
+        "approved": "APROBADO",
+        "confidential": "CONFIDENCIAL",
+        "draft": "BORRADOR",
+        "urgent": "URGENTE",
+        "signed": "FIRMADO"
+      },
+      "colors": {
+        "yellow": "Amarillo",
+        "emerald": "Verde esmeralda",
+        "cyan": "Cian",
+        "pink": "Rosa",
+        "orange": "Naranja",
+        "black": "Negro",
+        "red": "Rojo",
+        "blue": "Azul",
+        "white": "Blanco"
+      },
+      "signature": {
+        "title": "Su firma",
+        "subtitle": "Dibújela una vez y colóquela en cualquier página.",
+        "clear": "Borrar",
+        "save": "Usar esta firma",
+        "draw": "Dibujar mi firma",
+        "redraw": "Volver a dibujar"
+      },
+      "export": {
+        "title": "Exportar PDF anotado",
+        "working": "Fusionando las anotaciones en el documento…",
+        "error": "La exportación ha fallado. Inténtelo de nuevo.",
+        "annotations": "Anotaciones",
+        "pages": "Páginas anotadas",
+        "finalSize": "Tamaño final",
+        "originalSize": "Tamaño original: {{size}}",
+        "download": "Descargar PDF anotado"
+      }
+    },
     "merge": {
       "name": "Combinar PDF",
       "description": "Combina varios archivos en un solo PDF",

@@ -288,6 +288,114 @@
       "errorGeneric": "L’aplatissement a échoué. Essayez l’aplatissement intégral.",
       "historyMessage": "PDF aplati — {{name}} ({{mode}})"
     },
+    "annotate": {
+      "name": "Annoter",
+      "description": "Ajoutez des formes, flèches, zones de texte, tampons, surlignages et signatures précises sur vos PDF en local",
+      "subtitle": "Studio d’annotation vectoriel, 100 % dans votre navigateur",
+      "dropHint": "Déposez le PDF à annoter",
+      "loading": "Ouverture du document…",
+      "loadingDescription": "Préparation des pages, en local.",
+      "errorOpen": "Impossible d’ouvrir ce PDF (fichier corrompu ou protégé par mot de passe).",
+      "defaultText": "Texte",
+      "confirmClose": "Les annotations non exportées seront perdues. Fermer le document ?",
+      "annotationCount_one": "{{count}} annotation",
+      "annotationCount_other": "{{count}} annotations",
+      "historyMessage": "PDF annoté — {{name}} ({{count}} annotations)",
+      "tools": {
+        "select": "Sélection et déplacement",
+        "text": "Texte libre",
+        "highlight": "Surligneur",
+        "pen": "Stylo",
+        "rect": "Rectangle",
+        "ellipse": "Ellipse",
+        "line": "Ligne",
+        "arrow": "Flèche",
+        "stamp": "Tampon",
+        "signature": "Signature"
+      },
+      "types": {
+        "text": "Texte",
+        "highlight": "Surlignage",
+        "pen": "Dessin",
+        "rect": "Rectangle",
+        "ellipse": "Ellipse",
+        "line": "Ligne",
+        "arrow": "Flèche",
+        "stamp": "Tampon",
+        "signature": "Signature"
+      },
+      "toolbar": {
+        "pages": "Pages",
+        "undo": "Annuler (Ctrl+Z)",
+        "redo": "Rétablir (Ctrl+Y)",
+        "zoomIn": "Zoom avant",
+        "zoomOut": "Zoom arrière",
+        "zoom": "Niveau de zoom",
+        "export": "Exporter le PDF",
+        "close": "Fermer le document",
+        "duplicate": "Dupliquer (Ctrl+D)",
+        "delete": "Supprimer (Suppr)"
+      },
+      "props": {
+        "stroke": "Contour",
+        "width": "Épaisseur",
+        "fill": "Remplissage",
+        "none": "Aucun",
+        "color": "Couleur",
+        "opacity": "Opacité",
+        "content": "Contenu du texte",
+        "font": "Police",
+        "size": "Taille",
+        "background": "Fond",
+        "transparent": "Transparent",
+        "withDate": "Date automatique",
+        "highlightMode": {
+          "free": "Libre",
+          "rect": "Rectiligne"
+        }
+      },
+      "hints": {
+        "select": "Cliquez sur une annotation pour la sélectionner, la déplacer ou la redimensionner.",
+        "stamp": "Cliquez sur la page pour placer le tampon.",
+        "signature": "Cliquez sur la page pour apposer votre signature."
+      },
+      "stamps": {
+        "approved": "APPROUVÉ",
+        "confidential": "CONFIDENTIEL",
+        "draft": "BROUILLON",
+        "urgent": "URGENT",
+        "signed": "SIGNÉ"
+      },
+      "colors": {
+        "yellow": "Jaune",
+        "emerald": "Vert émeraude",
+        "cyan": "Cyan",
+        "pink": "Rose",
+        "orange": "Orange",
+        "black": "Noir",
+        "red": "Rouge",
+        "blue": "Bleu",
+        "white": "Blanc"
+      },
+      "signature": {
+        "title": "Votre signature",
+        "subtitle": "Dessinez-la une fois, puis apposez-la sur n’importe quelle page.",
+        "clear": "Effacer",
+        "save": "Utiliser cette signature",
+        "draw": "Dessiner ma signature",
+        "redraw": "Redessiner"
+      },
+      "export": {
+        "title": "Exporter le PDF annoté",
+        "working": "Fusion des annotations dans le document…",
+        "error": "L’export a échoué. Réessayez.",
+        "annotations": "Annotations",
+        "pages": "Pages annotées",
+        "finalSize": "Taille finale",
+        "originalSize": "Taille originale : {{size}}",
+        "download": "Télécharger le PDF annoté"
+      }
+    },
     "merge": {
       "name": "Fusionner PDF",
       "description": "Combinez plusieurs fichiers en un seul PDF",

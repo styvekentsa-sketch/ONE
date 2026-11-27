@@ -1,4 +1,5 @@
 import {
+  BookOpen,
   Combine,
   Scissors,
   Minimize2,
@@ -50,6 +51,15 @@ import {
 // Le style visuel (icône neutre + accent) est géré une seule fois par les
 // composants (ToolCard, SuggestionResults...), pas ici.
 const toolDefinitions = [
+  // Outil prioritaire : premier de la liste PDF (carte affichée en tête du hub).
+  {
+    id: 'pdf-reader',
+    name: 'Lecteur PDF Avancé',
+    description: 'Lisez, annotez, recherchez et inspectez vos documents PDF en local avec confort',
+    icon: BookOpen,
+    category: 'Éditer',
+    customRoute: '/tool/pdf-reader',
+  },
   {
     id: 'merge',
     name: 'Fusionner PDF',

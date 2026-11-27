@@ -1,0 +1,83 @@
+/*
+ * Couche de texte du Lecteur PDF Avancé : reprise minimale des règles de
+ * pdf_viewer.css (pdfjs-dist) nécessaires à TextLayer, limitée à
+ * `.one-text-layer` pour ne pas importer toute la feuille du viewer
+ * officiel (et ses effets de bord globaux).
+ */
+.one-pdf-page {
+  --scale-round-x: 1px;
+  --scale-round-y: 1px;
+}
+
+.one-text-layer {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  opacity: 1;
+  line-height: 1;
+  text-align: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+  caret-color: CanvasText;
+  z-index: 0;
+
+  --min-font-size: 1;
+  --text-scale-factor: calc(var(--total-scale-factor) * var(--min-font-size));
+  --min-font-size-inv: calc(1 / var(--min-font-size));
+}
+
+.one-text-layer :is(span, br) {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+  user-select: text;
+}
+
+.one-text-layer > :not(.markedContent),
+.one-text-layer .markedContent span:not(.markedContent) {
+  z-index: 1;
+  --font-height: 0;
+  font-size: calc(var(--text-scale-factor) * var(--font-height));
+  --scale-x: 1;
+  --rotate: 0deg;
+  transform: rotate(var(--rotate)) scaleX(var(--scale-x)) scale(var(--min-font-size-inv));
+}
+
+.one-text-layer .markedContent {
+  display: contents;
+}
+
+.one-text-layer span[role='img'] {
+  user-select: none;
+  cursor: default;
+}
+
+.one-text-layer ::selection {
+  background: rgb(16 185 129 / 0.3);
+  color: transparent;
+}
+
+.one-text-layer br::selection {
+  background: transparent;
+}
+
+.one-text-layer[data-main-rotation='90'] {
+  transform: rotate(90deg) translateY(-100%);
+}
+.one-text-layer[data-main-rotation='180'] {
+  transform: rotate(180deg) translate(-100%, -100%);
+}
+.one-text-layer[data-main-rotation='270'] {
+  transform: rotate(270deg) translateX(-100%);
+}
+
+/* Mode lecture nuit : seul le rendu de la page est inversé (les
+   annotations et surlignages gardent leurs vraies couleurs). */
+.one-night-canvas {
+  filter: invert(0.9) hue-rotate(180deg);
+}

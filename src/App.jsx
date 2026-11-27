@@ -32,6 +32,7 @@ const OcrPdfPage = lazy(() => import('./pages/tools/OcrPdfPage'))
 const PdfReaderTool = lazy(() => import('./pages/tools/PdfReaderTool'))
 const FlattenTool = lazy(() => import('./pages/tools/FlattenTool'))
 const AnnotatePdfTool = lazy(() => import('./pages/tools/AnnotatePdfTool'))
+const PdfFormsTool = lazy(() => import('./pages/tools/PdfFormsTool'))
 const ToolsPage = lazy(() => import('./pages/ToolsPage'))
 const MediaHubPage = lazy(() => import('./pages/MediaHubPage'))
 const ImageHubPage = lazy(() => import('./pages/ImageHubPage'))
@@ -88,6 +89,7 @@ function App() {
             <Route path="/tool/pdf-reader" element={<PdfReaderTool />} />
             <Route path="/tool/flatten-pdf" element={<FlattenTool />} />
             <Route path="/tool/annotate-pdf" element={<AnnotatePdfTool />} />
+            <Route path="/tool/pdf-forms" element={<PdfFormsTool />} />
             <Route path="/tool/image-basic" element={<ImageHubPage />} />
             <Route path="/tool/audio-basic" element={<AudioHubPage />} />
             <Route path="/tool/video-basic" element={<VideoHubPage />} />

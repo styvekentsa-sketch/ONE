@@ -396,6 +396,118 @@
         "download": "Télécharger le PDF annoté"
       }
     },
+    "pdf-forms": {
+      "name": "Gérer les formulaires",
+      "description": "Créez, remplissez, modifiez les champs interactifs, extrayez les données ou réinitialisez vos formulaires PDF en local",
+      "subtitle": "Remplissage, création de champs et import/export des données, en local",
+      "dropHint": "Déposez un PDF (formulaire existant ou document vierge)",
+      "loading": "Analyse du formulaire…",
+      "loadingDescription": "Détection des champs interactifs, en local.",
+      "errorOpen": "Impossible d’ouvrir ce PDF (fichier corrompu ou protégé par mot de passe).",
+      "detected_one": "{{count}} champ détecté",
+      "detected_other": "{{count}} champs détectés",
+      "xfaWarning": "Ce document utilise un formulaire XFA (format propriétaire non standard). Seule sa partie AcroForm est gérée ici ; les données XFA dynamiques peuvent ne pas s’afficher.",
+      "builderHint": "Aucun champ dans ce document : choisissez un type de champ dans la barre d’outils, puis cliquez ou glissez sur la page pour le placer.",
+      "modeLabel": "Mode",
+      "modes": {
+        "fill": "Remplir",
+        "build": "Créer et modifier"
+      },
+      "builderTools": {
+        "select": "Sélectionner et déplacer",
+        "text": "Ajouter un champ texte",
+        "checkbox": "Ajouter une case à cocher",
+        "radio": "Ajouter un groupe de boutons radio",
+        "dropdown": "Ajouter une liste déroulante"
+      },
+      "types": {
+        "text": "Texte",
+        "checkbox": "Case à cocher",
+        "radio": "Boutons radio",
+        "dropdown": "Liste déroulante",
+        "optionlist": "Liste à choix",
+        "other": "Bouton / signature"
+      },
+      "defaults": {
+        "text": "texte",
+        "checkbox": "case",
+        "radio": "choix",
+        "dropdown": "liste"
+      },
+      "zoom": "Niveau de zoom",
+      "zoomIn": "Zoom avant",
+      "zoomOut": "Zoom arrière",
+      "actions": {
+        "clear": "Tout réinitialiser",
+        "exportData": "Exporter les données",
+        "importData": "Importer des données (.json)",
+        "export_json": "Exporter en JSON (.json)",
+        "export_csv": "Exporter en CSV (.csv)",
+        "download": "Télécharger le PDF",
+        "close": "Fermer le document"
+      },
+      "tabs": {
+        "preview": "Aperçu",
+        "fields_one": "Champs ({{count}})",
+        "fields_other": "Champs ({{count}})"
+      },
+      "panel": {
+        "fillTitle": "Champs du formulaire",
+        "buildTitle": "Inspecteur",
+        "filled": "{{filled}} / {{total}} remplis"
+      },
+      "noFields": "Aucun champ pour l’instant. Passez en mode « Créer et modifier » pour en ajouter.",
+      "pageLabel": "Page {{n}}",
+      "noPage": "Sans position",
+      "locate": "Voir sur la page",
+      "required": "Obligatoire",
+      "readOnly": "Lecture seule",
+      "checked": "Coché",
+      "unchecked": "Non coché",
+      "clearChoice": "Effacer le choix",
+      "noSelection": "— Aucune sélection —",
+      "notEditable": "Ce type de champ ne se remplit pas ici.",
+      "inspector": {
+        "hint": "Sélectionnez un champ sur la page ou dans la liste pour modifier ses propriétés.",
+        "backToList": "Liste des champs",
+        "name": "Nom du champ",
+        "nameEmpty": "Le nom ne peut pas être vide.",
+        "nameTaken": "Ce nom est déjà utilisé par un autre champ.",
+        "defaultValue": "Valeur",
+        "options": "Options (une par ligne)",
+        "optionsHint": "Les lignes vides sont ignorées.",
+        "radioOptions": "Boutons du groupe",
+        "addOption": "Ajouter un bouton",
+        "removeOption": "Retirer ce bouton",
+        "fontSize": "Taille de police",
+        "auto": "Automatique",
+        "multiline": "Texte multiligne",
+        "delete": "Supprimer le champ"
+      },
+      "flattenOnExport": "Figer les champs (aplatir) lors du téléchargement",
+      "flattenHint": "Le formulaire rempli devient non modifiable : les valeurs sont intégrées au contenu des pages.",
+      "confirmClear": "Vider toutes les valeurs saisies dans le formulaire ?",
+      "confirmClose": "Les modifications non téléchargées seront perdues. Fermer le document ?",
+      "notices": {
+        "cleared": "Toutes les valeurs ont été réinitialisées.",
+        "imported": "{{applied}} champ(s) rempli(s) depuis le fichier, {{ignored}} clé(s) ignorée(s).",
+        "importError": "Fichier JSON invalide : un objet { \"nom_du_champ\": valeur } est attendu."
+      },
+      "export": {
+        "title": "Télécharger le PDF",
+        "fields": "Champs",
+        "filled": "Remplis",
+        "originalSize": "Taille originale",
+        "generate": "Générer le PDF",
+        "working": "Mise à jour du formulaire…",
+        "error": "La génération a échoué. Réessayez.",
+        "errorFlatten": "L’aplatissement a échoué : une valeur contient probablement un caractère non pris en charge par la police standard. Décochez l’option ou modifiez la valeur.",
+        "sizes": "Taille originale : {{original}} — Taille finale : {{final}}",
+        "flattened": "Champs figés : le formulaire n’est plus modifiable.",
+        "download": "Télécharger le fichier"
+      },
+      "historyMessage": "Formulaire PDF mis à jour — {{name}} ({{count}} champs)"
+    },
     "merge": {
       "name": "Fusionner PDF",
       "description": "Combinez plusieurs fichiers en un seul PDF",

@@ -396,6 +396,118 @@
         "download": "Download annotated PDF"
       }
     },
+    "pdf-forms": {
+      "name": "Manage Forms",
+      "description": "Create, fill and edit interactive fields, extract data or reset your PDF forms locally",
+      "subtitle": "Filling, field creation and data import/export, locally",
+      "dropHint": "Drop a PDF (existing form or blank document)",
+      "loading": "Analysing form…",
+      "loadingDescription": "Detecting interactive fields, locally.",
+      "errorOpen": "Unable to open this PDF (corrupted or password-protected file).",
+      "detected_one": "{{count}} field detected",
+      "detected_other": "{{count}} fields detected",
+      "xfaWarning": "This document uses an XFA form (non-standard proprietary format). Only its AcroForm part is handled here; dynamic XFA data may not be displayed.",
+      "builderHint": "No fields in this document: pick a field type in the toolbar, then click or drag on the page to place it.",
+      "modeLabel": "Mode",
+      "modes": {
+        "fill": "Fill",
+        "build": "Create & edit"
+      },
+      "builderTools": {
+        "select": "Select and move",
+        "text": "Add a text field",
+        "checkbox": "Add a checkbox",
+        "radio": "Add a radio button group",
+        "dropdown": "Add a dropdown"
+      },
+      "types": {
+        "text": "Text",
+        "checkbox": "Checkbox",
+        "radio": "Radio buttons",
+        "dropdown": "Dropdown",
+        "optionlist": "Option list",
+        "other": "Button / signature"
+      },
+      "defaults": {
+        "text": "text",
+        "checkbox": "checkbox",
+        "radio": "choice",
+        "dropdown": "list"
+      },
+      "zoom": "Zoom level",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "actions": {
+        "clear": "Reset all",
+        "exportData": "Export data",
+        "importData": "Import data (.json)",
+        "export_json": "Export as JSON (.json)",
+        "export_csv": "Export as CSV (.csv)",
+        "download": "Download PDF",
+        "close": "Close document"
+      },
+      "tabs": {
+        "preview": "Preview",
+        "fields_one": "Fields ({{count}})",
+        "fields_other": "Fields ({{count}})"
+      },
+      "panel": {
+        "fillTitle": "Form fields",
+        "buildTitle": "Inspector",
+        "filled": "{{filled}} / {{total}} filled"
+      },
+      "noFields": "No fields yet. Switch to “Create & edit” mode to add some.",
+      "pageLabel": "Page {{n}}",
+      "noPage": "No position",
+      "locate": "Show on page",
+      "required": "Required",
+      "readOnly": "Read-only",
+      "checked": "Checked",
+      "unchecked": "Unchecked",
+      "clearChoice": "Clear choice",
+      "noSelection": "— No selection —",
+      "notEditable": "This field type cannot be filled here.",
+      "inspector": {
+        "hint": "Select a field on the page or in the list to edit its properties.",
+        "backToList": "Field list",
+        "name": "Field name",
+        "nameEmpty": "The name cannot be empty.",
+        "nameTaken": "This name is already used by another field.",
+        "defaultValue": "Value",
+        "options": "Options (one per line)",
+        "optionsHint": "Empty lines are ignored.",
+        "radioOptions": "Group buttons",
+        "addOption": "Add a button",
+        "removeOption": "Remove this button",
+        "fontSize": "Font size",
+        "auto": "Automatic",
+        "multiline": "Multiline text",
+        "delete": "Delete field"
+      },
+      "flattenOnExport": "Lock fields (flatten) on download",
+      "flattenHint": "The filled form becomes non-editable: values are merged into the page content.",
+      "confirmClear": "Clear all values entered in the form?",
+      "confirmClose": "Changes not downloaded will be lost. Close the document?",
+      "notices": {
+        "cleared": "All values have been reset.",
+        "imported": "{{applied}} field(s) filled from the file, {{ignored}} key(s) ignored.",
+        "importError": "Invalid JSON file: an object { \"field_name\": value } is expected."
+      },
+      "export": {
+        "title": "Download PDF",
+        "fields": "Fields",
+        "filled": "Filled",
+        "originalSize": "Original size",
+        "generate": "Generate PDF",
+        "working": "Updating form…",
+        "error": "Generation failed. Please try again.",
+        "errorFlatten": "Flattening failed: a value probably contains a character the standard font does not support. Untick the option or edit the value.",
+        "sizes": "Original size: {{original}} — Final size: {{final}}",
+        "flattened": "Fields locked: the form can no longer be edited.",
+        "download": "Download file"
+      },
+      "historyMessage": "PDF form updated — {{name}} ({{count}} fields)"
+    },
     "merge": {
       "name": "Merge PDF",
       "description": "Combine several files into a single PDF",

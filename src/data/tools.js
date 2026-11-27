@@ -1,6 +1,7 @@
 import {
   BookOpen,
   Cpu,
+  FormInput,
   Combine,
   Scissors,
   Minimize2,
@@ -86,6 +87,14 @@ const toolDefinitions = [
     icon: PenTool,
     category: ADVANCED_CATEGORY,
     customRoute: '/tool/annotate-pdf',
+  },
+  {
+    id: 'pdf-forms',
+    name: 'Gérer les formulaires',
+    description: 'Créez, remplissez, modifiez les champs interactifs, extrayez les données ou réinitialisez vos formulaires PDF en local',
+    icon: FormInput,
+    category: ADVANCED_CATEGORY,
+    customRoute: '/tool/pdf-forms',
   },
   {
     id: 'merge',

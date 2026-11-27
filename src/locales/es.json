@@ -396,6 +396,118 @@
         "download": "Descargar PDF anotado"
       }
     },
+    "pdf-forms": {
+      "name": "Gestionar formularios",
+      "description": "Cree, rellene y modifique campos interactivos, extraiga los datos o restablezca sus formularios PDF en local",
+      "subtitle": "Relleno, creación de campos e importación/exportación de datos, en local",
+      "dropHint": "Suelte un PDF (formulario existente o documento en blanco)",
+      "loading": "Analizando el formulario…",
+      "loadingDescription": "Detección de campos interactivos, en local.",
+      "errorOpen": "No se puede abrir este PDF (archivo dañado o protegido con contraseña).",
+      "detected_one": "{{count}} campo detectado",
+      "detected_other": "{{count}} campos detectados",
+      "xfaWarning": "Este documento usa un formulario XFA (formato propietario no estándar). Aquí solo se gestiona su parte AcroForm; los datos XFA dinámicos pueden no mostrarse.",
+      "builderHint": "Este documento no tiene campos: elija un tipo de campo en la barra de herramientas y haga clic o arrastre en la página para colocarlo.",
+      "modeLabel": "Modo",
+      "modes": {
+        "fill": "Rellenar",
+        "build": "Crear y editar"
+      },
+      "builderTools": {
+        "select": "Seleccionar y mover",
+        "text": "Añadir un campo de texto",
+        "checkbox": "Añadir una casilla",
+        "radio": "Añadir un grupo de botones de opción",
+        "dropdown": "Añadir una lista desplegable"
+      },
+      "types": {
+        "text": "Texto",
+        "checkbox": "Casilla",
+        "radio": "Botones de opción",
+        "dropdown": "Lista desplegable",
+        "optionlist": "Lista de opciones",
+        "other": "Botón / firma"
+      },
+      "defaults": {
+        "text": "texto",
+        "checkbox": "casilla",
+        "radio": "opcion",
+        "dropdown": "lista"
+      },
+      "zoom": "Nivel de zoom",
+      "zoomIn": "Acercar",
+      "zoomOut": "Alejar",
+      "actions": {
+        "clear": "Restablecer todo",
+        "exportData": "Exportar los datos",
+        "importData": "Importar datos (.json)",
+        "export_json": "Exportar en JSON (.json)",
+        "export_csv": "Exportar en CSV (.csv)",
+        "download": "Descargar el PDF",
+        "close": "Cerrar documento"
+      },
+      "tabs": {
+        "preview": "Vista previa",
+        "fields_one": "Campos ({{count}})",
+        "fields_other": "Campos ({{count}})"
+      },
+      "panel": {
+        "fillTitle": "Campos del formulario",
+        "buildTitle": "Inspector",
+        "filled": "{{filled}} / {{total}} rellenados"
+      },
+      "noFields": "Aún no hay campos. Cambie al modo «Crear y editar» para añadirlos.",
+      "pageLabel": "Página {{n}}",
+      "noPage": "Sin posición",
+      "locate": "Ver en la página",
+      "required": "Obligatorio",
+      "readOnly": "Solo lectura",
+      "checked": "Marcada",
+      "unchecked": "No marcada",
+      "clearChoice": "Borrar la elección",
+      "noSelection": "— Sin selección —",
+      "notEditable": "Este tipo de campo no se rellena aquí.",
+      "inspector": {
+        "hint": "Seleccione un campo en la página o en la lista para editar sus propiedades.",
+        "backToList": "Lista de campos",
+        "name": "Nombre del campo",
+        "nameEmpty": "El nombre no puede estar vacío.",
+        "nameTaken": "Este nombre ya lo usa otro campo.",
+        "defaultValue": "Valor",
+        "options": "Opciones (una por línea)",
+        "optionsHint": "Las líneas vacías se ignoran.",
+        "radioOptions": "Botones del grupo",
+        "addOption": "Añadir un botón",
+        "removeOption": "Quitar este botón",
+        "fontSize": "Tamaño de fuente",
+        "auto": "Automático",
+        "multiline": "Texto multilínea",
+        "delete": "Eliminar el campo"
+      },
+      "flattenOnExport": "Fijar los campos (aplanar) al descargar",
+      "flattenHint": "El formulario rellenado deja de ser editable: los valores se integran en el contenido de las páginas.",
+      "confirmClear": "¿Vaciar todos los valores introducidos en el formulario?",
+      "confirmClose": "Los cambios no descargados se perderán. ¿Cerrar el documento?",
+      "notices": {
+        "cleared": "Todos los valores se han restablecido.",
+        "imported": "{{applied}} campo(s) rellenado(s) desde el archivo, {{ignored}} clave(s) ignorada(s).",
+        "importError": "Archivo JSON no válido: se espera un objeto { \"nombre_del_campo\": valor }."
+      },
+      "export": {
+        "title": "Descargar el PDF",
+        "fields": "Campos",
+        "filled": "Rellenados",
+        "originalSize": "Tamaño original",
+        "generate": "Generar el PDF",
+        "working": "Actualizando el formulario…",
+        "error": "La generación ha fallado. Inténtelo de nuevo.",
+        "errorFlatten": "El aplanado ha fallado: probablemente un valor contiene un carácter no admitido por la fuente estándar. Desmarque la opción o modifique el valor.",
+        "sizes": "Tamaño original: {{original}} — Tamaño final: {{final}}",
+        "flattened": "Campos fijados: el formulario ya no se puede editar.",
+        "download": "Descargar el archivo"
+      },
+      "historyMessage": "Formulario PDF actualizado — {{name}} ({{count}} campos)"
+    },
     "merge": {
       "name": "Combinar PDF",
       "description": "Combina varios archivos en un solo PDF",

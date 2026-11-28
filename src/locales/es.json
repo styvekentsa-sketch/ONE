@@ -2141,6 +2141,18 @@
       "step1": "Abra el menú del navegador (⋮ o ⋯).",
       "step2": "Toque «Instalar aplicación» o «Añadir a pantalla de inicio».",
       "step3": "Confirme: el icono de ONE aparece en su pantalla de inicio."
+    },
+    "apk": {
+      "button": "Descargar la aplicación",
+      "subtitle": "Descargue la aplicación Android de ONE: se instala en segundos, sin cuenta.",
+      "meta": "Android · versión {{version}} · {{size}} MB",
+      "desktopLink": "Descargar para Android (APK)",
+      "modalTitle": "Descarga iniciada",
+      "modalSubtitle": "Cuando ONE.apk se haya descargado:",
+      "step1": "Abra la notificación de descarga, o ONE.apk en «Descargas».",
+      "step2": "Si Android lo pide, permita que su navegador instale aplicaciones.",
+      "step3": "Toque «Instalar»: ONE aparece entre sus aplicaciones.",
+      "note": "La aplicación la distribuye directamente ONE, fuera de Play Store, por lo que Android muestra un aviso de origen desconocido: es normal. No pide ningún permiso especial."
     }
   }
 }

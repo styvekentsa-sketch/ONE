@@ -2141,6 +2141,18 @@
       "step1": "Open the browser menu (⋮ or ⋯).",
       "step2": "Tap “Install app” or “Add to Home screen”.",
       "step3": "Confirm: the ONE icon appears on your home screen."
+    },
+    "apk": {
+      "button": "Download the app",
+      "subtitle": "Download the ONE Android app: installs in seconds, no account needed.",
+      "meta": "Android · version {{version}} · {{size}} MB",
+      "desktopLink": "Download for Android (APK)",
+      "modalTitle": "Download started",
+      "modalSubtitle": "Once ONE.apk has downloaded:",
+      "step1": "Open the download notification, or ONE.apk in “Downloads”.",
+      "step2": "If Android asks, allow your browser to install apps.",
+      "step3": "Tap “Install”: ONE appears among your apps.",
+      "note": "The app is distributed directly by ONE, outside the Play Store, so Android shows an unknown-source warning: this is expected. It asks for no special permissions."
     }
   }
 }

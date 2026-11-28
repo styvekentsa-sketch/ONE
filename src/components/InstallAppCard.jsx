@@ -1,23 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { CheckCircle2, Download, EllipsisVertical, Maximize2, Share, Smartphone, SquarePlus, WifiOff } from 'lucide-react'
+import { CheckCircle2, Download, EllipsisVertical, FolderDown, Maximize2, Share, ShieldCheck, Smartphone, SquarePlus, WifiOff } from 'lucide-react'
 import Modal from './Modal'
-import { getInstallState, onInstallStateChange, promptInstall } from '../utils/pwaInstall'
+import { APK_URL, getApkInfo, getInstallState, isAndroid, onInstallStateChange, promptInstall } from '../utils/pwaInstall'
 
-/** Étapes manuelles : iPhone / iPad (Safari) ou autre navigateur. */
-function InstallSteps({ platform, t }) {
-  const steps =
-    platform === 'ios'
-      ? [
-          { icon: Share, text: t('install.ios.step1') },
-          { icon: SquarePlus, text: t('install.ios.step2') },
-          { icon: CheckCircle2, text: t('install.ios.step3') },
-        ]
-      : [
-          { icon: EllipsisVertical, text: t('install.manual.step1') },
-          { icon: Download, text: t('install.manual.step2') },
-          { icon: CheckCircle2, text: t('install.manual.step3') },
-        ]
+function StepList({ steps }) {
   return (
     <ol className="flex flex-col gap-3">
       {steps.map(({ icon: Icon, text }, i) => (
@@ -31,18 +18,53 @@ function InstallSteps({ platform, t }) {
   )
 }
 
+function stepsFor(kind, t) {
+  if (kind === 'apk') {
+    return [
+      { icon: FolderDown, text: t('install.apk.step1') },
+      { icon: ShieldCheck, text: t('install.apk.step2') },
+      { icon: CheckCircle2, text: t('install.apk.step3') },
+    ]
+  }
+  if (kind === 'ios') {
+    return [
+      { icon: Share, text: t('install.ios.step1') },
+      { icon: SquarePlus, text: t('install.ios.step2') },
+      { icon: CheckCircle2, text: t('install.ios.step3') },
+    ]
+  }
+  return [
+    { icon: EllipsisVertical, text: t('install.manual.step1') },
+    { icon: Download, text: t('install.manual.step2') },
+    { icon: CheckCircle2, text: t('install.manual.step3') },
+  ]
+}
+
+const formatSize = (bytes, language) => new Intl.NumberFormat(language, { maximumFractionDigits: 1 }).format(bytes / 1024 / 1024)
+
 /**
- * Carte « Installer l'application » des Réglages. S'adapte à l'appareil :
- * installation native en un appui (Android, Chrome, Edge), étapes guidées
- * sur iPhone / iPad, simple confirmation une fois l'application installée.
+ * Carte « Télécharger l'application » des Réglages.
+ * - Android : le bouton télécharge le vrai fichier d'installation (ONE.apk).
+ * - Ordinateur (Chrome, Edge) : installation native en un clic.
+ * - iPhone / iPad : Apple n'autorise l'installation d'applications que via
+ *   l'App Store ; on guide l'ajout à l'écran d'accueil depuis Safari.
  */
 export default function InstallAppCard() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [state, setState] = useState(getInstallState)
-  const [helpOpen, setHelpOpen] = useState(false)
+  const [apk, setApk] = useState(null)
+  const [help, setHelp] = useState(null) // null | 'apk' | 'ios' | 'manual'
   const [busy, setBusy] = useState(false)
+  const android = isAndroid()
 
   useEffect(() => onInstallStateChange(() => setState(getInstallState())), [])
+  useEffect(() => {
+    let alive = true
+    getApkInfo().then((info) => alive && setApk(info))
+    return () => {
+      alive = false
+    }
+  }, [])
 
   if (state === 'installed') {
     return (
@@ -57,9 +79,13 @@ export default function InstallAppCard() {
     )
   }
 
-  const handleInstall = async () => {
+  const apkMeta = apk ? t('install.apk.meta', { version: apk.versionName, size: formatSize(apk.size, i18n.language) }) : null
+  const primaryClass =
+    'inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-brand-600 text-[15px] font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-800 disabled:opacity-60'
+
+  const handleNativeInstall = async () => {
     if (state !== 'available') {
-      setHelpOpen(true)
+      setHelp(state === 'ios' ? 'ios' : 'manual')
       return
     }
     setBusy(true)
@@ -71,6 +97,9 @@ export default function InstallAppCard() {
     }
   }
 
+  // Sur Android avec un APK publié : le bouton est un vrai lien de téléchargement.
+  const androidDownload = android && apk
+
   return (
     <>
       <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900">
@@ -78,7 +107,9 @@ export default function InstallAppCard() {
           <img src="/icon-192.png" alt="" className="h-14 w-14 shrink-0 rounded-2xl shadow-sm dark:ring-1 dark:ring-stone-700" />
           <div className="min-w-0 flex-1">
             <p className="text-[15px] font-semibold text-stone-900 dark:text-white">{t('install.title')}</p>
-            <p className="mt-0.5 text-[13px] leading-snug text-stone-500 dark:text-stone-400">{t('install.subtitle')}</p>
+            <p className="mt-0.5 text-[13px] leading-snug text-stone-500 dark:text-stone-400">
+              {androidDownload ? t('install.apk.subtitle') : t('install.subtitle')}
+            </p>
           </div>
         </div>
         <ul className="grid grid-cols-3 border-t border-stone-100 text-center dark:border-stone-800">
@@ -94,30 +125,48 @@ export default function InstallAppCard() {
           ))}
         </ul>
         <div className="border-t border-stone-100 p-3 dark:border-stone-800">
-          <button
-            type="button"
-            onClick={handleInstall}
-            disabled={busy}
-            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-brand-600 text-[15px] font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-800 disabled:opacity-60"
-          >
-            <Download size={18} />
-            {state === 'available' ? t('install.button') : t('install.howTo')}
-          </button>
+          {androidDownload ? (
+            <>
+              <a href={APK_URL} download="ONE.apk" type="application/vnd.android.package-archive" onClick={() => setHelp('apk')} className={primaryClass}>
+                <Download size={18} />
+                {t('install.apk.button')}
+              </a>
+              <p className="mt-2 text-center text-[11px] text-stone-500 dark:text-stone-400">{apkMeta}</p>
+            </>
+          ) : (
+            <>
+              <button type="button" onClick={handleNativeInstall} disabled={busy} className={primaryClass}>
+                <Download size={18} />
+                {state === 'available' ? t('install.button') : t('install.howTo')}
+              </button>
+              {apk && !android && (
+                <a
+                  href={APK_URL}
+                  download="ONE.apk"
+                  className="mt-2 flex items-center justify-center gap-1.5 text-center text-xs font-medium text-brand-700 hover:underline dark:text-brand-400"
+                >
+                  <Smartphone size={14} aria-hidden="true" />
+                  {t('install.apk.desktopLink')} · {apkMeta}
+                </a>
+              )}
+            </>
+          )}
         </div>
       </div>
 
       <Modal
-        open={helpOpen}
-        onClose={() => setHelpOpen(false)}
-        icon={Smartphone}
-        title={t('install.title')}
-        subtitle={state === 'ios' ? t('install.ios.subtitle') : t('install.manual.subtitle')}
+        open={help !== null}
+        onClose={() => setHelp(null)}
+        icon={help === 'apk' ? Download : Smartphone}
+        title={help === 'apk' ? t('install.apk.modalTitle') : t('install.title')}
+        subtitle={help === 'apk' ? t('install.apk.modalSubtitle') : help === 'ios' ? t('install.ios.subtitle') : t('install.manual.subtitle')}
         maxWidth="max-w-md"
       >
-        <InstallSteps platform={state} t={t} />
+        {help && <StepList steps={stepsFor(help, t)} />}
+        {help === 'apk' && <p className="mt-4 text-xs leading-relaxed text-stone-500 dark:text-stone-400">{t('install.apk.note')}</p>}
         <button
           type="button"
-          onClick={() => setHelpOpen(false)}
+          onClick={() => setHelp(null)}
           className="mt-5 inline-flex h-11 w-full items-center justify-center rounded-xl bg-stone-900 text-sm font-semibold text-white hover:bg-stone-700 dark:bg-white dark:text-stone-900 dark:hover:bg-stone-200"
         >
           {t('install.gotIt')}

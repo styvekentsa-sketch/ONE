@@ -10,7 +10,7 @@
  * Rien d'autre n'est intercepté : aucune requête vers un autre domaine
  * (connexion Firebase par exemple) ne passe par ce cache.
  */
-const VERSION = 'one-v1'
+const VERSION = 'one-v2'
 const SHELL = ['/', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/app-icon.svg', '/favicon.svg']
 
 self.addEventListener('install', (event) => {
@@ -31,6 +31,8 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return
   const url = new URL(request.url)
   if (url.origin !== self.location.origin) return
+  // Téléchargements (APK) et certificat Android : toujours depuis le réseau.
+  if (url.pathname.startsWith('/downloads/') || url.pathname.startsWith('/.well-known/')) return
 
   // Navigation : réseau d'abord, application en cache si hors ligne.
   if (request.mode === 'navigate') {

@@ -19,6 +19,35 @@ export function isStandalone() {
   return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true
 }
 
+export const ANDROID_PACKAGE = 'com.onepdf.app'
+export const APK_URL = '/downloads/ONE.apk'
+const TWA_KEY = 'one-android-app'
+
+export function isAndroid() {
+  return /Android/i.test(window.navigator.userAgent)
+}
+
+/** Vrai quand ONE tourne dans l'application Android (Trusted Web Activity). */
+export function isAndroidApp() {
+  try {
+    if (document.referrer.startsWith(`android-app://${ANDROID_PACKAGE}`)) sessionStorage.setItem(TWA_KEY, '1')
+    if (new URLSearchParams(window.location.search).get('source') === 'android') sessionStorage.setItem(TWA_KEY, '1')
+    return sessionStorage.getItem(TWA_KEY) === '1'
+  } catch {
+    return false
+  }
+}
+
+/** Informations de l'APK publié (version, taille), ou null s'il n'existe pas. */
+let apkInfoPromise = null
+export function getApkInfo() {
+  apkInfoPromise ??= fetch('/downloads/android.json', { cache: 'no-cache' })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((info) => (info && info.size > 0 ? info : null))
+    .catch(() => null)
+  return apkInfoPromise
+}
+
 export function isIOS() {
   const ua = window.navigator.userAgent
   return /iPad|iPhone|iPod/.test(ua) || (window.navigator.platform === 'MacIntel' && window.navigator.maxTouchPoints > 1)
@@ -26,7 +55,7 @@ export function isIOS() {
 
 /** 'installed' | 'available' | 'ios' | 'manual' */
 export function getInstallState() {
-  if (justInstalled || isStandalone()) return 'installed'
+  if (justInstalled || isStandalone() || isAndroidApp()) return 'installed'
   if (deferredPrompt) return 'available'
   if (isIOS()) return 'ios'
   return 'manual'

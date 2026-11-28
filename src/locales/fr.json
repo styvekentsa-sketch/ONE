@@ -2141,6 +2141,18 @@
       "step1": "Ouvrez le menu du navigateur (⋮ ou ⋯).",
       "step2": "Touchez « Installer l’application » ou « Ajouter à l’écran d’accueil ».",
       "step3": "Confirmez : l’icône ONE apparaît sur votre écran d’accueil."
+    },
+    "apk": {
+      "button": "Télécharger l’application",
+      "subtitle": "Téléchargez l’application Android de ONE : installation en quelques secondes, sans compte.",
+      "meta": "Android · version {{version}} · {{size}} Mo",
+      "desktopLink": "Télécharger pour Android (APK)",
+      "modalTitle": "Téléchargement lancé",
+      "modalSubtitle": "Une fois le fichier ONE.apk téléchargé :",
+      "step1": "Ouvrez la notification de téléchargement, ou le fichier ONE.apk dans « Téléchargements ».",
+      "step2": "Si Android le demande, autorisez votre navigateur à installer des applications.",
+      "step3": "Touchez « Installer » : ONE apparaît parmi vos applications.",
+      "note": "L’application est distribuée directement par ONE, hors Play Store. Android affiche donc un avertissement de source inconnue : c’est normal. Elle ne demande aucune autorisation particulière."
     }
   }
 }

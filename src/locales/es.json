@@ -1129,6 +1129,135 @@
       },
       "historyMessage": "Reparación PDF — {{name}} ({{saved}}/{{total}} páginas)"
     },
+    "sanitize": {
+      "name": "Limpieza y Anonimización",
+      "description": "Tache de forma definitiva la información confidencial (texto, IBAN, correos, números) y elimine metadatos ocultos, comentarios e historiales de sus PDF en local",
+      "subtitle": "Tachado irreversible y purga de datos ocultos, en local",
+      "dropHint": "Suelte el PDF que desea anonimizar",
+      "loading": "Abriendo el documento…",
+      "tabs": {
+        "preview": "Vista previa",
+        "detect": "Datos detectados",
+        "clean": "Limpieza"
+      },
+      "categories": {
+        "email": "Correos electrónicos",
+        "phone": "Teléfonos",
+        "bank": "IBAN y tarjetas",
+        "dates": "Fechas e identificadores",
+        "keyword": "Palabras clave"
+      },
+      "toolbar": {
+        "draw": "Trazar una zona de tachado",
+        "select": "Seleccionar, mover, redimensionar",
+        "delete": "Eliminar la zona seleccionada (Supr)",
+        "color": "Color de la máscara",
+        "label": "Texto de sustitución",
+        "noLabel": "Sin texto",
+        "customLabel": "Texto personalizado…",
+        "prev": "Página anterior",
+        "next": "Página siguiente",
+        "zoomIn": "Acercar",
+        "zoomOut": "Alejar"
+      },
+      "colors": {
+        "black": "Negro opaco",
+        "white": "Blanco",
+        "gray": "Gris"
+      },
+      "preview": {
+        "hint": "Trace zonas con el ratón o el dedo. Las zonas con borde naranja provienen de la detección automática.",
+        "autoSelected": "Zona detectada: desmárquela en la lista o elimínela (Supr)."
+      },
+      "detect": {
+        "scan": "Analizar los datos sensibles",
+        "scanning": "Leyendo el texto… {{percent}} %",
+        "keywords": "Palabras clave personalizadas (nombre, empresa, n.º de expediente…)",
+        "keywordsPlaceholder": "Una por línea o separadas por comas",
+        "found_one": "{{count}} coincidencia encontrada",
+        "found_other": "{{count}} coincidencias encontradas",
+        "none": "No se detectó ningún dato sensible con estos criterios.",
+        "redactAll": "Tachar todo",
+        "clearAll": "Quitar todo",
+        "page": "p. {{n}}"
+      },
+      "clean": {
+        "intro": "Purga de datos ocultos, aplicable con o sin tachado. El texto de las páginas no tachadas se mantiene intacto y seleccionable.",
+        "metadata": {
+          "title": "Metadatos del documento",
+          "description": "Autor, título, asunto, palabras clave, creador, productor, fechas y flujo XMP."
+        },
+        "annotations": {
+          "title": "Anotaciones y comentarios",
+          "description": "Notas, resaltados, dibujos y comentarios existentes (formularios y enlaces conservados)."
+        },
+        "attachments": {
+          "title": "Adjuntos",
+          "description": "Archivos incrustados en el PDF (/EmbeddedFiles)."
+        },
+        "javascript": {
+          "title": "JavaScript y acciones automáticas",
+          "description": "Scripts, acciones al abrir y ejecución de programas."
+        },
+        "externalLinks": {
+          "title": "Enlaces externos",
+          "description": "Enlaces a sitios web u otros archivos (enlaces internos conservados)."
+        },
+        "outlines": {
+          "title": "Marcadores e índice",
+          "description": "Títulos de marcadores (/Outlines), que pueden revelar información."
+        },
+        "layers": {
+          "title": "Capas ocultas",
+          "description": "Contenido de las capas (OCG) ocultas al abrir, borrado del archivo."
+        }
+      },
+      "export": {
+        "summary": "{{boxes}} zona(s) de tachado en {{pages}} página(s).",
+        "dpi": "Resolución de las páginas tachadas",
+        "rasterNote": "Cada página tachada se convierte en imagen: el texto oculto se destruye y ya no se puede copiar.",
+        "button": "Anonimizar y verificar",
+        "working": "Procesando… {{percent}} %",
+        "changeFile": "Cambiar de archivo"
+      },
+      "report": {
+        "title": "Informe de seguridad",
+        "close": "Cerrar",
+        "leakBlocked": "La verificación encontró texto tachado en el archivo generado: la descarga está bloqueada. Repita la exportación o contacte con el soporte.",
+        "redacted": "{{boxes}} zona(s) tachada(s) en {{pages}} página(s) renderizada(s) como imagen",
+        "destroyed": "Texto oculto destruido: ninguna de las {{count}} cadena(s) tachada(s) aparece en el archivo (texto extraíble, datos ocultos)",
+        "fields_one": "{{count}} campo de formulario de una página tachada eliminado",
+        "fields_other": "{{count}} campos de formulario de páginas tachadas eliminados",
+        "tags": "Etiquetado de accesibilidad eliminado (podía contener el texto en claro)",
+        "metadata": "Metadatos borrados: {{fields}}.",
+        "xmp": "Flujo XMP eliminado.",
+        "annotations_one": "{{count}} anotación o comentario eliminado",
+        "annotations_other": "{{count}} anotaciones o comentarios eliminados",
+        "attachments_one": "{{count}} adjunto eliminado",
+        "attachments_other": "{{count}} adjuntos eliminados",
+        "scripts_one": "{{count}} script o acción automática eliminada",
+        "scripts_other": "{{count}} scripts o acciones automáticas eliminadas",
+        "links_one": "{{count}} enlace externo eliminado",
+        "links_other": "{{count}} enlaces externos eliminados",
+        "layers_one": "{{count}} capa oculta purgada",
+        "layers_other": "{{count}} capas ocultas purgadas",
+        "orphans_one": "{{count}} objeto huérfano borrado del archivo",
+        "orphans_other": "{{count}} objetos huérfanos borrados del archivo",
+        "outlines": "Marcadores eliminados",
+        "elsewhere": "Algunos textos tachados siguen apareciendo en claro en páginas no tachadas (p. {{pages}}). Táchelos también si es necesario.",
+        "vectorKept": "Sin tachado: el texto del documento se conserva tal cual, solo se purgaron los datos ocultos.",
+        "sizes": "Tamaño original: {{original}} — Tamaño final: {{final}}",
+        "download": "Descargar el PDF anonimizado"
+      },
+      "errors": {
+        "open": "No se puede abrir este PDF (¿archivo dañado?).",
+        "password": "Este PDF está protegido con contraseña de apertura: desbloquéelo primero.",
+        "scan": "El análisis del texto ha fallado.",
+        "encrypted": "Este PDF está cifrado: desbloquéelo con la herramienta Desbloquear PDF antes de anonimizarlo.",
+        "export": "La anonimización ha fallado."
+      },
+      "historyMessage": "Anonimización — {{name}} ({{boxes}} zona(s) en {{pages}} página(s))"
+    },
     "merge": {
       "name": "Combinar PDF",
       "description": "Combina varios archivos en un solo PDF",

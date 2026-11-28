@@ -301,7 +301,7 @@ function concatBytes(chunks) {
 }
 
 /** Supprime tous les objets qui ne sont plus atteignables depuis le catalogue et /Info. */
-function collectGarbage(context) {
+export function collectGarbage(context) {
   const seen = new Set()
   const stack = [context.trailerInfo.Root, context.trailerInfo.Info]
   while (stack.length) {

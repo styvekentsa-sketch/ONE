@@ -141,6 +141,14 @@ const toolDefinitions = [
     customRoute: '/tool/repair-pdf',
   },
   {
+    id: 'sanitize',
+    name: 'Nettoyage & Anonymisation',
+    description: 'Biffez définitivement les informations confidentielles (texte, IBAN, emails, numéros) et purgez les métadonnées cachées, commentaires et historiques de vos PDF en local',
+    icon: EyeOff,
+    category: ADVANCED_CATEGORY,
+    customRoute: '/tool/sanitize-redact-pdf',
+  },
+  {
     id: 'merge',
     name: 'Fusionner PDF',
     description: 'Combinez plusieurs fichiers en un seul PDF',

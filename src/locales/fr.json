@@ -1129,6 +1129,135 @@
       },
       "historyMessage": "Réparation PDF — {{name}} ({{saved}}/{{total}} pages)"
     },
+    "sanitize": {
+      "name": "Nettoyage & Anonymisation",
+      "description": "Biffez définitivement les informations confidentielles (texte, IBAN, emails, numéros) et purgez les métadonnées cachées, commentaires et historiques de vos PDF en local",
+      "subtitle": "Biffure irréversible et purge des données cachées, en local",
+      "dropHint": "Déposez le PDF à anonymiser",
+      "loading": "Ouverture du document…",
+      "tabs": {
+        "preview": "Aperçu",
+        "detect": "Données détectées",
+        "clean": "Nettoyage"
+      },
+      "categories": {
+        "email": "Adresses e-mail",
+        "phone": "Téléphones",
+        "bank": "IBAN et cartes",
+        "dates": "Dates et identifiants",
+        "keyword": "Mots-clés"
+      },
+      "toolbar": {
+        "draw": "Tracer une zone de biffure",
+        "select": "Sélectionner, déplacer, redimensionner",
+        "delete": "Supprimer la zone sélectionnée (Suppr)",
+        "color": "Couleur du masque",
+        "label": "Texte de remplacement",
+        "noLabel": "Sans texte",
+        "customLabel": "Texte personnalisé…",
+        "prev": "Page précédente",
+        "next": "Page suivante",
+        "zoomIn": "Zoom avant",
+        "zoomOut": "Zoom arrière"
+      },
+      "colors": {
+        "black": "Noir opaque",
+        "white": "Blanc",
+        "gray": "Gris"
+      },
+      "preview": {
+        "hint": "Tracez des zones à la souris ou au doigt. Les zones encadrées en orange proviennent de la détection automatique.",
+        "autoSelected": "Zone issue de la détection : décochez-la dans la liste ou supprimez-la (Suppr)."
+      },
+      "detect": {
+        "scan": "Analyser les données sensibles",
+        "scanning": "Lecture du texte… {{percent}} %",
+        "keywords": "Mots-clés personnalisés (nom, entreprise, n° de dossier…)",
+        "keywordsPlaceholder": "Un par ligne ou séparés par des virgules",
+        "found_one": "{{count}} occurrence trouvée",
+        "found_other": "{{count}} occurrences trouvées",
+        "none": "Aucune donnée sensible détectée avec ces critères.",
+        "redactAll": "Tout biffer",
+        "clearAll": "Tout retirer",
+        "page": "p. {{n}}"
+      },
+      "clean": {
+        "intro": "Purge des données cachées, applicable avec ou sans biffure. Le texte des pages non biffées reste intact et sélectionnable.",
+        "metadata": {
+          "title": "Métadonnées du document",
+          "description": "Auteur, titre, sujet, mots-clés, créateur, producteur, dates et flux XMP."
+        },
+        "annotations": {
+          "title": "Annotations et commentaires",
+          "description": "Notes, surlignages, dessins et commentaires existants (formulaires et liens conservés)."
+        },
+        "attachments": {
+          "title": "Pièces jointes",
+          "description": "Fichiers embarqués dans le PDF (/EmbeddedFiles)."
+        },
+        "javascript": {
+          "title": "JavaScript et actions automatiques",
+          "description": "Scripts, actions à l’ouverture et lancements de programmes."
+        },
+        "externalLinks": {
+          "title": "Liens externes",
+          "description": "Liens vers des sites web ou d’autres fichiers (liens internes conservés)."
+        },
+        "outlines": {
+          "title": "Signets et sommaire",
+          "description": "Titres des signets (/Outlines), qui peuvent révéler des informations."
+        },
+        "layers": {
+          "title": "Calques masqués",
+          "description": "Contenu des calques (OCG) masqués à l’ouverture, effacé du fichier."
+        }
+      },
+      "export": {
+        "summary": "{{boxes}} zone(s) de biffure sur {{pages}} page(s).",
+        "dpi": "Résolution des pages biffées",
+        "rasterNote": "Chaque page biffée devient une image : le texte masqué est détruit et ne peut plus être copié.",
+        "button": "Anonymiser et vérifier",
+        "working": "Traitement… {{percent}} %",
+        "changeFile": "Changer de fichier"
+      },
+      "report": {
+        "title": "Rapport de sécurité",
+        "close": "Fermer",
+        "leakBlocked": "La vérification a retrouvé du texte biffé dans le fichier produit : le téléchargement est bloqué. Recommencez l’export ou contactez le support.",
+        "redacted": "{{boxes}} zone(s) biffée(s) sur {{pages}} page(s) rendue(s) en image",
+        "destroyed": "Texte masqué détruit : aucune des {{count}} chaîne(s) biffée(s) n’est retrouvée dans le fichier (texte extractible, données cachées)",
+        "fields_one": "{{count}} champ de formulaire situé sur une page biffée supprimé",
+        "fields_other": "{{count}} champs de formulaire situés sur des pages biffées supprimés",
+        "tags": "Balisage d’accessibilité retiré (il pouvait contenir le texte en clair)",
+        "metadata": "Métadonnées effacées : {{fields}}.",
+        "xmp": "Flux XMP supprimé.",
+        "annotations_one": "{{count}} annotation ou commentaire supprimé",
+        "annotations_other": "{{count}} annotations ou commentaires supprimés",
+        "attachments_one": "{{count}} pièce jointe supprimée",
+        "attachments_other": "{{count}} pièces jointes supprimées",
+        "scripts_one": "{{count}} script ou action automatique supprimé",
+        "scripts_other": "{{count}} scripts ou actions automatiques supprimés",
+        "links_one": "{{count}} lien externe supprimé",
+        "links_other": "{{count}} liens externes supprimés",
+        "layers_one": "{{count}} calque masqué purgé",
+        "layers_other": "{{count}} calques masqués purgés",
+        "orphans_one": "{{count}} objet orphelin effacé du fichier",
+        "orphans_other": "{{count}} objets orphelins effacés du fichier",
+        "outlines": "Signets supprimés",
+        "elsewhere": "Certains textes biffés apparaissent encore en clair sur des pages non biffées (p. {{pages}}). Biffez-les aussi si nécessaire.",
+        "vectorKept": "Aucune biffure : le texte du document est conservé tel quel, seules les données cachées ont été purgées.",
+        "sizes": "Taille originale : {{original}} — Taille finale : {{final}}",
+        "download": "Télécharger le PDF anonymisé"
+      },
+      "errors": {
+        "open": "Impossible d’ouvrir ce PDF (fichier corrompu ?).",
+        "password": "Ce PDF est protégé par un mot de passe d’ouverture : déverrouillez-le d’abord.",
+        "scan": "L’analyse du texte a échoué.",
+        "encrypted": "Ce PDF est chiffré : déverrouillez-le avec l’outil Déverrouiller PDF avant de l’anonymiser.",
+        "export": "L’anonymisation a échoué."
+      },
+      "historyMessage": "Anonymisation — {{name}} ({{boxes}} zone(s) sur {{pages}} page(s))"
+    },
     "merge": {
       "name": "Fusionner PDF",
       "description": "Combinez plusieurs fichiers en un seul PDF",

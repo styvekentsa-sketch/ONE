@@ -60,6 +60,42 @@ function itemSegmentRect(item, start, end) {
   return [x0, f - fontHeight * 0.22, x1, f + fontHeight * 0.88]
 }
 
+/** Fragments d'origine (item, plage de caractères) couverts par une plage de l'index normalisé. */
+function rangeSegments(index, start, end) {
+  const segments = new Map()
+  for (let k = start; k < end; k++) {
+    const [itemIdx, charIdx] = index.map[k]
+    if (itemIdx < 0) continue
+    const seg = segments.get(itemIdx)
+    if (seg) {
+      seg.start = Math.min(seg.start, charIdx)
+      seg.end = Math.max(seg.end, charIdx + 1)
+    } else {
+      segments.set(itemIdx, { start: charIdx, end: charIdx + 1 })
+    }
+  }
+  return segments
+}
+
+/** Rectangles PDF couvrant la plage [start, end[ de l'index normalisé (un par fragment). */
+export function rangeRects(index, items, start, end) {
+  return [...rangeSegments(index, start, end).entries()].map(([itemIdx, seg]) => itemSegmentRect(items[itemIdx], seg.start, seg.end))
+}
+
+/** Texte d'origine (casse et accents conservés) de la plage [start, end[ de l'index. */
+export function originalText(index, items, start, end) {
+  let out = ''
+  let last = null
+  for (let k = Math.max(0, start); k < Math.min(end, index.map.length); k++) {
+    const [itemIdx, charIdx] = index.map[k]
+    const key = `${itemIdx}:${charIdx}`
+    if (key === last) continue // un caractère décomposé en plusieurs (ﬁ, ß…)
+    last = key
+    out += itemIdx < 0 ? ' ' : items[itemIdx].str[charIdx]
+  }
+  return out
+}
+
 /**
  * Toutes les correspondances de `normQuery` dans une page. Chaque
  * correspondance peut chevaucher plusieurs fragments : elle produit alors
@@ -73,33 +109,23 @@ export function findMatchesInPage(index, items, normQuery, pageNumber) {
   while (from <= index.text.length - normQuery.length) {
     const pos = index.text.indexOf(normQuery, from)
     if (pos === -1) break
-
-    const segments = new Map()
-    for (let k = pos; k < pos + normQuery.length; k++) {
-      const [itemIdx, charIdx] = index.map[k]
-      if (itemIdx < 0) continue
-      const seg = segments.get(itemIdx)
-      if (seg) {
-        seg.start = Math.min(seg.start, charIdx)
-        seg.end = Math.max(seg.end, charIdx + 1)
-      } else {
-        segments.set(itemIdx, { start: charIdx, end: charIdx + 1 })
-      }
-    }
-
-    const rects = [...segments.entries()].map(([itemIdx, { start, end }]) =>
-      itemSegmentRect(items[itemIdx], start, end),
-    )
-    if (rects.length) matches.push({ page: pageNumber, rects })
+    const rects = rangeRects(index, items, pos, pos + normQuery.length)
+    if (rects.length) matches.push({ page: pageNumber, rects, start: pos, end: pos + normQuery.length })
     from = pos + Math.max(normQuery.length, 1)
   }
 
   return matches
 }
 
-/** Convertit un rectangle PDF en rectangle d'affichage {left, top, width, height}. */
+/**
+ * Convertit un rectangle PDF en rectangle d'affichage {left, top, width, height}.
+ * pdfjs-dist v6 a retiré `convertToViewportRectangle` : on convertit les
+ * deux coins opposés (les rotations par quart de tour gardent le rectangle
+ * aligné sur les axes).
+ */
 export function pdfRectToViewport(viewport, rect) {
-  const [x1, y1, x2, y2] = viewport.convertToViewportRectangle(rect)
+  const [x1, y1] = viewport.convertToViewportPoint(rect[0], rect[1])
+  const [x2, y2] = viewport.convertToViewportPoint(rect[2], rect[3])
   return {
     left: Math.min(x1, x2),
     top: Math.min(y1, y2),

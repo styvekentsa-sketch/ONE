@@ -1129,6 +1129,135 @@
       },
       "historyMessage": "PDF repair — {{name}} ({{saved}}/{{total}} pages)"
     },
+    "sanitize": {
+      "name": "Sanitize & Redact",
+      "description": "Permanently redact confidential information (text, IBAN, emails, numbers) and purge hidden metadata, comments and history from your PDFs locally",
+      "subtitle": "Irreversible redaction and hidden data purge, locally",
+      "dropHint": "Drop the PDF to anonymise",
+      "loading": "Opening document…",
+      "tabs": {
+        "preview": "Preview",
+        "detect": "Detected data",
+        "clean": "Sanitize"
+      },
+      "categories": {
+        "email": "Email addresses",
+        "phone": "Phone numbers",
+        "bank": "IBAN and cards",
+        "dates": "Dates and IDs",
+        "keyword": "Keywords"
+      },
+      "toolbar": {
+        "draw": "Draw a redaction box",
+        "select": "Select, move, resize",
+        "delete": "Delete selected box (Del)",
+        "color": "Mask colour",
+        "label": "Replacement text",
+        "noLabel": "No text",
+        "customLabel": "Custom text…",
+        "prev": "Previous page",
+        "next": "Next page",
+        "zoomIn": "Zoom in",
+        "zoomOut": "Zoom out"
+      },
+      "colors": {
+        "black": "Opaque black",
+        "white": "White",
+        "gray": "Grey"
+      },
+      "preview": {
+        "hint": "Draw boxes with the mouse or your finger. Boxes outlined in orange come from automatic detection.",
+        "autoSelected": "Detected box: untick it in the list or delete it (Del)."
+      },
+      "detect": {
+        "scan": "Scan for sensitive data",
+        "scanning": "Reading text… {{percent}}%",
+        "keywords": "Custom keywords (name, company, case number…)",
+        "keywordsPlaceholder": "One per line or comma-separated",
+        "found_one": "{{count}} match found",
+        "found_other": "{{count}} matches found",
+        "none": "No sensitive data detected with these criteria.",
+        "redactAll": "Redact all",
+        "clearAll": "Clear all",
+        "page": "p. {{n}}"
+      },
+      "clean": {
+        "intro": "Hidden data purge, usable with or without redaction. Text on non-redacted pages stays intact and selectable.",
+        "metadata": {
+          "title": "Document metadata",
+          "description": "Author, title, subject, keywords, creator, producer, dates and XMP stream."
+        },
+        "annotations": {
+          "title": "Annotations and comments",
+          "description": "Existing notes, highlights, drawings and comments (forms and links kept)."
+        },
+        "attachments": {
+          "title": "Attachments",
+          "description": "Files embedded in the PDF (/EmbeddedFiles)."
+        },
+        "javascript": {
+          "title": "JavaScript and automatic actions",
+          "description": "Scripts, open actions and program launches."
+        },
+        "externalLinks": {
+          "title": "External links",
+          "description": "Links to websites or other files (internal links kept)."
+        },
+        "outlines": {
+          "title": "Bookmarks and outline",
+          "description": "Bookmark titles (/Outlines), which can reveal information."
+        },
+        "layers": {
+          "title": "Hidden layers",
+          "description": "Content of layers (OCG) hidden on opening, erased from the file."
+        }
+      },
+      "export": {
+        "summary": "{{boxes}} redaction box(es) on {{pages}} page(s).",
+        "dpi": "Resolution of redacted pages",
+        "rasterNote": "Each redacted page becomes an image: the masked text is destroyed and can no longer be copied.",
+        "button": "Anonymise and verify",
+        "working": "Processing… {{percent}}%",
+        "changeFile": "Change file"
+      },
+      "report": {
+        "title": "Security report",
+        "close": "Close",
+        "leakBlocked": "Verification found redacted text in the output file: download is blocked. Run the export again or contact support.",
+        "redacted": "{{boxes}} box(es) redacted on {{pages}} page(s) rendered as images",
+        "destroyed": "Masked text destroyed: none of the {{count}} redacted string(s) can be found in the file (extractable text, hidden data)",
+        "fields_one": "{{count}} form field on a redacted page removed",
+        "fields_other": "{{count}} form fields on redacted pages removed",
+        "tags": "Accessibility tags removed (they could contain the text in clear)",
+        "metadata": "Metadata erased: {{fields}}.",
+        "xmp": "XMP stream removed.",
+        "annotations_one": "{{count}} annotation or comment removed",
+        "annotations_other": "{{count}} annotations or comments removed",
+        "attachments_one": "{{count}} attachment removed",
+        "attachments_other": "{{count}} attachments removed",
+        "scripts_one": "{{count}} script or automatic action removed",
+        "scripts_other": "{{count}} scripts or automatic actions removed",
+        "links_one": "{{count}} external link removed",
+        "links_other": "{{count}} external links removed",
+        "layers_one": "{{count}} hidden layer purged",
+        "layers_other": "{{count}} hidden layers purged",
+        "orphans_one": "{{count}} orphan object erased from the file",
+        "orphans_other": "{{count}} orphan objects erased from the file",
+        "outlines": "Bookmarks removed",
+        "elsewhere": "Some redacted text still appears in clear on non-redacted pages (p. {{pages}}). Redact them too if needed.",
+        "vectorKept": "No redaction: the document text is kept as is, only hidden data was purged.",
+        "sizes": "Original size: {{original}} — Final size: {{final}}",
+        "download": "Download anonymised PDF"
+      },
+      "errors": {
+        "open": "Unable to open this PDF (corrupted file?).",
+        "password": "This PDF is protected by an open password: unlock it first.",
+        "scan": "Text analysis failed.",
+        "encrypted": "This PDF is encrypted: unlock it with the Unlock PDF tool before anonymising it.",
+        "export": "Anonymisation failed."
+      },
+      "historyMessage": "Anonymisation — {{name}} ({{boxes}} box(es) on {{pages}} page(s))"
+    },
     "merge": {
       "name": "Merge PDF",
       "description": "Combine several files into a single PDF",

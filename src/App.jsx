@@ -38,6 +38,7 @@ const PdfToPdfaTool = lazy(() => import('./pages/tools/PdfToPdfaTool'))
 const LinearizePdfTool = lazy(() => import('./pages/tools/LinearizePdfTool'))
 const PdfLayersTool = lazy(() => import('./pages/tools/PdfLayersTool'))
 const RepairPdfTool = lazy(() => import('./pages/tools/RepairPdfTool'))
+const SanitizeRedactTool = lazy(() => import('./pages/tools/SanitizeRedactTool'))
 const ToolsPage = lazy(() => import('./pages/ToolsPage'))
 const MediaHubPage = lazy(() => import('./pages/MediaHubPage'))
 const ImageHubPage = lazy(() => import('./pages/ImageHubPage'))
@@ -100,6 +101,7 @@ function App() {
             <Route path="/tool/linearize-pdf" element={<LinearizePdfTool />} />
             <Route path="/tool/pdf-layers" element={<PdfLayersTool />} />
             <Route path="/tool/repair-pdf" element={<RepairPdfTool />} />
+            <Route path="/tool/sanitize-redact-pdf" element={<SanitizeRedactTool />} />
             <Route path="/tool/image-basic" element={<ImageHubPage />} />
             <Route path="/tool/audio-basic" element={<AudioHubPage />} />
             <Route path="/tool/video-basic" element={<VideoHubPage />} />

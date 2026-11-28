@@ -1871,7 +1871,7 @@
         },
         {
           "heading": "3. Données que nous collectons réellement",
-          "body": "En cohérence avec le principe de minimisation des données (art. 5.1.c du RGPD), nous ne collectons que le strict nécessaire au fonctionnement du Service :\n- Données stockées localement dans votre navigateur (localStorage), qui ne quittent jamais votre appareil : préférence de thème (clair/sombre), langue choisie, historique des 20 dernières opérations effectuées (nom de l’outil utilisé, nom de fichier, horodatage — jamais le contenu du fichier), et votre choix concernant la bannière de cookies.\n- Données techniques de connexion collectées de façon standard par notre hébergeur (Vercel) pour la fourniture du Service et la sécurité de l’infrastructure : adresse IP, type de navigateur, pages consultées, horodatage des requêtes. Ces journaux serveur sont gérés par l’hébergeur selon sa propre politique et ne sont pas exploités par l’éditeur à des fins commerciales.\n- Si vous créez un compte (fonctionnalité optionnelle) : votre nom, votre adresse email et un identifiant de session, stockés uniquement dans le stockage local de votre navigateur — jamais transmis à un serveur, jamais synchronisés entre appareils ou navigateurs. Votre mot de passe n’est jamais stocké en clair : seule son empreinte (hachage SHA-256) est conservée localement.\n\nNous ne collectons ni ne déduisons aucune donnée sensible, aucune donnée de géolocalisation précise, et n’utilisons aucun outil d’analyse d’audience tiers (pas de Google Analytics ni équivalent) ni de publicité ciblée à la date de rédaction de cette politique."
+          "body": "En cohérence avec le principe de minimisation des données (art. 5.1.c du RGPD), nous ne collectons que le strict nécessaire au fonctionnement du Service :\n- Données stockées localement dans votre navigateur (localStorage), qui ne quittent jamais votre appareil : préférence de thème (clair/sombre), langue choisie, réglages de vibration et de son au toucher, historique des 20 dernières opérations effectuées (nom de l’outil utilisé, nom de fichier, horodatage — jamais le contenu du fichier), et votre choix concernant la bannière de cookies.\n- Données techniques de connexion collectées de façon standard par notre hébergeur (Vercel) pour la fourniture du Service et la sécurité de l’infrastructure : adresse IP, type de navigateur, pages consultées, horodatage des requêtes. Ces journaux serveur sont gérés par l’hébergeur selon sa propre politique et ne sont pas exploités par l’éditeur à des fins commerciales.\n- Si vous créez un compte (fonctionnalité optionnelle) : votre nom, votre adresse email, l’identifiant unique de votre compte, la date de création et, si vous vous connectez via Google, Apple, Microsoft, GitHub ou Facebook, la photo de profil et l’identifiant transmis par ce fournisseur. Ces données sont gérées par notre prestataire d’authentification, Firebase Authentication (Google), afin de vous permettre de retrouver votre compte sur tous vos appareils. Si vous choisissez l’email et un mot de passe, celui-ci n’est jamais stocké en clair : Firebase n’en conserve qu’une empreinte sécurisée. Nous ne recevons jamais le mot de passe de vos comptes Google, Apple, Microsoft, GitHub ou Facebook.\n\nLes fichiers que vous traitez ne font jamais partie de ces données : ils ne quittent pas votre appareil, que vous soyez connecté ou non. Nous ne collectons ni ne déduisons aucune donnée sensible, aucune donnée de géolocalisation précise, et n’utilisons aucun outil d’analyse d’audience tiers (pas de Google Analytics ni équivalent) ni de publicité ciblée à la date de rédaction de cette politique."
         },
         {
           "heading": "4. Finalités du traitement",
@@ -1883,15 +1883,15 @@
         },
         {
           "heading": "6. Destinataires des données",
-          "body": "Vos données ne sont ni vendues, ni louées, ni partagées à des fins commerciales avec des tiers. Les seuls destinataires possibles sont :\n- Notre hébergeur, Vercel Inc., agissant en qualité de sous-traitant pour l’hébergement technique du Service ;\n- Les autorités administratives ou judiciaires compétentes, uniquement si la loi nous y oblige."
+          "body": "Vos données ne sont ni vendues, ni louées, ni partagées à des fins commerciales avec des tiers. Les seuls destinataires possibles sont :\n- Notre hébergeur, Vercel Inc., agissant en qualité de sous-traitant pour l’hébergement technique du Service ;\n- Google LLC, via Firebase Authentication, agissant en qualité de sous-traitant pour la gestion des comptes utilisateurs (uniquement si vous créez un compte) ;\n- Le fournisseur de connexion que vous choisissez (Google, Apple, Microsoft, GitHub ou Meta pour Facebook), uniquement pour vérifier votre identité lorsque vous utilisez le bouton correspondant, selon sa propre politique de confidentialité ;\n- Les autorités administratives ou judiciaires compétentes, uniquement si la loi nous y oblige."
         },
         {
           "heading": "7. Transferts de données hors de votre pays de résidence",
-          "body": "Notre hébergeur opère une infrastructure mondiale susceptible d’impliquer un traitement des journaux techniques de connexion aux États-Unis ou dans d’autres pays où Vercel dispose de serveurs. Dans la mesure où cela concernerait des données à caractère personnel de résidents de l’UE, ce transfert s’appuie sur les garanties appropriées prévues par le RGPD (clauses contractuelles types ou mécanisme équivalent reconnu par la Commission européenne). Vos fichiers eux-mêmes ne font l’objet d’aucun transfert puisqu’ils ne sont jamais transmis à un serveur."
+          "body": "Notre hébergeur (Vercel) et notre prestataire d’authentification (Google Firebase) opèrent des infrastructures mondiales susceptibles d’impliquer un traitement des journaux techniques de connexion et des données de compte aux États-Unis ou dans d’autres pays où ils disposent de serveurs. Dans la mesure où cela concernerait des données à caractère personnel de résidents de l’UE, ces transferts s’appuient sur les garanties appropriées prévues par le RGPD (clauses contractuelles types ou mécanisme équivalent reconnu par la Commission européenne, dont le cadre de protection des données UE–États-Unis lorsque le prestataire y adhère). Vos fichiers eux-mêmes ne font l’objet d’aucun transfert puisqu’ils ne sont jamais transmis à un serveur."
         },
         {
           "heading": "8. Durée de conservation",
-          "body": "Les fichiers que vous traitez ne sont jamais conservés : ils existent uniquement en mémoire vive le temps du traitement dans votre navigateur, puis en sont effacés à la fermeture de l’onglet ou du navigateur. Les données de préférence et l’historique local restent sur votre appareil jusqu’à ce que vous les supprimiez vous-même (page Réglages, bouton « Vider l’historique ») ou que vous effaciez les données de navigation de votre navigateur ; l’historique local se limite en outre automatiquement aux 20 opérations les plus récentes. Les journaux techniques de connexion de l’hébergeur sont conservés selon la durée standard pratiquée par Vercel pour l’exploitation et la sécurité de son infrastructure."
+          "body": "Les fichiers que vous traitez ne sont jamais conservés : ils existent uniquement en mémoire vive le temps du traitement dans votre navigateur, puis en sont effacés à la fermeture de l’onglet ou du navigateur. Les données de préférence et l’historique local restent sur votre appareil jusqu’à ce que vous les supprimiez vous-même (page Réglages, bouton « Vider l’historique ») ou que vous effaciez les données de navigation de votre navigateur ; l’historique local se limite en outre automatiquement aux 20 opérations les plus récentes. Les données de compte sont conservées tant que votre compte existe ; vous pouvez demander sa suppression à tout moment (voir « Vos droits »), elles sont alors effacées de Firebase Authentication. Les journaux techniques de connexion de l’hébergeur sont conservés selon la durée standard pratiquée par Vercel pour l’exploitation et la sécurité de son infrastructure."
         },
         {
           "heading": "9. Sécurité des données",
@@ -1937,7 +1937,7 @@
         },
         {
           "heading": "4. Compte utilisateur",
-          "body": "Un compte optionnel peut être créé directement depuis la page « Mon compte », afin de personnaliser votre expérience (nom affiché, historique associé à un profil). Ce compte est intégralement stocké dans le stockage local de votre navigateur : il ne s’agit pas d’un compte serveur sécurisé, il n’est pas synchronisé entre appareils ou navigateurs, et il est perdu si vous effacez les données de ce navigateur. Vous restez seul responsable de la confidentialité du mot de passe choisi pour ce compte local."
+          "body": "Un compte optionnel peut être créé depuis la page « Mon compte », avec une adresse email et un mot de passe ou via un fournisseur de connexion (Google, Apple, Microsoft, GitHub ou Facebook). Il permet de retrouver votre profil sur tous vos appareils. Les comptes sont gérés par notre prestataire d’authentification, Firebase Authentication (Google) ; aucun document que vous traitez n’y est associé ni transmis. Vous êtes responsable de la confidentialité de votre mot de passe et de l’accès à votre compte de fournisseur de connexion. Vous pouvez demander la suppression de votre compte à tout moment."
         },
         {
           "heading": "5. Obligations et engagements de l’utilisateur",
@@ -1991,7 +1991,7 @@
         },
         {
           "heading": "3. Détail des éléments stockés localement sur votre appareil",
-          "body": "Les seuls éléments enregistrés dans le stockage local de votre navigateur sont :\n- one-theme — mémorise votre préférence d’affichage clair/sombre. Strictement nécessaire au fonctionnement attendu de l’interface ; ne nécessite pas de consentement.\n- one-language — mémorise la langue que vous avez choisie. Strictement nécessaire ; ne nécessite pas de consentement.\n- one-history — mémorise l’historique de vos 20 dernières opérations (nom de l’outil, nom de fichier, date), pour le confort de la fonctionnalité « Historique » que vous avez sollicitée. Fonctionnel, activé par défaut car il s’agit d’un service explicitement demandé par l’utilisateur ; vous pouvez le vider à tout moment depuis les Réglages.\n- one-cookie-consent — mémorise le choix que vous avez exprimé via la bannière de consentement, afin de ne pas vous la représenter à chaque visite."
+          "body": "Les seuls éléments enregistrés dans le stockage local de votre navigateur sont :\n- one-theme — mémorise votre préférence d’affichage clair/sombre. Strictement nécessaire au fonctionnement attendu de l’interface ; ne nécessite pas de consentement.\n- one-language — mémorise la langue que vous avez choisie. Strictement nécessaire ; ne nécessite pas de consentement.\n- one-feedback — mémorise vos réglages de vibration et de son au toucher. Strictement nécessaire au respect de votre choix ; ne nécessite pas de consentement.\n- one-history — mémorise l’historique de vos 20 dernières opérations (nom de l’outil, nom de fichier, date), pour le confort de la fonctionnalité « Historique » que vous avez sollicitée. Fonctionnel, activé par défaut car il s’agit d’un service explicitement demandé par l’utilisateur ; vous pouvez le vider à tout moment depuis les Réglages.\n- one-cookie-consent — mémorise le choix que vous avez exprimé via la bannière de consentement, afin de ne pas vous la représenter à chaque visite.\n- Session de compte (uniquement si vous vous connectez) — Firebase Authentication enregistre dans le stockage du navigateur (IndexedDB « firebaseLocalStorageDb ») de quoi maintenir votre connexion, et ONE garde un aperçu de votre profil (one-auth-cache) pour l’afficher sans délai. Strictement nécessaire au service de compte que vous avez demandé ; supprimé à la déconnexion.\n\nLorsque vous utilisez un bouton « Continuer avec… », une fenêtre du fournisseur choisi (Google, Apple, Microsoft, GitHub ou Facebook) s’ouvre sur son propre site : ce fournisseur peut y déposer ses propres cookies, selon sa politique, comme lors de toute connexion à son service. Aucun de ces cookies n’est déposé sur le domaine de ONE ni utilisé par ONE à des fins publicitaires."
         },
         {
           "heading": "4. Base légale et consentement",
@@ -2076,7 +2076,6 @@
     "errorEmailTaken": "Cette adresse email est déjà utilisée.",
     "errorInvalidCredentials": "Email ou mot de passe incorrect.",
     "errorGeneric": "Une erreur est survenue. Merci de réessayer.",
-    "socialComingSoon": "La connexion sociale sera bientôt disponible — utilisez votre email pour l’instant.",
     "marketingTitle": "Vos outils PDF, Image & Média au même endroit",
     "marketingSubtitle": "Créez un compte pour retrouver votre thème, votre langue et votre historique où que vous soyez sur cet appareil.",
     "feature": {
@@ -2084,7 +2083,22 @@
       "image": "Retouche d'image",
       "video": "Édition vidéo",
       "audio": "Outils audio"
-    }
+    },
+    "continueWith": "Continuer avec {{provider}}",
+    "forgotPassword": "Mot de passe oublié ?",
+    "resetTitle": "Réinitialiser le mot de passe",
+    "resetSubtitle": "Saisissez votre adresse e-mail : nous vous envoyons un lien pour choisir un nouveau mot de passe.",
+    "resetSubmit": "Envoyer le lien",
+    "resetSent": "Si un compte existe pour {{email}}, un e-mail de réinitialisation vient d’être envoyé. Pensez à vérifier vos indésirables.",
+    "backToLogin": "Retour à la connexion",
+    "errorWeakPassword": "Mot de passe trop faible : choisissez-en un plus long ou plus varié.",
+    "errorAccountExists": "Un compte existe déjà avec cette adresse e-mail via un autre mode de connexion. Connectez-vous avec celui-ci.",
+    "errorProviderDisabled": "La connexion avec {{provider}} n’est pas encore activée.",
+    "errorUnauthorizedDomain": "Ce site n’est pas autorisé pour la connexion. Ajoutez son domaine dans la console Firebase.",
+    "errorNetwork": "Connexion internet indisponible. Réessayez.",
+    "errorTooManyRequests": "Trop de tentatives. Patientez quelques minutes avant de réessayer.",
+    "errorUserDisabled": "Ce compte a été désactivé.",
+    "devSocialHint": "Développement : connexions sociales inactives. Renseignez les variables VITE_FIREBASE_* dans .env.local (voir docs/connexions-sociales.md)."
   },
   "profile": {
     "planLabel": "Statut du compte",
@@ -2093,6 +2107,40 @@
     "recentActivity": "Fichiers récents",
     "noActivity": "Aucune activité pour le moment.",
     "logout": "Se déconnecter",
-    "localAccountNotice": "Ce compte est stocké localement dans ce navigateur uniquement — il n’est pas synchronisé ailleurs. Voir la Politique de confidentialité."
+    "localAccountNotice": "Ce compte est stocké localement dans ce navigateur uniquement — il n’est pas synchronisé ailleurs. Voir la Politique de confidentialité.",
+    "connectedWith": "Connecté avec",
+    "emailNotVerified": "Adresse e-mail non vérifiée : consultez le lien reçu par e-mail.",
+    "cloudAccountNotice": "Votre compte (nom, adresse e-mail, photo de profil) est géré par Firebase Authentication. Vos documents, eux, ne quittent jamais votre appareil.",
+    "deleteAccount": "Supprimer mon compte",
+    "deleteConfirm": "Supprimer définitivement votre compte ? Cette action est irréversible. Vos documents ne sont pas concernés : ils n’ont jamais quitté votre appareil.",
+    "deleteRecentLogin": "Par sécurité, déconnectez-vous puis reconnectez-vous avant de supprimer votre compte.",
+    "deleteError": "La suppression a échoué. Réessayez."
+  },
+  "install": {
+    "section": "Application",
+    "title": "Installer l’application ONE",
+    "subtitle": "Ajoutez ONE à votre écran d’accueil : elle s’ouvre comme une vraie application.",
+    "button": "Installer l’application",
+    "howTo": "Comment l’installer",
+    "gotIt": "J’ai compris",
+    "installedTitle": "Application installée",
+    "installedText": "ONE est disponible sur votre écran d’accueil.",
+    "benefits": {
+      "homeScreen": "Sur l’écran d’accueil",
+      "fullScreen": "En plein écran",
+      "offline": "Même hors ligne"
+    },
+    "ios": {
+      "subtitle": "Sur iPhone et iPad, l’installation se fait depuis Safari en 3 étapes.",
+      "step1": "Touchez le bouton Partager dans la barre de Safari.",
+      "step2": "Faites défiler puis touchez « Sur l’écran d’accueil ».",
+      "step3": "Touchez « Ajouter » en haut à droite."
+    },
+    "manual": {
+      "subtitle": "Votre navigateur propose l’installation depuis son menu.",
+      "step1": "Ouvrez le menu du navigateur (⋮ ou ⋯).",
+      "step2": "Touchez « Installer l’application » ou « Ajouter à l’écran d’accueil ».",
+      "step3": "Confirmez : l’icône ONE apparaît sur votre écran d’accueil."
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { X } from 'lucide-react'
 
@@ -71,7 +72,9 @@ export default function Modal({
 
   if (!open) return null
 
-  return (
+  // Rendu au niveau de <body> : aucune animation ou barre fixe de la page
+  // ne peut passer au-dessus de la fenêtre et de son voile.
+  return createPortal(
     <div
       className="fixed inset-0 z-100 flex items-center justify-center p-4"
       role="dialog"
@@ -118,5 +121,7 @@ export default function Modal({
         <div className="overflow-y-auto px-6 py-6">{children}</div>
       </div>
     </div>
+    ,
+    document.body,
   )
 }

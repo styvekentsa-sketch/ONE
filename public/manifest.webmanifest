@@ -1,0 +1,27 @@
+{
+  "id": "/",
+  "name": "ONE — Outils PDF",
+  "short_name": "ONE",
+  "description": "Fusionnez, compressez, convertissez, signez et protégez vos PDF. Tout reste sur votre appareil.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "any",
+  "background_color": "#fafaf9",
+  "theme_color": "#fafaf9",
+  "categories": ["productivity", "utilities", "business"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/app-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Fusionner des PDF", "short_name": "Fusionner", "url": "/tool/merge-pdf?source=pwa", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Compresser un PDF", "short_name": "Compresser", "url": "/tool/compress-pdf?source=pwa", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Tous les outils", "short_name": "Outils", "url": "/tools?source=pwa", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

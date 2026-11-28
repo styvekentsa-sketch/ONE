@@ -13,6 +13,7 @@
     "@breezystack/lamejs": "^1.2.7",
     "@neslinesli93/qpdf-wasm": "^0.3.0",
     "docx": "^9.7.1",
+    "firebase": "^12.19.0",
     "gif.js": "^0.2.0",
     "i18next": "^26.4.2",
     "i18next-browser-languagedetector": "^8.2.1",

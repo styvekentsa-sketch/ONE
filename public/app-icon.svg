@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Icône d'application ONE : feuille au coin replié (encre / papier), trait cobalt. -->
+  <rect width="512" height="512" fill="#1c1917"/>
+  <g transform="translate(256 256) scale(19) translate(-13.5 -13)">
+    <path d="M6 2.5h9.5L21 8v15.5H6z" fill="#fafaf9"/>
+    <path d="M15.5 2.5V8H21" fill="#d6d3d1"/>
+    <rect x="9" y="13" width="9" height="2.2" rx="1.1" fill="#3473ec"/>
+    <rect x="9" y="17.4" width="6" height="2.2" rx="1.1" fill="#a8a29e"/>
+  </g>
+</svg>

@@ -1871,7 +1871,7 @@
         },
         {
           "heading": "3. Datos que realmente recopilamos",
-          "body": "De acuerdo con el principio de minimización de datos (art. 5.1.c del RGPD), solo recopilamos lo estrictamente necesario para el funcionamiento del Servicio:\n- Datos almacenados localmente en su navegador (localStorage), que nunca salen de su dispositivo: preferencia de tema (claro/oscuro), idioma elegido, historial de sus últimas 20 operaciones (herramienta utilizada, nombre de archivo, marca de tiempo —nunca el contenido del archivo—) y su elección respecto al banner de cookies.\n- Datos técnicos de conexión recopilados de forma estándar por nuestro proveedor de alojamiento (Vercel) para la prestación del Servicio y la seguridad de la infraestructura: dirección IP, tipo de navegador, páginas visitadas, marcas de tiempo de las solicitudes. Estos registros de servidor son gestionados por el proveedor según su propia política y no son explotados por el editor con fines comerciales.\n- Si crea una cuenta (función opcional): su nombre, dirección de correo electrónico y un identificador de sesión, almacenados únicamente en el almacenamiento local de su navegador — nunca enviados a un servidor, nunca sincronizados entre dispositivos o navegadores. Su contraseña nunca se almacena en texto claro: solo se conserva localmente su huella (hash SHA-256).\n\nNo recopilamos ni inferimos ningún dato sensible ni de geolocalización precisa, y no utilizamos ninguna herramienta de análisis de audiencia de terceros (ni Google Analytics ni equivalente) ni publicidad dirigida a la fecha de esta política."
+          "body": "De acuerdo con el principio de minimización de datos (art. 5.1.c del RGPD), solo recopilamos lo estrictamente necesario para el funcionamiento del Servicio:\n- Datos almacenados localmente en su navegador (localStorage), que nunca salen de su dispositivo: preferencia de tema (claro/oscuro), idioma elegido, ajustes de vibración y sonido al tocar, historial de las 20 últimas operaciones (nombre de la herramienta, nombre del archivo, fecha y hora — nunca el contenido del archivo) y su elección sobre el banner de cookies.\n- Datos técnicos de conexión recopilados de forma estándar por nuestro proveedor de alojamiento (Vercel) para prestar el Servicio y proteger su infraestructura: dirección IP, tipo de navegador, páginas consultadas, fecha y hora de las solicitudes. Estos registros los gestiona el proveedor según su propia política y el editor no los explota con fines comerciales.\n- Si crea una cuenta (función opcional): su nombre, su correo electrónico, el identificador único de su cuenta, la fecha de creación y, si inicia sesión con Google, Apple, Microsoft, GitHub o Facebook, la foto de perfil y el identificador que transmite ese proveedor. Estos datos los gestiona nuestro proveedor de autenticación, Firebase Authentication (Google), para que pueda recuperar su cuenta en todos sus dispositivos. Si elige correo y contraseña, esta nunca se almacena en claro: Firebase solo conserva una huella segura. Nunca recibimos la contraseña de sus cuentas de Google, Apple, Microsoft, GitHub o Facebook.\n\nLos archivos que procesa nunca forman parte de estos datos: no salen de su dispositivo, haya iniciado sesión o no. No recopilamos ni deducimos ningún dato sensible ni de geolocalización precisa, y no utilizamos ninguna herramienta de análisis de audiencia de terceros (ni Google Analytics ni equivalentes) ni publicidad segmentada a la fecha de redacción de esta política."
         },
         {
           "heading": "4. Finalidades del tratamiento",
@@ -1883,15 +1883,15 @@
         },
         {
           "heading": "6. Destinatarios de los datos",
-          "body": "Sus datos no se venden, alquilan ni comparten con fines comerciales con terceros. Los únicos destinatarios posibles son:\n- Nuestro proveedor de alojamiento, Vercel Inc., que actúa como encargado del tratamiento para el alojamiento técnico del Servicio;\n- Las autoridades administrativas o judiciales competentes, únicamente cuando la ley nos obligue a ello."
+          "body": "Sus datos no se venden, alquilan ni comparten con terceros con fines comerciales. Los únicos destinatarios posibles son:\n- Nuestro proveedor de alojamiento, Vercel Inc., que actúa como encargado del tratamiento para el alojamiento técnico del Servicio;\n- Google LLC, a través de Firebase Authentication, que actúa como encargado del tratamiento para la gestión de cuentas de usuario (solo si crea una cuenta);\n- El proveedor de acceso que elija (Google, Apple, Microsoft, GitHub o Meta para Facebook), únicamente para verificar su identidad cuando use el botón correspondiente, según su propia política de privacidad;\n- Las autoridades administrativas o judiciales competentes, solo si la ley nos obliga."
         },
         {
           "heading": "7. Transferencias de datos fuera de su país de residencia",
-          "body": "Nuestro proveedor de alojamiento opera una infraestructura global que puede implicar el tratamiento de los registros técnicos de conexión en Estados Unidos u otros países donde Vercel disponga de servidores. En la medida en que esto afecte a datos personales de residentes de la UE, dicha transferencia se basa en las garantías adecuadas previstas por el RGPD (cláusulas contractuales tipo o mecanismo equivalente reconocido por la Comisión Europea). Sus archivos en sí nunca son objeto de transferencia alguna, ya que nunca se envían a un servidor."
+          "body": "Nuestro proveedor de alojamiento (Vercel) y nuestro proveedor de autenticación (Google Firebase) operan infraestructuras mundiales que pueden implicar el tratamiento de registros técnicos de conexión y de datos de cuenta en Estados Unidos o en otros países donde disponen de servidores. En la medida en que afecte a datos personales de residentes en la UE, estas transferencias se basan en las garantías adecuadas previstas por el RGPD (cláusulas contractuales tipo o mecanismo equivalente reconocido por la Comisión Europea, incluido el Marco de Privacidad de Datos UE–EE. UU. cuando el proveedor se adhiera). Sus archivos no son objeto de ninguna transferencia, ya que nunca se envían a un servidor."
         },
         {
           "heading": "8. Plazo de conservación",
-          "body": "Los archivos que usted procesa nunca se conservan: existen únicamente en la memoria de trabajo de su navegador durante el tiempo del procesamiento, y se eliminan al cerrar la pestaña o el navegador. Los datos de preferencia y el historial local permanecen en su dispositivo hasta que usted mismo los elimine (página Ajustes, botón \"Vaciar historial\") o borre los datos de navegación de su navegador; el historial local además se limita automáticamente a las 20 operaciones más recientes. Los registros técnicos de conexión del proveedor de alojamiento se conservan durante el plazo estándar aplicado por Vercel para operar y proteger su infraestructura."
+          "body": "Los archivos que procesa nunca se conservan: solo existen en memoria durante el tratamiento en su navegador y se borran al cerrar la pestaña o el navegador. Los datos de preferencias y el historial local permanecen en su dispositivo hasta que usted los elimine (página Ajustes, botón «Vaciar el historial») o borre los datos de navegación; el historial local se limita además automáticamente a las 20 operaciones más recientes. Los datos de cuenta se conservan mientras exista su cuenta; puede solicitar su eliminación en cualquier momento (ver «Sus derechos»), y entonces se borran de Firebase Authentication. Los registros técnicos de conexión del proveedor de alojamiento se conservan durante el plazo estándar de Vercel para la explotación y seguridad de su infraestructura."
         },
         {
           "heading": "9. Seguridad de los datos",
@@ -1937,7 +1937,7 @@
         },
         {
           "heading": "4. Cuenta de usuario",
-          "body": "Se puede crear una cuenta opcional directamente desde la página \"Mi cuenta\", para personalizar su experiencia (nombre mostrado, historial asociado a un perfil). Esta cuenta se almacena íntegramente en el almacenamiento local de su navegador: no se trata de una cuenta segura de servidor, no se sincroniza entre dispositivos o navegadores, y se pierde si borra los datos de este navegador. Usted es el único responsable de la confidencialidad de la contraseña elegida para esta cuenta local."
+          "body": "Puede crear una cuenta opcional desde la página «Mi cuenta», con un correo electrónico y una contraseña o mediante un proveedor de acceso (Google, Apple, Microsoft, GitHub o Facebook). Le permite recuperar su perfil en todos sus dispositivos. Las cuentas las gestiona nuestro proveedor de autenticación, Firebase Authentication (Google); ningún documento que procese se asocia a ella ni se transmite. Usted es responsable de la confidencialidad de su contraseña y del acceso a su cuenta del proveedor de acceso. Puede solicitar la eliminación de su cuenta en cualquier momento."
         },
         {
           "heading": "5. Obligaciones y compromisos del usuario",
@@ -1991,7 +1991,7 @@
         },
         {
           "heading": "3. Detalle de lo almacenado localmente en su dispositivo",
-          "body": "Los únicos elementos guardados en el almacenamiento local de su navegador son:\n- one-theme — recuerda su preferencia de visualización claro/oscuro. Estrictamente necesario para el funcionamiento esperado de la interfaz; no requiere consentimiento.\n- one-language — recuerda el idioma que ha elegido. Estrictamente necesario; no requiere consentimiento.\n- one-history — recuerda el historial de sus últimas 20 operaciones (nombre de la herramienta, nombre de archivo, fecha), para la comodidad de la función \"Historial\" que usted solicitó. Funcional, activado por defecto por tratarse de un servicio explícitamente solicitado por el usuario; puede vaciarlo en cualquier momento desde Ajustes.\n- one-cookie-consent — recuerda la elección que usted expresó mediante el banner de consentimiento, para no volver a mostrárselo en cada visita."
+          "body": "Los únicos elementos guardados en el almacenamiento local de su navegador son:\n- one-theme — recuerda su preferencia de visualización clara/oscura. Estrictamente necesario para el funcionamiento esperado de la interfaz; no requiere consentimiento.\n- one-language — recuerda el idioma elegido. Estrictamente necesario; no requiere consentimiento.\n- one-feedback — recuerda sus ajustes de vibración y sonido al tocar. Estrictamente necesario para respetar su elección; no requiere consentimiento.\n- one-history — recuerda el historial de sus 20 últimas operaciones (nombre de la herramienta, nombre del archivo, fecha), para la comodidad de la función «Historial» que usted solicitó. Funcional, activado por defecto al tratarse de un servicio solicitado explícitamente; puede vaciarlo en cualquier momento desde Ajustes.\n- one-cookie-consent — recuerda la elección expresada en el banner de consentimiento, para no volver a mostrarlo en cada visita.\n- Sesión de cuenta (solo si inicia sesión) — Firebase Authentication guarda en el navegador (IndexedDB «firebaseLocalStorageDb») lo necesario para mantener su sesión, y ONE conserva una vista previa de su perfil (one-auth-cache) para mostrarla sin demora. Estrictamente necesario para el servicio de cuenta solicitado; se elimina al cerrar sesión.\n\nCuando usa un botón «Continuar con…», se abre una ventana del proveedor elegido (Google, Apple, Microsoft, GitHub o Facebook) en su propio sitio: ese proveedor puede colocar allí sus propias cookies, según su política, como en cualquier inicio de sesión en su servicio. Ninguna de estas cookies se coloca en el dominio de ONE ni ONE la utiliza con fines publicitarios."
         },
         {
           "heading": "4. Base jurídica y consentimiento",
@@ -2076,7 +2076,6 @@
     "errorEmailTaken": "Esta dirección de correo ya está en uso.",
     "errorInvalidCredentials": "Correo o contraseña incorrectos.",
     "errorGeneric": "Ha ocurrido un error. Inténtalo de nuevo.",
-    "socialComingSoon": "El inicio de sesión social estará disponible pronto — usa tu correo por ahora.",
     "marketingTitle": "Tus herramientas de PDF, imagen y multimedia en un solo lugar",
     "marketingSubtitle": "Crea una cuenta para conservar tu tema, idioma e historial en este dispositivo.",
     "feature": {
@@ -2084,7 +2083,22 @@
       "image": "Edición de imágenes",
       "video": "Edición de vídeo",
       "audio": "Herramientas de audio"
-    }
+    },
+    "continueWith": "Continuar con {{provider}}",
+    "forgotPassword": "¿Olvidó su contraseña?",
+    "resetTitle": "Restablecer la contraseña",
+    "resetSubtitle": "Introduzca su correo electrónico y le enviaremos un enlace para elegir una nueva contraseña.",
+    "resetSubmit": "Enviar el enlace",
+    "resetSent": "Si existe una cuenta para {{email}}, se acaba de enviar un correo de restablecimiento. Revise también la carpeta de spam.",
+    "backToLogin": "Volver al inicio de sesión",
+    "errorWeakPassword": "Contraseña demasiado débil: elija una más larga o variada.",
+    "errorAccountExists": "Ya existe una cuenta con este correo mediante otro método de acceso. Inicie sesión con ese método.",
+    "errorProviderDisabled": "El acceso con {{provider}} aún no está activado.",
+    "errorUnauthorizedDomain": "Este sitio no está autorizado para iniciar sesión. Añada su dominio en la consola de Firebase.",
+    "errorNetwork": "Sin conexión a internet. Inténtelo de nuevo.",
+    "errorTooManyRequests": "Demasiados intentos. Espere unos minutos antes de volver a intentarlo.",
+    "errorUserDisabled": "Esta cuenta ha sido desactivada.",
+    "devSocialHint": "Desarrollo: el acceso social está inactivo. Rellene las variables VITE_FIREBASE_* en .env.local (ver docs/connexions-sociales.md)."
   },
   "profile": {
     "planLabel": "Estado de la cuenta",
@@ -2093,6 +2107,40 @@
     "recentActivity": "Archivos recientes",
     "noActivity": "Sin actividad todavía.",
     "logout": "Cerrar sesión",
-    "localAccountNotice": "Esta cuenta se almacena solo localmente en este navegador — no se sincroniza en ningún otro sitio. Consulta la Política de privacidad."
+    "localAccountNotice": "Esta cuenta se almacena solo localmente en este navegador — no se sincroniza en ningún otro sitio. Consulta la Política de privacidad.",
+    "connectedWith": "Conectado con",
+    "emailNotVerified": "Correo no verificado: consulte el enlace que le enviamos.",
+    "cloudAccountNotice": "Su cuenta (nombre, correo electrónico, foto de perfil) la gestiona Firebase Authentication. Sus documentos nunca salen de su dispositivo.",
+    "deleteAccount": "Eliminar mi cuenta",
+    "deleteConfirm": "¿Eliminar definitivamente su cuenta? Esta acción es irreversible. Sus documentos no se ven afectados: nunca salieron de su dispositivo.",
+    "deleteRecentLogin": "Por seguridad, cierre sesión y vuelva a iniciarla antes de eliminar su cuenta.",
+    "deleteError": "La eliminación ha fallado. Inténtelo de nuevo."
+  },
+  "install": {
+    "section": "Aplicación",
+    "title": "Instalar la aplicación ONE",
+    "subtitle": "Añada ONE a su pantalla de inicio: se abre como una aplicación de verdad.",
+    "button": "Instalar la aplicación",
+    "howTo": "Cómo instalarla",
+    "gotIt": "Entendido",
+    "installedTitle": "Aplicación instalada",
+    "installedText": "ONE está disponible en su pantalla de inicio.",
+    "benefits": {
+      "homeScreen": "En la pantalla de inicio",
+      "fullScreen": "A pantalla completa",
+      "offline": "Incluso sin conexión"
+    },
+    "ios": {
+      "subtitle": "En iPhone y iPad, se instala desde Safari en 3 pasos.",
+      "step1": "Toque el botón Compartir en la barra de Safari.",
+      "step2": "Desplácese y toque «Añadir a pantalla de inicio».",
+      "step3": "Toque «Añadir» arriba a la derecha."
+    },
+    "manual": {
+      "subtitle": "Su navegador ofrece la instalación desde su menú.",
+      "step1": "Abra el menú del navegador (⋮ o ⋯).",
+      "step2": "Toque «Instalar aplicación» o «Añadir a pantalla de inicio».",
+      "step3": "Confirme: el icono de ONE aparece en su pantalla de inicio."
+    }
   }
 }

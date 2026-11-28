@@ -19,6 +19,7 @@ import {
   Volume2,
 } from 'lucide-react'
 import Switch from '../components/ui/Switch'
+import InstallAppCard from '../components/InstallAppCard'
 import { getFeedbackSettings, onFeedbackSettingsChange, setFeedbackSettings, supportsSound, supportsVibration, tapFeedback } from '../utils/feedback'
 import { useTheme } from '../context/ThemeContext'
 import { useHistory } from '../hooks/useHistory'
@@ -148,6 +149,11 @@ export default function SettingsPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 pb-12 pt-6 sm:px-6 md:pt-12 lg:px-8">
       <h1 className="mb-6 px-1 text-[28px] font-bold tracking-tight text-stone-900 md:text-4xl dark:text-white">{t('nav.settings')}</h1>
+
+      <div className="mb-8">
+        <h2 className="mb-2 px-4 text-[13px] font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">{t('install.section')}</h2>
+        <InstallAppCard />
+      </div>
 
       <SettingsGroup title={t('settings.preferencesTitle')}>
         <SettingsRow icon={Globe} label={t('settings.language')} sub={currentLanguage}>

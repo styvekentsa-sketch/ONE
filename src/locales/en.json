@@ -1871,7 +1871,7 @@
         },
         {
           "heading": "3. Data we actually collect",
-          "body": "Consistent with the data-minimization principle (GDPR art. 5.1.c), we only collect what is strictly necessary for the Service to function:\n- Data stored locally in your browser (localStorage), which never leaves your device: theme preference (light/dark), chosen language, a history of your last 20 operations (tool used, file name, timestamp — never the file content), and your choice regarding the cookie banner.\n- Standard technical connection data collected by our host (Vercel) to provide the Service and secure the infrastructure: IP address, browser type, pages visited, request timestamps. These server logs are managed by the host under its own policy and are not used by the publisher for commercial purposes.\n- If you create an account (optional feature): your name, email address and a session identifier, stored only in your browser's local storage — never sent to a server, never synced across devices or browsers. Your password is never stored in clear text: only its SHA-256 hash is kept locally.\n\nWe do not collect or infer any sensitive data or precise geolocation data, and we do not use any third-party audience-analytics tool (no Google Analytics or equivalent) or targeted advertising as of the date of this policy."
+          "body": "In line with the data minimisation principle (Art. 5.1.c GDPR), we only collect what is strictly necessary for the Service to work:\n- Data stored locally in your browser (localStorage), which never leaves your device: theme preference (light/dark), chosen language, touch vibration and sound settings, history of the last 20 operations (tool name, file name, timestamp — never the file content), and your choice regarding the cookie banner.\n- Technical connection data collected as standard by our host (Vercel) to provide the Service and secure its infrastructure: IP address, browser type, pages viewed, request timestamps. These server logs are managed by the host under its own policy and are not used by the publisher for commercial purposes.\n- If you create an account (optional feature): your name, email address, unique account identifier, creation date and, if you sign in with Google, Apple, Microsoft, GitHub or Facebook, the profile photo and identifier sent by that provider. This data is managed by our authentication provider, Firebase Authentication (Google), so that you can find your account on all your devices. If you choose email and a password, the password is never stored in clear text: Firebase only keeps a secure hash. We never receive the password of your Google, Apple, Microsoft, GitHub or Facebook accounts.\n\nThe files you process are never part of this data: they never leave your device, whether you are signed in or not. We do not collect or infer any sensitive data or precise location data, and we do not use any third-party audience analytics (no Google Analytics or equivalent) or targeted advertising as of the date of this policy."
         },
         {
           "heading": "4. Purposes of processing",
@@ -1883,15 +1883,15 @@
         },
         {
           "heading": "6. Recipients of data",
-          "body": "Your data is never sold, rented, or shared for commercial purposes with third parties. The only possible recipients are:\n- Our host, Vercel Inc., acting as a processor for the technical hosting of the Service;\n- Competent administrative or judicial authorities, only where required by law."
+          "body": "Your data is not sold, rented or shared with third parties for commercial purposes. The only possible recipients are:\n- Our host, Vercel Inc., acting as a processor for the technical hosting of the Service;\n- Google LLC, through Firebase Authentication, acting as a processor for user account management (only if you create an account);\n- The sign-in provider you choose (Google, Apple, Microsoft, GitHub or Meta for Facebook), solely to verify your identity when you use the corresponding button, under its own privacy policy;\n- Competent administrative or judicial authorities, only where required by law."
         },
         {
           "heading": "7. Transfers outside your country of residence",
-          "body": "Our host operates a global infrastructure that may involve processing of technical connection logs in the United States or other countries where Vercel operates servers. To the extent this involves personal data of EU residents, such transfer relies on appropriate safeguards under the GDPR (standard contractual clauses or an equivalent mechanism recognized by the European Commission). Your files themselves are never transferred anywhere, since they are never sent to a server."
+          "body": "Our host (Vercel) and our authentication provider (Google Firebase) operate global infrastructures that may involve processing technical connection logs and account data in the United States or other countries where they have servers. Insofar as this concerns personal data of EU residents, these transfers rely on the appropriate safeguards provided by the GDPR (standard contractual clauses or an equivalent mechanism recognised by the European Commission, including the EU–US Data Privacy Framework where the provider participates). Your files themselves are never transferred since they are never sent to a server."
         },
         {
           "heading": "8. Retention period",
-          "body": "Files you process are never retained: they exist only in your browser’s working memory for the duration of processing, then are cleared when the tab or browser is closed. Preference data and local history stay on your device until you delete them yourself (Settings page, \"Clear history\" button) or clear your browser’s browsing data; local history is additionally auto-capped at the 20 most recent operations. The host’s technical connection logs are kept for the standard duration applied by Vercel for operating and securing its infrastructure."
+          "body": "The files you process are never kept: they exist only in memory while being processed in your browser and are erased when the tab or browser is closed. Preference data and the local history stay on your device until you delete them yourself (Settings page, “Clear history” button) or clear your browser data; the local history is also automatically limited to the 20 most recent operations. Account data is kept for as long as your account exists; you can request its deletion at any time (see “Your rights”), after which it is erased from Firebase Authentication. The host’s technical connection logs are kept for Vercel’s standard period for operating and securing its infrastructure."
         },
         {
           "heading": "9. Data security",
@@ -1937,7 +1937,7 @@
         },
         {
           "heading": "4. User account",
-          "body": "An optional account can be created directly from the \"My account\" page, to personalize your experience (display name, history tied to a profile). This account is stored entirely in your browser's local storage: it is not a secure server-side account, it is not synced across devices or browsers, and it is lost if you clear this browser's data. You remain solely responsible for the confidentiality of the password you choose for this local account."
+          "body": "An optional account can be created from the “My account” page, with an email address and password or through a sign-in provider (Google, Apple, Microsoft, GitHub or Facebook). It lets you find your profile on all your devices. Accounts are managed by our authentication provider, Firebase Authentication (Google); no document you process is linked to or sent with it. You are responsible for keeping your password confidential and for access to your sign-in provider account. You can request the deletion of your account at any time."
         },
         {
           "heading": "5. User obligations and commitments",
@@ -1991,7 +1991,7 @@
         },
         {
           "heading": "3. What is stored locally on your device",
-          "body": "The only items stored in your browser’s local storage are:\n- one-theme — remembers your light/dark display preference. Strictly necessary for the interface to work as expected; no consent required.\n- one-language — remembers your chosen language. Strictly necessary; no consent required.\n- one-history — remembers your last 20 operations (tool name, file name, date), for the \"History\" feature you requested. Functional, on by default because it is a service you explicitly requested; you can clear it at any time from Settings.\n- one-cookie-consent — remembers the choice you made through the consent banner, so it is not shown again on every visit."
+          "body": "The only items stored in your browser’s local storage are:\n- one-theme — remembers your light/dark display preference. Strictly necessary for the interface to work as expected; no consent required.\n- one-language — remembers the language you chose. Strictly necessary; no consent required.\n- one-feedback — remembers your touch vibration and sound settings. Strictly necessary to respect your choice; no consent required.\n- one-history — remembers the history of your last 20 operations (tool name, file name, date), for the convenience of the “History” feature you requested. Functional, enabled by default as it is a service explicitly requested by the user; you can clear it at any time from Settings.\n- one-cookie-consent — remembers the choice you made in the consent banner, so it is not shown again on every visit.\n- Account session (only if you sign in) — Firebase Authentication stores in the browser (IndexedDB “firebaseLocalStorageDb”) what is needed to keep you signed in, and ONE keeps a preview of your profile (one-auth-cache) to show it without delay. Strictly necessary for the account service you requested; removed when you sign out.\n\nWhen you use a “Continue with…” button, a window from the chosen provider (Google, Apple, Microsoft, GitHub or Facebook) opens on its own site: that provider may set its own cookies there, under its policy, as with any sign-in to its service. None of these cookies are set on ONE’s domain or used by ONE for advertising."
         },
         {
           "heading": "4. Legal basis and consent",
@@ -2076,7 +2076,6 @@
     "errorEmailTaken": "This email address is already in use.",
     "errorInvalidCredentials": "Incorrect email or password.",
     "errorGeneric": "Something went wrong. Please try again.",
-    "socialComingSoon": "Social login is coming soon — please use your email for now.",
     "marketingTitle": "Your PDF, Image & Media tools in one place",
     "marketingSubtitle": "Create an account to keep your theme, language and history wherever you use this device.",
     "feature": {
@@ -2084,7 +2083,22 @@
       "image": "Image editing",
       "video": "Video editing",
       "audio": "Audio tools"
-    }
+    },
+    "continueWith": "Continue with {{provider}}",
+    "forgotPassword": "Forgot your password?",
+    "resetTitle": "Reset your password",
+    "resetSubtitle": "Enter your email address and we will send you a link to choose a new password.",
+    "resetSubmit": "Send the link",
+    "resetSent": "If an account exists for {{email}}, a reset email has just been sent. Remember to check your spam folder.",
+    "backToLogin": "Back to sign in",
+    "errorWeakPassword": "Password too weak: choose a longer or more varied one.",
+    "errorAccountExists": "An account already exists with this email using another sign-in method. Please sign in with that one.",
+    "errorProviderDisabled": "Signing in with {{provider}} is not enabled yet.",
+    "errorUnauthorizedDomain": "This site is not authorised for sign-in. Add its domain in the Firebase console.",
+    "errorNetwork": "No internet connection. Please try again.",
+    "errorTooManyRequests": "Too many attempts. Wait a few minutes before trying again.",
+    "errorUserDisabled": "This account has been disabled.",
+    "devSocialHint": "Development: social sign-in is inactive. Fill in the VITE_FIREBASE_* variables in .env.local (see docs/connexions-sociales.md)."
   },
   "profile": {
     "planLabel": "Account status",
@@ -2093,6 +2107,40 @@
     "recentActivity": "Recent files",
     "noActivity": "No activity yet.",
     "logout": "Log out",
-    "localAccountNotice": "This account is stored locally in this browser only — it is not synced anywhere else. See the Privacy Policy."
+    "localAccountNotice": "This account is stored locally in this browser only — it is not synced anywhere else. See the Privacy Policy.",
+    "connectedWith": "Signed in with",
+    "emailNotVerified": "Email address not verified: check the link we emailed you.",
+    "cloudAccountNotice": "Your account (name, email address, profile photo) is managed by Firebase Authentication. Your documents never leave your device.",
+    "deleteAccount": "Delete my account",
+    "deleteConfirm": "Permanently delete your account? This cannot be undone. Your documents are not affected: they never left your device.",
+    "deleteRecentLogin": "For security, sign out and sign in again before deleting your account.",
+    "deleteError": "Deletion failed. Please try again."
+  },
+  "install": {
+    "section": "App",
+    "title": "Install the ONE app",
+    "subtitle": "Add ONE to your home screen: it opens like a real app.",
+    "button": "Install the app",
+    "howTo": "How to install it",
+    "gotIt": "Got it",
+    "installedTitle": "App installed",
+    "installedText": "ONE is available on your home screen.",
+    "benefits": {
+      "homeScreen": "On your home screen",
+      "fullScreen": "Full screen",
+      "offline": "Works offline"
+    },
+    "ios": {
+      "subtitle": "On iPhone and iPad, install it from Safari in 3 steps.",
+      "step1": "Tap the Share button in Safari’s toolbar.",
+      "step2": "Scroll down and tap “Add to Home Screen”.",
+      "step3": "Tap “Add” in the top-right corner."
+    },
+    "manual": {
+      "subtitle": "Your browser offers installation from its menu.",
+      "step1": "Open the browser menu (⋮ or ⋯).",
+      "step2": "Tap “Install app” or “Add to Home screen”.",
+      "step3": "Confirm: the ONE icon appears on your home screen."
+    }
   }
 }

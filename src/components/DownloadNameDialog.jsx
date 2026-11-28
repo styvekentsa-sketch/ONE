@@ -103,7 +103,7 @@ export default function DownloadNameDialog() {
           {t('download.dontAsk')}
         </label>
 
-        <div className="flex flex-col-reverse gap-2 sm:flex-row">
+        <div className="flex gap-2">
           <button
             type="button"
             onClick={() => close(null)}

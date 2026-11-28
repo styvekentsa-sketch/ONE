@@ -52,6 +52,7 @@ import { exportAnnotatedPdf } from '../../utils/annotateExport'
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const CSS_UNITS = 96 / 72
 const ZOOM_PRESETS = [0.5, 0.75, 1, 1.25, 1.5, 2]
@@ -1305,12 +1306,7 @@ function Studio({ doc, onClose }) {
   }
 
   const download = () => {
-    const link = document.createElement('a')
-    link.href = exportState.url
-    link.download = `${file.name.replace(/\.pdf$/i, '')}_annote.pdf`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(exportState.url, `${file.name.replace(/\.pdf$/i, '')}_annote.pdf`)
   }
 
   const handleClose = () => {

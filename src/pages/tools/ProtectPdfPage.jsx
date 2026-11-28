@@ -8,6 +8,7 @@ import DownloadButton from '../../components/DownloadButton'
 import { protectPdf, unlockPdfWithPassword } from '../../utils/qpdf'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -143,12 +144,7 @@ function ProtectPanel({ t }) {
 
   const handleDownload = () => {
     if (!downloadUrl) return
-    const link = document.createElement('a')
-    link.href = downloadUrl
-    link.download = `${file?.name?.replace(/\.pdf$/i, '') || 'ONE_protege'}.pdf`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(downloadUrl, `${file?.name?.replace(/\.pdf$/i, '') || 'ONE_protege'}.pdf`)
   }
 
   return (
@@ -318,12 +314,7 @@ function UnlockPanel({ t }) {
 
   const handleDownload = () => {
     if (!downloadUrl) return
-    const link = document.createElement('a')
-    link.href = downloadUrl
-    link.download = `${file?.name?.replace(/\.pdf$/i, '') || 'ONE_deverrouille'}.pdf`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(downloadUrl, `${file?.name?.replace(/\.pdf$/i, '') || 'ONE_deverrouille'}.pdf`)
   }
 
   return (

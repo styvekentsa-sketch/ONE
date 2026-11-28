@@ -4,6 +4,7 @@ import { ArrowLeft, Download, Maximize2 } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
 import { exportCanvasToBlob } from '../../utils/canvasEngine'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import { saveFile } from '../../utils/download'
 
 /**
  * Transformation libre (rotation, échelle, miroir) — de vraies opérations
@@ -71,14 +72,7 @@ export default function ImageTransformPage() {
   const handleDownload = async () => {
     if (!workingCanvasRef.current || !file) return
     const blob = await exportCanvasToBlob(workingCanvasRef.current, 'png')
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `${file.name.replace(/\.[^.]+$/, '')}_transforme.png`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    URL.revokeObjectURL(url)
+    saveFile(blob, `${file.name.replace(/\.[^.]+$/, '')}_transforme.png`)
     addHistoryEntry({ toolId: 'transform-geometry', toolName: 'Transformation Image', message: `Image transformée — ${file.name}` })
   }
 

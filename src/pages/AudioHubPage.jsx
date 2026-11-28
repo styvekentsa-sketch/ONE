@@ -9,6 +9,7 @@ import MediaEditorStudio from '../components/studio/MediaEditorStudio'
 import { trimAudio, extractAudio, convertAudioFormat } from '../utils/audioWorker'
 import { addHistoryEntry } from '../utils/historyStorage'
 import BackButton from '../components/ui/BackButton'
+import { saveFile } from '../utils/download'
 
 const TABS = [
   { id: 'trim', icon: Scissors },
@@ -124,12 +125,7 @@ function TrimPanel({ t }) {
 
   const handleDownload = () => {
     if (!result) return
-    const link = document.createElement('a')
-    link.href = result.url
-    link.download = `${file.name.replace(/\.[^.]+$/, '')}_trim.${result.extension}`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(result.url, `${file.name.replace(/\.[^.]+$/, '')}_trim.${result.extension}`)
   }
 
   return (
@@ -221,12 +217,7 @@ function ExtractPanel({ t }) {
 
   const handleDownload = () => {
     if (!result) return
-    const link = document.createElement('a')
-    link.href = result.url
-    link.download = `${file.name.replace(/\.[^.]+$/, '')}_audio.${result.extension}`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(result.url, `${file.name.replace(/\.[^.]+$/, '')}_audio.${result.extension}`)
   }
 
   return (
@@ -311,12 +302,7 @@ function ConvertPanel({ t }) {
 
   const handleDownload = () => {
     if (!result) return
-    const link = document.createElement('a')
-    link.href = result.url
-    link.download = `${file.name.replace(/\.[^.]+$/, '')}.${result.extension}`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(result.url, `${file.name.replace(/\.[^.]+$/, '')}.${result.extension}`)
   }
 
   return (

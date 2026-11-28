@@ -6,6 +6,7 @@ import ProcessingState from '../../components/ProcessingState'
 import { extractImages } from '../../utils/pdfWorker'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -14,14 +15,7 @@ const STEPS = {
 }
 
 function triggerDownload(blob, filename) {
-  const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.href = url
-  link.download = filename
-  document.body.appendChild(link)
-  link.click()
-  link.remove()
-  URL.revokeObjectURL(url)
+  saveFile(blob, filename)
 }
 
 export default function ExtractImagesPage() {

@@ -4,6 +4,7 @@ import { ArrowLeft, Loader2, Package } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
 import { buildCssFilter, bakeFilter, exportCanvasToBlob } from '../../utils/canvasEngine'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import { saveFile } from '../../utils/download'
 
 const PRESETS = [
   { id: 'none', label: 'Aucun (recompression seule)', values: {} },
@@ -84,14 +85,7 @@ export default function ImageBatchPage() {
       if (abortedRef.current) return
 
       const zipBlob = await zip.generateAsync({ type: 'blob' })
-      const url = URL.createObjectURL(zipBlob)
-      const link = document.createElement('a')
-      link.href = url
-      link.download = 'ONE_lot_images.zip'
-      document.body.appendChild(link)
-      link.click()
-      link.remove()
-      URL.revokeObjectURL(url)
+      saveFile(zipBlob, 'ONE_lot_images.zip')
 
       addHistoryEntry({ toolId: 'batch-processing', toolName: 'Traitement par lots', message: `${files.length} image(s) traitées` })
     } catch {

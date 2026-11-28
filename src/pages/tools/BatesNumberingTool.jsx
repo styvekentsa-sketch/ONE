@@ -36,6 +36,7 @@ import {
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const STEPS = { UPLOAD: 'upload', CONFIGURE: 'configure', PROCESSING: 'processing', DONE: 'done' }
 const DIGIT_OPTIONS = [3, 4, 5, 6, 7, 8]
@@ -43,14 +44,7 @@ const uid = () => Math.random().toString(36).slice(2, 10)
 const baseName = (name) => name.replace(/\.pdf$/i, '')
 
 function downloadBlob(blob, name) {
-  const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.href = url
-  link.download = name
-  document.body.appendChild(link)
-  link.click()
-  link.remove()
-  setTimeout(() => URL.revokeObjectURL(url), 1500)
+  saveFile(blob, name)
 }
 
 /* -------------------------------------------------------------------------- */
@@ -399,7 +393,7 @@ export default function BatesNumberingTool() {
   }
 
   // Téléchargements espacés : certains navigateurs bloquent les rafales.
-  const downloadAll = () => results.forEach((r, i) => setTimeout(() => downloadBlob(r.blob, r.name), i * 400))
+  const downloadAll = () => results.forEach((r, i) => setTimeout(() => saveFile(r.blob, r.name, { ask: false }), i * 400))
 
   const restart = () => {
     setDocs([])

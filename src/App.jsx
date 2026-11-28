@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AssistantProvider } from './context/AssistantContext'
 import { AuthProvider } from './context/AuthContext'
 import MainLayout from './layouts/MainLayout'
+import DownloadNameDialog from './components/DownloadNameDialog'
 import Home from './pages/Home'
 
 // Pages d'outils chargées à la demande : leur code (et les grosses
@@ -143,6 +144,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
           </Routes>
+          <DownloadNameDialog />
         </BrowserRouter>
       </AssistantProvider>
     </AuthProvider>

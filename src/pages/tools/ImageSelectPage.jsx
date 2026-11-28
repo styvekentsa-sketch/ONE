@@ -4,6 +4,7 @@ import { ArrowLeft, Blend, Download, Lasso, Wand2 } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
 import { floodFillMask, maskFromPath, exportCanvasToBlob } from '../../utils/canvasEngine'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import { saveFile } from '../../utils/download'
 
 const TABS = [
   { id: 'wand', label: 'Baguette Magique & Sélection Rapide', icon: Wand2 },
@@ -286,14 +287,7 @@ export default function ImageSelectPage() {
 
   const downloadCanvas = async (canvas, name) => {
     const blob = await exportCanvasToBlob(canvas, 'png')
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = name
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    URL.revokeObjectURL(url)
+    saveFile(blob, name)
     addHistoryEntry({ toolId: 'magic-quick-select', toolName: 'Sélection Image', message: name })
   }
 

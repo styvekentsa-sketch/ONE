@@ -7,6 +7,7 @@ import DownloadButton from '../../components/DownloadButton'
 import { convertWordToPdf } from '../../utils/wordToPdf'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -66,12 +67,7 @@ export default function WordToPdfPage() {
 
   const handleDownload = () => {
     if (!downloadUrl) return
-    const link = document.createElement('a')
-    link.href = downloadUrl
-    link.download = `${fileName.replace(/\.docx$/i, '') || 'ONE_document'}.pdf`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(downloadUrl, `${fileName.replace(/\.docx$/i, '') || 'ONE_document'}.pdf`)
   }
 
   return (

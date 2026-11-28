@@ -8,6 +8,7 @@ import { compressImage, convertImageFormat } from '../utils/imageWorker'
 import { imageCompressionLevels, DEFAULT_IMAGE_COMPRESSION_LEVEL } from '../data/imageCompressionLevels'
 import { addHistoryEntry } from '../utils/historyStorage'
 import BackButton from '../components/ui/BackButton'
+import { saveFile } from '../utils/download'
 
 const TABS = [
   { id: 'compress', icon: Minimize2 },
@@ -133,12 +134,7 @@ export default function ImageHubPage() {
     if (!result) return
     const baseName = file?.name?.replace(/\.[^.]+$/, '') || 'ONE_image'
     const ext = result.format === 'jpeg' ? 'jpg' : result.format
-    const link = document.createElement('a')
-    link.href = result.url
-    link.download = `${baseName}.${ext}`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(result.url, `${baseName}.${ext}`)
 
     addHistoryEntry({
       toolId: 'compress-image',

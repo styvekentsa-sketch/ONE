@@ -8,6 +8,7 @@ import {
   applyLUT, applyChannelOffsets, applyGradientMap, exportCanvasToBlob,
 } from '../../utils/canvasEngine'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import { saveFile } from '../../utils/download'
 
 const DEFAULT_ADJUSTMENTS = {
   brightness: 100,
@@ -109,14 +110,7 @@ export default function ImageAdjustPage() {
   const handleApply = async () => {
     if (!previewCanvasRef.current || !file) return
     const blob = await exportCanvasToBlob(previewCanvasRef.current, 'png')
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `${file.name.replace(/\.[^.]+$/, '')}_ajuste.png`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    URL.revokeObjectURL(url)
+    saveFile(blob, `${file.name.replace(/\.[^.]+$/, '')}_ajuste.png`)
     addHistoryEntry({ toolId: 'levels-curves', toolName: 'Ajustements Image', message: `Image ajustée — ${file.name}` })
   }
 

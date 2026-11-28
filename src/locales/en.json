@@ -39,7 +39,15 @@
     "hapticsUnsupported": "Not available on this device (iPhone in particular)",
     "sound": "Tap sound",
     "soundSub": "A soft sound on every tap",
-    "feedbackNote": "Touch screens only. The sound follows your phone’s silent mode when the browser allows it."
+    "feedbackNote": "Touch screens only. The sound follows your phone’s silent mode when the browser allows it.",
+    "downloadsTitle": "Downloads",
+    "askName": "Rename before downloading",
+    "askNameSub": "Lets you edit the name on every download",
+    "uniqueNames": "Always unique names",
+    "uniqueNamesSub": "A file never gets the same name twice: “name (2)”, “name (3)”…",
+    "resetNames": "Forget names already used",
+    "resetNamesDone": "List cleared",
+    "resetNamesShort": "Reset"
   },
   "hero": {
     "titleLine1": "Manage your documents,",
@@ -2154,5 +2162,15 @@
       "step3": "Tap “Install”: ONE appears among your apps.",
       "note": "The app is distributed directly by ONE, outside the Play Store, so Android shows an unknown-source warning: this is expected. It asks for no special permissions."
     }
+  },
+  "download": {
+    "title": "Rename file",
+    "subtitle": "Choose the file name before downloading.",
+    "label": "File name",
+    "empty": "Enter a file name.",
+    "alreadyUsed": "This name has already been used: the file will be saved as “{{name}}”.",
+    "dontAsk": "Don’t ask again (change it in Settings)",
+    "cancel": "Cancel",
+    "confirm": "Download"
   }
 }

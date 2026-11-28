@@ -4,6 +4,7 @@ import { ArrowLeft, Download, Layers as LayersIcon } from 'lucide-react'
 import LayersPanel from '../../components/studio/LayersPanel'
 import { createLayer, compositeLayers, exportCanvasToBlob } from '../../utils/canvasEngine'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import { saveFile } from '../../utils/download'
 
 /**
  * Empilement de calques avec opacité et modes de fusion réellement natifs
@@ -122,14 +123,7 @@ export default function ImageLayersPage() {
   const handleDownload = async () => {
     if (!canvasRef.current) return
     const blob = await exportCanvasToBlob(canvasRef.current, 'png')
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = 'ONE_calques.png'
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    URL.revokeObjectURL(url)
+    saveFile(blob, 'ONE_calques.png')
     addHistoryEntry({ toolId: 'layers-blend', toolName: 'Calques Image', message: `Composition exportée (${layers.length} calques)` })
   }
 

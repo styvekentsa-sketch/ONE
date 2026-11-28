@@ -23,6 +23,7 @@ import { diagnosePdf, repairRebuild, repairStructural, salvageVisual, verifyRepa
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const STEPS = { UPLOAD: 'upload', ANALYZING: 'analyzing', REPORT: 'report', PROCESSING: 'processing', DONE: 'done' }
 const MODES = [
@@ -194,14 +195,7 @@ export default function RepairPdfTool() {
   }
 
   const download = () => {
-    const url = URL.createObjectURL(result.blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `${file.name.replace(/\.pdf$/i, '')}_repare.pdf`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    setTimeout(() => URL.revokeObjectURL(url), 1500)
+    saveFile(result.blob, `${file.name.replace(/\.pdf$/i, '')}_repare.pdf`)
   }
 
   const restart = () => {

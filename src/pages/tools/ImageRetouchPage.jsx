@@ -4,6 +4,7 @@ import { ArrowLeft, Bandage, Download, Focus, Stamp } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
 import { applyRedEyeReduction, exportCanvasToBlob } from '../../utils/canvasEngine'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import { saveFile } from '../../utils/download'
 
 const TABS = [
   { id: 'clone', label: 'Clonage & Correcteur', icon: Stamp },
@@ -109,14 +110,7 @@ export default function ImageRetouchPage() {
   const handleDownload = async () => {
     if (!canvasRef.current || !file) return
     const blob = await exportCanvasToBlob(canvasRef.current, 'png')
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `${file.name.replace(/\.[^.]+$/, '')}_retouche.png`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    URL.revokeObjectURL(url)
+    saveFile(blob, `${file.name.replace(/\.[^.]+$/, '')}_retouche.png`)
     addHistoryEntry({ toolId: 'clone-heal', toolName: 'Retouche Image', message: `Image retouchée — ${file.name}` })
   }
 

@@ -26,6 +26,7 @@ import { MASK_COLORS, applyRedactions, auditOutput, detectSensitive, extractPage
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const CATEGORIES = ['email', 'phone', 'bank', 'dates']
 const PURGE_KEYS = ['metadata', 'annotations', 'attachments', 'javascript', 'externalLinks', 'outlines', 'layers']
@@ -393,14 +394,7 @@ export default function SanitizeRedactTool() {
   }
 
   const download = () => {
-    const url = URL.createObjectURL(exportState.blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `${file.name.replace(/\.pdf$/i, '')}_anonymise.pdf`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    setTimeout(() => URL.revokeObjectURL(url), 1500)
+    saveFile(exportState.blob, `${file.name.replace(/\.pdf$/i, '')}_anonymise.pdf`)
   }
 
   const restart = () => {

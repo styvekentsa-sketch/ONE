@@ -39,7 +39,15 @@
     "hapticsUnsupported": "Non disponible sur cet appareil (iPhone notamment)",
     "sound": "Son des touches",
     "soundSub": "Petit son doux à chaque appui",
-    "feedbackNote": "Uniquement sur écran tactile. Le son respecte le mode silencieux de votre téléphone quand le navigateur le permet."
+    "feedbackNote": "Uniquement sur écran tactile. Le son respecte le mode silencieux de votre téléphone quand le navigateur le permet.",
+    "downloadsTitle": "Téléchargements",
+    "askName": "Renommer avant de télécharger",
+    "askNameSub": "Propose de modifier le nom à chaque téléchargement",
+    "uniqueNames": "Noms toujours uniques",
+    "uniqueNamesSub": "Un fichier ne porte jamais deux fois le même nom : « nom (2) », « nom (3) »…",
+    "resetNames": "Oublier les noms déjà utilisés",
+    "resetNamesDone": "Liste effacée",
+    "resetNamesShort": "Réinitialiser"
   },
   "hero": {
     "titleLine1": "Gérez vos documents,",
@@ -2154,5 +2162,15 @@
       "step3": "Touchez « Installer » : ONE apparaît parmi vos applications.",
       "note": "L’application est distribuée directement par ONE, hors Play Store. Android affiche donc un avertissement de source inconnue : c’est normal. Elle ne demande aucune autorisation particulière."
     }
+  },
+  "download": {
+    "title": "Renommer le fichier",
+    "subtitle": "Choisissez le nom du fichier avant de le télécharger.",
+    "label": "Nom du fichier",
+    "empty": "Saisissez un nom de fichier.",
+    "alreadyUsed": "Ce nom a déjà été utilisé : le fichier sera enregistré sous « {{name}} ».",
+    "dontAsk": "Ne plus demander (modifiable dans Réglages)",
+    "cancel": "Annuler",
+    "confirm": "Télécharger"
   }
 }

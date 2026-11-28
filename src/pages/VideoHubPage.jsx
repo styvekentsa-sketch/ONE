@@ -9,6 +9,7 @@ import MediaEditorStudio from '../components/studio/MediaEditorStudio'
 import { videoToGif, muteVideo } from '../utils/videoWorker'
 import { addHistoryEntry } from '../utils/historyStorage'
 import BackButton from '../components/ui/BackButton'
+import { saveFile } from '../utils/download'
 
 const TABS = [
   { id: 'gif', icon: Film },
@@ -107,12 +108,7 @@ function GifPanel({ t }) {
 
   const handleDownload = () => {
     if (!result) return
-    const link = document.createElement('a')
-    link.href = result.url
-    link.download = `${file.name.replace(/\.[^.]+$/, '')}.gif`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(result.url, `${file.name.replace(/\.[^.]+$/, '')}.gif`)
   }
 
   return (
@@ -281,12 +277,7 @@ function MutePanel({ t }) {
 
   const handleDownload = () => {
     if (!result) return
-    const link = document.createElement('a')
-    link.href = result.url
-    link.download = `${file.name.replace(/\.[^.]+$/, '')}_muet.${result.extension}`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(result.url, `${file.name.replace(/\.[^.]+$/, '')}_muet.${result.extension}`)
   }
 
   return (

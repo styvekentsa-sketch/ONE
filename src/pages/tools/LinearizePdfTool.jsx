@@ -20,20 +20,14 @@ import { diagnosePdf, linearizePdf, transferSeconds, verifyLinearization } from 
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const STEPS = { UPLOAD: 'upload', CONFIGURE: 'configure', PROCESSING: 'processing', DONE: 'done' }
 const uid = () => Math.random().toString(36).slice(2, 10)
 const isPdf = (f) => f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf')
 
 function downloadBlob(blob, name) {
-  const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.href = url
-  link.download = name
-  document.body.appendChild(link)
-  link.click()
-  link.remove()
-  setTimeout(() => URL.revokeObjectURL(url), 1500)
+  saveFile(blob, name)
 }
 
 /** Octets à télécharger avant le premier affichage. */

@@ -7,6 +7,7 @@ import DownloadButton from '../../components/DownloadButton'
 import { redactPdf } from '../../utils/pdfWorker'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -96,12 +97,7 @@ export default function AutoRedactPage() {
 
   const handleDownload = () => {
     if (!result) return
-    const link = document.createElement('a')
-    link.href = result.url
-    link.download = 'ONE_redacted.pdf'
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(result.url, 'ONE_redacted.pdf')
   }
 
   return (

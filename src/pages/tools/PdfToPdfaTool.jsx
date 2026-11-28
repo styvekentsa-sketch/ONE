@@ -24,6 +24,7 @@ import { auditPdf, convertToPdfa } from '../../utils/pdfaWorker'
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const STEPS = { UPLOAD: 'upload', ANALYZING: 'analyzing', CONFIGURE: 'configure', PROCESSING: 'processing', DONE: 'done' }
 const LEVEL_IDS = ['1b', '2b', '3b']
@@ -188,14 +189,7 @@ export default function PdfToPdfaTool() {
   }
 
   const download = () => {
-    const url = URL.createObjectURL(result.blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = result.name
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    setTimeout(() => URL.revokeObjectURL(url), 1500)
+    saveFile(result.blob, result.name)
   }
 
   const restart = () => {

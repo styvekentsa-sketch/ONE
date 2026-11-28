@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   ChevronRight,
+  CopyCheck,
+  FilePen,
   Cookie,
   FileText,
   Globe,
@@ -20,6 +22,7 @@ import {
 } from 'lucide-react'
 import Switch from '../components/ui/Switch'
 import InstallAppCard from '../components/InstallAppCard'
+import { getDownloadSettings, onDownloadSettingsChange, resetUsedNames, setDownloadSettings } from '../utils/download'
 import { getFeedbackSettings, onFeedbackSettingsChange, setFeedbackSettings, supportsSound, supportsVibration, tapFeedback } from '../utils/feedback'
 import { useTheme } from '../context/ThemeContext'
 import { useHistory } from '../hooks/useHistory'
@@ -132,6 +135,9 @@ export default function SettingsPage() {
   const [feedback, setFeedback] = useState(getFeedbackSettings)
 
   useEffect(() => onFeedbackSettingsChange(setFeedback), [])
+  const [downloads, setDownloads] = useState(getDownloadSettings)
+  const [namesReset, setNamesReset] = useState(false)
+  useEffect(() => onDownloadSettingsChange(setDownloads), [])
 
   const updateFeedback = (patch) => {
     setFeedbackSettings(patch)
@@ -197,6 +203,26 @@ export default function SettingsPage() {
         </SettingsRow>
       </SettingsGroup>
       <p className="mt-2 px-4 text-xs text-stone-500 dark:text-stone-400">{t('settings.feedbackNote')}</p>
+
+      <SettingsGroup title={t('settings.downloadsTitle')}>
+        <SettingsRow icon={FilePen} label={t('settings.askName')} sub={t('settings.askNameSub')}>
+          <Switch checked={downloads.askName} onChange={(v) => setDownloadSettings({ askName: v })} label={t('settings.askName')} />
+        </SettingsRow>
+        <SettingsRow icon={CopyCheck} label={t('settings.uniqueNames')} sub={t('settings.uniqueNamesSub')} last>
+          <button
+            type="button"
+            onClick={() => {
+              resetUsedNames()
+              setNamesReset(true)
+            }}
+            disabled={namesReset}
+            aria-label={t('settings.resetNames')}
+            className="shrink-0 rounded-full bg-stone-100 px-3 py-1.5 text-xs font-semibold text-stone-700 hover:bg-stone-200 disabled:opacity-60 dark:bg-stone-800 dark:text-stone-200 dark:hover:bg-stone-700"
+          >
+            {namesReset ? t('settings.resetNamesDone') : t('settings.resetNamesShort')}
+          </button>
+        </SettingsRow>
+      </SettingsGroup>
 
       <SettingsGroup title={t('settings.storageTitle')}>
         <SettingsRow

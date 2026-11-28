@@ -49,6 +49,7 @@ import { addHistoryEntry } from '../../utils/historyStorage'
 import { formatBytes } from '../../utils/formatBytes'
 import './pdfReader.css'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 // 100 % = taille réelle à l'écran (96 dpi CSS), comme les lecteurs PDF de
 // bureau : pdf.js travaille en points PDF (72 par pouce), d'où ce facteur.
@@ -966,14 +967,7 @@ function Reader({ doc, onClose }) {
     try {
       const output = await exportAnnotatedPdf(bytes, annotations)
       const blob = new Blob([output], { type: 'application/pdf' })
-      const url = URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = url
-      link.download = `${file.name.replace(/\.pdf$/i, '')}_annote.pdf`
-      document.body.appendChild(link)
-      link.click()
-      link.remove()
-      setTimeout(() => URL.revokeObjectURL(url), 1000)
+      saveFile(blob, `${file.name.replace(/\.pdf$/i, '')}_annote.pdf`)
       addHistoryEntry({
         toolId: 'pdf-reader',
         toolName: r('name'),

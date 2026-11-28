@@ -17,6 +17,7 @@ import { analyzePdf, flattenInteractive, flattenRaster } from '../../utils/flatt
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -115,12 +116,7 @@ export default function FlattenTool() {
 
   const handleDownload = () => {
     if (!result) return
-    const link = document.createElement('a')
-    link.href = result.url
-    link.download = result.fileName
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(result.url, result.fileName)
   }
 
   const handleRestart = () => {

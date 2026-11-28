@@ -4,6 +4,7 @@ import { ArrowLeft, Download, Paintbrush, PaintBucket, Type } from 'lucide-react
 import DragDropZone from '../../components/DragDropZone'
 import { floodFillMask, exportCanvasToBlob } from '../../utils/canvasEngine'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import { saveFile } from '../../utils/download'
 
 const TABS = [
   { id: 'brush', label: 'Pinceau, Crayon & Gomme', icon: Paintbrush },
@@ -154,14 +155,7 @@ export default function ImageDrawPage() {
   const handleDownload = async () => {
     if (!canvasRef.current || !file) return
     const blob = await exportCanvasToBlob(canvasRef.current, 'png')
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `${file.name.replace(/\.[^.]+$/, '')}_dessin.png`
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    URL.revokeObjectURL(url)
+    saveFile(blob, `${file.name.replace(/\.[^.]+$/, '')}_dessin.png`)
     addHistoryEntry({ toolId: 'brush-tools', toolName: 'Dessin Image', message: `Image annotée — ${file.name}` })
   }
 

@@ -7,6 +7,7 @@ import DownloadButton from '../../components/DownloadButton'
 import { mergePdfs } from '../../utils/pdfWorker'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -95,12 +96,7 @@ export default function MergePdfPage() {
 
   const handleDownload = () => {
     if (!downloadUrl) return
-    const link = document.createElement('a')
-    link.href = downloadUrl
-    link.download = 'ONE_merged.pdf'
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(downloadUrl, 'ONE_merged.pdf')
   }
 
   return (

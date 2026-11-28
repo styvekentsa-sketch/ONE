@@ -8,6 +8,7 @@ import { loadPdfDocument, renderPageToCanvas } from '../../utils/pdfRender'
 import { organizePdf } from '../../utils/pdfWorker'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -127,12 +128,7 @@ export default function OrganizePdfPage() {
 
   const handleDownload = () => {
     if (!downloadUrl) return
-    const link = document.createElement('a')
-    link.href = downloadUrl
-    link.download = 'ONE_organized.pdf'
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(downloadUrl, 'ONE_organized.pdf')
   }
 
   return (

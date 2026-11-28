@@ -10,6 +10,7 @@ import { compressPdf } from '../../utils/pdfWorker'
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
 import BackButton from '../../components/ui/BackButton'
+import { saveFile } from '../../utils/download'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -87,12 +88,7 @@ export default function CompressPdfPage() {
 
   const handleDownload = () => {
     if (!result) return
-    const link = document.createElement('a')
-    link.href = result.url
-    link.download = 'ONE_compressed.pdf'
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
+    saveFile(result.url, 'ONE_compressed.pdf')
   }
 
   const selectedLevel = compressionLevels.find((l) => l.id === level)

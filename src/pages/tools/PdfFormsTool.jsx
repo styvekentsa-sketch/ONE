@@ -1,9 +1,7 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { AnnotationMode } from 'pdfjs-dist'
 import {
-  ArrowLeft,
   Asterisk,
   Check,
   CheckCircle2,
@@ -44,6 +42,7 @@ import {
 } from '../../utils/pdfFormsWorker'
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import BackButton from '../../components/ui/BackButton'
 
 const CSS_UNITS = 96 / 72
 const ZOOM_PRESETS = [0.5, 0.75, 1, 1.25, 1.5, 2]
@@ -111,8 +110,8 @@ function IconButton({ icon: Icon, label, onClick, active = false, disabled = fal
       disabled={disabled}
       className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors duration-150 disabled:pointer-events-none disabled:opacity-40 ${
         active
-          ? 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-400'
-          : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white'
+          ? 'bg-brand-500/10 text-brand-600 dark:bg-brand-400/10 dark:text-brand-400'
+          : 'text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-white'
       } ${className}`}
     >
       <Icon size={18} />
@@ -120,20 +119,20 @@ function IconButton({ icon: Icon, label, onClick, active = false, disabled = fal
   )
 }
 
-const Divider = () => <span className="mx-1 h-6 w-px shrink-0 bg-zinc-200 dark:bg-zinc-800" />
+const Divider = () => <span className="mx-1 h-6 w-px shrink-0 bg-stone-200 dark:bg-stone-800" />
 
 function Toggle({ checked, onChange, label, icon: Icon }) {
   return (
-    <label className="flex cursor-pointer items-center gap-2 text-sm text-zinc-700 dark:text-zinc-300">
-      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="h-4 w-4 accent-emerald-600" />
-      {Icon && <Icon size={15} className="text-zinc-400" />}
+    <label className="flex cursor-pointer items-center gap-2 text-sm text-stone-700 dark:text-stone-300">
+      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="h-4 w-4 accent-brand-600" />
+      {Icon && <Icon size={15} className="text-stone-400" />}
       {label}
     </label>
   )
 }
 
 const inputClass =
-  'w-full rounded-lg border border-zinc-200 bg-white px-2.5 py-1.5 text-sm text-zinc-900 focus:border-emerald-500 focus:outline-none disabled:opacity-60 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100'
+  'w-full rounded-lg border border-stone-200 bg-white px-2.5 py-1.5 text-sm text-stone-900 focus:border-brand-500 focus:outline-none disabled:opacity-60 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100'
 
 /** Contrôle de saisie d'une valeur de champ (panneau latéral / inspecteur). */
 function FieldControl({ field, onChange, disabled, f }) {
@@ -164,19 +163,19 @@ function FieldControl({ field, onChange, disabled, f }) {
       return (
         <div className="flex flex-wrap gap-x-4 gap-y-1.5">
           {radioOptions.map((option) => (
-            <label key={option} className="flex items-center gap-1.5 text-sm text-zinc-700 dark:text-zinc-300">
+            <label key={option} className="flex items-center gap-1.5 text-sm text-stone-700 dark:text-stone-300">
               <input
                 type="radio"
                 checked={field.value === option}
                 disabled={disabled}
                 onChange={() => onChange(option)}
-                className="accent-emerald-600"
+                className="accent-brand-600"
               />
               {option}
             </label>
           ))}
           {field.value && !disabled && (
-            <button type="button" onClick={() => onChange(null)} className="text-xs text-zinc-500 underline hover:text-zinc-700 dark:text-zinc-400">
+            <button type="button" onClick={() => onChange(null)} className="text-xs text-stone-500 underline hover:text-stone-700 dark:text-stone-400">
               {f('clearChoice')}
             </button>
           )}
@@ -210,7 +209,7 @@ function FieldControl({ field, onChange, disabled, f }) {
         </select>
       )
     default:
-      return <p className="text-xs italic text-zinc-500 dark:text-zinc-400">{f('notEditable')}</p>
+      return <p className="text-xs italic text-stone-500 dark:text-stone-400">{f('notEditable')}</p>
   }
 }
 
@@ -310,8 +309,8 @@ const PageView = memo(function PageView({
 
   const renderFillControl = ({ field, widget }) => {
     const style = { fontSize: (field.fontSize || clamp(widget.rect.h * 0.62, 7, 13)) * scale }
-    const ring = activeKey === field.key ? 'ring-2 ring-emerald-500' : field.required && isEmpty(field) ? 'ring-1 ring-red-400' : 'ring-1 ring-sky-400/50'
-    const base = `h-full w-full bg-sky-100/40 text-zinc-900 outline-none transition-shadow hover:bg-sky-100/70 focus:bg-white disabled:cursor-not-allowed disabled:bg-zinc-200/40 ${ring}`
+    const ring = activeKey === field.key ? 'ring-2 ring-brand-500' : field.required && isEmpty(field) ? 'ring-1 ring-red-400' : 'ring-1 ring-brand-400/50'
+    const base = `h-full w-full bg-brand-100/40 text-stone-900 outline-none transition-shadow hover:bg-brand-100/70 focus:bg-white disabled:cursor-not-allowed disabled:bg-stone-200/40 ${ring}`
     const common = { disabled: field.readOnly, onFocus: () => onFocusField(field.key), 'aria-label': field.name, title: field.name }
 
     switch (field.type) {
@@ -339,7 +338,7 @@ const PageView = memo(function PageView({
             onClick={() => onValue(field.key, widget.option)}
             className={`${base} flex items-center justify-center rounded-full`}
           >
-            {selected && <span className="block h-1/2 w-1/2 rounded-full bg-zinc-900" />}
+            {selected && <span className="block h-1/2 w-1/2 rounded-full bg-stone-900" />}
           </button>
         )
       }
@@ -372,7 +371,7 @@ const PageView = memo(function PageView({
           </select>
         )
       default:
-        return <div className="h-full w-full border border-dashed border-zinc-400/70" title={field.name} />
+        return <div className="h-full w-full border border-dashed border-stone-400/70" title={field.name} />
     }
   }
 
@@ -382,7 +381,7 @@ const PageView = memo(function PageView({
         wrapperRef.current = el
         registerRef(pageNumber, el)
       }}
-      className="relative shrink-0 bg-white shadow-md ring-1 ring-zinc-200 dark:ring-zinc-800"
+      className="relative shrink-0 bg-white shadow-md ring-1 ring-stone-200 dark:ring-stone-800"
       style={{ width, height }}
     >
       <canvas ref={canvasRef} className="absolute left-0 top-0" style={{ width, height }} />
@@ -409,12 +408,12 @@ const PageView = memo(function PageView({
                   data-field={field.key}
                   data-widget={widget.id}
                   className={`group relative h-full w-full cursor-move border ${
-                    active ? 'border-emerald-500 bg-emerald-500/15' : 'border-sky-500/70 bg-sky-500/10 hover:bg-sky-500/20'
+                    active ? 'border-brand-500 bg-brand-500/15' : 'border-brand-500/70 bg-brand-500/10 hover:bg-brand-500/20'
                   } ${field.type === 'radio' ? 'rounded-full' : 'rounded-sm'}`}
                   style={{ touchAction: 'none' }}
                 >
                   {rect.w * scale > 48 && rect.h * scale > 14 && (
-                    <span className="pointer-events-none absolute inset-x-1 top-1/2 flex -translate-y-1/2 items-center gap-1 truncate text-[10px] font-medium text-sky-900">
+                    <span className="pointer-events-none absolute inset-x-1 top-1/2 flex -translate-y-1/2 items-center gap-1 truncate text-[10px] font-medium text-brand-900">
                       <Icon size={11} className="shrink-0" />
                       <span className="truncate">{field.name}</span>
                     </span>
@@ -424,7 +423,7 @@ const PageView = memo(function PageView({
                       data-field={field.key}
                       data-widget={widget.id}
                       data-handle="se"
-                      className="absolute -bottom-1.5 -right-1.5 h-3 w-3 cursor-nwse-resize rounded-sm border border-emerald-600 bg-white"
+                      className="absolute -bottom-1.5 -right-1.5 h-3 w-3 cursor-nwse-resize rounded-sm border border-brand-600 bg-white"
                     />
                   )}
                 </div>
@@ -746,11 +745,11 @@ function Workspace({ doc, onClose }) {
 
   const renderFieldList = (onPick) =>
     fields.length === 0 ? (
-      <p className="px-2 py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">{f('noFields')}</p>
+      <p className="px-2 py-8 text-center text-sm text-stone-500 dark:text-stone-400">{f('noFields')}</p>
     ) : (
       fieldsByPage.map(([page, list]) => (
         <div key={page} className="mb-4">
-          <p className="mb-1.5 px-1 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+          <p className="mb-1.5 px-1 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
             {page ? f('pageLabel', { n: page }) : f('noPage')}
           </p>
           <ul className="flex flex-col gap-2">
@@ -763,17 +762,17 @@ function Workspace({ doc, onClose }) {
                   onFocusCapture={() => onPick(field)}
                   onClick={() => onPick(field)}
                   className={`rounded-xl border p-3 transition-colors ${
-                    active ? 'border-emerald-500 bg-emerald-50/50 dark:bg-emerald-500/5' : 'border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900'
+                    active ? 'border-brand-500 bg-brand-50/50 dark:bg-brand-500/5' : 'border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900'
                   }`}
                 >
                   <div className="mb-2 flex items-center gap-2">
-                    <Icon size={15} className="shrink-0 text-zinc-400" />
-                    <span className="min-w-0 flex-1 truncate font-mono text-xs font-medium text-zinc-800 dark:text-zinc-200" title={field.name}>
+                    <Icon size={15} className="shrink-0 text-stone-400" />
+                    <span className="min-w-0 flex-1 truncate font-mono text-xs font-medium text-stone-800 dark:text-stone-200" title={field.name}>
                       {field.name}
                     </span>
                     {field.required && <Asterisk size={13} className="shrink-0 text-red-500" aria-label={f('required')} />}
-                    {field.readOnly && <Lock size={13} className="shrink-0 text-zinc-400" aria-label={f('readOnly')} />}
-                    <span className="shrink-0 rounded-full bg-zinc-100 px-1.5 py-0.5 text-[10px] font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+                    {field.readOnly && <Lock size={13} className="shrink-0 text-stone-400" aria-label={f('readOnly')} />}
+                    <span className="shrink-0 rounded-full bg-stone-100 px-1.5 py-0.5 text-[10px] font-medium text-stone-600 dark:bg-stone-800 dark:text-stone-400">
                       {f(`types.${field.type}`)}
                     </span>
                     {field.widgets.length > 0 && (
@@ -785,7 +784,7 @@ function Workspace({ doc, onClose }) {
                         }}
                         title={f('locate')}
                         aria-label={f('locate')}
-                        className="shrink-0 rounded p-0.5 text-zinc-400 hover:text-emerald-600 lg:hidden"
+                        className="shrink-0 rounded p-0.5 text-stone-400 hover:text-brand-600 lg:hidden"
                       >
                         <LocateFixed size={15} />
                       </button>
@@ -804,7 +803,7 @@ function Workspace({ doc, onClose }) {
     if (!activeField) {
       return (
         <div className="flex flex-col gap-4">
-          <p className="rounded-xl bg-zinc-100 px-3 py-2.5 text-sm text-zinc-600 dark:bg-zinc-800/60 dark:text-zinc-300">{f('inspector.hint')}</p>
+          <p className="rounded-xl bg-stone-100 px-3 py-2.5 text-sm text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">{f('inspector.hint')}</p>
           {renderFieldList((field) => focusFromPanel(field))}
         </div>
       )
@@ -817,37 +816,37 @@ function Workspace({ doc, onClose }) {
     return (
       <div key={field.key} className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">
             {(() => {
               const Icon = TYPE_ICONS[field.type]
               return <Icon size={14} />
             })()}
             {f(`types.${field.type}`)}
           </span>
-          <button type="button" onClick={() => setActiveKey(null)} className="text-xs text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200">
+          <button type="button" onClick={() => setActiveKey(null)} className="text-xs text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200">
             {f('inspector.backToList')}
           </button>
         </div>
 
         <div>
-          <p className="mb-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">{f('inspector.name')}</p>
+          <p className="mb-1 text-xs font-medium text-stone-500 dark:text-stone-400">{f('inspector.name')}</p>
           {editable ? (
             <NameInput field={field} isTaken={isTaken} onRename={(name) => updateField(field.key, { name })} f={f} />
           ) : (
-            <p className="font-mono text-sm text-zinc-800 dark:text-zinc-200">{field.name}</p>
+            <p className="font-mono text-sm text-stone-800 dark:text-stone-200">{field.name}</p>
           )}
         </div>
 
         {editable && (
           <div>
-            <p className="mb-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">{f('inspector.defaultValue')}</p>
+            <p className="mb-1 text-xs font-medium text-stone-500 dark:text-stone-400">{f('inspector.defaultValue')}</p>
             <FieldControl field={field} onChange={(v) => setValue(field.key, v)} f={f} />
           </div>
         )}
 
         {(field.type === 'dropdown' || field.type === 'optionlist') && (
           <div>
-            <p className="mb-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">{f('inspector.options')}</p>
+            <p className="mb-1 text-xs font-medium text-stone-500 dark:text-stone-400">{f('inspector.options')}</p>
             <textarea
               rows={4}
               value={field.options.join('\n')}
@@ -860,17 +859,17 @@ function Workspace({ doc, onClose }) {
               onBlur={() => updateField(field.key, { options: [...new Set(field.options.map((o) => o.trim()).filter(Boolean))] })}
               className={`${inputClass} resize-y font-mono`}
             />
-            <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">{f('inspector.optionsHint')}</p>
+            <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">{f('inspector.optionsHint')}</p>
           </div>
         )}
 
         {canEditRadioOptions && (
           <div>
-            <p className="mb-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">{f('inspector.radioOptions')}</p>
+            <p className="mb-1 text-xs font-medium text-stone-500 dark:text-stone-400">{f('inspector.radioOptions')}</p>
             <ul className="flex flex-col gap-1.5">
               {radioWidgets.map((w) => (
                 <li key={w.id} className="flex items-center gap-1.5">
-                  <CircleDot size={14} className="shrink-0 text-zinc-400" />
+                  <CircleDot size={14} className="shrink-0 text-stone-400" />
                   <input
                     value={w.option}
                     onChange={(e) => {
@@ -915,7 +914,7 @@ function Workspace({ doc, onClose }) {
                   ],
                 })
               }}
-              className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-emerald-600 hover:text-emerald-500 dark:text-emerald-400"
+              className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-brand-600 hover:text-brand-500 dark:text-brand-400"
             >
               <Plus size={15} /> {f('inspector.addOption')}
             </button>
@@ -923,12 +922,12 @@ function Workspace({ doc, onClose }) {
         )}
 
         {(field.type === 'text' || field.type === 'dropdown' || field.type === 'optionlist') && (
-          <label className="flex items-center justify-between gap-3 text-sm text-zinc-700 dark:text-zinc-300">
+          <label className="flex items-center justify-between gap-3 text-sm text-stone-700 dark:text-stone-300">
             {f('inspector.fontSize')}
             <select
               value={field.fontSize}
               onChange={(e) => updateField(field.key, { fontSize: Number(e.target.value) })}
-              className="h-8 rounded-lg border border-zinc-200 bg-white px-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+              className="h-8 rounded-lg border border-stone-200 bg-white px-2 text-sm dark:border-stone-700 dark:bg-stone-950"
             >
               {(FONT_SIZES.includes(field.fontSize) ? FONT_SIZES : [...FONT_SIZES, field.fontSize]).map((s) => (
                 <option key={s} value={s}>
@@ -940,7 +939,7 @@ function Workspace({ doc, onClose }) {
         )}
 
         {editable && (
-          <div className="flex flex-col gap-2.5 rounded-xl border border-zinc-200 p-3 dark:border-zinc-800">
+          <div className="flex flex-col gap-2.5 rounded-xl border border-stone-200 p-3 dark:border-stone-800">
             {field.type === 'text' && (
               <Toggle checked={field.multiline} onChange={(v) => updateField(field.key, { multiline: v })} label={f('inspector.multiline')} />
             )}
@@ -962,10 +961,10 @@ function Workspace({ doc, onClose }) {
 
   /* ---- Rendu ------------------------------------------------------------- */
   return (
-    <div className="flex h-[calc(100dvh-10.5rem)] min-h-104 flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm md:h-[calc(100dvh-9rem)] dark:border-zinc-800 dark:bg-zinc-950">
+    <div className="flex h-[calc(100dvh-7.5rem)] min-h-104 flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm md:h-[calc(100dvh-8.5rem)] dark:border-stone-800 dark:bg-stone-950">
       {/* Barre d'outils */}
-      <div className="flex items-center gap-0.5 overflow-x-auto border-b border-zinc-200 bg-white px-1.5 py-1.5 scrollbar-none dark:border-zinc-800 dark:bg-zinc-900">
-        <div className="flex shrink-0 rounded-lg bg-zinc-100 p-0.5 dark:bg-zinc-800" role="tablist" aria-label={f('modeLabel')}>
+      <div className="flex items-center gap-0.5 overflow-x-auto border-b border-stone-200 bg-white px-1.5 py-1.5 scrollbar-none dark:border-stone-800 dark:bg-stone-900">
+        <div className="flex shrink-0 rounded-lg bg-stone-100 p-0.5 dark:bg-stone-800" role="tablist" aria-label={f('modeLabel')}>
           {[
             { id: 'fill', icon: Eye },
             { id: 'build', icon: PencilRuler },
@@ -980,7 +979,7 @@ function Workspace({ doc, onClose }) {
                 setTool('select')
               }}
               className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors ${
-                mode === id ? 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-950 dark:text-white' : 'text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200'
+                mode === id ? 'bg-white text-stone-900 shadow-sm dark:bg-stone-950 dark:text-white' : 'text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200'
               }`}
             >
               <Icon size={15} />
@@ -1004,7 +1003,7 @@ function Workspace({ doc, onClose }) {
           value={zoomIsPreset ? String(zoom) : 'custom'}
           onChange={(e) => setZoom(Number(e.target.value))}
           aria-label={f('zoom')}
-          className="h-8 shrink-0 rounded-md border border-zinc-200 bg-white px-1.5 text-sm tabular-nums focus:border-emerald-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-950"
+          className="h-8 shrink-0 rounded-md border border-stone-200 bg-white px-1.5 text-sm tabular-nums focus:border-brand-500 focus:outline-none dark:border-stone-700 dark:bg-stone-950"
         >
           {!zoomIsPreset && <option value="custom">{Math.round(zoom * 100)} %</option>}
           {ZOOM_PRESETS.map((p) => (
@@ -1026,7 +1025,7 @@ function Workspace({ doc, onClose }) {
         <button
           type="button"
           onClick={() => setExportState({ status: 'idle' })}
-          className="ml-1 inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg bg-emerald-600 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-500"
+          className="ml-1 inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg bg-brand-600 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600"
         >
           <Download size={16} />
           <span className="hidden sm:inline">{f('actions.download')}</span>
@@ -1037,7 +1036,7 @@ function Workspace({ doc, onClose }) {
       {/* Menu d'export des données (hors de la barre défilante pour ne pas être rogné) */}
       {dataMenuOpen && (
         <div className="relative z-30">
-          <div className="absolute right-2 top-1 w-56 overflow-hidden rounded-xl border border-zinc-200 bg-white py-1 shadow-xl dark:border-zinc-800 dark:bg-zinc-900">
+          <div className="absolute right-2 top-1 w-56 overflow-hidden rounded-xl border border-stone-200 bg-white py-1 shadow-xl dark:border-stone-800 dark:bg-stone-900">
             {[
               { id: 'json', icon: FileJson },
               { id: 'csv', icon: FileSpreadsheet },
@@ -1046,9 +1045,9 @@ function Workspace({ doc, onClose }) {
                 key={id}
                 type="button"
                 onClick={() => exportData(id)}
-                className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-stone-700 hover:bg-stone-100 dark:text-stone-200 dark:hover:bg-stone-800"
               >
-                <Icon size={16} className="text-zinc-400" /> {f(`actions.export_${id}`)}
+                <Icon size={16} className="text-stone-400" /> {f(`actions.export_${id}`)}
               </button>
             ))}
           </div>
@@ -1061,7 +1060,7 @@ function Workspace({ doc, onClose }) {
         </p>
       )}
       {mode === 'build' && !fields.length && (
-        <p className="border-b border-zinc-200 bg-zinc-50 px-4 py-2 text-sm text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-300">
+        <p className="border-b border-stone-200 bg-stone-50 px-4 py-2 text-sm text-stone-600 dark:border-stone-800 dark:bg-stone-900/60 dark:text-stone-300">
           {f('builderHint')}
         </p>
       )}
@@ -1071,7 +1070,7 @@ function Workspace({ doc, onClose }) {
           className={`flex items-center gap-2 border-b px-4 py-2 text-sm ${
             notice.type === 'error'
               ? 'border-red-200 bg-red-50 text-red-700 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-400'
-              : 'border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-300'
+              : 'border-brand-200 bg-brand-50 text-brand-800 dark:border-brand-500/20 dark:bg-brand-500/10 dark:text-brand-300'
           }`}
         >
           {notice.type === 'error' ? <TriangleAlert size={16} /> : <CheckCircle2 size={16} />} {notice.text}
@@ -1079,7 +1078,7 @@ function Workspace({ doc, onClose }) {
       )}
 
       {/* Onglets mobiles */}
-      <div className="flex border-b border-zinc-200 lg:hidden dark:border-zinc-800" role="tablist">
+      <div className="flex border-b border-stone-200 lg:hidden dark:border-stone-800" role="tablist">
         {['preview', 'fields'].map((id) => (
           <button
             key={id}
@@ -1088,7 +1087,7 @@ function Workspace({ doc, onClose }) {
             aria-selected={mobileTab === id}
             onClick={() => setMobileTab(id)}
             className={`flex-1 border-b-2 py-2 text-sm font-medium ${
-              mobileTab === id ? 'border-emerald-500 text-emerald-700 dark:text-emerald-400' : 'border-transparent text-zinc-500 dark:text-zinc-400'
+              mobileTab === id ? 'border-brand-500 text-brand-700 dark:text-brand-400' : 'border-transparent text-stone-500 dark:text-stone-400'
             }`}
           >
             {id === 'preview' ? f('tabs.preview') : f('tabs.fields', { count: fields.length })}
@@ -1103,7 +1102,7 @@ function Workspace({ doc, onClose }) {
             scrollRef.current = el
             if (el && el !== scrollRoot) setScrollRoot(el)
           }}
-          className={`relative min-w-0 flex-1 overflow-auto bg-zinc-100 dark:bg-zinc-950 ${mobileTab === 'preview' ? '' : 'hidden lg:block'}`}
+          className={`relative min-w-0 flex-1 overflow-auto bg-stone-100 dark:bg-stone-950 ${mobileTab === 'preview' ? '' : 'hidden lg:block'}`}
         >
           <div className="flex w-max min-w-full flex-col items-center gap-4 px-2 py-4 sm:px-6">
             {scrollRoot &&
@@ -1132,23 +1131,23 @@ function Workspace({ doc, onClose }) {
 
         {/* Panneau latéral : liste des champs (remplissage) ou inspecteur (création) */}
         <aside
-          className={`min-h-0 w-full flex-col border-zinc-200 bg-zinc-50 lg:flex lg:w-80 lg:border-l dark:border-zinc-800 dark:bg-zinc-900 ${
+          className={`min-h-0 w-full flex-col border-stone-200 bg-stone-50 lg:flex lg:w-80 lg:border-l dark:border-stone-800 dark:bg-stone-900 ${
             mobileTab === 'fields' ? 'flex' : 'hidden'
           }`}
         >
-          <div className="flex items-center justify-between border-b border-zinc-200 px-4 py-2.5 dark:border-zinc-800">
-            <p className="text-sm font-semibold text-zinc-900 dark:text-white">
+          <div className="flex items-center justify-between border-b border-stone-200 px-4 py-2.5 dark:border-stone-800">
+            <p className="text-sm font-semibold text-stone-900 dark:text-white">
               {mode === 'fill' ? f('panel.fillTitle') : f('panel.buildTitle')}
             </p>
-            <p className="text-xs tabular-nums text-zinc-500 dark:text-zinc-400">{f('panel.filled', { filled: filledCount, total: fields.length })}</p>
+            <p className="text-xs tabular-nums text-stone-500 dark:text-stone-400">{f('panel.filled', { filled: filledCount, total: fields.length })}</p>
           </div>
           <div className="min-h-0 flex-1 overflow-y-auto p-3">{mode === 'fill' ? renderFieldList(focusFromPanel) : renderInspector()}</div>
-          <div className="flex flex-col gap-2.5 border-t border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-900">
+          <div className="flex flex-col gap-2.5 border-t border-stone-200 bg-white p-3 dark:border-stone-800 dark:bg-stone-900">
             <Toggle checked={flattenOnExport} onChange={setFlattenOnExport} label={f('flattenOnExport')} icon={Lock} />
             <button
               type="button"
               onClick={() => setExportState({ status: 'idle' })}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-500"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600"
             >
               <Download size={16} /> {f('actions.download')}
             </button>
@@ -1165,28 +1164,28 @@ function Workspace({ doc, onClose }) {
                 [f('export.filled'), filledCount],
                 [f('export.originalSize'), formatBytes(file.size)],
               ].map(([label, value]) => (
-                <div key={label} className="rounded-xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-800 dark:bg-zinc-950">
-                  <p className="text-lg font-semibold tabular-nums text-zinc-900 dark:text-white">{value}</p>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">{label}</p>
+                <div key={label} className="rounded-xl border border-stone-200 bg-stone-50 p-3 dark:border-stone-800 dark:bg-stone-950">
+                  <p className="text-lg font-semibold tabular-nums text-stone-900 dark:text-white">{value}</p>
+                  <p className="text-xs text-stone-500 dark:text-stone-400">{label}</p>
                 </div>
               ))}
             </div>
-            <div className="rounded-xl border border-zinc-200 p-3 dark:border-zinc-800">
+            <div className="rounded-xl border border-stone-200 p-3 dark:border-stone-800">
               <Toggle checked={flattenOnExport} onChange={setFlattenOnExport} label={f('flattenOnExport')} icon={Lock} />
-              <p className="mt-1.5 pl-6 text-xs text-zinc-500 dark:text-zinc-400">{f('flattenHint')}</p>
+              <p className="mt-1.5 pl-6 text-xs text-stone-500 dark:text-stone-400">{f('flattenHint')}</p>
             </div>
             <button
               type="button"
               onClick={generate}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 hover:bg-emerald-500"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-600"
             >
               <Download size={18} /> {f('export.generate')}
             </button>
           </div>
         )}
         {exportState?.status === 'working' && (
-          <div className="flex flex-col items-center gap-3 py-6 text-sm text-zinc-500 dark:text-zinc-400">
-            <LoaderCircle size={28} className="animate-spin text-emerald-600" /> {f('export.working')}
+          <div className="flex flex-col items-center gap-3 py-6 text-sm text-stone-500 dark:text-stone-400">
+            <LoaderCircle size={28} className="animate-spin text-brand-600" /> {f('export.working')}
           </div>
         )}
         {exportState?.status === 'error' && (
@@ -1196,17 +1195,17 @@ function Workspace({ doc, onClose }) {
         )}
         {exportState?.status === 'done' && (
           <div className="flex flex-col items-center gap-4 text-center">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400">
               <CheckCircle2 size={26} />
             </span>
-            <p className="text-sm text-zinc-600 dark:text-zinc-300">
+            <p className="text-sm text-stone-600 dark:text-stone-300">
               {f('export.sizes', { original: formatBytes(file.size), final: formatBytes(exportState.blob.size) })}
-              {flattenOnExport && <span className="block text-xs text-zinc-500 dark:text-zinc-400">{f('export.flattened')}</span>}
+              {flattenOnExport && <span className="block text-xs text-stone-500 dark:text-stone-400">{f('export.flattened')}</span>}
             </p>
             <button
               type="button"
               onClick={() => downloadBlob(exportState.blob, `${file.name.replace(/\.pdf$/i, '')}_formulaire.pdf`)}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 hover:bg-emerald-500 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 sm:w-auto"
             >
               <Download size={18} /> {f('export.download')}
             </button>
@@ -1267,17 +1266,12 @@ export default function PdfFormsTool() {
     return (
       <div className="mx-auto max-w-400 px-2 py-3 sm:px-4 lg:px-6">
         <div className="mb-2 flex items-center gap-3">
-          <Link
-            to="/pdf"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200"
-          >
-            <ArrowLeft size={16} /> <span className="hidden sm:inline">{t('common.backToTools')}</span>
-          </Link>
-          <span className="flex min-w-0 items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-white">
-            <FormInput size={16} className="shrink-0 text-emerald-600 dark:text-emerald-400" />
+          <BackButton compact />
+          <span className="flex min-w-0 items-center gap-2 text-sm font-semibold text-stone-900 dark:text-white">
+            <FormInput size={16} className="shrink-0 text-brand-600 dark:text-brand-400" />
             <span className="truncate">{doc.file.name}</span>
           </span>
-          <span className="ml-auto hidden shrink-0 text-xs text-zinc-500 sm:inline dark:text-zinc-400">
+          <span className="ml-auto hidden shrink-0 text-xs text-stone-500 sm:inline dark:text-stone-400">
             {t('tools.pdf-forms.detected', { count: doc.analysis.fields.length })}
           </span>
         </div>
@@ -1294,26 +1288,21 @@ export default function PdfFormsTool() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-      <Link
-        to="/pdf"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-700 sm:mb-8 dark:text-zinc-400 dark:hover:text-zinc-200"
-      >
-        <ArrowLeft size={16} /> {t('common.backToTools')}
-      </Link>
+    <div className="mx-auto max-w-3xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <BackButton />
 
       <div className="flex items-center gap-4">
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm sm:h-14 sm:w-14 dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm sm:h-14 sm:w-14 dark:bg-stone-800/80 dark:text-white">
           <FormInput size={26} />
         </span>
         <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">{t('categories.Outils Avancés')}</p>
-          <h1 className="text-xl font-bold text-zinc-900 sm:text-2xl dark:text-white">{t('tools.pdf-forms.name')}</h1>
-          <p className="text-sm text-zinc-500 sm:text-base dark:text-zinc-400">{t('tools.pdf-forms.subtitle')}</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">{t('categories.Outils Avancés')}</p>
+          <h1 className="text-xl font-bold text-stone-900 sm:text-2xl dark:text-white">{t('tools.pdf-forms.name')}</h1>
+          <p className="text-sm text-stone-500 sm:text-base dark:text-stone-400">{t('tools.pdf-forms.subtitle')}</p>
         </div>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm sm:p-8 dark:border-zinc-800 dark:bg-zinc-900">
+      <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:bg-stone-900">
         {error && <p className="mb-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">{error}</p>}
         {loading ? (
           <ProcessingState icon={FormInput} title={t('tools.pdf-forms.loading')} description={t('tools.pdf-forms.loadingDescription')} />

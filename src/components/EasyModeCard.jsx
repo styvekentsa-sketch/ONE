@@ -1,52 +1,26 @@
-import { Sparkles, Wand2, ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import { ArrowRight, Wand2 } from 'lucide-react'
 
-export default function EasyModeCard({ onOpen }) {
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      onOpen()
-    }
-  }
-
+/**
+ * Entrée vers l'Assistant (Mode Facile) : déposer un fichier et se voir
+ * proposer le bon outil. Bandeau sobre, sans dégradé ni halo.
+ */
+export default function EasyModeCard({ onOpen, className = '' }) {
+  const { t } = useTranslation()
   return (
-    <div
-      id="easy-mode"
-      role="button"
-      tabIndex={0}
+    <button
+      type="button"
       onClick={onOpen}
-      onKeyDown={handleKeyDown}
-      className="group relative col-span-full cursor-pointer overflow-hidden rounded-2xl border border-indigo-100 bg-linear-to-r from-indigo-50 via-purple-50 to-blue-50 p-6 text-slate-900 transition-all duration-200 ease-in-out hover:border-indigo-200 active:scale-[0.98] sm:p-8 lg:col-span-2 lg:row-span-2 dark:border-zinc-800 dark:bg-linear-to-r dark:from-zinc-900 dark:via-zinc-900 dark:to-indigo-950/40 dark:text-white dark:hover:border-indigo-500/50"
+      className={`group flex w-full items-center gap-4 rounded-2xl border border-stone-200 bg-white p-4 text-left transition-colors hover:border-stone-300 active:bg-stone-50 sm:p-5 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-stone-700 dark:active:bg-stone-800 ${className}`}
     >
-      <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl" />
-
-      <div className="relative flex h-full flex-col justify-between">
-        <div>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-indigo-600 ring-1 ring-inset ring-indigo-500/20 dark:text-indigo-300">
-            <Sparkles size={14} />
-            Assistant Magique
-          </span>
-
-          <h2 className="mt-5 text-2xl font-bold leading-tight sm:text-3xl">
-            Pas sûr de l’outil qu’il vous faut ?
-          </h2>
-          <p className="mt-3 max-w-md text-sm text-slate-700 sm:text-base dark:text-zinc-300">
-            Laissez le <span className="font-semibold text-slate-900 dark:text-white">Mode Facile</span> vous
-            guider pas à pas. Décrivez ce que vous voulez faire avec votre document,
-            et on s’occupe du reste.
-          </p>
-        </div>
-
-        <div className="relative mt-8 flex flex-wrap items-center gap-4">
-          <button className="group/btn inline-flex items-center gap-2 rounded-full bg-indigo-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98]">
-            <Wand2 size={18} />
-            Lancer l’Assistant
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-          </button>
-          <span className="text-xs text-slate-500 dark:text-zinc-500">
-            Idéal pour les débutants · 3 questions, 30 secondes
-          </span>
-        </div>
-      </div>
-    </div>
+      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-white">
+        <Wand2 size={22} />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block font-semibold text-stone-900 dark:text-white">{t('easyModeCard.title')}</span>
+        <span className="mt-0.5 block text-sm text-stone-500 dark:text-stone-400">{t('easyModeCard.text')}</span>
+      </span>
+      <ArrowRight size={18} className="shrink-0 text-stone-400 transition-transform group-hover:translate-x-0.5" />
+    </button>
   )
 }

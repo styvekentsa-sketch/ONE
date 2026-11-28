@@ -101,60 +101,42 @@ export default function DragDropZone({
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      className={`group relative flex w-full cursor-pointer flex-col items-center justify-center gap-1 rounded-2xl border-2 border-dashed p-8 text-center transition-all duration-300 ease-in-out active:scale-[0.99] md:p-12 ${
+      className={`group relative flex w-full cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed px-6 py-10 text-center transition-colors duration-200 md:py-14 ${
         isDragging
-          ? 'scale-[1.01] border-indigo-500 bg-indigo-50/50 ring-4 ring-indigo-500/20 dark:bg-indigo-950/20'
-          : 'border-zinc-300 bg-zinc-50/80 text-zinc-800 hover:border-indigo-500 hover:bg-zinc-100/80 dark:border-zinc-700/80 dark:bg-zinc-900/60 dark:text-zinc-100 dark:hover:border-indigo-500 dark:hover:bg-zinc-900'
+          ? 'border-brand-500 bg-brand-50 dark:bg-brand-500/10'
+          : 'border-stone-300 bg-white hover:border-stone-400 hover:bg-stone-50 active:bg-stone-100 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600 dark:hover:bg-stone-900/70'
       } ${className}`}
     >
-      <input
-        id={inputId.current}
-        type="file"
-        multiple={multiple}
-        accept={accept}
-        className="sr-only"
-        onChange={handleInputChange}
-      />
+      <input id={inputId.current} type="file" multiple={multiple} accept={accept} className="sr-only" onChange={handleInputChange} />
 
       <span
-        className={`mb-4 inline-flex items-center justify-center rounded-2xl p-4 shadow-inner transition-transform duration-200 ease-in-out ${
-          isDragging
-            ? 'scale-110 bg-indigo-500 text-white'
-            : 'bg-indigo-50 text-indigo-600 group-hover:-translate-y-1 group-hover:scale-110 dark:bg-zinc-800 dark:text-indigo-400'
+        className={`mb-4 flex h-14 w-14 items-center justify-center rounded-2xl transition-colors ${
+          isDragging ? 'bg-brand-600 text-white' : 'bg-stone-100 text-stone-700 group-hover:bg-brand-50 group-hover:text-brand-700 dark:bg-stone-800 dark:text-stone-200 dark:group-hover:bg-brand-500/15 dark:group-hover:text-brand-300'
         }`}
       >
-        <UploadCloud size={28} className={isDragging ? 'animate-bounce' : ''} />
+        <UploadCloud size={26} strokeWidth={1.8} />
       </span>
 
-      <p className="text-lg font-bold text-zinc-900 dark:text-white">
+      {/* Souris : glisser-déposer ; écran tactile : choisir un fichier. */}
+      <p className="text-base font-semibold text-stone-900 pointer-coarse:hidden dark:text-white">
         {isDragging ? t('common.dragDropActive') : (label ?? t('common.dragDrop'))}
       </p>
 
-      {!isCompact && (
-        <p className="mb-2 mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-          {hint ?? t('common.chooseOptionBelow')}
-        </p>
-      )}
+      {!isCompact && <p className="mt-1 max-w-sm text-sm text-stone-500 pointer-coarse:mt-0 pointer-coarse:text-[15px] pointer-coarse:text-stone-700 dark:text-stone-400 dark:pointer-coarse:text-stone-300">{hint ?? t('common.chooseOptionBelow')}</p>}
 
-      <span className="mt-3 inline-flex cursor-pointer items-center gap-2 rounded-xl bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all duration-200 ease-in-out hover:bg-indigo-400 hover:shadow-indigo-500/40 active:scale-95">
-        <FolderUp size={16} aria-hidden="true" />
+      <span className="mt-5 inline-flex h-11 items-center gap-2 rounded-xl bg-brand-600 px-5 text-sm font-semibold text-white shadow-sm transition-colors group-hover:bg-brand-700 group-active:bg-brand-800">
+        <FolderUp size={17} aria-hidden="true" />
         {t('common.browseFilesButton')}
       </span>
 
       {!isCompact && (
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-zinc-400 dark:text-zinc-500">
-          {formatsLabel && (
-            <span className="rounded-full bg-zinc-100 px-2.5 py-1 font-medium dark:bg-zinc-800">
-              {t('common.acceptedFormats', { formats: formatsLabel })}
-            </span>
-          )}
-          <span className="rounded-full bg-zinc-100 px-2.5 py-1 font-medium dark:bg-zinc-800">
-            {t('common.unlimitedBadge')}
-          </span>
-          <span className="rounded-full bg-zinc-100 px-2.5 py-1 font-medium dark:bg-zinc-800">
-            {t('common.localProcessingBadge')}
-          </span>
-        </div>
+        <p className="mt-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs text-stone-500 dark:text-stone-400">
+          {formatsLabel && <span>{t('common.acceptedFormats', { formats: formatsLabel })}</span>}
+          {formatsLabel && <span aria-hidden="true">·</span>}
+          <span>{t('common.unlimitedBadge')}</span>
+          <span aria-hidden="true">·</span>
+          <span>{t('common.localProcessingBadge')}</span>
+        </p>
       )}
     </label>
   )

@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, Image as ImageIcon, Loader2, Minimize2, RefreshCw } from 'lucide-react'
+import { Image as ImageIcon, Loader2, Minimize2, RefreshCw } from 'lucide-react'
 import DragDropZone from '../components/DragDropZone'
 import DownloadButton from '../components/DownloadButton'
 import { compressImage, convertImageFormat } from '../utils/imageWorker'
 import { imageCompressionLevels, DEFAULT_IMAGE_COMPRESSION_LEVEL } from '../data/imageCompressionLevels'
 import { addHistoryEntry } from '../utils/historyStorage'
+import BackButton from '../components/ui/BackButton'
 
 const TABS = [
   { id: 'compress', icon: Minimize2 },
@@ -152,21 +153,16 @@ export default function ImageHubPage() {
       : null
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link
-        to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
-      >
-        <ArrowLeft size={16} /> {t('common.backToTools')}
-      </Link>
+    <div className="mx-auto max-w-4xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <BackButton />
 
       <div className="flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm dark:bg-stone-800/80 dark:text-white">
           <ImageIcon size={26} />
         </span>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">{t('tools.image-hub.name')}</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">{t('tools.image-hub.subtitle')}</p>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-white">{t('tools.image-hub.name')}</h1>
+          <p className="text-stone-500 dark:text-stone-400">{t('tools.image-hub.subtitle')}</p>
         </div>
       </div>
 
@@ -177,53 +173,53 @@ export default function ImageHubPage() {
       )}
 
       {!file ? (
-        <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:border-stone-800 dark:bg-stone-900">
           <DragDropZone onFiles={handleFiles} multiple={false} accept="image/*" hint={t('tools.image-hub.dropHint')} />
         </div>
       ) : (
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           {/* Aperçu */}
-          <div className="flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-950/40">
+          <div className="flex flex-col gap-3 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+            <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-xl bg-stone-100 dark:bg-stone-950/40">
               <img
                 src={result?.url ?? originalUrl}
                 alt={file.name}
                 className="max-h-full max-w-full object-contain"
               />
               {isProcessing && (
-                <div className="absolute inset-0 flex items-center justify-center bg-zinc-950/30">
+                <div className="absolute inset-0 flex items-center justify-center bg-stone-950/30">
                   <Loader2 size={22} className="animate-spin text-white" />
                 </div>
               )}
             </div>
 
-            <div className="flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
+            <div className="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400">
               <span className="truncate">{file.name}</span>
               <button
                 onClick={handleChangeFile}
-                className="shrink-0 font-medium text-indigo-500 transition-colors duration-200 hover:text-indigo-400 dark:text-indigo-400"
+                className="shrink-0 font-medium text-brand-500 transition-colors duration-200 hover:text-brand-400 dark:text-brand-400"
               >
                 {t('tools.image-hub.changeFile')}
               </button>
             </div>
 
             {tab === 'compress' && result && (
-              <div className="rounded-xl border border-zinc-100 bg-zinc-50 px-4 py-3 text-sm dark:border-white/5 dark:bg-zinc-800/40">
-                <div className="flex items-center justify-between text-zinc-500 dark:text-zinc-400">
+              <div className="rounded-xl border border-stone-100 bg-stone-50 px-4 py-3 text-sm dark:border-white/5 dark:bg-stone-800/40">
+                <div className="flex items-center justify-between text-stone-500 dark:text-stone-400">
                   <span>{t('tools.image-hub.originalSize')}</span>
-                  <span className="font-medium text-zinc-700 dark:text-zinc-200">{formatBytes(file.size)}</span>
+                  <span className="font-medium text-stone-700 dark:text-stone-200">{formatBytes(file.size)}</span>
                 </div>
-                <div className="mt-1 flex items-center justify-between text-zinc-500 dark:text-zinc-400">
+                <div className="mt-1 flex items-center justify-between text-stone-500 dark:text-stone-400">
                   <span>{t('tools.image-hub.compressedSize')}</span>
-                  <span className="font-medium text-zinc-700 dark:text-zinc-200">
+                  <span className="font-medium text-stone-700 dark:text-stone-200">
                     {formatBytes(result.compressedSize)} · {result.format.toUpperCase()} · {result.width}×{result.height}px
                   </span>
                 </div>
                 {gainPercent !== null && (
-                  <div className="mt-2 flex items-center justify-between border-t border-zinc-200 pt-2 dark:border-white/10">
-                    <span className="text-zinc-500 dark:text-zinc-400">{t('tools.image-hub.gain')}</span>
+                  <div className="mt-2 flex items-center justify-between border-t border-stone-200 pt-2 dark:border-white/10">
+                    <span className="text-stone-500 dark:text-stone-400">{t('tools.image-hub.gain')}</span>
                     <span
-                      className={`font-semibold ${gainPercent > 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-zinc-500'}`}
+                      className={`font-semibold ${gainPercent > 0 ? 'text-brand-600 dark:text-brand-400' : 'text-stone-500'}`}
                     >
                       {gainPercent > 0 ? `-${gainPercent}%` : t('tools.image-hub.noGain')}
                     </span>
@@ -236,7 +232,7 @@ export default function ImageHubPage() {
             )}
 
             {result && tab === 'convert' && (
-              <div className="rounded-xl border border-zinc-100 bg-zinc-50 px-4 py-3 text-sm text-zinc-500 dark:border-white/5 dark:bg-zinc-800/40 dark:text-zinc-400">
+              <div className="rounded-xl border border-stone-100 bg-stone-50 px-4 py-3 text-sm text-stone-500 dark:border-white/5 dark:bg-stone-800/40 dark:text-stone-400">
                 {result.width} × {result.height} px · {result.format.toUpperCase()} · {formatBytes(result.blob.size)}
               </div>
             )}
@@ -250,16 +246,16 @@ export default function ImageHubPage() {
           </div>
 
           {/* Options */}
-          <div className="flex flex-col gap-5 rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="inline-flex rounded-full border border-zinc-200 bg-zinc-100 p-1 dark:border-white/10 dark:bg-zinc-800/60">
+          <div className="flex flex-col gap-5 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+            <div className="inline-flex rounded-full border border-stone-200 bg-stone-100 p-1 dark:border-white/10 dark:bg-stone-800/60">
               {TABS.map(({ id, icon: Icon }) => (
                 <button
                   key={id}
                   onClick={() => setTab(id)}
                   className={`inline-flex flex-1 items-center justify-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-all duration-200 ease-in-out active:scale-[0.98] ${
                     tab === id
-                      ? 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white'
-                      : 'text-zinc-500 dark:text-zinc-400'
+                      ? 'bg-white text-stone-900 shadow-sm dark:bg-stone-700 dark:text-white'
+                      : 'text-stone-500 dark:text-stone-400'
                   }`}
                 >
                   <Icon size={14} />
@@ -271,7 +267,7 @@ export default function ImageHubPage() {
             {tab === 'compress' && (
               <div className="flex flex-col gap-5">
                 <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                     {t('tools.image-hub.levelLabel')}
                   </p>
                   <div className="grid grid-cols-1 gap-2">
@@ -281,14 +277,14 @@ export default function ImageHubPage() {
                         onClick={() => handleSelectLevel(level)}
                         className={`flex flex-col items-start gap-0.5 rounded-xl border-2 px-3 py-2 text-left transition-all duration-200 ease-in-out active:scale-[0.98] ${
                           levelId === level.id
-                            ? 'border-indigo-500 bg-indigo-500/5'
-                            : 'border-zinc-200 hover:border-zinc-300 dark:border-white/10 dark:hover:border-zinc-700'
+                            ? 'border-brand-500 bg-brand-500/5'
+                            : 'border-stone-200 hover:border-stone-300 dark:border-white/10 dark:hover:border-stone-700'
                         }`}
                       >
-                        <span className={`text-sm font-semibold ${levelId === level.id ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-800 dark:text-zinc-100'}`}>
+                        <span className={`text-sm font-semibold ${levelId === level.id ? 'text-brand-600 dark:text-brand-400' : 'text-stone-800 dark:text-stone-100'}`}>
                           {t(`tools.image-hub.levels.${level.id}.label`, level.label)}
                         </span>
-                        <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                        <span className="text-xs text-stone-500 dark:text-stone-400">
                           {t(`tools.image-hub.levels.${level.id}.description`, level.description)}
                         </span>
                       </button>
@@ -299,10 +295,10 @@ export default function ImageHubPage() {
                 <div>
                   <label
                     htmlFor="image-quality"
-                    className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400"
+                    className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400"
                   >
                     {t('tools.image-hub.quality')}
-                    <span className="font-mono text-zinc-500 dark:text-zinc-400">{quality}%</span>
+                    <span className="font-mono text-stone-500 dark:text-stone-400">{quality}%</span>
                   </label>
                   <input
                     id="image-quality"
@@ -311,13 +307,13 @@ export default function ImageHubPage() {
                     max={100}
                     value={quality}
                     onChange={(e) => setQuality(Number(e.target.value))}
-                    className="w-full accent-indigo-500"
+                    className="w-full accent-brand-500"
                   />
-                  <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">{t('tools.image-hub.qualityHint')}</p>
+                  <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">{t('tools.image-hub.qualityHint')}</p>
                 </div>
 
                 <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                     {t('tools.image-hub.resolution')}
                   </p>
                   <div className="grid grid-cols-3 gap-2">
@@ -327,19 +323,19 @@ export default function ImageHubPage() {
                         onClick={() => setResolutionPercent(pct)}
                         className={`rounded-xl border-2 px-3 py-2 text-sm font-semibold transition-all duration-200 ease-in-out active:scale-[0.98] ${
                           resolutionPercent === pct
-                            ? 'border-indigo-500 bg-indigo-500/5 text-indigo-600 dark:text-indigo-400'
-                            : 'border-zinc-200 text-zinc-600 hover:border-zinc-300 dark:border-white/10 dark:text-zinc-300 dark:hover:border-zinc-700'
+                            ? 'border-brand-500 bg-brand-500/5 text-brand-600 dark:text-brand-400'
+                            : 'border-stone-200 text-stone-600 hover:border-stone-300 dark:border-white/10 dark:text-stone-300 dark:hover:border-stone-700'
                         }`}
                       >
                         {pct}%
                       </button>
                     ))}
                   </div>
-                  <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">{t('tools.image-hub.resolutionHint')}</p>
+                  <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">{t('tools.image-hub.resolutionHint')}</p>
                 </div>
 
                 <div>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                     {t('tools.image-hub.compressFormat')}
                   </p>
                   <div className="grid grid-cols-4 gap-2">
@@ -349,8 +345,8 @@ export default function ImageHubPage() {
                         onClick={() => setCompressFormat(f)}
                         className={`rounded-xl border-2 px-2 py-2 text-xs font-semibold uppercase transition-all duration-200 ease-in-out active:scale-[0.98] ${
                           compressFormat === f
-                            ? 'border-indigo-500 bg-indigo-500/5 text-indigo-600 dark:text-indigo-400'
-                            : 'border-zinc-200 text-zinc-600 hover:border-zinc-300 dark:border-white/10 dark:text-zinc-300 dark:hover:border-zinc-700'
+                            ? 'border-brand-500 bg-brand-500/5 text-brand-600 dark:text-brand-400'
+                            : 'border-stone-200 text-stone-600 hover:border-stone-300 dark:border-white/10 dark:text-stone-300 dark:hover:border-stone-700'
                         }`}
                       >
                         {f === 'auto' ? t('tools.image-hub.formatAuto') : f === 'jpeg' ? 'JPG' : f.toUpperCase()}
@@ -366,7 +362,7 @@ export default function ImageHubPage() {
 
             {tab === 'convert' && (
               <div>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                   {t('tools.image-hub.targetFormat')}
                 </p>
                 <div className="grid grid-cols-3 gap-2">
@@ -376,8 +372,8 @@ export default function ImageHubPage() {
                       onClick={() => setTargetFormat(format)}
                       className={`rounded-xl border-2 px-3 py-2.5 text-sm font-semibold uppercase transition-all duration-200 ease-in-out active:scale-[0.98] ${
                         targetFormat === format
-                          ? 'border-indigo-500 bg-indigo-500/5 text-indigo-600 dark:text-indigo-400'
-                          : 'border-zinc-200 text-zinc-600 hover:border-zinc-300 dark:border-white/10 dark:text-zinc-300 dark:hover:border-zinc-700'
+                          ? 'border-brand-500 bg-brand-500/5 text-brand-600 dark:text-brand-400'
+                          : 'border-stone-200 text-stone-600 hover:border-stone-300 dark:border-white/10 dark:text-stone-300 dark:hover:border-stone-700'
                       }`}
                     >
                       {format === 'jpeg' ? 'JPG' : format.toUpperCase()}

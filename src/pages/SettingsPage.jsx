@@ -15,8 +15,11 @@ import {
   SlidersHorizontal,
   Sun,
   Trash2,
+  Vibrate,
+  Volume2,
 } from 'lucide-react'
-import ThemeToggle from '../components/ThemeToggle'
+import Switch from '../components/ui/Switch'
+import { getFeedbackSettings, onFeedbackSettingsChange, setFeedbackSettings, supportsSound, supportsVibration, tapFeedback } from '../utils/feedback'
 import { useTheme } from '../context/ThemeContext'
 import { useHistory } from '../hooks/useHistory'
 import { useCookieConsent } from '../hooks/useCookieConsent'
@@ -46,11 +49,11 @@ function getLocalStorageUsage() {
 
 function SettingsGroup({ title, children }) {
   return (
-    <div className="mt-6 first:mt-0">
-      <h2 className="mb-2 px-1 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+    <div className="mt-8 first:mt-0">
+      <h2 className="mb-2 px-4 text-[13px] font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
         {title}
       </h2>
-      <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white dark:border-white/10 dark:bg-zinc-900">
+      <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900">
         {children}
       </div>
     </div>
@@ -60,14 +63,14 @@ function SettingsGroup({ title, children }) {
 function SettingsRow({ icon: Icon, label, sub, children, last = false }) {
   return (
     <div
-      className={`flex items-center gap-3 px-4 py-3.5 ${last ? '' : 'border-b border-zinc-100 dark:border-white/5'}`}
+      className={`flex min-h-14 items-center gap-3 px-4 py-3 ${last ? '' : 'border-b border-stone-100 dark:border-stone-800'}`}
     >
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300">
         <Icon size={16} />
       </span>
       <div className="min-w-0 flex-1">
-        <p className="text-sm font-medium text-zinc-800 dark:text-zinc-100">{label}</p>
-        {sub && <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">{sub}</p>}
+        <p className="text-sm font-medium text-stone-800 dark:text-stone-100">{label}</p>
+        {sub && <p className="truncate text-xs text-stone-500 dark:text-stone-400">{sub}</p>}
       </div>
       {children}
     </div>
@@ -83,9 +86,9 @@ function SettingsRow({ icon: Icon, label, sub, children, last = false }) {
  * vue de l'utilisateur.
  */
 function LegalRow({ icon: Icon, iconClassName, label, sub, to, onClick, last = false }) {
-  const rowClassName = `group flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 active:bg-zinc-100 dark:active:bg-white/10 ${
-    last ? '' : 'border-b border-zinc-100 dark:border-white/5'
-  } hover:bg-zinc-50 dark:hover:bg-white/5`
+  const rowClassName = `group flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 active:bg-stone-100 dark:active:bg-white/10 ${
+    last ? '' : 'border-b border-stone-100 dark:border-white/5'
+  } hover:bg-stone-50 dark:hover:bg-white/5`
 
   const content = (
     <>
@@ -93,13 +96,13 @@ function LegalRow({ icon: Icon, iconClassName, label, sub, to, onClick, last = f
         <Icon size={17} aria-hidden="true" />
       </span>
       <span className="min-w-0 flex-1">
-        <span className="block text-sm font-medium text-zinc-800 dark:text-zinc-100">{label}</span>
-        {sub && <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">{sub}</span>}
+        <span className="block text-sm font-medium text-stone-800 dark:text-stone-100">{label}</span>
+        {sub && <span className="block truncate text-xs text-stone-500 dark:text-stone-400">{sub}</span>}
       </span>
       <ChevronRight
         size={16}
         aria-hidden="true"
-        className="shrink-0 text-zinc-300 transition-transform duration-150 group-hover:translate-x-0.5 dark:text-zinc-600"
+        className="shrink-0 text-stone-300 transition-transform duration-150 group-hover:translate-x-0.5 dark:text-stone-600"
       />
     </>
   )
@@ -125,6 +128,15 @@ export default function SettingsPage() {
   const { entries, clear } = useHistory()
   const { consent } = useCookieConsent()
   const [usage, setUsage] = useState(0)
+  const [feedback, setFeedback] = useState(getFeedbackSettings)
+
+  useEffect(() => onFeedbackSettingsChange(setFeedback), [])
+
+  const updateFeedback = (patch) => {
+    setFeedbackSettings(patch)
+    // Aperçu immédiat du réglage activé.
+    if (patch.haptics || patch.sound) tapFeedback()
+  }
 
   useEffect(() => {
     setUsage(getLocalStorageUsage())
@@ -134,8 +146,8 @@ export default function SettingsPage() {
   const currentLanguage = LANGUAGES.find((lang) => lang.code === i18n.resolvedLanguage)?.label
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="text-xl font-bold text-zinc-900 dark:text-white">{t('nav.settings')}</h1>
+    <div className="mx-auto max-w-2xl px-4 pb-12 pt-6 sm:px-6 md:pt-12 lg:px-8">
+      <h1 className="mb-6 px-1 text-[28px] font-bold tracking-tight text-stone-900 md:text-4xl dark:text-white">{t('nav.settings')}</h1>
 
       <SettingsGroup title={t('settings.preferencesTitle')}>
         <SettingsRow icon={Globe} label={t('settings.language')} sub={currentLanguage}>
@@ -146,8 +158,8 @@ export default function SettingsPage() {
                 onClick={() => i18n.changeLanguage(lang.code)}
                 className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-200 ease-in-out active:scale-95 ${
                   i18n.resolvedLanguage === lang.code
-                    ? 'bg-indigo-500 text-white'
-                    : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300'
+                    ? 'bg-brand-600 text-white'
+                    : 'bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300'
                 }`}
               >
                 {lang.code.toUpperCase()}
@@ -162,9 +174,23 @@ export default function SettingsPage() {
           sub={theme === 'dark' ? t('settings.themeDark') : t('settings.themeLight')}
           last
         >
-          <ThemeToggle />
+          <Switch checked={theme === 'dark'} onChange={toggleTheme} label={t('settings.theme')} />
         </SettingsRow>
       </SettingsGroup>
+
+      <SettingsGroup title={t('settings.feedbackTitle')}>
+        <SettingsRow
+          icon={Vibrate}
+          label={t('settings.haptics')}
+          sub={supportsVibration() ? t('settings.hapticsSub') : t('settings.hapticsUnsupported')}
+        >
+          <Switch checked={feedback.haptics} onChange={(v) => updateFeedback({ haptics: v })} label={t('settings.haptics')} disabled={!supportsVibration()} />
+        </SettingsRow>
+        <SettingsRow icon={Volume2} label={t('settings.sound')} sub={t('settings.soundSub')} last>
+          <Switch checked={feedback.sound} onChange={(v) => updateFeedback({ sound: v })} label={t('settings.sound')} disabled={!supportsSound()} />
+        </SettingsRow>
+      </SettingsGroup>
+      <p className="mt-2 px-4 text-xs text-stone-500 dark:text-stone-400">{t('settings.feedbackNote')}</p>
 
       <SettingsGroup title={t('settings.storageTitle')}>
         <SettingsRow
@@ -196,37 +222,37 @@ export default function SettingsPage() {
       <SettingsGroup title={t('footer.legalLinksTitle')}>
         <LegalRow
           icon={Scale}
-          iconClassName="bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300"
+          iconClassName="bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300"
           label={t('footer.legalNotice')}
           to="/legal-notice"
         />
         <LegalRow
           icon={ShieldCheck}
-          iconClassName="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+          iconClassName="bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300"
           label={t('footer.privacyPolicy')}
           to="/privacy-policy"
         />
         <LegalRow
           icon={FileText}
-          iconClassName="bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
+          iconClassName="bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300"
           label={t('footer.termsOfService')}
           to="/terms-of-service"
         />
         <LegalRow
           icon={Cookie}
-          iconClassName="bg-amber-500/10 text-amber-600 dark:text-amber-400"
+          iconClassName="bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300"
           label={t('footer.cookiePolicy')}
           to="/cookie-policy"
         />
         <LegalRow
           icon={Receipt}
-          iconClassName="bg-rose-500/10 text-rose-600 dark:text-rose-400"
+          iconClassName="bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300"
           label={t('footer.refundPolicy')}
           to="/refund-policy"
         />
         <LegalRow
           icon={SlidersHorizontal}
-          iconClassName="bg-violet-500/10 text-violet-600 dark:text-violet-400"
+          iconClassName="bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300"
           label={t('footer.manageCookies')}
           sub={consent.history ? t('settings.cookiesHistoryOn') : t('settings.cookiesHistoryOff')}
           onClick={requestOpenPreferences}

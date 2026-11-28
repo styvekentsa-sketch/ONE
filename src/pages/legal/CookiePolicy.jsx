@@ -13,7 +13,7 @@ export default function CookiePolicy() {
       <div className="mx-auto -mt-6 mb-12 max-w-3xl px-4 sm:px-6 lg:px-8">
         <button
           onClick={requestOpenPreferences}
-          className="inline-flex items-center gap-2 rounded-full bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98]"
+          className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-brand-700 active:scale-[0.98]"
         >
           <Cookie size={16} aria-hidden="true" /> {t('cookieConsent.customize')}
         </button>

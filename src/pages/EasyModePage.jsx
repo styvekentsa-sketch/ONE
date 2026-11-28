@@ -39,18 +39,18 @@ export default function EasyModePage() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-2xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
       <div className="flex items-center gap-3">
-        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-500 text-white shadow-md">
+        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-600 text-white shadow-md">
           <Wand2 size={22} />
         </span>
         <div>
-          <h1 className="text-xl font-bold text-zinc-900 dark:text-white">{t('easyModeCard.badge')}</h1>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">{t('easyModeCard.assistantSubtitle')}</p>
+          <h1 className="text-xl font-bold text-stone-900 dark:text-white">{t('easyModeCard.badge')}</h1>
+          <p className="text-sm text-stone-500 dark:text-stone-400">{t('easyModeCard.assistantSubtitle')}</p>
         </div>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-zinc-900">
+      <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-stone-900">
         {step === STEPS.IDLE && (
           <DragDropZone onFiles={handleFiles} hint={t('easyModeCard.assistantDropHint')} />
         )}

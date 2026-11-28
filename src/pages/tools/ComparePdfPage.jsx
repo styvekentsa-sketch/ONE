@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, CheckCircle2, FileText, GitCompareArrows, X } from 'lucide-react'
+import { CheckCircle2, FileText, GitCompareArrows, X } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
 import ProcessingState from '../../components/ProcessingState'
 import { comparePdfs } from '../../utils/pdfDiff'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import BackButton from '../../components/ui/BackButton'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -16,17 +16,17 @@ const STEPS = {
 function FileSlot({ label, file, onFiles, onClear, dropLabel, t }) {
   return (
     <div>
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{label}</p>
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">{label}</p>
       {file ? (
-        <div className="flex items-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-3 dark:border-white/10 dark:bg-zinc-800/40">
-          <FileText size={18} className="shrink-0 text-zinc-500 dark:text-zinc-400" />
-          <span className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-700 dark:text-zinc-200">
+        <div className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 dark:border-white/10 dark:bg-stone-800/40">
+          <FileText size={18} className="shrink-0 text-stone-500 dark:text-stone-400" />
+          <span className="min-w-0 flex-1 truncate text-sm font-medium text-stone-700 dark:text-stone-200">
             {file.name}
           </span>
           <button
             onClick={onClear}
             aria-label={`${t('actions.remove')} ${label}`}
-            className="shrink-0 text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+            className="shrink-0 text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-stone-600 dark:hover:text-stone-200"
           >
             <X size={16} />
           </button>
@@ -79,25 +79,20 @@ export default function ComparePdfPage() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link
-        to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
-      >
-        <ArrowLeft size={16} /> {t('common.backToTools')}
-      </Link>
+    <div className="mx-auto max-w-5xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <BackButton />
 
       <div className="flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm dark:bg-stone-800/80 dark:text-white">
           <GitCompareArrows size={26} />
         </span>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">{t('tools.compare.name')}</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">{t('tools.compare.subtitle')}</p>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-white">{t('tools.compare.name')}</h1>
+          <p className="text-stone-500 dark:text-stone-400">{t('tools.compare.subtitle')}</p>
         </div>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-zinc-900">
+      <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:bg-stone-900">
         {error && (
           <p className="mb-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">
             {error}
@@ -128,7 +123,7 @@ export default function ComparePdfPage() {
             <button
               onClick={handleCompare}
               disabled={!fileA || !fileB}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-indigo-500"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-brand-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-brand-600"
             >
               <GitCompareArrows size={18} /> {t('tools.compare.compareButton')}
             </button>
@@ -145,25 +140,25 @@ export default function ComparePdfPage() {
 
         {step === STEPS.RESULTS && result && (
           <div className="flex flex-col gap-5">
-            <div className="flex flex-wrap items-center gap-3 rounded-xl bg-zinc-100 px-4 py-3 text-sm dark:bg-zinc-800/60">
+            <div className="flex flex-wrap items-center gap-3 rounded-xl bg-stone-100 px-4 py-3 text-sm dark:bg-stone-800/60">
               {result.diffCount === 0 ? (
-                <CheckCircle2 size={18} className="shrink-0 text-emerald-500" />
+                <CheckCircle2 size={18} className="shrink-0 text-brand-500" />
               ) : (
                 <GitCompareArrows size={18} className="shrink-0 text-amber-500" />
               )}
-              <span className="text-zinc-600 dark:text-zinc-300">
+              <span className="text-stone-600 dark:text-stone-300">
                 {t('tools.compare.originalLabel')} :{' '}
-                <strong className="text-zinc-900 dark:text-white">
+                <strong className="text-stone-900 dark:text-white">
                   {t('tools.compare.pageCount', { count: result.pageCountA })}
                 </strong>
                 {' · '}
                 {t('tools.compare.modifiedLabel')} :{' '}
-                <strong className="text-zinc-900 dark:text-white">
+                <strong className="text-stone-900 dark:text-white">
                   {t('tools.compare.pageCount', { count: result.pageCountB })}
                 </strong>
                 {' · '}
                 {result.diffCount === 0 ? (
-                  <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                  <span className="font-semibold text-brand-600 dark:text-brand-400">
                     {t('tools.compare.noDifference')}
                   </span>
                 ) : (
@@ -174,7 +169,7 @@ export default function ComparePdfPage() {
               </span>
             </div>
 
-            <div className="sticky top-0 z-10 grid grid-cols-2 gap-4 rounded-lg bg-white/90 py-1 text-center text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400 backdrop-blur-sm dark:bg-zinc-900/90">
+            <div className="sticky top-0 z-10 grid grid-cols-2 gap-4 rounded-lg bg-white/90 py-1 text-center text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400 backdrop-blur-sm dark:bg-stone-900/90">
               <span>{t('tools.compare.originalLabel')}</span>
               <span>{t('tools.compare.modifiedLabel')}</span>
             </div>
@@ -193,7 +188,7 @@ export default function ComparePdfPage() {
 
             <button
               onClick={handleRestart}
-              className="mx-auto text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="mx-auto text-sm font-medium text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-stone-600 dark:hover:text-stone-200"
             >
               {t('tools.compare.restartLabel')}
             </button>
@@ -207,23 +202,23 @@ export default function ComparePdfPage() {
 function PagePreview({ pageNumber, image, isDifferent, t }) {
   return (
     <div
-      className={`flex flex-col overflow-hidden rounded-lg border-2 bg-white dark:bg-zinc-900 ${
+      className={`flex flex-col overflow-hidden rounded-lg border-2 bg-white dark:bg-stone-900 ${
         isDifferent ? 'border-amber-400/70' : 'border-transparent'
       }`}
     >
-      <div className="flex items-center justify-between px-2 py-1 text-[11px] font-medium text-zinc-500 dark:text-zinc-400">
+      <div className="flex items-center justify-between px-2 py-1 text-[11px] font-medium text-stone-500 dark:text-stone-400">
         <span>Page {pageNumber}</span>
         {isDifferent ? (
           <span className="text-amber-500">{t('tools.compare.different')}</span>
         ) : (
-          <span className="text-emerald-500">{t('tools.compare.identical')}</span>
+          <span className="text-brand-500">{t('tools.compare.identical')}</span>
         )}
       </div>
 
       {/* Ratio et hauteur minimale fixes : chaque case (image réelle ou
           bloc "page inexistante") occupe toujours le même espace, quel
           que soit le nombre de pages de l'autre document. */}
-      <div className="aspect-[1/1.41] min-h-[350px] w-full overflow-hidden bg-zinc-100 dark:bg-zinc-950/40">
+      <div className="aspect-[1/1.41] min-h-[350px] w-full overflow-hidden bg-stone-100 dark:bg-stone-950/40">
         {image ? (
           <img
             src={image}
@@ -231,7 +226,7 @@ function PagePreview({ pageNumber, image, isDifferent, t }) {
             className="h-full w-full object-contain"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center px-4 text-center text-xs text-zinc-500 dark:text-zinc-400">
+          <div className="flex h-full w-full items-center justify-center px-4 text-center text-xs text-stone-500 dark:text-stone-400">
             {t('tools.compare.missingPage')}
           </div>
         )}

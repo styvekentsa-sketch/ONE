@@ -22,18 +22,18 @@ export default function CompressionLevelSelector({ levels, value, onChange }) {
             aria-pressed={isActive}
             className={`flex flex-col items-start gap-1 rounded-xl border-2 p-4 text-left transition-all duration-200 ease-in-out active:scale-[0.98] ${
               isActive
-                ? 'border-indigo-500 bg-indigo-500/5'
-                : 'border-zinc-200 bg-white hover:border-zinc-300 dark:border-white/10 dark:bg-zinc-800/60 dark:hover:border-zinc-700'
+                ? 'border-brand-500 bg-brand-500/5'
+                : 'border-stone-200 bg-white hover:border-stone-300 dark:border-white/10 dark:bg-stone-800/60 dark:hover:border-stone-700'
             }`}
           >
             <span
               className={`text-sm font-semibold ${
-                isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-800 dark:text-zinc-100'
+                isActive ? 'text-brand-600 dark:text-brand-400' : 'text-stone-800 dark:text-stone-100'
               }`}
             >
               {label}
             </span>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400">{description}</span>
+            <span className="text-xs text-stone-500 dark:text-stone-400">{description}</span>
           </button>
         )
       })}

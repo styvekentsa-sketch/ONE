@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, CheckCircle2, Eraser, Fingerprint } from 'lucide-react'
+import { CheckCircle2, Eraser, Fingerprint } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
 import ProcessingState from '../../components/ProcessingState'
 import DownloadButton from '../../components/DownloadButton'
 import { readPdfMetadata, cleanMetadata, METADATA_FIELDS } from '../../utils/pdfWorker'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import BackButton from '../../components/ui/BackButton'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -109,27 +109,22 @@ export default function CleanMetadataPage() {
     })
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link
-        to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
-      >
-        <ArrowLeft size={16} /> {t('common.backToTools')}
-      </Link>
+    <div className="mx-auto max-w-3xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <BackButton />
 
       <div className="flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm dark:bg-stone-800/80 dark:text-white">
           <Fingerprint size={26} />
         </span>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-white">
             {t('tools.clean-metadata.name')}
           </h1>
-          <p className="text-zinc-500 dark:text-zinc-400">{t('tools.clean-metadata.subtitle')}</p>
+          <p className="text-stone-500 dark:text-stone-400">{t('tools.clean-metadata.subtitle')}</p>
         </div>
       </div>
 
-      <div className="mt-8 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-zinc-900">
+      <div className="mt-8 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:bg-stone-900">
         {error && (
           <p className="mb-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">
             {error}
@@ -148,29 +143,29 @@ export default function CleanMetadataPage() {
         {step === STEPS.REVIEW && metadata && (
           <div className="flex flex-col gap-6">
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                 {t('tools.clean-metadata.detectedMetadata')}
               </p>
-              <dl className="divide-y divide-zinc-100 overflow-hidden rounded-xl border border-zinc-200 dark:divide-white/5 dark:border-white/10">
+              <dl className="divide-y divide-stone-100 overflow-hidden rounded-xl border border-stone-200 dark:divide-white/5 dark:border-white/10">
                 {METADATA_FIELDS.map(({ key, label }) => (
-                  <div key={key} className="flex items-center justify-between gap-4 bg-white px-4 py-2.5 dark:bg-zinc-800/40">
-                    <dt className="text-sm text-zinc-500 dark:text-zinc-400">
+                  <div key={key} className="flex items-center justify-between gap-4 bg-white px-4 py-2.5 dark:bg-stone-800/40">
+                    <dt className="text-sm text-stone-500 dark:text-stone-400">
                       {t(`tools.clean-metadata.fields.${key}`, label)}
                     </dt>
-                    <dd className="truncate text-sm font-medium text-zinc-800 dark:text-zinc-100">
+                    <dd className="truncate text-sm font-medium text-stone-800 dark:text-stone-100">
                       {formatValue(metadata[key])}
                     </dd>
                   </div>
                 ))}
               </dl>
               {!hasAnyMetadata && (
-                <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">{t('tools.clean-metadata.noMetadataHint')}</p>
+                <p className="mt-3 text-xs text-stone-500 dark:text-stone-400">{t('tools.clean-metadata.noMetadataHint')}</p>
               )}
             </div>
 
             <button
               onClick={handleClean}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-brand-700 active:scale-[0.98]"
             >
               <Eraser size={18} /> {t('tools.clean-metadata.purgeButton')}
             </button>
@@ -183,19 +178,19 @@ export default function CleanMetadataPage() {
 
         {step === STEPS.DONE && (
           <div className="flex flex-col items-center gap-5 py-4 text-center">
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/10">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-100 text-brand-600 dark:bg-brand-500/10">
               <CheckCircle2 size={28} />
             </span>
             <div>
-              <p className="text-lg font-semibold text-zinc-800 dark:text-white">
+              <p className="text-lg font-semibold text-stone-800 dark:text-white">
                 {t('tools.clean-metadata.doneTitle')}
               </p>
-              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{t('tools.clean-metadata.doneDescription')}</p>
+              <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{t('tools.clean-metadata.doneDescription')}</p>
             </div>
             <DownloadButton fileName="ONE_cleaned.pdf" onDownload={handleDownload} />
             <button
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-stone-600 dark:hover:text-stone-200"
             >
               {t('tools.clean-metadata.restartLabel')}
             </button>

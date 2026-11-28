@@ -1,8 +1,6 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
-  ArrowLeft,
   ArrowUpRight,
   Ban,
   CalendarDays,
@@ -53,6 +51,7 @@ import {
 import { exportAnnotatedPdf } from '../../utils/annotateExport'
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import BackButton from '../../components/ui/BackButton'
 
 const CSS_UNITS = 96 / 72
 const ZOOM_PRESETS = [0.5, 0.75, 1, 1.25, 1.5, 2]
@@ -130,8 +129,8 @@ function IconButton({ icon: Icon, label, onClick, active = false, disabled = fal
       disabled={disabled}
       className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors duration-150 disabled:pointer-events-none disabled:opacity-40 ${
         active
-          ? 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-400'
-          : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white'
+          ? 'bg-brand-500/10 text-brand-600 dark:bg-brand-400/10 dark:text-brand-400'
+          : 'text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-white'
       } ${className}`}
     >
       <Icon size={18} />
@@ -139,12 +138,12 @@ function IconButton({ icon: Icon, label, onClick, active = false, disabled = fal
   )
 }
 
-const Divider = () => <span className="mx-1 h-6 w-px shrink-0 bg-zinc-200 dark:bg-zinc-800" />
+const Divider = () => <span className="mx-1 h-6 w-px shrink-0 bg-stone-200 dark:bg-stone-800" />
 
 function Swatches({ colors, value, onChange, label, allowNone = false, noneLabel }) {
   return (
     <div className="flex shrink-0 items-center gap-1.5" role="radiogroup" aria-label={label}>
-      <span className="mr-0.5 text-xs font-medium text-zinc-500 dark:text-zinc-400">{label}</span>
+      <span className="mr-0.5 text-xs font-medium text-stone-500 dark:text-stone-400">{label}</span>
       {allowNone && (
         <button
           type="button"
@@ -153,8 +152,8 @@ function Swatches({ colors, value, onChange, label, allowNone = false, noneLabel
           title={noneLabel}
           aria-label={noneLabel}
           onClick={() => onChange(null)}
-          className={`flex h-6 w-6 items-center justify-center rounded-full bg-white text-zinc-400 ring-offset-2 ring-offset-white dark:bg-zinc-950 dark:ring-offset-zinc-900 ${
-            value === null ? 'ring-2 ring-zinc-900 dark:ring-white' : 'ring-1 ring-zinc-300 dark:ring-zinc-700'
+          className={`flex h-6 w-6 items-center justify-center rounded-full bg-white text-stone-400 ring-offset-2 ring-offset-white dark:bg-stone-950 dark:ring-offset-stone-900 ${
+            value === null ? 'ring-2 ring-stone-900 dark:ring-white' : 'ring-1 ring-stone-300 dark:ring-stone-700'
           }`}
         >
           <Ban size={13} />
@@ -169,8 +168,8 @@ function Swatches({ colors, value, onChange, label, allowNone = false, noneLabel
           title={c.label}
           aria-label={c.label}
           onClick={() => onChange(c.value)}
-          className={`h-6 w-6 rounded-full ring-offset-2 ring-offset-white transition-transform hover:scale-110 dark:ring-offset-zinc-900 ${
-            value === c.value ? 'ring-2 ring-zinc-900 dark:ring-white' : 'ring-1 ring-black/15 dark:ring-white/20'
+          className={`h-6 w-6 rounded-full ring-offset-2 ring-offset-white transition-transform hover:scale-110 dark:ring-offset-stone-900 ${
+            value === c.value ? 'ring-2 ring-stone-900 dark:ring-white' : 'ring-1 ring-black/15 dark:ring-white/20'
           }`}
           style={{ backgroundColor: c.value }}
         />
@@ -181,7 +180,7 @@ function Swatches({ colors, value, onChange, label, allowNone = false, noneLabel
 
 function RangeControl({ label, value, min, max, step = 1, onChange, format = (v) => v }) {
   return (
-    <label className="flex shrink-0 items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+    <label className="flex shrink-0 items-center gap-2 text-xs font-medium text-stone-500 dark:text-stone-400">
       {label}
       <input
         type="range"
@@ -190,9 +189,9 @@ function RangeControl({ label, value, min, max, step = 1, onChange, format = (v)
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-24 accent-emerald-600"
+        className="w-24 accent-brand-600"
       />
-      <span className="w-10 tabular-nums text-zinc-700 dark:text-zinc-300">{format(value)}</span>
+      <span className="w-10 tabular-nums text-stone-700 dark:text-stone-300">{format(value)}</span>
     </label>
   )
 }
@@ -356,7 +355,7 @@ function SelectionHandles({ obj, scale }) {
       height={size}
       rx={2 / scale}
       fill="#ffffff"
-      stroke="#059669"
+      stroke="#1f5fd1"
       strokeWidth={stroke}
       style={{ cursor, touchAction: 'none' }}
     />
@@ -380,7 +379,7 @@ function SelectionHandles({ obj, scale }) {
         width={b.w + pad * 2}
         height={b.h + pad * 2}
         fill="none"
-        stroke="#059669"
+        stroke="#1f5fd1"
         strokeWidth={stroke}
         strokeDasharray={`${4 / scale} ${3 / scale}`}
         pointerEvents="none"
@@ -466,7 +465,7 @@ function PageViewInner({
         wrapperRef.current = el
         registerRef(pageNumber, el)
       }}
-      className="relative shrink-0 bg-white shadow-md ring-1 ring-zinc-200 dark:ring-zinc-800"
+      className="relative shrink-0 bg-white shadow-md ring-1 ring-stone-200 dark:ring-stone-800"
       style={{ width, height }}
     >
       <canvas ref={canvasRef} className="absolute left-0 top-0" style={{ width, height }} />
@@ -557,11 +556,11 @@ const Thumbnail = memo(function Thumbnail({ pdf, pageNumber, info, active, count
       }}
       type="button"
       onClick={() => onSelect(pageNumber)}
-      className="group relative flex w-full flex-col items-center gap-1.5 rounded-xl p-2 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800/60"
+      className="group relative flex w-full flex-col items-center gap-1.5 rounded-xl p-2 transition-colors hover:bg-stone-100 dark:hover:bg-stone-800/60"
     >
       <span
         className={`relative block overflow-hidden rounded-md bg-white shadow-sm ${
-          active ? 'ring-2 ring-emerald-500' : 'ring-1 ring-zinc-200 group-hover:ring-zinc-300 dark:ring-zinc-700'
+          active ? 'ring-2 ring-brand-500' : 'ring-1 ring-stone-200 group-hover:ring-stone-300 dark:ring-stone-700'
         }`}
         style={{ width: THUMB_WIDTH, height }}
       >
@@ -569,13 +568,13 @@ const Thumbnail = memo(function Thumbnail({ pdf, pageNumber, info, active, count
         {count > 0 && (
           <span
             title={countLabel}
-            className="absolute right-1 top-1 min-w-5 rounded-full bg-emerald-600 px-1.5 text-center text-[11px] font-semibold leading-5 text-white shadow"
+            className="absolute right-1 top-1 min-w-5 rounded-full bg-brand-600 px-1.5 text-center text-[11px] font-semibold leading-5 text-white shadow"
           >
             {count}
           </span>
         )}
       </span>
-      <span className={`text-xs font-medium ${active ? 'text-emerald-600 dark:text-emerald-400' : 'text-zinc-500 dark:text-zinc-400'}`}>
+      <span className={`text-xs font-medium ${active ? 'text-brand-600 dark:text-brand-400' : 'text-stone-500 dark:text-stone-400'}`}>
         {pageNumber}
       </span>
     </button>
@@ -696,7 +695,7 @@ function SignaturePad({ open, onClose, onSave, a }) {
             onPointerMove={handleMove}
             onPointerUp={handleUp}
             onPointerCancel={handleUp}
-            className="h-48 w-full cursor-crosshair rounded-xl border border-dashed border-zinc-300 bg-white dark:border-zinc-700"
+            className="h-48 w-full cursor-crosshair rounded-xl border border-dashed border-stone-300 bg-white dark:border-stone-700"
             style={{ touchAction: 'none' }}
           />
         )}
@@ -714,7 +713,7 @@ function SignaturePad({ open, onClose, onSave, a }) {
             <button
               type="button"
               onClick={clear}
-              className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+              className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800"
             >
               <Eraser size={15} /> {a('signature.clear')}
             </button>
@@ -722,7 +721,7 @@ function SignaturePad({ open, onClose, onSave, a }) {
               type="button"
               onClick={save}
               disabled={isEmpty}
-              className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-500 disabled:opacity-40"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600 disabled:opacity-40"
             >
               <CheckCircle2 size={15} /> {a('signature.save')}
             </button>
@@ -1145,14 +1144,14 @@ function Studio({ doc, onClose }) {
         return (
           <>
             {!selected && (
-              <div className="flex shrink-0 rounded-lg bg-zinc-100 p-0.5 text-xs font-medium dark:bg-zinc-800">
+              <div className="flex shrink-0 rounded-lg bg-stone-100 p-0.5 text-xs font-medium dark:bg-stone-800">
                 {['free', 'rect'].map((mode) => (
                   <button
                     key={mode}
                     type="button"
                     onClick={() => setProp('mode', mode)}
                     className={`rounded-md px-2.5 py-1 ${
-                      styles.highlight.mode === mode ? 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-950 dark:text-white' : 'text-zinc-500 dark:text-zinc-400'
+                      styles.highlight.mode === mode ? 'bg-white text-stone-900 shadow-sm dark:bg-stone-950 dark:text-white' : 'text-stone-500 dark:text-stone-400'
                     }`}
                   >
                     {a(`props.highlightMode.${mode}`)}
@@ -1186,14 +1185,14 @@ function Studio({ doc, onClose }) {
                 onChange={(e) => setProp('text', e.target.value)}
                 placeholder={a('defaultText')}
                 aria-label={a('props.content')}
-                className="h-9 min-w-40 flex-1 resize-y rounded-lg border border-zinc-200 bg-white px-2.5 py-1.5 text-sm text-zinc-900 focus:border-emerald-500 focus:outline-none sm:max-w-xs dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100"
+                className="h-9 min-w-40 flex-1 resize-y rounded-lg border border-stone-200 bg-white px-2.5 py-1.5 text-sm text-stone-900 focus:border-brand-500 focus:outline-none sm:max-w-xs dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100"
               />
             )}
             <select
               value={editValues.fontFamily}
               onChange={(e) => setProp('fontFamily', e.target.value)}
               aria-label={a('props.font')}
-              className="h-9 shrink-0 rounded-lg border border-zinc-200 bg-white px-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+              className="h-9 shrink-0 rounded-lg border border-stone-200 bg-white px-2 text-sm dark:border-stone-700 dark:bg-stone-950"
             >
               {Object.entries(FONT_FAMILIES).map(([id, f]) => (
                 <option key={id} value={id}>
@@ -1241,10 +1240,10 @@ function Studio({ doc, onClose }) {
                 ))}
               </div>
             )}
-            <label className="flex shrink-0 items-center gap-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-300">
+            <label className="flex shrink-0 items-center gap-1.5 text-xs font-medium text-stone-600 dark:text-stone-300">
               <input
                 type="checkbox"
-                className="accent-emerald-600"
+                className="accent-brand-600"
                 checked={selected ? Boolean(selected.date) : styles.stamp.withDate}
                 onChange={(e) => {
                   if (selected) {
@@ -1256,27 +1255,27 @@ function Studio({ doc, onClose }) {
               />
               <CalendarDays size={14} /> {a('props.withDate')}
             </label>
-            {!selected && <span className="text-xs text-zinc-500 dark:text-zinc-400">{a('hints.stamp')}</span>}
+            {!selected && <span className="text-xs text-stone-500 dark:text-stone-400">{a('hints.stamp')}</span>}
           </>
         )
       case 'signature':
         return (
           <>
             {signature && (
-              <img src={signature.dataUrl} alt="" className="h-9 shrink-0 rounded-md border border-zinc-200 bg-white px-1 dark:border-zinc-700" />
+              <img src={signature.dataUrl} alt="" className="h-9 shrink-0 rounded-md border border-stone-200 bg-white px-1 dark:border-stone-700" />
             )}
             <button
               type="button"
               onClick={() => setSignaturePadOpen(true)}
-              className="inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg border border-zinc-200 px-3 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+              className="inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg border border-stone-200 px-3 text-sm font-medium text-stone-700 hover:bg-stone-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800"
             >
               <Signature size={15} /> {signature ? a('signature.redraw') : a('signature.draw')}
             </button>
-            {!selected && signature && <span className="text-xs text-zinc-500 dark:text-zinc-400">{a('hints.signature')}</span>}
+            {!selected && signature && <span className="text-xs text-stone-500 dark:text-stone-400">{a('hints.signature')}</span>}
           </>
         )
       default:
-        return <span className="text-xs text-zinc-500 dark:text-zinc-400">{a('hints.select')}</span>
+        return <span className="text-xs text-stone-500 dark:text-stone-400">{a('hints.select')}</span>
     }
   }
 
@@ -1329,9 +1328,9 @@ function Studio({ doc, onClose }) {
   const isPreset = ZOOM_PRESETS.some((p) => Math.abs(p - zoom) < 0.001)
 
   return (
-    <div className="flex h-[calc(100dvh-10.5rem)] min-h-104 flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm md:h-[calc(100dvh-9rem)] dark:border-zinc-800 dark:bg-zinc-950">
+    <div className="flex h-[calc(100dvh-7.5rem)] min-h-104 flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm md:h-[calc(100dvh-8.5rem)] dark:border-stone-800 dark:bg-stone-950">
       {/* Palette d'outils */}
-      <div className="flex items-center gap-0.5 overflow-x-auto border-b border-zinc-200 bg-white px-1.5 py-1.5 scrollbar-none dark:border-zinc-800 dark:bg-zinc-900">
+      <div className="flex items-center gap-0.5 overflow-x-auto border-b border-stone-200 bg-white px-1.5 py-1.5 scrollbar-none dark:border-stone-800 dark:bg-stone-900">
         <IconButton icon={PanelLeft} label={a('toolbar.pages')} onClick={() => setSidebarOpen((v) => !v)} active={sidebarOpen} />
         <Divider />
         {TOOLS.map(({ id, icon }) => (
@@ -1346,7 +1345,7 @@ function Studio({ doc, onClose }) {
           value={isPreset ? String(zoom) : 'custom'}
           onChange={(e) => setZoom(Number(e.target.value))}
           aria-label={a('toolbar.zoom')}
-          className="h-8 shrink-0 rounded-md border border-zinc-200 bg-white px-1.5 text-sm tabular-nums focus:border-emerald-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-950"
+          className="h-8 shrink-0 rounded-md border border-stone-200 bg-white px-1.5 text-sm tabular-nums focus:border-brand-500 focus:outline-none dark:border-stone-700 dark:bg-stone-950"
         >
           {!isPreset && <option value="custom">{zoomPercent} %</option>}
           {ZOOM_PRESETS.map((p) => (
@@ -1361,7 +1360,7 @@ function Studio({ doc, onClose }) {
           type="button"
           onClick={startExport}
           disabled={!history.present.length}
-          className="inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg bg-emerald-600 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-500 disabled:opacity-40"
+          className="inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg bg-brand-600 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600 disabled:opacity-40"
         >
           <Download size={16} />
           <span className="hidden sm:inline">{a('toolbar.export')}</span>
@@ -1370,8 +1369,8 @@ function Studio({ doc, onClose }) {
       </div>
 
       {/* Propriétés contextuelles */}
-      <div className="flex min-h-12 items-center gap-3 overflow-x-auto border-b border-zinc-200 bg-white px-3 py-1.5 scrollbar-none dark:border-zinc-800 dark:bg-zinc-900">
-        <span className="shrink-0 text-xs font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
+      <div className="flex min-h-12 items-center gap-3 overflow-x-auto border-b border-stone-200 bg-white px-3 py-1.5 scrollbar-none dark:border-stone-800 dark:bg-stone-900">
+        <span className="shrink-0 text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">
           {selected ? a(`types.${selected.type}`) : a(`tools.${tool}`)}
         </span>
         {renderProperties()}
@@ -1395,16 +1394,16 @@ function Studio({ doc, onClose }) {
             type="button"
             aria-label={a('toolbar.pages')}
             onClick={() => setSidebarOpen(false)}
-            className="absolute inset-0 z-20 bg-zinc-950/40"
+            className="absolute inset-0 z-20 bg-stone-950/40"
           />
         )}
         {sidebarOpen && (
           <aside
-            className={`flex w-40 shrink-0 flex-col border-r border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900 ${
+            className={`flex w-40 shrink-0 flex-col border-r border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900 ${
               isMobile ? 'absolute inset-y-0 left-0 z-30 shadow-2xl' : ''
             }`}
           >
-            <p className="border-b border-zinc-200 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+            <p className="border-b border-stone-200 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:border-stone-800 dark:text-stone-400">
               {a('toolbar.pages')} · {numPages}
             </p>
             <div className="relative min-h-0 flex-1 overflow-y-auto p-1.5">
@@ -1438,7 +1437,7 @@ function Studio({ doc, onClose }) {
             scrollRef.current = el
             if (el && el !== scrollRoot) setScrollRoot(el)
           }}
-          onScroll={handleScroll} className="relative min-w-0 flex-1 overflow-auto bg-zinc-100 dark:bg-zinc-950">
+          onScroll={handleScroll} className="relative min-w-0 flex-1 overflow-auto bg-stone-100 dark:bg-stone-950">
           <div className="flex w-max min-w-full flex-col items-center gap-4 px-2 py-4 sm:px-6">
             {scrollRoot &&
               pages.map((info, i) => (
@@ -1474,8 +1473,8 @@ function Studio({ doc, onClose }) {
 
       <Modal open={Boolean(exportState)} onClose={closeExport} icon={FileCheck} title={a('export.title')} subtitle={file.name}>
         {exportState?.status === 'working' && (
-          <div className="flex flex-col items-center gap-3 py-6 text-sm text-zinc-500 dark:text-zinc-400">
-            <LoaderCircle size={28} className="animate-spin text-emerald-600" />
+          <div className="flex flex-col items-center gap-3 py-6 text-sm text-stone-500 dark:text-stone-400">
+            <LoaderCircle size={28} className="animate-spin text-brand-600" />
             {a('export.working')}
           </div>
         )}
@@ -1490,19 +1489,19 @@ function Studio({ doc, onClose }) {
                 [a('export.pages'), exportState.pagesTouched],
                 [a('export.finalSize'), formatBytes(exportState.size)],
               ].map(([label, value]) => (
-                <div key={label} className="rounded-xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-800 dark:bg-zinc-950">
-                  <p className="text-lg font-semibold tabular-nums text-zinc-900 dark:text-white">{value}</p>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">{label}</p>
+                <div key={label} className="rounded-xl border border-stone-200 bg-stone-50 p-3 dark:border-stone-800 dark:bg-stone-950">
+                  <p className="text-lg font-semibold tabular-nums text-stone-900 dark:text-white">{value}</p>
+                  <p className="text-xs text-stone-500 dark:text-stone-400">{label}</p>
                 </div>
               ))}
             </div>
-            <p className="text-center text-xs text-zinc-500 dark:text-zinc-400">
+            <p className="text-center text-xs text-stone-500 dark:text-stone-400">
               {a('export.originalSize', { size: formatBytes(file.size) })}
             </p>
             <button
               type="button"
               onClick={download}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition-colors hover:bg-emerald-500"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600"
             >
               <Download size={18} /> {a('export.download')}
             </button>
@@ -1562,14 +1561,9 @@ export default function AnnotatePdfTool() {
     return (
       <div className="mx-auto max-w-400 px-2 py-3 sm:px-4 lg:px-6">
         <div className="mb-2 flex items-center gap-3">
-          <Link
-            to="/pdf"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200"
-          >
-            <ArrowLeft size={16} /> <span className="hidden sm:inline">{t('common.backToTools')}</span>
-          </Link>
-          <span className="flex min-w-0 items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-white">
-            <PenTool size={16} className="shrink-0 text-emerald-600 dark:text-emerald-400" />
+          <BackButton compact />
+          <span className="flex min-w-0 items-center gap-2 text-sm font-semibold text-stone-900 dark:text-white">
+            <PenTool size={16} className="shrink-0 text-brand-600 dark:text-brand-400" />
             <span className="truncate">{doc.file.name}</span>
           </span>
         </div>
@@ -1586,28 +1580,23 @@ export default function AnnotatePdfTool() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-      <Link
-        to="/pdf"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-700 sm:mb-8 dark:text-zinc-400 dark:hover:text-zinc-200"
-      >
-        <ArrowLeft size={16} /> {t('common.backToTools')}
-      </Link>
+    <div className="mx-auto max-w-3xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <BackButton />
 
       <div className="flex items-center gap-4">
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm sm:h-14 sm:w-14 dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm sm:h-14 sm:w-14 dark:bg-stone-800/80 dark:text-white">
           <PenTool size={26} />
         </span>
         <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">
             {t('categories.Outils Avancés')}
           </p>
-          <h1 className="text-xl font-bold text-zinc-900 sm:text-2xl dark:text-white">{t('tools.annotate.name')}</h1>
-          <p className="text-sm text-zinc-500 sm:text-base dark:text-zinc-400">{t('tools.annotate.subtitle')}</p>
+          <h1 className="text-xl font-bold text-stone-900 sm:text-2xl dark:text-white">{t('tools.annotate.name')}</h1>
+          <p className="text-sm text-stone-500 sm:text-base dark:text-stone-400">{t('tools.annotate.subtitle')}</p>
         </div>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm sm:p-8 dark:border-zinc-800 dark:bg-zinc-900">
+      <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:bg-stone-900">
         {error && (
           <p className="mb-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">{error}</p>
         )}

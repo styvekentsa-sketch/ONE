@@ -134,44 +134,44 @@ export default function ImageLayersPage() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link to="/image" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200">
+    <div className="mx-auto max-w-5xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <Link to="/image" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-stone-600 dark:hover:text-stone-200">
         <ArrowLeft size={16} /> Retour aux outils Image
       </Link>
 
       <div className="flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm dark:bg-stone-800/80 dark:text-white">
           <LayersIcon size={26} />
         </span>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Calques & Modes de Fusion</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">Empilez des images avec opacité et modes de fusion réels</p>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-white">Calques & Modes de Fusion</h1>
+          <p className="text-stone-500 dark:text-stone-400">Empilez des images avec opacité et modes de fusion réels</p>
         </div>
       </div>
 
       {!hasDoc ? (
-        <div className="mt-6 flex flex-col items-center gap-4 rounded-2xl border border-zinc-200 bg-white p-10 text-center shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">Ajoutez une première image pour créer la composition.</p>
-          <label className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400">
+        <div className="mt-6 flex flex-col items-center gap-4 rounded-2xl border border-stone-200 bg-white p-10 text-center shadow-sm dark:border-stone-800 dark:bg-stone-900">
+          <p className="text-sm text-stone-500 dark:text-stone-400">Ajoutez une première image pour créer la composition.</p>
+          <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-700">
             Choisir une image
             <input type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files[0] && addFromFile(e.target.files[0])} />
           </label>
         </div>
       ) : (
         <div className="mt-6 grid gap-6 md:grid-cols-[1fr_320px]">
-          <div className="flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-[conic-gradient(#e5e5e5_90deg,#fff_90deg_180deg,#e5e5e5_180deg_270deg,#fff_270deg)] bg-[length:16px_16px] dark:bg-zinc-950/40">
+          <div className="flex flex-col gap-3 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+            <div className="flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-[conic-gradient(#e5e5e5_90deg,#fff_90deg_180deg,#e5e5e5_180deg_270deg,#fff_270deg)] bg-[length:16px_16px] dark:bg-stone-950/40">
               {previewUrl && <img src={previewUrl} alt="Composition" className="max-h-full max-w-full object-contain" />}
             </div>
             <button
               onClick={handleDownload}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-brand-700 active:scale-[0.98]"
             >
               <Download size={16} /> Télécharger la composition
             </button>
           </div>
 
-          <div className="h-[28rem] rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+          <div className="h-[28rem] rounded-2xl border border-stone-200 bg-white shadow-sm dark:border-stone-800 dark:bg-stone-900">
             <LayersPanel
               layers={layers}
               activeLayerId={activeLayerId}

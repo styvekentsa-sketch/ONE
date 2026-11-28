@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowDown, ArrowLeft, ArrowUp, CheckCircle2, Combine, FileText, X } from 'lucide-react'
+import { ArrowDown, ArrowUp, CheckCircle2, Combine, FileText, X } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
 import ProcessingState from '../../components/ProcessingState'
 import DownloadButton from '../../components/DownloadButton'
 import { mergePdfs } from '../../utils/pdfWorker'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import BackButton from '../../components/ui/BackButton'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -104,25 +104,20 @@ export default function MergePdfPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link
-        to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
-      >
-        <ArrowLeft size={16} /> {t('common.backToTools')}
-      </Link>
+    <div className="mx-auto max-w-3xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <BackButton />
 
       <div className="flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm dark:bg-stone-800/80 dark:text-white">
           <Combine size={26} />
         </span>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">{t('tools.merge.name')}</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">{t('tools.merge.subtitle')}</p>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-white">{t('tools.merge.name')}</h1>
+          <p className="text-stone-500 dark:text-stone-400">{t('tools.merge.subtitle')}</p>
         </div>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-zinc-900">
+      <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:bg-stone-900">
         {error && (
           <p className="mb-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">
             {error}
@@ -143,13 +138,13 @@ export default function MergePdfPage() {
               {files.map((file, index) => (
                 <div
                   key={`${file.name}-${index}`}
-                  className="flex items-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-3 dark:border-white/10 dark:bg-zinc-800/40"
+                  className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 dark:border-white/10 dark:bg-stone-800/40"
                 >
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-zinc-100 text-xs font-semibold text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-stone-100 text-xs font-semibold text-stone-500 dark:bg-stone-800 dark:text-stone-400">
                     {index + 1}
                   </span>
-                  <FileText size={18} className="shrink-0 text-zinc-500 dark:text-zinc-400" />
-                  <span className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-700 dark:text-zinc-200">
+                  <FileText size={18} className="shrink-0 text-stone-500 dark:text-stone-400" />
+                  <span className="min-w-0 flex-1 truncate text-sm font-medium text-stone-700 dark:text-stone-200">
                     {file.name}
                   </span>
                   <div className="flex shrink-0 items-center gap-1">
@@ -157,7 +152,7 @@ export default function MergePdfPage() {
                       onClick={() => moveFile(index, -1)}
                       disabled={index === 0}
                       aria-label={t('common.moveUp')}
-                      className="rounded p-1 text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-700 disabled:opacity-30 dark:hover:text-zinc-200"
+                      className="rounded p-1 text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-stone-700 disabled:opacity-30 dark:hover:text-stone-200"
                     >
                       <ArrowUp size={14} />
                     </button>
@@ -165,14 +160,14 @@ export default function MergePdfPage() {
                       onClick={() => moveFile(index, 1)}
                       disabled={index === files.length - 1}
                       aria-label={t('common.moveDown')}
-                      className="rounded p-1 text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-700 disabled:opacity-30 dark:hover:text-zinc-200"
+                      className="rounded p-1 text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-stone-700 disabled:opacity-30 dark:hover:text-stone-200"
                     >
                       <ArrowDown size={14} />
                     </button>
                     <button
                       onClick={() => removeFile(index)}
                       aria-label={t('actions.remove')}
-                      className="rounded p-1 text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-red-500"
+                      className="rounded p-1 text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-red-500"
                     >
                       <X size={14} />
                     </button>
@@ -193,7 +188,7 @@ export default function MergePdfPage() {
               <button
                 onClick={handleMerge}
                 disabled={files.length < 2}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-indigo-500"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-brand-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-brand-600"
               >
                 <Combine size={18} />
                 {files.length > 1
@@ -201,7 +196,7 @@ export default function MergePdfPage() {
                   : t('tools.merge.mergeButtonDefault')}
               </button>
               {files.length < 2 && (
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">{t('tools.merge.minFilesHint')}</p>
+                <p className="text-xs text-stone-500 dark:text-stone-400">{t('tools.merge.minFilesHint')}</p>
               )}
             </div>
           </div>
@@ -217,19 +212,19 @@ export default function MergePdfPage() {
 
         {step === STEPS.DONE && (
           <div className="flex flex-col items-center gap-5 py-4 text-center">
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/10">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-100 text-brand-600 dark:bg-brand-500/10">
               <CheckCircle2 size={28} />
             </span>
             <div>
-              <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.merge.doneTitle')}</p>
-              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="text-lg font-semibold text-stone-800 dark:text-white">{t('tools.merge.doneTitle')}</p>
+              <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
                 {t('tools.merge.doneDescription', { count: files.length })}
               </p>
             </div>
             <DownloadButton fileName="ONE_merged.pdf" onDownload={handleDownload} />
             <button
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-stone-600 dark:hover:text-stone-200"
             >
               {t('tools.merge.restartLabel')}
             </button>

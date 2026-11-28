@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   AlertTriangle,
-  ArrowLeft,
   Check,
   CheckCircle2,
   ChevronLeft,
@@ -31,6 +30,7 @@ import { loadPdfDocument, destroyPdfDocument } from '../../utils/pdfRender'
 import { createBaseLayer, readLayers, writeLayers } from '../../utils/pdfLayersWorker'
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import BackButton from '../../components/ui/BackButton'
 
 const CSS_UNITS = 96 / 72
 const ZOOM_PRESETS = [0.5, 0.75, 1, 1.25, 1.5, 2]
@@ -47,8 +47,8 @@ function IconButton({ icon: Icon, label, onClick, active = false, disabled = fal
       disabled={disabled}
       className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors disabled:pointer-events-none disabled:opacity-40 ${
         active
-          ? 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-400'
-          : 'text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white'
+          ? 'bg-brand-500/10 text-brand-600 dark:bg-brand-400/10 dark:text-brand-400'
+          : 'text-stone-500 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-white'
       } ${className}`}
     >
       <Icon size={16} />
@@ -96,7 +96,7 @@ function Preview({ pdf, ocConfig, pageNumber, zoom, visibility }) {
   }, [pdf, ocConfig, pageNumber, zoom, visibility])
 
   return (
-    <div className="mx-auto bg-white shadow-md ring-1 ring-zinc-200 dark:ring-zinc-800" style={size ? { width: size.w, height: size.h } : { width: 300, height: 420 }}>
+    <div className="mx-auto bg-white shadow-md ring-1 ring-stone-200 dark:ring-stone-800" style={size ? { width: size.w, height: size.h } : { width: 300, height: 420 }}>
       <canvas ref={canvasRef} style={size ? { width: size.w, height: size.h } : undefined} className="block" />
     </div>
   )
@@ -118,7 +118,7 @@ function LayerRow({ layer, depth, visible, onTogglePreview, onIsolate, onChange,
   }
 
   return (
-    <li className="rounded-xl border border-zinc-200 bg-white p-2.5 dark:border-zinc-800 dark:bg-zinc-950" style={{ marginLeft: depth * 16 }}>
+    <li className="rounded-xl border border-stone-200 bg-white p-2.5 dark:border-stone-800 dark:bg-stone-950" style={{ marginLeft: depth * 16 }}>
       <div className="flex items-center gap-1.5">
         <IconButton icon={visible ? Eye : EyeOff} label={visible ? y('row.hidePreview') : y('row.showPreview')} onClick={onTogglePreview} active={visible} />
         {renaming ? (
@@ -141,7 +141,7 @@ function LayerRow({ layer, depth, visible, onTogglePreview, onIsolate, onChange,
                 }
               }}
               aria-label={y('row.rename')}
-              className="h-8 min-w-0 flex-1 rounded-lg border border-emerald-500 bg-white px-2 text-sm text-zinc-900 focus:outline-none dark:bg-zinc-950 dark:text-zinc-100"
+              className="h-8 min-w-0 flex-1 rounded-lg border border-brand-500 bg-white px-2 text-sm text-stone-900 focus:outline-none dark:bg-stone-950 dark:text-stone-100"
             />
             <IconButton icon={Check} label={y('row.confirm')} onClick={commitName} />
           </form>
@@ -150,7 +150,7 @@ function LayerRow({ layer, depth, visible, onTogglePreview, onIsolate, onChange,
             type="button"
             onDoubleClick={() => setRenaming(true)}
             onClick={onTogglePreview}
-            className={`min-w-0 flex-1 truncate text-left text-sm font-medium ${visible ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 line-through decoration-zinc-300 dark:text-zinc-500'}`}
+            className={`min-w-0 flex-1 truncate text-left text-sm font-medium ${visible ? 'text-stone-900 dark:text-stone-100' : 'text-stone-400 line-through decoration-stone-300 dark:text-stone-500'}`}
             title={layer.name}
           >
             {layer.name}
@@ -170,13 +170,13 @@ function LayerRow({ layer, depth, visible, onTogglePreview, onIsolate, onChange,
       </div>
 
       {layer.merge ? (
-        <p className="mt-2 flex items-center gap-1.5 pl-1 text-xs font-medium text-emerald-700 dark:text-emerald-400">
+        <p className="mt-2 flex items-center gap-1.5 pl-1 text-xs font-medium text-brand-700 dark:text-brand-400">
           <Merge size={13} /> {y('state.merged')}
         </p>
       ) : (
       <div className="mt-2 flex flex-wrap items-center gap-2 pl-1">
-        <span className="text-xs text-zinc-500 dark:text-zinc-400">{y('row.defaultState')}</span>
-        <div className="flex rounded-md bg-zinc-100 p-0.5 text-xs font-medium dark:bg-zinc-800" role="radiogroup" aria-label={y('row.defaultState')}>
+        <span className="text-xs text-stone-500 dark:text-stone-400">{y('row.defaultState')}</span>
+        <div className="flex rounded-md bg-stone-100 p-0.5 text-xs font-medium dark:bg-stone-800" role="radiogroup" aria-label={y('row.defaultState')}>
           {[true, false].map((v) => (
             <button
               key={String(v)}
@@ -187,9 +187,9 @@ function LayerRow({ layer, depth, visible, onTogglePreview, onIsolate, onChange,
               className={`rounded px-2 py-0.5 ${
                 layer.defaultVisible === v
                   ? v
-                    ? 'bg-white text-emerald-700 shadow-sm dark:bg-zinc-950 dark:text-emerald-400'
-                    : 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-950 dark:text-white'
-                  : 'text-zinc-500 dark:text-zinc-400'
+                    ? 'bg-white text-brand-700 shadow-sm dark:bg-stone-950 dark:text-brand-400'
+                    : 'bg-white text-stone-900 shadow-sm dark:bg-stone-950 dark:text-white'
+                  : 'text-stone-500 dark:text-stone-400'
               }`}
             >
               {v ? y('state.visible') : y('state.hidden')}
@@ -202,7 +202,7 @@ function LayerRow({ layer, depth, visible, onTogglePreview, onIsolate, onChange,
           </span>
         )}
         {layer.intent.map((intent) => (
-          <span key={intent} className="rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+          <span key={intent} className="rounded-full bg-stone-100 px-2 py-0.5 text-[11px] font-medium text-stone-600 dark:bg-stone-800 dark:text-stone-400">
             {intent}
           </span>
         ))}
@@ -341,7 +341,7 @@ export default function PdfLayersTool() {
     nodes.map((node, i) =>
       node.type === 'label' ? (
         <li key={`label-${depth}-${i}`} className="list-none">
-          <p className="mb-1.5 mt-1 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400" style={{ marginLeft: depth * 16 }}>
+          <p className="mb-1.5 mt-1 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400" style={{ marginLeft: depth * 16 }}>
             {node.label}
           </p>
           <ul className="flex flex-col gap-2">{renderTree(node.children, depth + 1)}</ul>
@@ -368,22 +368,17 @@ export default function PdfLayersTool() {
   const zoomIsPreset = ZOOM_PRESETS.includes(zoom)
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
-      <Link
-        to="/pdf"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
-      >
-        <ArrowLeft size={16} /> {t('common.backToTools')}
-      </Link>
+    <div className="mx-auto max-w-7xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <BackButton />
 
       <div className="flex items-center gap-4">
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm sm:h-14 sm:w-14 dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm sm:h-14 sm:w-14 dark:bg-stone-800/80 dark:text-white">
           <Layers size={26} />
         </span>
         <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">{t('categories.Outils Avancés')}</p>
-          <h1 className="text-xl font-bold text-zinc-900 sm:text-2xl dark:text-white">{y('name')}</h1>
-          <p className="text-sm text-zinc-500 sm:text-base dark:text-zinc-400">{y('subtitle')}</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">{t('categories.Outils Avancés')}</p>
+          <h1 className="text-xl font-bold text-stone-900 sm:text-2xl dark:text-white">{y('name')}</h1>
+          <p className="text-sm text-stone-500 sm:text-base dark:text-stone-400">{y('subtitle')}</p>
         </div>
       </div>
 
@@ -394,11 +389,11 @@ export default function PdfLayersTool() {
       )}
 
       {!doc && (
-        <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm sm:p-8 dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:bg-stone-900">
           {loading ? (
             <div className="flex flex-col items-center gap-3 py-10">
-              <LoaderCircle size={28} className="animate-spin text-emerald-600" />
-              <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{y('loading')}</p>
+              <LoaderCircle size={28} className="animate-spin text-brand-600" />
+              <p className="text-sm font-medium text-stone-700 dark:text-stone-300">{y('loading')}</p>
             </div>
           ) : (
             <DragDropZone onFiles={handleFiles} multiple={false} accept="application/pdf" hint={y('dropHint')} />
@@ -409,10 +404,10 @@ export default function PdfLayersTool() {
       {doc && (
         <div className="mt-6 grid gap-5 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-start">
           {/* Aperçu */}
-          <section className="min-w-0 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="flex flex-wrap items-center gap-1 border-b border-zinc-200 px-2 py-1.5 dark:border-zinc-800">
+          <section className="min-w-0 overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm dark:border-stone-800 dark:bg-stone-900">
+            <div className="flex flex-wrap items-center gap-1 border-b border-stone-200 px-2 py-1.5 dark:border-stone-800">
               <IconButton icon={ChevronLeft} label={y('preview.prev')} onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page <= 1} />
-              <span className="px-1 text-sm tabular-nums text-zinc-700 dark:text-zinc-300">
+              <span className="px-1 text-sm tabular-nums text-stone-700 dark:text-stone-300">
                 {y('preview.page', { page, total: pageCount })}
               </span>
               <IconButton icon={ChevronRight} label={y('preview.next')} onClick={() => setPage((p) => Math.min(pageCount, p + 1))} disabled={page >= pageCount} />
@@ -422,7 +417,7 @@ export default function PdfLayersTool() {
                 value={zoomIsPreset ? String(zoom) : 'custom'}
                 onChange={(e) => setZoom(Number(e.target.value))}
                 aria-label={y('preview.zoom')}
-                className="h-8 rounded-md border border-zinc-200 bg-white px-1.5 text-sm tabular-nums dark:border-zinc-700 dark:bg-zinc-950"
+                className="h-8 rounded-md border border-stone-200 bg-white px-1.5 text-sm tabular-nums dark:border-stone-700 dark:bg-stone-950"
               >
                 {!zoomIsPreset && <option value="custom">{Math.round(zoom * 100)} %</option>}
                 {ZOOM_PRESETS.map((p) => (
@@ -433,19 +428,19 @@ export default function PdfLayersTool() {
               </select>
               <IconButton icon={ZoomIn} label={y('preview.zoomIn')} onClick={() => setZoom((z) => ZOOM_PRESETS.find((p) => p > z + 0.001) ?? 2)} disabled={zoom >= 2} />
             </div>
-            <div className="max-h-[75vh] overflow-auto bg-zinc-100 p-3 sm:p-5 dark:bg-zinc-950">
+            <div className="max-h-[75vh] overflow-auto bg-stone-100 p-3 sm:p-5 dark:bg-stone-950">
               <Preview pdf={doc.pdf} ocConfig={doc.ocConfig} pageNumber={page} zoom={zoom} visibility={visibility} />
             </div>
-            <p className="truncate border-t border-zinc-200 px-3 py-2 text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">{file.name}</p>
+            <p className="truncate border-t border-stone-200 px-3 py-2 text-xs text-stone-500 dark:border-stone-800 dark:text-stone-400">{file.name}</p>
           </section>
 
           {/* Panneau des calques */}
-          <section className="flex flex-col gap-4 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+          <section className="flex flex-col gap-4 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900">
             <div className="flex items-center justify-between gap-2">
-              <h2 className="flex items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-white">
-                <Layers size={16} className="text-emerald-600 dark:text-emerald-400" /> {y('panel.title', { count: layers.length })}
+              <h2 className="flex items-center gap-2 text-sm font-semibold text-stone-900 dark:text-white">
+                <Layers size={16} className="text-brand-600 dark:text-brand-400" /> {y('panel.title', { count: layers.length })}
               </h2>
-              <button type="button" onClick={restart} className="text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200">
+              <button type="button" onClick={restart} className="text-xs font-medium text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200">
                 {y('panel.changeFile')}
               </button>
             </div>
@@ -463,22 +458,22 @@ export default function PdfLayersTool() {
             )}
 
             {layers.length === 0 ? (
-              <div className="flex flex-col items-center gap-3 rounded-xl bg-zinc-50 px-4 py-8 text-center dark:bg-zinc-950">
-                <Info size={24} className="text-zinc-400" />
-                <p className="font-medium text-zinc-900 dark:text-white">{y('empty.title')}</p>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">{y('empty.text')}</p>
+              <div className="flex flex-col items-center gap-3 rounded-xl bg-stone-50 px-4 py-8 text-center dark:bg-stone-950">
+                <Info size={24} className="text-stone-400" />
+                <p className="font-medium text-stone-900 dark:text-white">{y('empty.title')}</p>
+                <p className="text-sm text-stone-500 dark:text-stone-400">{y('empty.text')}</p>
                 <div className="mt-1 flex flex-col gap-2 sm:flex-row">
                   <button
                     type="button"
                     onClick={handleCreateLayer}
                     disabled={loading || doc.info.encrypted}
-                    className="inline-flex items-center justify-center gap-1.5 rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-500 disabled:opacity-40"
+                    className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600 disabled:opacity-40"
                   >
                     {loading ? <LoaderCircle size={15} className="animate-spin" /> : <Plus size={15} />} {y('empty.create')}
                   </button>
                   <Link
                     to="/tool/annotate-pdf"
-                    className="inline-flex items-center justify-center gap-1.5 rounded-full border border-zinc-200 px-4 py-2 text-sm font-semibold text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                    className="inline-flex items-center justify-center gap-1.5 rounded-full border border-stone-200 px-4 py-2 text-sm font-semibold text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-200 dark:hover:bg-stone-800"
                   >
                     <PenTool size={15} /> {y('empty.annotate')}
                   </Link>
@@ -496,27 +491,27 @@ export default function PdfLayersTool() {
                       key={key}
                       type="button"
                       onClick={onClick}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 px-2.5 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-stone-200 px-2.5 py-1.5 text-xs font-medium text-stone-700 hover:bg-stone-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800"
                     >
                       <Icon size={14} /> {y(`actions.${key}`)}
                     </button>
                   ))}
                 </div>
-                <p className="-mt-1 text-xs text-zinc-500 dark:text-zinc-400">{y('panel.hint')}</p>
+                <p className="-mt-1 text-xs text-stone-500 dark:text-stone-400">{y('panel.hint')}</p>
 
                 <ul className="flex max-h-[50vh] flex-col gap-2 overflow-y-auto pr-1">{renderTree(doc.info.tree)}</ul>
 
                 <label
                   className={`flex cursor-pointer items-start gap-2.5 rounded-xl border p-3 text-sm ${
-                    purge ? 'border-red-300 bg-red-50/60 dark:border-red-500/40 dark:bg-red-500/10' : 'border-zinc-200 dark:border-zinc-800'
+                    purge ? 'border-red-300 bg-red-50/60 dark:border-red-500/40 dark:bg-red-500/10' : 'border-stone-200 dark:border-stone-800'
                   }`}
                 >
                   <input type="checkbox" checked={purge} onChange={(e) => setPurge(e.target.checked)} className="mt-0.5 h-4 w-4 accent-red-600" />
                   <span className="min-w-0">
-                    <span className="flex items-center gap-1.5 font-medium text-zinc-900 dark:text-zinc-100">
+                    <span className="flex items-center gap-1.5 font-medium text-stone-900 dark:text-stone-100">
                       <Trash size={14} className="text-red-500" /> {y('purge.label')}
                     </span>
-                    <span className="mt-0.5 block text-xs text-zinc-500 dark:text-zinc-400">
+                    <span className="mt-0.5 block text-xs text-stone-500 dark:text-stone-400">
                       {toPurge.length ? y('purge.list', { names: toPurge.map((l) => l.name).join(', ') }) : y('purge.none')}
                     </span>
                     {purge && toPurge.length > 0 && <span className="mt-1 block text-xs font-medium text-red-700 dark:text-red-400">{y('purge.warning')}</span>}
@@ -527,17 +522,17 @@ export default function PdfLayersTool() {
                   type="button"
                   onClick={handleExport}
                   disabled={doc.info.encrypted || (!dirty && !(purge && toPurge.length))}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition-colors hover:bg-emerald-500 disabled:opacity-40"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600 disabled:opacity-40"
                 >
                   <Download size={18} /> {y('export.button')}
                 </button>
-                {!dirty && !(purge && toPurge.length) && <p className="-mt-2 text-center text-xs text-zinc-500 dark:text-zinc-400">{y('export.noChanges')}</p>}
+                {!dirty && !(purge && toPurge.length) && <p className="-mt-2 text-center text-xs text-stone-500 dark:text-stone-400">{y('export.noChanges')}</p>}
               </>
             )}
 
             {exportState?.status === 'working' && (
-              <p className="flex items-center justify-center gap-2 text-sm text-zinc-600 dark:text-zinc-300">
-                <LoaderCircle size={16} className="animate-spin text-emerald-600" /> {y('export.working')}
+              <p className="flex items-center justify-center gap-2 text-sm text-stone-600 dark:text-stone-300">
+                <LoaderCircle size={16} className="animate-spin text-brand-600" /> {y('export.working')}
               </p>
             )}
             {exportState?.status === 'error' && (
@@ -546,24 +541,24 @@ export default function PdfLayersTool() {
               </p>
             )}
             {exportState?.status === 'done' && (
-              <div className="flex flex-col gap-3 rounded-xl border border-emerald-200 bg-emerald-50/60 p-4 dark:border-emerald-500/30 dark:bg-emerald-500/10">
+              <div className="flex flex-col gap-3 rounded-xl border border-brand-200 bg-brand-50/60 p-4 dark:border-brand-500/30 dark:bg-brand-500/10">
                 <div className="flex items-start justify-between gap-2">
-                  <p className="flex items-center gap-2 text-sm font-semibold text-emerald-800 dark:text-emerald-300">
+                  <p className="flex items-center gap-2 text-sm font-semibold text-brand-800 dark:text-brand-300">
                     <CheckCircle2 size={17} /> {y('export.done')}
                   </p>
                   <IconButton icon={X} label={y('export.dismiss')} onClick={() => setExportState(null)} />
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-center">
-                  <div className="rounded-lg bg-white p-2 dark:bg-zinc-950">
-                    <p className="text-[11px] uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{y('export.originalSize')}</p>
-                    <p className="font-semibold tabular-nums text-zinc-900 dark:text-white">{formatBytes(file.size)}</p>
+                  <div className="rounded-lg bg-white p-2 dark:bg-stone-950">
+                    <p className="text-[11px] uppercase tracking-wide text-stone-500 dark:text-stone-400">{y('export.originalSize')}</p>
+                    <p className="font-semibold tabular-nums text-stone-900 dark:text-white">{formatBytes(file.size)}</p>
                   </div>
-                  <div className="rounded-lg bg-white p-2 dark:bg-zinc-950">
-                    <p className="text-[11px] uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{y('export.finalSize')}</p>
-                    <p className="font-semibold tabular-nums text-zinc-900 dark:text-white">{formatBytes(exportState.blob.size)}</p>
+                  <div className="rounded-lg bg-white p-2 dark:bg-stone-950">
+                    <p className="text-[11px] uppercase tracking-wide text-stone-500 dark:text-stone-400">{y('export.finalSize')}</p>
+                    <p className="font-semibold tabular-nums text-stone-900 dark:text-white">{formatBytes(exportState.blob.size)}</p>
                   </div>
                 </div>
-                <p className="text-xs text-zinc-600 dark:text-zinc-400">
+                <p className="text-xs text-stone-600 dark:text-stone-400">
                   {y('export.summary', { remaining: exportState.remaining })}
                   {exportState.merged > 0 && ` ${y('export.merged', { count: exportState.merged })}`}
                   {exportState.purged > 0 && ` ${y('export.purged', { count: exportState.purged })}`}
@@ -571,7 +566,7 @@ export default function PdfLayersTool() {
                 <button
                   type="button"
                   onClick={download}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-500"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-600"
                 >
                   <Download size={16} /> {y('export.download')}
                 </button>

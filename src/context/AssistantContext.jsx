@@ -1,23 +1,29 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 
 const AssistantContext = createContext(null)
 
 /**
- * État partagé de l'Assistant Magique. Le rendre disponible via un contexte
- * (plutôt qu'un state local à la page d'accueil) permet à n'importe quel
- * point de l'app — carte "Mode Facile", onglet "Assistant" de la barre de
- * navigation mobile, etc. — de l'ouvrir, quelle que soit la page affichée.
+ * Fenêtres globales partagées par toute l'application :
+ * - l'Assistant (Mode Facile) : déposer un fichier pour se voir proposer
+ *   le bon outil ;
+ * - la recherche d'outil (palette de commandes, Ctrl/⌘ K).
+ * Un contexte permet de les ouvrir depuis n'importe quel écran.
  */
 export function AssistantProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
 
-  return (
-    <AssistantContext.Provider
-      value={{ isOpen, open: () => setIsOpen(true), close: () => setIsOpen(false) }}
-    >
-      {children}
-    </AssistantContext.Provider>
+  const open = useCallback(() => setIsOpen(true), [])
+  const close = useCallback(() => setIsOpen(false), [])
+  const openSearch = useCallback(() => setIsSearchOpen(true), [])
+  const closeSearch = useCallback(() => setIsSearchOpen(false), [])
+
+  const value = useMemo(
+    () => ({ isOpen, open, close, isSearchOpen, openSearch, closeSearch }),
+    [isOpen, open, close, isSearchOpen, openSearch, closeSearch],
   )
+
+  return <AssistantContext.Provider value={value}>{children}</AssistantContext.Provider>
 }
 
 export function useAssistant() {

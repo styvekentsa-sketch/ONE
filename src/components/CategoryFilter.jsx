@@ -1,35 +1,40 @@
 import { useTranslation } from 'react-i18next'
 import { CATEGORY_ICONS } from '../data/tools'
 
-export default function CategoryFilter({ categories, active, onChange }) {
+/**
+ * Puces de filtre par catégorie. Une seule rangée qui défile
+ * horizontalement au doigt sur mobile (pas de retour à la ligne qui pousse
+ * le contenu), centrée sur grand écran.
+ */
+export default function CategoryFilter({ categories, active, onChange, className = '' }) {
   const { t } = useTranslation()
-
   const label = (cat) => (cat === 'Tous' ? t('categories.all') : t(`categories.${cat}`, cat))
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2">
-      {categories.map((cat) => {
-        // Sections mises en avant (ex. Outils Avancés) : icône dédiée et
-        // accent émeraude tant qu'elles ne sont pas sélectionnées.
-        const Icon = CATEGORY_ICONS[cat]
-        const isActive = active === cat
-        return (
-          <button
-            key={cat}
-            onClick={() => onChange(cat)}
-            className={`inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ease-in-out active:scale-[0.98] ${
-              isActive
-                ? 'bg-indigo-500 text-white shadow-sm'
-                : Icon
-                  ? 'bg-emerald-50 text-emerald-700 shadow-sm ring-1 ring-emerald-500/30 hover:bg-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-400 dark:ring-emerald-400/30 dark:hover:bg-emerald-500/20'
-                  : 'bg-white text-zinc-600 shadow-sm hover:bg-zinc-100 dark:bg-zinc-800/80 dark:text-zinc-300 dark:hover:bg-zinc-700'
-            }`}
-          >
-            {Icon && <Icon size={15} aria-hidden="true" />}
-            {label(cat)}
-          </button>
-        )
-      })}
+    <div className={`scrollbar-none -mx-4 overflow-x-auto px-4 md:mx-0 md:px-0 ${className}`}>
+      <div className="flex w-max gap-2 md:w-auto md:flex-wrap" role="tablist" aria-label={t('categories.label')}>
+        {categories.map((cat) => {
+          const Icon = CATEGORY_ICONS[cat]
+          const isActive = active === cat
+          return (
+            <button
+              key={cat}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => onChange(cat)}
+              className={`inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full border px-3.5 text-sm font-medium transition-colors ${
+                isActive
+                  ? 'border-stone-900 bg-stone-900 text-white dark:border-white dark:bg-white dark:text-stone-900'
+                  : 'border-stone-200 bg-white text-stone-700 hover:border-stone-300 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-300 dark:hover:border-stone-700'
+              }`}
+            >
+              {Icon && <Icon size={14} aria-hidden="true" />}
+              {label(cat)}
+            </button>
+          )
+        })}
+      </div>
     </div>
   )
 }

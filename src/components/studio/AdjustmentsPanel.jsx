@@ -12,9 +12,9 @@ const PRESETS = [
 function Slider({ label, value, min, max, step = 1, unit = '', onChange }) {
   return (
     <div>
-      <label className="mb-1.5 flex justify-between text-xs font-medium text-zinc-500 dark:text-zinc-400">
+      <label className="mb-1.5 flex justify-between text-xs font-medium text-stone-500 dark:text-stone-400">
         {label}
-        <span className="font-mono text-zinc-500 dark:text-zinc-400">
+        <span className="font-mono text-stone-500 dark:text-stone-400">
           {value}
           {unit}
         </span>
@@ -26,7 +26,7 @@ function Slider({ label, value, min, max, step = 1, unit = '', onChange }) {
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full accent-indigo-500"
+        className="w-full accent-brand-500"
       />
     </div>
   )
@@ -48,26 +48,26 @@ export default function AdjustmentsPanel({ values, onChange, onApplyPreset, onAp
   return (
     <div className="flex h-full flex-col overflow-y-auto px-3 py-3">
       {hasSelection && (
-        <p className="mb-3 flex items-start gap-1.5 rounded-lg bg-indigo-500/5 px-2.5 py-2 text-xs text-indigo-600 dark:text-indigo-400">
+        <p className="mb-3 flex items-start gap-1.5 rounded-lg bg-brand-500/5 px-2.5 py-2 text-xs text-brand-600 dark:text-brand-400">
           <Info size={13} className="mt-0.5 shrink-0" />
           Les réglages ne s'appliqueront qu'à la zone sélectionnée.
         </p>
       )}
 
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Filtres prédéfinis</p>
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">Filtres prédéfinis</p>
       <div className="mb-4 grid grid-cols-3 gap-1.5">
         {PRESETS.map((preset) => (
           <button
             key={preset.id}
             onClick={() => onApplyPreset(preset.id)}
-            className="rounded-lg border border-zinc-200 px-2 py-1.5 text-[11px] font-medium text-zinc-600 transition-colors duration-150 hover:border-indigo-300 hover:text-indigo-600 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-indigo-500"
+            className="rounded-lg border border-stone-200 px-2 py-1.5 text-[11px] font-medium text-stone-600 transition-colors duration-150 hover:border-brand-300 hover:text-brand-600 dark:border-stone-700 dark:text-stone-300 dark:hover:border-brand-500"
           >
             {preset.label}
           </button>
         ))}
       </div>
 
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Réglages de base</p>
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">Réglages de base</p>
       <div className="flex flex-col gap-3">
         <Slider label="Luminosité" value={values.brightness} min={0} max={200} unit="%" onChange={set('brightness')} />
         <Slider label="Contraste" value={values.contrast} min={0} max={200} unit="%" onChange={set('contrast')} />
@@ -77,7 +77,7 @@ export default function AdjustmentsPanel({ values, onChange, onApplyPreset, onAp
         <Slider label="Netteté" value={values.sharpen} min={0} max={100} unit="%" onChange={set('sharpen')} />
       </div>
 
-      <p className="mb-2 mt-5 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Niveaux</p>
+      <p className="mb-2 mt-5 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">Niveaux</p>
       <div className="flex flex-col gap-3">
         <Slider
           label="Point noir (entrée)"
@@ -103,7 +103,7 @@ export default function AdjustmentsPanel({ values, onChange, onApplyPreset, onAp
         />
       </div>
 
-      <p className="mb-1 mt-5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+      <p className="mb-1 mt-5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
         Courbes (simplifiées)
       </p>
       <div className="flex flex-col gap-3">
@@ -130,7 +130,7 @@ export default function AdjustmentsPanel({ values, onChange, onApplyPreset, onAp
         />
       </div>
 
-      <p className="mb-2 mt-5 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Balance des couleurs</p>
+      <p className="mb-2 mt-5 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">Balance des couleurs</p>
       <div className="flex flex-col gap-3">
         <Slider
           label="Rouge"
@@ -155,41 +155,41 @@ export default function AdjustmentsPanel({ values, onChange, onApplyPreset, onAp
         />
       </div>
 
-      <p className="mb-2 mt-5 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Mappage dégradé</p>
+      <p className="mb-2 mt-5 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">Mappage dégradé</p>
       <div className="mb-4 flex items-center gap-2">
         <input
           type="color"
           value={values.gradientMap.from}
           onChange={(e) => onChange({ ...values, gradientMap: { ...values.gradientMap, from: e.target.value } })}
-          className="h-8 w-full cursor-pointer rounded-md border border-zinc-200 dark:border-zinc-700"
+          className="h-8 w-full cursor-pointer rounded-md border border-stone-200 dark:border-stone-700"
         />
         <input
           type="color"
           value={values.gradientMap.to}
           onChange={(e) => onChange({ ...values, gradientMap: { ...values.gradientMap, to: e.target.value } })}
-          className="h-8 w-full cursor-pointer rounded-md border border-zinc-200 dark:border-zinc-700"
+          className="h-8 w-full cursor-pointer rounded-md border border-stone-200 dark:border-stone-700"
         />
-        <label className="flex shrink-0 items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
+        <label className="flex shrink-0 items-center gap-1.5 text-xs text-stone-500 dark:text-stone-400">
           <input
             type="checkbox"
             checked={values.gradientMap.enabled}
             onChange={(e) => onChange({ ...values, gradientMap: { ...values.gradientMap, enabled: e.target.checked } })}
-            className="h-3.5 w-3.5 accent-indigo-500"
+            className="h-3.5 w-3.5 accent-brand-500"
           />
           Activer
         </label>
       </div>
 
-      <div className="sticky bottom-0 mt-auto flex gap-2 border-t border-zinc-200 bg-white pt-3 dark:border-zinc-800 dark:bg-zinc-900">
+      <div className="sticky bottom-0 mt-auto flex gap-2 border-t border-stone-200 bg-white pt-3 dark:border-stone-800 dark:bg-stone-900">
         <button
           onClick={onReset}
-          className="flex-1 rounded-full border border-zinc-200 px-4 py-2 text-sm font-medium text-zinc-600 transition-colors duration-150 hover:border-zinc-300 dark:border-zinc-700 dark:text-zinc-300"
+          className="flex-1 rounded-full border border-stone-200 px-4 py-2 text-sm font-medium text-stone-600 transition-colors duration-150 hover:border-stone-300 dark:border-stone-700 dark:text-stone-300"
         >
           Réinitialiser
         </button>
         <button
           onClick={onApply}
-          className="flex-1 rounded-full bg-indigo-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 ease-in-out hover:bg-indigo-400 active:scale-[0.98]"
+          className="flex-1 rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 ease-in-out hover:bg-brand-700 active:scale-[0.98]"
         >
           {applyLabel}
         </button>

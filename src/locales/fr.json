@@ -8,10 +8,16 @@
     "settings": "Réglages",
     "pricing": "Tarifs",
     "login": "Se connecter",
-    "account": "Mon compte"
+    "account": "Mon compte",
+    "main": "Navigation principale"
   },
   "home": {
-    "recentFiles": "Fichiers récents"
+    "recentFiles": "Fichiers récents",
+    "title": "Tous vos outils PDF, au même endroit",
+    "subtitle": "Fusionnez, compressez, convertissez, signez et protégez vos documents. Tout reste sur votre appareil.",
+    "quickActions": "Accès rapide",
+    "seeAll": "Tout voir",
+    "allTools": "Tous les outils PDF"
   },
   "settings": {
     "preferencesTitle": "Préférences",
@@ -24,7 +30,16 @@
     "storageUsedValue": "{{size}} Ko utilisés dans ce navigateur",
     "securityTitle": "Sécurité",
     "cookiesHistoryOn": "Historique activé",
-    "cookiesHistoryOff": "Historique désactivé"
+    "cookiesHistoryOff": "Historique désactivé",
+    "switchToLight": "Passer en thème clair",
+    "switchToDark": "Passer en thème sombre",
+    "feedbackTitle": "Retours sensoriels",
+    "haptics": "Vibration au toucher",
+    "hapticsSub": "Légère vibration à chaque appui",
+    "hapticsUnsupported": "Non disponible sur cet appareil (iPhone notamment)",
+    "sound": "Son des touches",
+    "soundSub": "Petit son doux à chaque appui",
+    "feedbackNote": "Uniquement sur écran tactile. Le son respecte le mode silencieux de votre téléphone quand le navigateur le permet."
   },
   "hero": {
     "titleLine1": "Gérez vos documents,",
@@ -34,7 +49,10 @@
   "search": {
     "placeholder": "Rechercher un outil… (ex : compresser, fusionner, signer)",
     "clear": "Effacer la recherche",
-    "noResults": "Aucun outil ne correspond à votre recherche."
+    "noResults": "Aucun outil ne correspond à votre recherche.",
+    "open": "Rechercher un outil",
+    "short": "Rechercher un outil…",
+    "filterPlaceholder": "Filtrer les outils"
   },
   "categories": {
     "all": "Tous",
@@ -44,7 +62,8 @@
     "Sécuriser": "Sécuriser",
     "Éditer": "Éditer",
     "Sécurité & Confidentialité": "Sécurité & Confidentialité",
-    "Outils Avancés": "Outils Avancés"
+    "Outils Avancés": "Outils Avancés",
+    "label": "Catégories"
   },
   "mediaTypes": {
     "pdf": "PDFs",
@@ -68,7 +87,8 @@
     "assistantDropHint": "Images, PDF ou documents Word — glissez-en un ou plusieurs",
     "assistantAnalyzing": "Analyse en cours…",
     "assistantAnalyzingMultiple": "Examen de {{count}} fichiers et détection du meilleur outil",
-    "assistantAnalyzingSingle": "Détection du type de fichier et du meilleur outil"
+    "assistantAnalyzingSingle": "Détection du type de fichier et du meilleur outil",
+    "text": "Déposez un fichier : on vous propose le bon outil."
   },
   "actions": {
     "download": "Télécharger",
@@ -126,7 +146,10 @@
     "browseFilesButton": "Parcourir mes fichiers",
     "acceptedFormats": "Formats acceptés : {{formats}}",
     "unlimitedBadge": "Illimité",
-    "localProcessingBadge": "Traitement local"
+    "localProcessingBadge": "Traitement local",
+    "back": "Retour",
+    "cancel": "Annuler",
+    "tapToChoose": "Choisissez un fichier"
   },
   "footer": {
     "tagline": "Tous vos documents, un seul endroit.",

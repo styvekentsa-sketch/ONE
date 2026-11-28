@@ -318,30 +318,30 @@ export default function ImageSelectPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link to="/image" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200">
+    <div className="mx-auto max-w-3xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <Link to="/image" className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-stone-600 dark:hover:text-stone-200">
         <ArrowLeft size={16} /> Retour aux outils Image
       </Link>
 
       <div className="flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm dark:bg-stone-800/80 dark:text-white">
           <Wand2 size={26} />
         </span>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Sélection & Découpage</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">Baguette magique, lasso et masques de fusion</p>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-white">Sélection & Découpage</h1>
+          <p className="text-stone-500 dark:text-stone-400">Baguette magique, lasso et masques de fusion</p>
         </div>
       </div>
 
       {error && <p className="mt-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">{error}</p>}
 
-      <div className="mt-6 inline-flex flex-wrap rounded-full border border-zinc-200 bg-zinc-100 p-1 dark:border-white/10 dark:bg-zinc-800/60">
+      <div className="mt-6 inline-flex flex-wrap rounded-full border border-stone-200 bg-stone-100 p-1 dark:border-white/10 dark:bg-stone-800/60">
         {TABS.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
             onClick={() => setTab(id)}
             className={`inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 ease-in-out active:scale-[0.98] ${
-              tab === id ? 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white' : 'text-zinc-500 dark:text-zinc-400'
+              tab === id ? 'bg-white text-stone-900 shadow-sm dark:bg-stone-700 dark:text-white' : 'text-stone-500 dark:text-stone-400'
             }`}
           >
             <Icon size={14} /> {label}
@@ -350,14 +350,14 @@ export default function ImageSelectPage() {
       </div>
 
       {tab === 'masks' ? (
-        <div className="mt-4 rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="mt-4 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
           {!baseUrl ? (
             <DragDropZone onFiles={handleBaseFiles} multiple={false} accept="image/*" hint="Déposez l'image de fond" />
           ) : !maskOverlayRef.current ? (
             <DragDropZone onFiles={handleOverlayFiles} multiple={false} accept="image/*" hint="Déposez l'image à fusionner par-dessus" />
           ) : (
             <>
-              <div className="flex justify-center overflow-auto rounded-xl bg-zinc-100 p-4 dark:bg-zinc-950/40">
+              <div className="flex justify-center overflow-auto rounded-xl bg-stone-100 p-4 dark:bg-stone-950/40">
                 <img
                   src={overlayImgUrl}
                   alt="Fusion"
@@ -372,15 +372,15 @@ export default function ImageSelectPage() {
                 />
               </div>
               <div className="mt-4 flex flex-wrap items-center gap-4 text-sm">
-                <div className="inline-flex rounded-full border border-zinc-200 p-0.5 text-xs dark:border-zinc-700">
+                <div className="inline-flex rounded-full border border-stone-200 p-0.5 text-xs dark:border-stone-700">
                   {['reveal', 'hide'].map((m) => (
-                    <button key={m} onClick={() => setMaskBrush(m)} className={`rounded-full px-3 py-1 font-medium ${maskBrush === m ? 'bg-indigo-500 text-white' : 'text-zinc-500 dark:text-zinc-400'}`}>
+                    <button key={m} onClick={() => setMaskBrush(m)} className={`rounded-full px-3 py-1 font-medium ${maskBrush === m ? 'bg-brand-600 text-white' : 'text-stone-500 dark:text-stone-400'}`}>
                       {m === 'reveal' ? 'Révéler' : 'Masquer'}
                     </button>
                   ))}
                 </div>
-                <span className="text-xs text-zinc-500 dark:text-zinc-400">Peignez pour révéler ou masquer l'image du dessus (plume non incluse).</span>
-                <button onClick={handleDownloadMask} className="ml-auto inline-flex items-center gap-2 rounded-full bg-indigo-500 px-4 py-2 text-sm font-semibold text-white">
+                <span className="text-xs text-stone-500 dark:text-stone-400">Peignez pour révéler ou masquer l'image du dessus (plume non incluse).</span>
+                <button onClick={handleDownloadMask} className="ml-auto inline-flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white">
                   <Download size={14} /> Télécharger
                 </button>
               </div>
@@ -388,13 +388,13 @@ export default function ImageSelectPage() {
           )}
         </div>
       ) : !file ? (
-        <div className="mt-4 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="mt-4 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:border-stone-800 dark:bg-stone-900">
           <DragDropZone onFiles={handleFiles} multiple={false} accept="image/*" hint="Déposez une image à sélectionner" />
         </div>
       ) : (
         <div className="mt-4 flex flex-col gap-4">
-          <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="relative flex justify-center overflow-auto rounded-xl bg-zinc-100 p-4 dark:bg-zinc-950/40">
+          <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+            <div className="relative flex justify-center overflow-auto rounded-xl bg-stone-100 p-4 dark:bg-stone-950/40">
               <div className="relative">
                 <img
                   src={previewUrl}
@@ -416,30 +416,30 @@ export default function ImageSelectPage() {
             <div className="mt-4 flex flex-wrap items-center gap-4 text-sm">
               {tab === 'wand' && (
                 <>
-                  <label className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                  <label className="flex items-center gap-2 text-xs text-stone-500 dark:text-stone-400">
                     Tolérance
-                    <input type="range" min={1} max={128} value={tolerance} onChange={(e) => setTolerance(Number(e.target.value))} className="w-28 accent-indigo-500" />
+                    <input type="range" min={1} max={128} value={tolerance} onChange={(e) => setTolerance(Number(e.target.value))} className="w-28 accent-brand-500" />
                   </label>
-                  <span className="text-xs text-zinc-500 dark:text-zinc-400">Cliquez pour sélectionner par couleur, glissez pour étendre (sélection rapide).</span>
+                  <span className="text-xs text-stone-500 dark:text-stone-400">Cliquez pour sélectionner par couleur, glissez pour étendre (sélection rapide).</span>
                 </>
               )}
               {tab === 'lasso' && (
                 <>
-                  <div className="inline-flex rounded-full border border-zinc-200 p-0.5 text-xs dark:border-zinc-700">
+                  <div className="inline-flex rounded-full border border-stone-200 p-0.5 text-xs dark:border-stone-700">
                     {['freehand', 'polygon'].map((m) => (
-                      <button key={m} onClick={() => setLassoMode(m)} className={`rounded-full px-3 py-1 font-medium ${lassoMode === m ? 'bg-indigo-500 text-white' : 'text-zinc-500 dark:text-zinc-400'}`}>
+                      <button key={m} onClick={() => setLassoMode(m)} className={`rounded-full px-3 py-1 font-medium ${lassoMode === m ? 'bg-brand-600 text-white' : 'text-stone-500 dark:text-stone-400'}`}>
                         {m === 'freehand' ? 'Standard' : 'Polygonal'}
                       </button>
                     ))}
                   </div>
-                  <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                  <span className="text-xs text-stone-500 dark:text-stone-400">
                     {lassoMode === 'polygon' ? 'Cliquez pour ajouter des points, double-cliquez pour fermer.' : 'Glissez pour tracer la sélection.'} Lasso magnétique non inclus.
                   </span>
                 </>
               )}
               {selection && (
-                <div className="flex w-full gap-2 border-t border-zinc-100 pt-3 dark:border-white/10">
-                  <button onClick={handleExtractSelection} className="rounded-full border border-zinc-200 px-4 py-1.5 text-sm font-medium text-zinc-600 dark:border-zinc-700 dark:text-zinc-300">
+                <div className="flex w-full gap-2 border-t border-stone-100 pt-3 dark:border-white/10">
+                  <button onClick={handleExtractSelection} className="rounded-full border border-stone-200 px-4 py-1.5 text-sm font-medium text-stone-600 dark:border-stone-700 dark:text-stone-300">
                     Extraire la sélection
                   </button>
                   <button onClick={handleDeleteSelection} className="rounded-full border border-red-200 px-4 py-1.5 text-sm font-medium text-red-600 dark:border-red-500/30 dark:text-red-400">
@@ -450,7 +450,7 @@ export default function ImageSelectPage() {
             </div>
           </div>
 
-          <button onClick={() => setFile(null)} className="self-start text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
+          <button onClick={() => setFile(null)} className="self-start text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-600 dark:hover:text-stone-200">
             Changer d'image
           </button>
         </div>

@@ -1,26 +1,19 @@
 import { useTranslation } from 'react-i18next'
 import { Download } from 'lucide-react'
 
-/**
- * Bouton de téléchargement générique, branchable sur n'importe quel outil
- * en lui passant simplement un nom de fichier et un callback.
- */
-export default function DownloadButton({
-  fileName,
-  onDownload,
-  label,
-  className = '',
-}) {
+/** Bouton de téléchargement principal, pleine largeur sur mobile. */
+export default function DownloadButton({ fileName, onDownload, label, className = '' }) {
   const { t } = useTranslation()
 
   return (
     <button
+      type="button"
       onClick={onDownload}
-      className={`group inline-flex items-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98] ${className}`}
+      className={`inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 text-[15px] font-semibold text-white shadow-sm transition-colors hover:bg-brand-700 active:bg-brand-800 sm:w-auto ${className}`}
     >
-      <Download size={18} className="transition-transform group-hover:-translate-y-0.5" />
+      <Download size={18} />
       {label ?? t('common.downloadResult')}
-      {fileName && <span className="hidden text-white/70 sm:inline">· {fileName}</span>}
+      {fileName && <span className="hidden font-normal text-white/70 sm:inline">· {fileName}</span>}
     </button>
   )
 }

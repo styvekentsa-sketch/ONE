@@ -1,45 +1,49 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Folder, Home, LayoutGrid, Settings, Zap } from 'lucide-react'
+import { Folder, Home, LayoutGrid, Settings, Wand2 } from 'lucide-react'
+import { isTabBarVisible } from '../utils/routeMeta'
 
 const TABS = [
-  { to: '/', icon: Home, labelKey: 'nav.home', match: (path) => path === '/' },
-  { to: '/history', icon: Folder, labelKey: 'nav.files', match: (path) => path.startsWith('/history') },
-  {
-    to: '/tools',
-    icon: LayoutGrid,
-    labelKey: 'nav.tools',
-    match: (path) => path.startsWith('/tools') || path.startsWith('/tool/'),
-  },
-  { to: '/easy-mode', icon: Zap, labelKey: 'nav.easyMode', match: (path) => path.startsWith('/easy-mode') },
-  { to: '/settings', icon: Settings, labelKey: 'nav.settings', match: (path) => path.startsWith('/settings') },
+  { to: '/', icon: Home, labelKey: 'nav.home' },
+  { to: '/tools', icon: LayoutGrid, labelKey: 'nav.tools' },
+  { to: '/easy-mode', icon: Wand2, labelKey: 'nav.easyMode' },
+  { to: '/history', icon: Folder, labelKey: 'nav.files' },
+  { to: '/settings', icon: Settings, labelKey: 'nav.settings' },
 ]
 
 /**
- * Barre de navigation inférieure façon app native, visible uniquement sur
- * mobile (le header complet reprend le relais dès la tablette). Reste
- * volontairement sombre (bg-zinc-950/90) quel que soit le thème choisi,
- * comme une vraie tab bar native.
+ * Barre d'onglets mobile : suit le thème (clair / sombre), icône et libellé
+ * toujours visibles, onglet actif en bleu cobalt. Masquée dans les écrans
+ * empilés (outils, réglages détaillés), qui gagnent ainsi toute la hauteur.
  */
 export default function BottomNav() {
   const { t } = useTranslation()
-  const location = useLocation()
+  const { pathname } = useLocation()
+  if (!isTabBarVisible(pathname)) return null
 
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-zinc-800/80 bg-zinc-950/90 backdrop-blur-lg md:hidden">
-      <div className="grid grid-cols-5 pb-[env(safe-area-inset-bottom)]">
-        {TABS.map(({ to, icon: Icon, labelKey, match }) => {
-          const active = match(location.pathname)
+    <nav
+      aria-label={t('nav.main')}
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-stone-200/80 bg-stone-50/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl md:hidden dark:border-stone-800/80 dark:bg-stone-950/90"
+    >
+      <div className="grid h-16 grid-cols-5">
+        {TABS.map(({ to, icon: Icon, labelKey }) => {
+          const active = pathname === to
           return (
-            <Link key={to} to={to} className="flex flex-col items-center justify-center gap-1 py-2">
+            <Link
+              key={to}
+              to={to}
+              aria-current={active ? 'page' : undefined}
+              className="group flex flex-col items-center justify-center gap-1"
+            >
               <span
-                className={`flex items-center justify-center rounded-full px-4 py-1.5 transition-all duration-200 ease-in-out active:scale-95 ${
-                  active ? 'bg-zinc-800 text-white' : 'text-zinc-400'
+                className={`flex h-8 w-14 items-center justify-center rounded-full transition-colors duration-200 group-active:scale-95 ${
+                  active ? 'bg-brand-100 text-brand-700 dark:bg-brand-500/20 dark:text-brand-300' : 'text-stone-500 dark:text-stone-400'
                 }`}
               >
-                <Icon size={18} />
+                <Icon size={21} strokeWidth={active ? 2.25 : 1.9} />
               </span>
-              <span className={`text-[10px] font-medium ${active ? 'text-white' : 'text-zinc-400'}`}>
+              <span className={`text-[11px] leading-none ${active ? 'font-semibold text-stone-900 dark:text-white' : 'font-medium text-stone-500 dark:text-stone-400'}`}>
                 {t(labelKey)}
               </span>
             </Link>

@@ -11,20 +11,20 @@ export default function HistoryPage() {
   const { entries, clear } = useHistory()
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-2xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
       <div className="flex items-center gap-3">
-        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 dark:bg-stone-800/80 dark:text-white">
           <Folder size={22} />
         </span>
         <div>
-          <h1 className="text-xl font-bold text-zinc-900 dark:text-white">{t('nav.files')}</h1>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">{t('common.localOnlyHistory')}</p>
+          <h1 className="text-xl font-bold text-stone-900 dark:text-white">{t('nav.files')}</h1>
+          <p className="text-sm text-stone-500 dark:text-stone-400">{t('common.localOnlyHistory')}</p>
         </div>
       </div>
 
       <div className="mt-6">
         {entries.length === 0 ? (
-          <p className="py-16 text-center text-sm text-zinc-500 dark:text-zinc-400">{t('common.noActivity')}</p>
+          <p className="py-16 text-center text-sm text-stone-500 dark:text-stone-400">{t('common.noActivity')}</p>
         ) : (
           <div className="flex flex-col gap-2">
             {entries.map((entry) => {
@@ -33,16 +33,16 @@ export default function HistoryPage() {
               return (
                 <div
                   key={entry.id}
-                  className="flex items-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-3 dark:border-white/10 dark:bg-zinc-900"
+                  className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 dark:border-white/10 dark:bg-stone-900"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300">
                     <Icon size={16} />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-zinc-800 dark:text-zinc-100">
+                    <p className="truncate text-sm font-medium text-stone-800 dark:text-stone-100">
                       {entry.message}
                     </p>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400">{formatRelativeTime(entry.timestamp)}</p>
+                    <p className="text-xs text-stone-500 dark:text-stone-400">{formatRelativeTime(entry.timestamp)}</p>
                   </div>
                 </div>
               )

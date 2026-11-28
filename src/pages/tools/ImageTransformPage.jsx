@@ -85,21 +85,21 @@ export default function ImageTransformPage() {
   const { width, height } = displaySize()
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-3xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
       <Link
         to="/image"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-stone-600 dark:hover:text-stone-200"
       >
         <ArrowLeft size={16} /> Retour aux outils Image
       </Link>
 
       <div className="flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm dark:bg-stone-800/80 dark:text-white">
           <Maximize2 size={26} />
         </span>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Rotation, Échelle & Miroir</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">Rotation, mise à l'échelle et miroir horizontal/vertical</p>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-white">Rotation, Échelle & Miroir</h1>
+          <p className="text-stone-500 dark:text-stone-400">Rotation, mise à l'échelle et miroir horizontal/vertical</p>
         </div>
       </div>
 
@@ -108,47 +108,47 @@ export default function ImageTransformPage() {
       )}
 
       {!file ? (
-        <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:border-stone-800 dark:bg-stone-900">
           <DragDropZone onFiles={handleFiles} multiple={false} accept="image/*" hint="Déposez une image à transformer" />
         </div>
       ) : (
         <div className="mt-6 flex flex-col gap-4">
-          <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="flex justify-center overflow-auto rounded-xl bg-zinc-100 p-4 dark:bg-zinc-950/40">
+          <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+            <div className="flex justify-center overflow-auto rounded-xl bg-stone-100 p-4 dark:bg-stone-950/40">
               <div style={{ width, height, maxWidth: '100%' }}>
                 <img src={previewUrl} alt={file.name} width={width} height={height} className="block h-auto max-w-full" style={{ width, height }} />
               </div>
             </div>
 
             <div className="mt-4 flex flex-wrap items-center gap-4">
-              <label className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+              <label className="flex items-center gap-2 text-xs text-stone-500 dark:text-stone-400">
                 Rotation
-                <input type="range" min={-180} max={180} value={transformDraft.rotate} onChange={(e) => setTransformDraft((d) => ({ ...d, rotate: Number(e.target.value) }))} className="w-28 accent-indigo-500" />
+                <input type="range" min={-180} max={180} value={transformDraft.rotate} onChange={(e) => setTransformDraft((d) => ({ ...d, rotate: Number(e.target.value) }))} className="w-28 accent-brand-500" />
               </label>
-              <label className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+              <label className="flex items-center gap-2 text-xs text-stone-500 dark:text-stone-400">
                 Échelle
-                <input type="range" min={10} max={200} value={transformDraft.scale} onChange={(e) => setTransformDraft((d) => ({ ...d, scale: Number(e.target.value) }))} className="w-28 accent-indigo-500" />
+                <input type="range" min={10} max={200} value={transformDraft.scale} onChange={(e) => setTransformDraft((d) => ({ ...d, scale: Number(e.target.value) }))} className="w-28 accent-brand-500" />
               </label>
-              <label className="flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
+              <label className="flex items-center gap-1.5 text-xs text-stone-500 dark:text-stone-400">
                 <input type="checkbox" checked={transformDraft.flipH} onChange={(e) => setTransformDraft((d) => ({ ...d, flipH: e.target.checked }))} /> Miroir horizontal
               </label>
-              <label className="flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
+              <label className="flex items-center gap-1.5 text-xs text-stone-500 dark:text-stone-400">
                 <input type="checkbox" checked={transformDraft.flipV} onChange={(e) => setTransformDraft((d) => ({ ...d, flipV: e.target.checked }))} /> Miroir vertical
               </label>
-              <button onClick={applyFreeTransform} className="rounded-full bg-indigo-500 px-4 py-1.5 text-sm font-semibold text-white">
+              <button onClick={applyFreeTransform} className="rounded-xl bg-brand-600 px-4 py-1.5 text-sm font-semibold text-white">
                 Appliquer
               </button>
-              <p className="w-full text-xs text-zinc-500 dark:text-zinc-400">Déformation et perspective non incluses (bientôt disponible).</p>
+              <p className="w-full text-xs text-stone-500 dark:text-stone-400">Déformation et perspective non incluses (bientôt disponible).</p>
             </div>
           </div>
 
           <div className="flex items-center justify-between">
-            <button onClick={() => setFile(null)} className="text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
+            <button onClick={() => setFile(null)} className="text-sm font-medium text-stone-500 dark:text-stone-400 hover:text-stone-600 dark:hover:text-stone-200">
               Changer d'image
             </button>
             <button
               onClick={handleDownload}
-              className="inline-flex items-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98]"
+              className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-brand-700 active:scale-[0.98]"
             >
               <Download size={16} /> Télécharger le résultat
             </button>

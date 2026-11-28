@@ -38,8 +38,8 @@ export class ErrorBoundary extends Component {
             <AlertTriangle size={26} />
           </span>
           <div>
-            <p className="font-semibold text-zinc-800 dark:text-white">Une erreur est survenue</p>
-            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="font-semibold text-stone-800 dark:text-white">Une erreur est survenue</p>
+            <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
               Cet outil a rencontré un problème inattendu. Vos fichiers n'ont jamais quitté votre appareil — vous
               pouvez réessayer ou revenir à l'accueil en toute sécurité.
             </p>
@@ -47,13 +47,13 @@ export class ErrorBoundary extends Component {
           <div className="flex gap-2">
             <button
               onClick={() => this.setState({ hasError: false })}
-              className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 px-4 py-2 text-sm font-medium text-zinc-600 transition-all duration-200 ease-in-out hover:border-zinc-300 active:scale-[0.98] dark:border-zinc-700 dark:text-zinc-300"
+              className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 px-4 py-2 text-sm font-medium text-stone-600 transition-all duration-200 ease-in-out hover:border-stone-300 active:scale-[0.98] dark:border-stone-700 dark:text-stone-300"
             >
               <RotateCcw size={14} /> Réessayer
             </button>
             <Link
               to="/"
-              className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98]"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-brand-700 active:scale-[0.98]"
             >
               Retour à l'accueil
             </Link>

@@ -1,11 +1,11 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { History as HistoryIcon, Plus, Search } from 'lucide-react'
+import { ChevronRight, History as HistoryIcon } from 'lucide-react'
 import SearchBar from '../components/SearchBar'
 import CategoryFilter from '../components/CategoryFilter'
 import ToolsGrid from '../components/ToolsGrid'
-import Logo from '../components/Logo'
+import MediaSwitch from '../components/MediaSwitch'
+import EasyModeCard from '../components/EasyModeCard'
 import PrivacyBadge from '../components/PrivacyBadge'
 import { useAssistant } from '../context/AssistantContext'
 import { useFilteredTools } from '../hooks/useFilteredTools'
@@ -13,170 +13,116 @@ import { useHistory } from '../hooks/useHistory'
 import { getToolById, getCategoriesByMediaType } from '../data/tools'
 import { formatRelativeTime } from '../utils/historyStorage'
 
-// L'accueil ne montre plus que les outils PDF (le choix d'un autre média se
-// fait désormais via MediaNavBar, juste sous le Header, qui navigue vers
-// /image, /video ou /audio plutôt que de filtrer sur place) — mediaType
-// reste donc fixé ici, pas besoin de sélecteur local ni d'état "à venir".
 const CATEGORIES = getCategoriesByMediaType('pdf')
+// Les outils les plus utilisés, en accès direct.
+const QUICK_ACTIONS = ['merge', 'compress', 'pdf-to-word', 'sign']
 
+/**
+ * Accueil : une seule mise en page, fluide du téléphone à l'écran large.
+ * Titre, choix du média, accès rapide, fichiers récents, assistant, puis le
+ * catalogue complet des outils PDF classés par catégorie.
+ */
 export default function Home() {
   const { t } = useTranslation()
   const { open: openAssistant } = useAssistant()
-  const { query, setQuery, activeCategory, setActiveCategory, filteredTools, showEasyMode } = useFilteredTools({
-    initialMediaType: 'pdf',
-  })
+  const { query, setQuery, activeCategory, setActiveCategory, filteredTools } = useFilteredTools({ initialMediaType: 'pdf' })
   const { entries: recentEntries } = useHistory()
-  const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
+  const filtering = query.trim() !== '' || activeCategory !== 'Tous'
 
   return (
-    <>
-      {/* Tableau de bord mobile : header compact, recherche/catégories
-          repliables et fichiers récents. Masqué dès la tablette, où le hero
-          ci-dessous reprend le relais. */}
-      <div className="md:hidden">
-        <div className="flex items-center justify-between gap-3 bg-zinc-950 px-4 py-3">
-          <Logo size="sm" />
-          <div className="flex items-center gap-2">
-            <PrivacyBadge compact />
-            <button
-              onClick={() => setMobileSearchOpen((open) => !open)}
-              aria-label={t('search.placeholder')}
-              aria-expanded={mobileSearchOpen}
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-zinc-300 transition-all duration-200 ease-in-out active:scale-90"
-            >
-              <Search size={16} />
-            </button>
-          </div>
-        </div>
+    <div className="mx-auto max-w-6xl pb-12 md:px-6 lg:px-8">
+      {/* En-tête de page */}
+      <section className="px-4 pb-6 pt-6 md:px-0 md:pb-8 md:pt-12">
+        <h1 className="text-[28px] font-bold leading-tight tracking-tight text-stone-900 md:text-4xl dark:text-white">{t('home.title')}</h1>
+        <p className="mt-2 max-w-2xl text-[15px] text-stone-600 md:text-base dark:text-stone-400">{t('home.subtitle')}</p>
+        <PrivacyBadge className="mt-3" />
+        <MediaSwitch active="pdf" className="mt-6 md:max-w-md" />
+      </section>
 
-        {mobileSearchOpen && (
-          <div className="animate-fade-up border-b border-zinc-800/80 bg-zinc-950 px-4 pb-4">
-            <SearchBar value={query} onChange={setQuery} />
-            <div className="mt-3 flex justify-center">
-              <CategoryFilter categories={CATEGORIES} active={activeCategory} onChange={setActiveCategory} />
-            </div>
-          </div>
-        )}
-
-        {recentEntries.length > 0 && (
-          <div className="border-b border-zinc-800/80 bg-zinc-950 px-4 py-4">
-            <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500">
-              {t('home.recentFiles')}
+      {!filtering && (
+        <>
+          {/* Accès rapide */}
+          <section className="mb-8 md:mb-10" aria-labelledby="quick-title">
+            <h2 id="quick-title" className="mb-2.5 px-5 text-[13px] font-semibold uppercase tracking-wide text-stone-500 md:mb-4 md:px-0 dark:text-stone-400">
+              {t('home.quickActions')}
             </h2>
-            <div className="flex snap-x gap-3 overflow-x-auto pb-1">
-              {recentEntries.slice(0, 10).map((entry) => {
-                const tool = getToolById(entry.toolId)
-                const Icon = tool?.icon ?? HistoryIcon
-                return (
-                  <Link
-                    key={entry.id}
-                    to={tool?.route ?? '/history'}
-                    className="flex w-32 shrink-0 snap-start flex-col gap-2 rounded-2xl border border-zinc-800/80 bg-zinc-900/90 p-3 transition-all duration-200 ease-in-out active:scale-95"
-                  >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-800/60 text-zinc-300">
-                      <Icon size={16} />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="truncate text-xs font-semibold text-zinc-200">
-                        {tool ? t(`tools.${tool.id}.name`, tool.name) : entry.toolName}
-                      </p>
-                      <p className="mt-0.5 text-[10px] text-zinc-500">{formatRelativeTime(entry.timestamp)}</p>
-                    </div>
-                  </Link>
-                )
-              })}
+            <div className="grid grid-cols-2 gap-3 px-4 md:grid-cols-4 md:gap-4 md:px-0">
+              {QUICK_ACTIONS.map((id) => getToolById(id))
+                .filter(Boolean)
+                .map((tool) => {
+                  const Icon = tool.icon
+                  return (
+                    <Link
+                      key={tool.id}
+                      to={tool.route}
+                      className="flex flex-col gap-3 rounded-2xl border border-stone-200 bg-white p-4 transition-colors hover:border-stone-300 active:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-stone-700 dark:active:bg-stone-800"
+                    >
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-300">
+                        <Icon size={20} strokeWidth={1.9} />
+                      </span>
+                      <span className="text-[15px] font-semibold leading-tight text-stone-900 dark:text-white">{t(`tools.${tool.id}.name`, tool.name)}</span>
+                    </Link>
+                  )
+                })}
             </div>
-          </div>
-        )}
-      </div>
+          </section>
 
-      {/* Tableau de bord tablette : header non repliable (la largeur le
-          permet), fichiers récents en grille. Masqué sur mobile (dashboard
-          dédié ci-dessus) et sur desktop (hero ci-dessous). */}
-      <div className="hidden md:block lg:hidden">
-        <div className="flex items-center gap-4 border-b border-zinc-800/80 bg-zinc-950 px-6 py-4">
-          <Logo size="md" />
-          <div className="flex flex-1 items-center justify-end gap-3">
-            <div className="w-full max-w-sm">
-              <SearchBar value={query} onChange={setQuery} />
-            </div>
-            <PrivacyBadge compact />
-          </div>
-        </div>
+          {/* Fichiers récents */}
+          {recentEntries.length > 0 && (
+            <section className="mb-8 md:mb-10" aria-labelledby="recent-title">
+              <div className="mb-2.5 flex items-center justify-between px-5 md:mb-4 md:px-0">
+                <h2 id="recent-title" className="text-[13px] font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
+                  {t('home.recentFiles')}
+                </h2>
+                <Link to="/history" className="flex items-center gap-0.5 text-sm font-medium text-brand-600 dark:text-brand-400">
+                  {t('home.seeAll')} <ChevronRight size={15} />
+                </Link>
+              </div>
+              <div className="scrollbar-none flex snap-x gap-3 overflow-x-auto px-4 pb-1 md:px-0">
+                {recentEntries.slice(0, 10).map((entry) => {
+                  const tool = getToolById(entry.toolId)
+                  const Icon = tool?.icon ?? HistoryIcon
+                  return (
+                    <Link
+                      key={entry.id}
+                      to={tool?.route ?? '/history'}
+                      className="flex w-44 shrink-0 snap-start items-center gap-3 rounded-2xl border border-stone-200 bg-white p-3 transition-colors hover:border-stone-300 active:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:hover:border-stone-700"
+                    >
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-stone-100 text-stone-700 dark:bg-stone-800 dark:text-stone-200">
+                        <Icon size={17} />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block truncate text-sm font-medium text-stone-900 dark:text-white">
+                          {tool ? t(`tools.${tool.id}.name`, tool.name) : entry.toolName}
+                        </span>
+                        <span className="block text-xs text-stone-500 dark:text-stone-400">{formatRelativeTime(entry.timestamp)}</span>
+                      </span>
+                    </Link>
+                  )
+                })}
+              </div>
+            </section>
+          )}
 
-        <div className="flex justify-center border-b border-zinc-800/80 bg-zinc-950 px-6 py-3">
+          <div className="mb-10 px-4 md:px-0">
+            <EasyModeCard onOpen={openAssistant} />
+          </div>
+        </>
+      )}
+
+      {/* Catalogue */}
+      <section aria-labelledby="catalog-title">
+        <div className="mb-6 flex flex-col gap-3 px-4 md:px-0">
+          <h2 id="catalog-title" className="text-xl font-semibold tracking-tight text-stone-900 dark:text-white">
+            {t('home.allTools')}
+          </h2>
+          <SearchBar value={query} onChange={setQuery} placeholder={t('search.filterPlaceholder')} className="md:max-w-md" />
           <CategoryFilter categories={CATEGORIES} active={activeCategory} onChange={setActiveCategory} />
         </div>
-
-        {recentEntries.length > 0 && (
-          <div className="border-b border-zinc-800/80 bg-zinc-950 px-6 py-5">
-            <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500">
-              {t('home.recentFiles')}
-            </h2>
-            <div className="grid grid-cols-4 gap-3">
-              {recentEntries.slice(0, 8).map((entry) => {
-                const tool = getToolById(entry.toolId)
-                const Icon = tool?.icon ?? HistoryIcon
-                return (
-                  <Link
-                    key={entry.id}
-                    to={tool?.route ?? '/history'}
-                    className="flex flex-col gap-2 rounded-2xl border border-zinc-800/80 bg-zinc-900/90 p-3 transition-all duration-200 ease-in-out hover:border-zinc-700 active:scale-95"
-                  >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-800/60 text-zinc-300">
-                      <Icon size={16} />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="truncate text-xs font-semibold text-zinc-200">
-                        {tool ? t(`tools.${tool.id}.name`, tool.name) : entry.toolName}
-                      </p>
-                      <p className="mt-0.5 text-[10px] text-zinc-500">{formatRelativeTime(entry.timestamp)}</p>
-                    </div>
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Hero desktop */}
-      <section className="hidden px-4 pb-10 pt-10 sm:px-6 sm:pt-16 lg:block lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-5xl">
-            {t('hero.titleLine1')}
-            <br />
-            {t('hero.titleLine2')}
-          </h1>
-          <p className="mx-auto mt-4 max-w-xl text-base text-zinc-500 dark:text-zinc-400">
-            {t('hero.subtitle')}
-          </p>
-
-          <div className="mt-8">
-            <SearchBar value={query} onChange={setQuery} />
-          </div>
-
-          <div className="mt-6">
-            <CategoryFilter categories={CATEGORIES} active={activeCategory} onChange={setActiveCategory} />
-          </div>
+        <div className="md:px-0">
+          <ToolsGrid tools={filteredTools} grouped={!filtering} />
         </div>
       </section>
-
-      <section className="mx-auto max-w-7xl pb-16 sm:px-6 lg:px-8">
-        <ToolsGrid tools={filteredTools} showEasyMode={showEasyMode} onOpenAssistant={openAssistant} />
-      </section>
-
-      {/* Bouton d'action flottant : ouvre directement l'import de fichier.
-          Décalé au-dessus de la BottomNav sur mobile ; recollé au coin sur
-          tablette, qui n'a pas de barre fixe en bas. Masqué dès le desktop
-          (lg:), où l'EasyModeCard sert déjà de point d'entrée équivalent. */}
-      <button
-        onClick={openAssistant}
-        aria-label={t('easyModeCard.badge')}
-        className="fixed bottom-20 right-4 z-40 flex items-center justify-center rounded-full bg-white p-4 text-black shadow-2xl transition-transform duration-200 ease-in-out active:scale-90 md:bottom-6 md:right-6 lg:hidden"
-      >
-        <Plus size={22} />
-      </button>
-    </>
+    </div>
   )
 }

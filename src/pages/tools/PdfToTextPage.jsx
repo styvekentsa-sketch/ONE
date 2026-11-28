@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, Check, Copy, Download, FileText } from 'lucide-react'
+import { Check, Copy, Download, FileText } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
 import ProcessingState from '../../components/ProcessingState'
 import { extractAllText } from '../../utils/pdfRender'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import BackButton from '../../components/ui/BackButton'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -86,25 +86,20 @@ export default function PdfToTextPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link
-        to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
-      >
-        <ArrowLeft size={16} /> {t('common.backToTools')}
-      </Link>
+    <div className="mx-auto max-w-3xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <BackButton />
 
       <div className="flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm dark:bg-stone-800/80 dark:text-white">
           <FileText size={26} />
         </span>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">{t('tools.pdf-to-text.name')}</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">{t('tools.pdf-to-text.subtitle')}</p>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-white">{t('tools.pdf-to-text.name')}</h1>
+          <p className="text-stone-500 dark:text-stone-400">{t('tools.pdf-to-text.subtitle')}</p>
         </div>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-zinc-900">
+      <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:bg-stone-900">
         {error && (
           <p className="mb-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">
             {error}
@@ -131,18 +126,18 @@ export default function PdfToTextPage() {
         {step === STEPS.RESULTS && (
           <div className="flex flex-col gap-4">
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <p className="truncate text-sm font-medium text-zinc-700 dark:text-zinc-200">{fileName}</p>
+              <p className="truncate text-sm font-medium text-stone-700 dark:text-stone-200">{fileName}</p>
               <div className="flex shrink-0 gap-2">
                 <button
                   onClick={handleCopy}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 px-3 py-1.5 text-xs font-medium text-zinc-600 transition-all duration-200 ease-in-out hover:border-zinc-300 active:scale-[0.98] dark:border-white/10 dark:text-zinc-300 dark:hover:border-zinc-700"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 px-3 py-1.5 text-xs font-medium text-stone-600 transition-all duration-200 ease-in-out hover:border-stone-300 active:scale-[0.98] dark:border-white/10 dark:text-stone-300 dark:hover:border-stone-700"
                 >
-                  {copied ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
+                  {copied ? <Check size={14} className="text-brand-500" /> : <Copy size={14} />}
                   {copied ? t('tools.pdf-to-text.copiedLabel') : t('tools.pdf-to-text.copyButton')}
                 </button>
                 <button
                   onClick={handleDownload}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500 px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98]"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-brand-700 active:scale-[0.98]"
                 >
                   <Download size={14} />
                   {t('tools.pdf-to-text.downloadTxtButton')}
@@ -153,12 +148,12 @@ export default function PdfToTextPage() {
             <textarea
               readOnly
               value={text}
-              className="h-96 w-full resize-y rounded-xl border border-zinc-200 bg-zinc-50 p-4 font-mono text-xs text-zinc-700 focus:border-indigo-400 focus:outline-none dark:border-white/10 dark:bg-zinc-950/40 dark:text-zinc-300"
+              className="h-96 w-full resize-y rounded-xl border border-stone-200 bg-stone-50 p-4 font-mono text-xs text-stone-700 focus:border-brand-400 focus:outline-none dark:border-white/10 dark:bg-stone-950/40 dark:text-stone-300"
             />
 
             <button
               onClick={handleRestart}
-              className="mx-auto text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="mx-auto text-sm font-medium text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-stone-600 dark:hover:text-stone-200"
             >
               {t('tools.pdf-to-text.restartLabel')}
             </button>

@@ -102,21 +102,21 @@ export default function ImageBatchPage() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-2xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
       <Link
         to="/image"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-stone-600 dark:hover:text-stone-200"
       >
         <ArrowLeft size={16} /> Retour aux outils Image
       </Link>
 
       <div className="flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm dark:bg-stone-800/80 dark:text-white">
           <Package size={26} />
         </span>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Traitement par Lots</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">Appliquez un préréglage à plusieurs images et exportez en ZIP</p>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-white">Traitement par Lots</h1>
+          <p className="text-stone-500 dark:text-stone-400">Appliquez un préréglage à plusieurs images et exportez en ZIP</p>
         </div>
       </div>
 
@@ -124,13 +124,13 @@ export default function ImageBatchPage() {
         <p className="mt-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">{error}</p>
       )}
 
-      <div className="mt-6 flex flex-col gap-5 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+      <div className="mt-6 flex flex-col gap-5 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm dark:border-stone-800 dark:bg-stone-900">
         <DragDropZone onFiles={handleFiles} multiple accept="image/*" hint="Déposez plusieurs images à traiter" />
 
-        {files.length > 0 && <p className="text-sm text-zinc-500 dark:text-zinc-400">{files.length} fichier(s) sélectionné(s)</p>}
+        {files.length > 0 && <p className="text-sm text-stone-500 dark:text-stone-400">{files.length} fichier(s) sélectionné(s)</p>}
 
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Préréglage</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">Préréglage</p>
           <div className="grid grid-cols-2 gap-2">
             {PRESETS.map((preset) => (
               <button
@@ -138,8 +138,8 @@ export default function ImageBatchPage() {
                 onClick={() => setPresetId(preset.id)}
                 className={`rounded-xl border-2 px-3 py-2.5 text-sm font-medium transition-all duration-200 ease-in-out active:scale-[0.98] ${
                   presetId === preset.id
-                    ? 'border-indigo-500 bg-indigo-500/5 text-indigo-600 dark:text-indigo-400'
-                    : 'border-zinc-200 text-zinc-600 hover:border-zinc-300 dark:border-white/10 dark:text-zinc-300 dark:hover:border-zinc-700'
+                    ? 'border-brand-500 bg-brand-500/5 text-brand-600 dark:text-brand-400'
+                    : 'border-stone-200 text-stone-600 hover:border-stone-300 dark:border-white/10 dark:text-stone-300 dark:hover:border-stone-700'
                 }`}
               >
                 {preset.label}
@@ -149,7 +149,7 @@ export default function ImageBatchPage() {
         </div>
 
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Format de sortie</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">Format de sortie</p>
           <div className="grid grid-cols-3 gap-2">
             {['jpeg', 'png', 'webp'].map((f) => (
               <button
@@ -157,8 +157,8 @@ export default function ImageBatchPage() {
                 onClick={() => setFormat(f)}
                 className={`rounded-xl border-2 px-3 py-2 text-sm font-semibold uppercase transition-all duration-200 ease-in-out active:scale-[0.98] ${
                   format === f
-                    ? 'border-indigo-500 bg-indigo-500/5 text-indigo-600 dark:text-indigo-400'
-                    : 'border-zinc-200 text-zinc-600 hover:border-zinc-300 dark:border-white/10 dark:text-zinc-300 dark:hover:border-zinc-700'
+                    ? 'border-brand-500 bg-brand-500/5 text-brand-600 dark:text-brand-400'
+                    : 'border-stone-200 text-stone-600 hover:border-stone-300 dark:border-white/10 dark:text-stone-300 dark:hover:border-stone-700'
                 }`}
               >
                 {f === 'jpeg' ? 'JPG' : f.toUpperCase()}
@@ -170,7 +170,7 @@ export default function ImageBatchPage() {
         <button
           onClick={handleProcess}
           disabled={files.length === 0 || isBusy}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-brand-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
         >
           {isBusy ? <Loader2 size={18} className="animate-spin" /> : <Package size={18} />}
           {isBusy ? `Traitement… ${progress.done}/${progress.total}` : 'Traiter et télécharger (ZIP)'}

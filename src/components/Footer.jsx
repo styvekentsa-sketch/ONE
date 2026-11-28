@@ -24,31 +24,31 @@ export default function Footer() {
   const { t } = useTranslation()
 
   return (
-    <footer className="hidden border-t border-zinc-200 bg-white dark:border-white/10 dark:bg-zinc-950 lg:block">
+    <footer className="hidden border-t border-stone-200 bg-white dark:border-white/10 dark:bg-stone-950 lg:block">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <Logo size="sm" />
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">
+          <p className="text-xs text-stone-500 dark:text-stone-400">
             {t('footer.rights', { year: new Date().getFullYear() })}
           </p>
         </div>
 
         <nav
           aria-label={t('footer.legalLinksTitle')}
-          className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-zinc-100 pt-6 dark:border-white/5"
+          className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-stone-100 pt-6 dark:border-white/5"
         >
           {LEGAL_LINKS.map(({ to, key }) => (
             <Link
               key={to}
               to={to}
-              className="text-xs font-medium text-zinc-500 transition-colors duration-200 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400"
+              className="text-xs font-medium text-stone-500 transition-colors duration-200 hover:text-brand-600 dark:text-stone-400 dark:hover:text-brand-400"
             >
               {t(`footer.${key}`)}
             </Link>
           ))}
           <button
             onClick={requestOpenPreferences}
-            className="text-xs font-medium text-zinc-500 transition-colors duration-200 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400"
+            className="text-xs font-medium text-stone-500 transition-colors duration-200 hover:text-brand-600 dark:text-stone-400 dark:hover:text-brand-400"
           >
             {t('footer.manageCookies')}
           </button>

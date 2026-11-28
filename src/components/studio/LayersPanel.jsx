@@ -31,21 +31,21 @@ export default function LayersPanel({
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-center justify-between border-b border-zinc-200 px-3 py-2.5 dark:border-zinc-800">
-        <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">Calques</p>
+      <div className="flex items-center justify-between border-b border-stone-200 px-3 py-2.5 dark:border-stone-800">
+        <p className="text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">Calques</p>
         <div className="flex items-center gap-1">
           <button
             onClick={onAddBlank}
             title="Nouveau calque vide"
             aria-label={t('common.addBlankLayer')}
-            className="flex h-7 w-7 items-center justify-center rounded-lg text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="flex h-7 w-7 items-center justify-center rounded-lg text-stone-500 transition-colors duration-150 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800"
           >
             <Plus size={15} />
           </button>
           <label
             title="Ajouter une image comme calque"
             aria-label={t('common.addImageLayer')}
-            className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+            className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-stone-500 transition-colors duration-150 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800"
           >
             <ImageIcon size={15} />
             <input
@@ -70,8 +70,8 @@ export default function LayersPanel({
             <div
               key={layer.id}
               onClick={() => onSelect(layer.id)}
-              className={`cursor-pointer border-b border-zinc-100 px-3 py-2.5 dark:border-zinc-800/60 ${
-                active ? 'bg-indigo-500/5' : 'hover:bg-zinc-50 dark:hover:bg-zinc-800/40'
+              className={`cursor-pointer border-b border-stone-100 px-3 py-2.5 dark:border-stone-800/60 ${
+                active ? 'bg-brand-500/5' : 'hover:bg-stone-50 dark:hover:bg-stone-800/40'
               }`}
             >
               <div className="flex items-center gap-2">
@@ -81,7 +81,7 @@ export default function LayersPanel({
                     onToggleVisible(layer.id)
                   }}
                   aria-label={layer.visible ? t('common.hideLayer') : t('common.showLayer')}
-                  className="shrink-0 text-zinc-500 dark:text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
+                  className="shrink-0 text-stone-500 dark:text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
                 >
                   {layer.visible ? <Eye size={14} /> : <EyeOff size={14} />}
                 </button>
@@ -91,7 +91,7 @@ export default function LayersPanel({
                   onChange={(e) => onRename(layer.id, e.target.value)}
                   onClick={(e) => e.stopPropagation()}
                   className={`min-w-0 flex-1 truncate bg-transparent text-sm font-medium focus:outline-none ${
-                    active ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-700 dark:text-zinc-200'
+                    active ? 'text-brand-600 dark:text-brand-400' : 'text-stone-700 dark:text-stone-200'
                   }`}
                 />
 
@@ -102,7 +102,7 @@ export default function LayersPanel({
                   }}
                   title="Masque de fusion"
                   aria-label={t('common.toggleMask')}
-                  className={`shrink-0 rounded p-1 ${layer.maskCanvas ? 'text-indigo-500' : 'text-zinc-500 dark:text-zinc-600'} hover:text-indigo-500`}
+                  className={`shrink-0 rounded p-1 ${layer.maskCanvas ? 'text-brand-500' : 'text-stone-500 dark:text-stone-600'} hover:text-brand-500`}
                 >
                   <MaskIcon size={13} />
                 </button>
@@ -115,7 +115,7 @@ export default function LayersPanel({
                     }}
                     disabled={isTop}
                     aria-label={t('common.moveUp')}
-                    className="rounded p-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 disabled:opacity-20 dark:hover:text-zinc-200"
+                    className="rounded p-1 text-stone-500 dark:text-stone-400 hover:text-stone-700 disabled:opacity-20 dark:hover:text-stone-200"
                   >
                     <ChevronUp size={13} />
                   </button>
@@ -126,7 +126,7 @@ export default function LayersPanel({
                     }}
                     disabled={isBottom}
                     aria-label={t('common.moveDown')}
-                    className="rounded p-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 disabled:opacity-20 dark:hover:text-zinc-200"
+                    className="rounded p-1 text-stone-500 dark:text-stone-400 hover:text-stone-700 disabled:opacity-20 dark:hover:text-stone-200"
                   >
                     <ChevronDown size={13} />
                   </button>
@@ -136,7 +136,7 @@ export default function LayersPanel({
                       onDuplicate(layer.id)
                     }}
                     aria-label={t('common.duplicateLayer')}
-                    className="rounded p-1 text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+                    className="rounded p-1 text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200"
                   >
                     <Copy size={13} />
                   </button>
@@ -146,7 +146,7 @@ export default function LayersPanel({
                       onDelete(layer.id)
                     }}
                     aria-label={t('common.deleteLayer')}
-                    className="rounded p-1 text-zinc-500 dark:text-zinc-400 hover:text-red-500"
+                    className="rounded p-1 text-stone-500 dark:text-stone-400 hover:text-red-500"
                   >
                     <Trash2 size={13} />
                   </button>
@@ -158,7 +158,7 @@ export default function LayersPanel({
                   value={layer.blendMode}
                   onClick={(e) => e.stopPropagation()}
                   onChange={(e) => onBlendModeChange(layer.id, e.target.value)}
-                  className="rounded-md border border-zinc-200 bg-white px-1.5 py-1 text-xs text-zinc-600 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                  className="rounded-md border border-stone-200 bg-white px-1.5 py-1 text-xs text-stone-600 focus:outline-none dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300"
                 >
                   {BLEND_MODES.map((mode) => (
                     <option key={mode.id} value={mode.id}>
@@ -173,9 +173,9 @@ export default function LayersPanel({
                   value={Math.round(layer.opacity * 100)}
                   onClick={(e) => e.stopPropagation()}
                   onChange={(e) => onOpacityChange(layer.id, Number(e.target.value) / 100)}
-                  className="w-full accent-indigo-500"
+                  className="w-full accent-brand-500"
                 />
-                <span className="w-8 shrink-0 text-right font-mono text-[11px] text-zinc-500 dark:text-zinc-400">
+                <span className="w-8 shrink-0 text-right font-mono text-[11px] text-stone-500 dark:text-stone-400">
                   {Math.round(layer.opacity * 100)}%
                 </span>
               </div>

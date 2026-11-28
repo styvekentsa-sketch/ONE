@@ -8,10 +8,16 @@
     "settings": "Settings",
     "pricing": "Pricing",
     "login": "Log in",
-    "account": "My account"
+    "account": "My account",
+    "main": "Main navigation"
   },
   "home": {
-    "recentFiles": "Recent files"
+    "recentFiles": "Recent files",
+    "title": "All your PDF tools in one place",
+    "subtitle": "Merge, compress, convert, sign and protect your documents. Everything stays on your device.",
+    "quickActions": "Quick access",
+    "seeAll": "See all",
+    "allTools": "All PDF tools"
   },
   "settings": {
     "preferencesTitle": "Preferences",
@@ -24,7 +30,16 @@
     "storageUsedValue": "{{size}} KB used in this browser",
     "securityTitle": "Security",
     "cookiesHistoryOn": "History enabled",
-    "cookiesHistoryOff": "History disabled"
+    "cookiesHistoryOff": "History disabled",
+    "switchToLight": "Switch to light theme",
+    "switchToDark": "Switch to dark theme",
+    "feedbackTitle": "Touch feedback",
+    "haptics": "Vibration on tap",
+    "hapticsSub": "A light vibration on every tap",
+    "hapticsUnsupported": "Not available on this device (iPhone in particular)",
+    "sound": "Tap sound",
+    "soundSub": "A soft sound on every tap",
+    "feedbackNote": "Touch screens only. The sound follows your phone’s silent mode when the browser allows it."
   },
   "hero": {
     "titleLine1": "Manage your documents,",
@@ -34,7 +49,10 @@
   "search": {
     "placeholder": "Search for a tool… (e.g. compress, merge, sign)",
     "clear": "Clear search",
-    "noResults": "No tool matches your search."
+    "noResults": "No tool matches your search.",
+    "open": "Search for a tool",
+    "short": "Search for a tool…",
+    "filterPlaceholder": "Filter tools"
   },
   "categories": {
     "all": "All",
@@ -44,7 +62,8 @@
     "Sécuriser": "Secure",
     "Éditer": "Edit",
     "Sécurité & Confidentialité": "Security & Privacy",
-    "Outils Avancés": "Advanced Tools"
+    "Outils Avancés": "Advanced Tools",
+    "label": "Categories"
   },
   "mediaTypes": {
     "pdf": "PDFs",
@@ -68,7 +87,8 @@
     "assistantDropHint": "Images, PDF or Word documents — drop one or several",
     "assistantAnalyzing": "Analyzing…",
     "assistantAnalyzingMultiple": "Examining {{count}} files and detecting the best tool",
-    "assistantAnalyzingSingle": "Detecting the file type and the best tool"
+    "assistantAnalyzingSingle": "Detecting the file type and the best tool",
+    "text": "Drop a file and we will suggest the right tool."
   },
   "actions": {
     "download": "Download",
@@ -126,7 +146,10 @@
     "browseFilesButton": "Browse my files",
     "acceptedFormats": "Accepted formats: {{formats}}",
     "unlimitedBadge": "Unlimited",
-    "localProcessingBadge": "Processed locally"
+    "localProcessingBadge": "Processed locally",
+    "back": "Back",
+    "cancel": "Cancel",
+    "tapToChoose": "Choose a file"
   },
   "footer": {
     "tagline": "All your documents, in one place.",

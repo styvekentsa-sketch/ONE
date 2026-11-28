@@ -1,9 +1,7 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { PDFDateString, TextLayer } from 'pdfjs-dist'
 import {
-  ArrowLeft,
   BookOpen,
   ChevronDown,
   ChevronLeft,
@@ -50,6 +48,7 @@ import {
 import { addHistoryEntry } from '../../utils/historyStorage'
 import { formatBytes } from '../../utils/formatBytes'
 import './pdfReader.css'
+import BackButton from '../../components/ui/BackButton'
 
 // 100 % = taille réelle à l'écran (96 dpi CSS), comme les lecteurs PDF de
 // bureau : pdf.js travaille en points PDF (72 par pouce), d'où ce facteur.
@@ -98,8 +97,8 @@ function ToolButton({ icon: Icon, label, onClick, active = false, disabled = fal
       disabled={disabled}
       className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors duration-150 disabled:pointer-events-none disabled:opacity-40 ${
         active
-          ? 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-400'
-          : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white'
+          ? 'bg-brand-500/10 text-brand-600 dark:bg-brand-400/10 dark:text-brand-400'
+          : 'text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-white'
       } ${className}`}
     >
       <Icon size={18} />
@@ -107,7 +106,7 @@ function ToolButton({ icon: Icon, label, onClick, active = false, disabled = fal
   )
 }
 
-const Separator = () => <span className="mx-1 h-6 w-px shrink-0 bg-zinc-200 dark:bg-zinc-800" />
+const Separator = () => <span className="mx-1 h-6 w-px shrink-0 bg-stone-200 dark:bg-stone-800" />
 
 /* -------------------------------------------------------------------------- */
 /* Page                                                                       */
@@ -290,8 +289,8 @@ const PageView = memo(function PageView({
     <div
       ref={(el) => registerRef(pageNumber, el)}
       data-page={pageNumber}
-      className={`one-pdf-page relative shrink-0 shadow-md ring-1 ring-zinc-200 dark:ring-zinc-800 ${
-        nightMode ? 'bg-zinc-900' : 'bg-white'
+      className={`one-pdf-page relative shrink-0 shadow-md ring-1 ring-stone-200 dark:ring-stone-800 ${
+        nightMode ? 'bg-stone-900' : 'bg-white'
       }`}
       style={{ width, height, '--scale-factor': renderScale, '--total-scale-factor': renderScale }}
     >
@@ -368,7 +367,7 @@ const PageView = memo(function PageView({
                       aria-label={r('typeNote')}
                       onPointerDown={(e) => e.stopPropagation()}
                       onClick={() => (tool === 'eraser' ? onRemove(note.id) : isOpen ? onCloseNote(note.id) : onOpenNote(note.id))}
-                      className="pointer-events-auto absolute -left-3 -top-3 flex h-6 w-6 items-center justify-center rounded-md text-zinc-900 shadow-md ring-1 ring-black/20 transition-transform hover:scale-110"
+                      className="pointer-events-auto absolute -left-3 -top-3 flex h-6 w-6 items-center justify-center rounded-md text-stone-900 shadow-md ring-1 ring-black/20 transition-transform hover:scale-110"
                       style={{ backgroundColor: note.color }}
                     >
                       <StickyNote size={14} />
@@ -376,7 +375,7 @@ const PageView = memo(function PageView({
                     {isOpen && (
                       <div
                         onPointerDown={(e) => e.stopPropagation()}
-                        className="pointer-events-auto absolute left-4 top-0 w-56 rounded-xl border border-zinc-200 bg-white p-2 shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
+                        className="pointer-events-auto absolute left-4 top-0 w-56 rounded-xl border border-stone-200 bg-white p-2 shadow-xl dark:border-stone-800 dark:bg-stone-900"
                       >
                         <textarea
                           autoFocus
@@ -384,7 +383,7 @@ const PageView = memo(function PageView({
                           onChange={(e) => onUpdate(note.id, { text: e.target.value })}
                           placeholder={r('notePlaceholder')}
                           rows={4}
-                          className="w-full resize-none rounded-lg border border-zinc-200 bg-white p-2 text-sm text-zinc-900 focus:border-emerald-500 focus:outline-none dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+                          className="w-full resize-none rounded-lg border border-stone-200 bg-white p-2 text-sm text-stone-900 focus:border-brand-500 focus:outline-none dark:border-stone-800 dark:bg-stone-950 dark:text-stone-100"
                         />
                         <div className="mt-1.5 flex justify-between">
                           <button
@@ -397,7 +396,7 @@ const PageView = memo(function PageView({
                           <button
                             type="button"
                             onClick={() => onCloseNote(note.id)}
-                            className="rounded-md bg-emerald-600 px-2.5 py-1 text-xs font-semibold text-white hover:bg-emerald-500"
+                            className="rounded-md bg-brand-600 px-2.5 py-1 text-xs font-semibold text-white hover:bg-brand-600"
                           >
                             {r('ok')}
                           </button>
@@ -471,18 +470,18 @@ const Thumbnail = memo(function Thumbnail({ pdf, pageNumber, rotation, base, act
       }}
       type="button"
       onClick={() => onSelect(pageNumber)}
-      className="group flex w-full flex-col items-center gap-1.5 rounded-xl p-2 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800/60"
+      className="group flex w-full flex-col items-center gap-1.5 rounded-xl p-2 transition-colors hover:bg-stone-100 dark:hover:bg-stone-800/60"
     >
       <span
         className={`block overflow-hidden rounded-md bg-white shadow-sm transition-all ${
-          active ? 'ring-2 ring-emerald-500' : 'ring-1 ring-zinc-200 group-hover:ring-zinc-300 dark:ring-zinc-700'
+          active ? 'ring-2 ring-brand-500' : 'ring-1 ring-stone-200 group-hover:ring-stone-300 dark:ring-stone-700'
         }`}
         style={{ width: THUMB_WIDTH, height }}
       >
         <canvas ref={canvasRef} className={nightMode ? 'one-night-canvas' : ''} style={{ width: THUMB_WIDTH, height }} />
       </span>
       <span
-        className={`text-xs font-medium ${active ? 'text-emerald-600 dark:text-emerald-400' : 'text-zinc-500 dark:text-zinc-400'}`}
+        className={`text-xs font-medium ${active ? 'text-brand-600 dark:text-brand-400' : 'text-stone-500 dark:text-stone-400'}`}
       >
         {pageNumber}
       </span>
@@ -501,7 +500,7 @@ function OutlineNode({ item, depth, onNavigate }) {
             type="button"
             onClick={() => setExpanded((v) => !v)}
             aria-label={item.title}
-            className="mt-1 shrink-0 rounded p-0.5 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-zinc-200"
+            className="mt-1 shrink-0 rounded p-0.5 text-stone-400 hover:bg-stone-100 hover:text-stone-700 dark:hover:bg-stone-800 dark:hover:text-stone-200"
           >
             <ChevronRight size={14} className={`transition-transform ${expanded ? 'rotate-90' : ''}`} />
           </button>
@@ -511,7 +510,7 @@ function OutlineNode({ item, depth, onNavigate }) {
         <button
           type="button"
           onClick={() => onNavigate(item)}
-          className={`min-w-0 flex-1 rounded-md px-1.5 py-1 text-left text-sm leading-snug text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white ${
+          className={`min-w-0 flex-1 rounded-md px-1.5 py-1 text-left text-sm leading-snug text-stone-700 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-white ${
             item.bold ? 'font-semibold' : ''
           } ${item.italic ? 'italic' : ''}`}
         >
@@ -1071,14 +1070,14 @@ function Reader({ doc, onClose }) {
   return (
     <div
       ref={rootRef}
-      className={`one-pdf-reader flex flex-col overflow-hidden bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 ${
+      className={`one-pdf-reader flex flex-col overflow-hidden bg-white text-stone-900 dark:bg-stone-950 dark:text-stone-100 ${
         isFullscreen
           ? 'h-screen'
-          : 'h-[calc(100dvh-10.5rem)] min-h-104 rounded-2xl border border-zinc-200 shadow-sm md:h-[calc(100dvh-9rem)] dark:border-zinc-800'
+          : 'h-[calc(100dvh-7.5rem)] min-h-104 rounded-2xl border border-stone-200 shadow-sm md:h-[calc(100dvh-8.5rem)] dark:border-stone-800'
       }`}
     >
       {/* Barre d'outils principale */}
-      <div className="flex items-center gap-0.5 overflow-x-auto border-b border-zinc-200 bg-white px-1.5 py-1.5 dark:border-zinc-800 dark:bg-zinc-900 scrollbar-none">
+      <div className="flex items-center gap-0.5 overflow-x-auto border-b border-stone-200 bg-white px-1.5 py-1.5 dark:border-stone-800 dark:bg-stone-900 scrollbar-none">
         <ToolButton icon={PanelLeft} label={r('toggleSidebar')} onClick={() => setSidebarOpen((v) => !v)} active={sidebarOpen} />
         <Separator />
         <ToolButton icon={ChevronLeft} label={r('prevPage')} onClick={() => goToPage(currentPage - 1)} disabled={currentPage <= 1} />
@@ -1096,9 +1095,9 @@ function Reader({ doc, onClose }) {
             onBlur={() => setPageDraft(null)}
             inputMode="numeric"
             aria-label={r('pageLabel', { n: currentPage })}
-            className="h-8 w-11 rounded-md border border-zinc-200 bg-white text-center text-sm tabular-nums focus:border-emerald-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-950"
+            className="h-8 w-11 rounded-md border border-stone-200 bg-white text-center text-sm tabular-nums focus:border-brand-500 focus:outline-none dark:border-stone-700 dark:bg-stone-950"
           />
-          <span className="whitespace-nowrap tabular-nums text-zinc-500 dark:text-zinc-400">/ {numPages}</span>
+          <span className="whitespace-nowrap tabular-nums text-stone-500 dark:text-stone-400">/ {numPages}</span>
         </form>
         <ToolButton icon={ChevronRight} label={r('nextPage')} onClick={() => goToPage(currentPage + 1)} disabled={currentPage >= numPages} />
         <Separator />
@@ -1111,7 +1110,7 @@ function Reader({ doc, onClose }) {
             if (v.startsWith('fit-')) setFitMode(v.slice(4))
             else setZoom(Number(v))
           }}
-          className="h-8 shrink-0 rounded-md border border-zinc-200 bg-white px-1.5 text-sm tabular-nums focus:border-emerald-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-950"
+          className="h-8 shrink-0 rounded-md border border-stone-200 bg-white px-1.5 text-sm tabular-nums focus:border-brand-500 focus:outline-none dark:border-stone-700 dark:bg-stone-950"
         >
           {fitMode && <option value={`fit-${fitMode}`}>{Math.round(scale * 100)} %</option>}
           {!fitMode && !isPreset && <option value={String(scale)}>{Math.round(scale * 100)} %</option>}
@@ -1153,7 +1152,7 @@ function Reader({ doc, onClose }) {
 
       {/* Barre d'annotation */}
       {annotateOpen && (
-        <div className="flex items-center gap-0.5 overflow-x-auto border-b border-zinc-200 bg-white px-1.5 py-1.5 dark:border-zinc-800 dark:bg-zinc-900 scrollbar-none">
+        <div className="flex items-center gap-0.5 overflow-x-auto border-b border-stone-200 bg-white px-1.5 py-1.5 dark:border-stone-800 dark:bg-stone-900 scrollbar-none">
           <ToolButton icon={MousePointer2} label={r('toolSelect')} onClick={() => setTool('select')} active={tool === 'select'} />
           <ToolButton icon={Highlighter} label={r('toolHighlight')} onClick={() => selectTool('highlight')} active={tool === 'highlight'} />
           <ToolButton icon={PenLine} label={r('toolPen')} onClick={() => selectTool('pen')} active={tool === 'pen'} />
@@ -1172,8 +1171,8 @@ function Reader({ doc, onClose }) {
                     title={r(`colors.${c.id}`)}
                     aria-label={r(`colors.${c.id}`)}
                     onClick={() => setColors((prev) => ({ ...prev, [tool]: c.value }))}
-                    className={`h-6 w-6 rounded-full ring-offset-2 ring-offset-white transition-transform hover:scale-110 dark:ring-offset-zinc-900 ${
-                      toolColor === c.value ? 'ring-2 ring-zinc-900 dark:ring-white' : 'ring-1 ring-black/10'
+                    className={`h-6 w-6 rounded-full ring-offset-2 ring-offset-white transition-transform hover:scale-110 dark:ring-offset-stone-900 ${
+                      toolColor === c.value ? 'ring-2 ring-stone-900 dark:ring-white' : 'ring-1 ring-black/10'
                     }`}
                     style={{ backgroundColor: c.value }}
                   />
@@ -1185,12 +1184,12 @@ function Reader({ doc, onClose }) {
           <ToolButton icon={Undo2} label={r('undo')} onClick={undo} disabled={!annotations.length} />
           <ToolButton icon={Trash} label={r('clearAll')} onClick={clearAll} disabled={!annotations.length} />
           <div className="flex-1" />
-          <span className="hidden shrink-0 px-2 text-xs text-zinc-500 lg:inline dark:text-zinc-400">{r('annotationsHint')}</span>
+          <span className="hidden shrink-0 px-2 text-xs text-stone-500 lg:inline dark:text-stone-400">{r('annotationsHint')}</span>
           <button
             type="button"
             onClick={handleExport}
             disabled={!annotations.length || exporting}
-            className="inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg bg-emerald-600 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-500 disabled:opacity-40"
+            className="inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg bg-brand-600 px-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600 disabled:opacity-40"
           >
             {exporting ? <LoaderCircle size={16} className="animate-spin" /> : <Download size={16} />}
             <span className="hidden sm:inline">{exporting ? r('exporting') : r('exportAnnotated')}</span>
@@ -1200,9 +1199,9 @@ function Reader({ doc, onClose }) {
 
       {/* Barre de recherche */}
       {searchOpen && (
-        <div className="flex items-center gap-1 border-b border-zinc-200 bg-white px-2 py-1.5 dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="flex items-center gap-1 border-b border-stone-200 bg-white px-2 py-1.5 dark:border-stone-800 dark:bg-stone-900">
           <div className="relative min-w-0 flex-1 sm:max-w-sm">
-            <Search size={15} className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400" />
+            <Search size={15} className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-stone-400" />
             <input
               ref={searchInputRef}
               value={query}
@@ -1214,10 +1213,10 @@ function Reader({ doc, onClose }) {
                 }
               }}
               placeholder={r('searchPlaceholder')}
-              className="h-8 w-full rounded-md border border-zinc-200 bg-white pl-8 pr-2 text-sm focus:border-emerald-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-950"
+              className="h-8 w-full rounded-md border border-stone-200 bg-white pl-8 pr-2 text-sm focus:border-brand-500 focus:outline-none dark:border-stone-700 dark:bg-stone-950"
             />
           </div>
-          <span className="shrink-0 whitespace-nowrap px-1.5 text-xs tabular-nums text-zinc-500 dark:text-zinc-400" aria-live="polite">
+          <span className="shrink-0 whitespace-nowrap px-1.5 text-xs tabular-nums text-stone-500 dark:text-stone-400" aria-live="polite">
             {isSearching ? (
               <span className="inline-flex items-center gap-1">
                 <LoaderCircle size={13} className="animate-spin" /> {r('searching')}
@@ -1252,16 +1251,16 @@ function Reader({ doc, onClose }) {
             type="button"
             aria-label={r('toggleSidebar')}
             onClick={() => setSidebarOpen(false)}
-            className="absolute inset-0 z-20 bg-zinc-950/40 backdrop-blur-[1px]"
+            className="absolute inset-0 z-20 bg-stone-950/40 backdrop-blur-[1px]"
           />
         )}
         {sidebarOpen && (
           <aside
-            className={`flex w-60 shrink-0 flex-col border-r border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900 ${
+            className={`flex w-60 shrink-0 flex-col border-r border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900 ${
               isMobile ? 'absolute inset-y-0 left-0 z-30 shadow-2xl' : ''
             }`}
           >
-            <div className="flex gap-1 border-b border-zinc-200 p-1.5 dark:border-zinc-800" role="tablist">
+            <div className="flex gap-1 border-b border-stone-200 p-1.5 dark:border-stone-800" role="tablist">
               {sidebarTabs.map(({ id, label, icon: Icon }) => (
                 <button
                   key={id}
@@ -1272,8 +1271,8 @@ function Reader({ doc, onClose }) {
                   onClick={() => setSidebarTab(id)}
                   className={`flex flex-1 items-center justify-center gap-1 rounded-md px-1.5 py-1.5 text-xs font-medium transition-colors ${
                     sidebarTab === id
-                      ? 'bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-white'
-                      : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
+                      ? 'bg-stone-100 text-stone-900 dark:bg-stone-800 dark:text-white'
+                      : 'text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-white'
                   }`}
                 >
                   <Icon size={14} />
@@ -1306,7 +1305,7 @@ function Reader({ doc, onClose }) {
 
               {sidebarTab === 'outline' &&
                 (outline === null ? (
-                  <LoaderCircle size={18} className="mx-auto mt-6 animate-spin text-zinc-400" />
+                  <LoaderCircle size={18} className="mx-auto mt-6 animate-spin text-stone-400" />
                 ) : outline.length ? (
                   <ul className="flex flex-col gap-0.5">
                     {outline.map((item, i) => (
@@ -1314,7 +1313,7 @@ function Reader({ doc, onClose }) {
                     ))}
                   </ul>
                 ) : (
-                  <p className="px-2 py-6 text-center text-sm text-zinc-500 dark:text-zinc-400">{r('noOutline')}</p>
+                  <p className="px-2 py-6 text-center text-sm text-stone-500 dark:text-stone-400">{r('noOutline')}</p>
                 ))}
 
               {sidebarTab === 'annotations' &&
@@ -1324,7 +1323,7 @@ function Reader({ doc, onClose }) {
                       const Icon = a.type === 'highlight' ? Highlighter : a.type === 'pen' ? PenLine : StickyNote
                       const typeKey = a.type === 'highlight' ? 'typeHighlight' : a.type === 'pen' ? 'typePen' : 'typeNote'
                       return (
-                        <li key={a.id} className="group flex items-center gap-2 rounded-lg p-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800/60">
+                        <li key={a.id} className="group flex items-center gap-2 rounded-lg p-1.5 hover:bg-stone-100 dark:hover:bg-stone-800/60">
                           <button
                             type="button"
                             onClick={() => {
@@ -1335,17 +1334,17 @@ function Reader({ doc, onClose }) {
                             className="flex min-w-0 flex-1 items-center gap-2 text-left"
                           >
                             <span
-                              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-zinc-900"
+                              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-stone-900"
                               style={{ backgroundColor: `${a.color}55` }}
                             >
                               <Icon size={14} />
                             </span>
                             <span className="min-w-0">
-                              <span className="block text-xs font-medium text-zinc-800 dark:text-zinc-200">
+                              <span className="block text-xs font-medium text-stone-800 dark:text-stone-200">
                                 {r(typeKey)} · {r('pageLabel', { n: a.page })}
                               </span>
                               {a.type === 'note' && a.text && (
-                                <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">{a.text}</span>
+                                <span className="block truncate text-xs text-stone-500 dark:text-stone-400">{a.text}</span>
                               )}
                             </span>
                           </button>
@@ -1354,7 +1353,7 @@ function Reader({ doc, onClose }) {
                             onClick={() => removeAnnotation(a.id)}
                             title={r('delete')}
                             aria-label={r('delete')}
-                            className="shrink-0 rounded-md p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/10 dark:hover:text-red-400"
+                            className="shrink-0 rounded-md p-1 text-stone-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/10 dark:hover:text-red-400"
                           >
                             <Trash size={14} />
                           </button>
@@ -1363,7 +1362,7 @@ function Reader({ doc, onClose }) {
                     })}
                   </ul>
                 ) : (
-                  <p className="px-2 py-6 text-center text-sm text-zinc-500 dark:text-zinc-400">{r('noAnnotations')}</p>
+                  <p className="px-2 py-6 text-center text-sm text-stone-500 dark:text-stone-400">{r('noAnnotations')}</p>
                 ))}
             </div>
           </aside>
@@ -1373,7 +1372,7 @@ function Reader({ doc, onClose }) {
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className={`relative min-w-0 flex-1 overflow-auto ${nightMode ? 'bg-zinc-950' : 'bg-zinc-100 dark:bg-zinc-950'}`}
+          className={`relative min-w-0 flex-1 overflow-auto ${nightMode ? 'bg-stone-950' : 'bg-stone-100 dark:bg-stone-950'}`}
         >
           <div className="flex w-max min-w-full flex-col items-center gap-4 px-2 py-4 sm:px-6">
             {pagesToShow.map((n) => {
@@ -1409,11 +1408,11 @@ function Reader({ doc, onClose }) {
       </div>
 
       <Modal open={infoOpen} onClose={() => setInfoOpen(false)} icon={Info} title={r('properties')} subtitle={file.name}>
-        <dl className="divide-y divide-zinc-100 text-sm dark:divide-zinc-800">
+        <dl className="divide-y divide-stone-100 text-sm dark:divide-stone-800">
           {metaRows.map(([key, value]) => (
             <div key={key} className="grid grid-cols-[9rem_1fr] gap-3 py-2">
-              <dt className="text-zinc-500 dark:text-zinc-400">{r(`meta.${key}`)}</dt>
-              <dd className={`wrap-break-word ${value ? 'text-zinc-900 dark:text-zinc-100' : 'italic text-zinc-400 dark:text-zinc-500'}`}>
+              <dt className="text-stone-500 dark:text-stone-400">{r(`meta.${key}`)}</dt>
+              <dd className={`wrap-break-word ${value ? 'text-stone-900 dark:text-stone-100' : 'italic text-stone-400 dark:text-stone-500'}`}>
                 {value || r('unknown')}
               </dd>
             </div>
@@ -1488,14 +1487,9 @@ export default function PdfReaderTool() {
     return (
       <div className="mx-auto max-w-[1600px] px-2 py-3 sm:px-4 lg:px-6">
         <div className="mb-2 flex items-center gap-3">
-          <Link
-            to="/pdf"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200"
-          >
-            <ArrowLeft size={16} /> <span className="hidden sm:inline">{t('common.backToTools')}</span>
-          </Link>
-          <span className="flex min-w-0 items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-white">
-            <BookOpen size={16} className="shrink-0 text-emerald-600 dark:text-emerald-400" />
+          <BackButton compact />
+          <span className="flex min-w-0 items-center gap-2 text-sm font-semibold text-stone-900 dark:text-white">
+            <BookOpen size={16} className="shrink-0 text-brand-600 dark:text-brand-400" />
             <span className="truncate">{doc.file.name}</span>
           </span>
         </div>
@@ -1505,25 +1499,20 @@ export default function PdfReaderTool() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link
-        to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 transition-colors duration-200 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-200"
-      >
-        <ArrowLeft size={16} /> {t('common.backToTools')}
-      </Link>
+    <div className="mx-auto max-w-3xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <BackButton />
 
       <div className="flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm dark:bg-stone-800/80 dark:text-white">
           <BookOpen size={26} />
         </span>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">{t('tools.pdf-reader.name')}</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">{t('tools.pdf-reader.subtitle')}</p>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-white">{t('tools.pdf-reader.name')}</h1>
+          <p className="text-stone-500 dark:text-stone-400">{t('tools.pdf-reader.subtitle')}</p>
         </div>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+      <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:border-stone-800 dark:bg-stone-900">
         {error && (
           <p className="mb-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">
             {error}

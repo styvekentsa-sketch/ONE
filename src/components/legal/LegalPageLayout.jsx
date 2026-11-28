@@ -56,20 +56,20 @@ export default function LegalPageLayout({ title, intro, sections }) {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <Link
         to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 transition-colors duration-200 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-stone-500 transition-colors duration-200 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200"
       >
         <ArrowLeft size={16} aria-hidden="true" /> {t('legal.meta.backToHome')}
       </Link>
 
-      <h1 className="text-2xl font-bold text-zinc-900 dark:text-white sm:text-3xl">{title}</h1>
-      <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
+      <h1 className="text-2xl font-bold text-stone-900 dark:text-white sm:text-3xl">{title}</h1>
+      <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
         {t('common.lastUpdatedLabel', { date: t('legal.meta.lastUpdated') })}
       </p>
 
-      {intro && <p className="mt-6 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">{intro}</p>}
+      {intro && <p className="mt-6 text-base leading-relaxed text-stone-700 dark:text-stone-300">{intro}</p>}
 
-      <nav aria-label={t('legal.meta.tableOfContents')} className="mt-8 rounded-2xl border border-zinc-200 bg-zinc-50 p-5 dark:border-white/10 dark:bg-zinc-900/60">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+      <nav aria-label={t('legal.meta.tableOfContents')} className="mt-8 rounded-2xl border border-stone-200 bg-stone-50 p-5 dark:border-white/10 dark:bg-stone-900/60">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
           {t('legal.meta.tableOfContents')}
         </p>
         <ol className="space-y-1.5 text-sm">
@@ -77,7 +77,7 @@ export default function LegalPageLayout({ title, intro, sections }) {
             <li key={i}>
               <a
                 href={`#section-${i}`}
-                className="text-indigo-600 underline-offset-2 hover:underline dark:text-indigo-400"
+                className="text-brand-600 underline-offset-2 hover:underline dark:text-brand-400"
               >
                 {section.heading}
               </a>
@@ -86,10 +86,10 @@ export default function LegalPageLayout({ title, intro, sections }) {
         </ol>
       </nav>
 
-      <article className="mt-8 space-y-10 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 sm:text-base">
+      <article className="mt-8 space-y-10 text-sm leading-relaxed text-stone-700 dark:text-stone-300 sm:text-base">
         {sections.map((section, i) => (
           <section key={i} id={`section-${i}`} aria-labelledby={`heading-${i}`} className="scroll-mt-24">
-            <h2 id={`heading-${i}`} className="mb-3 text-lg font-bold text-zinc-900 dark:text-white">
+            <h2 id={`heading-${i}`} className="mb-3 text-lg font-bold text-stone-900 dark:text-white">
               {section.heading}
             </h2>
             <SectionBody text={section.body} />

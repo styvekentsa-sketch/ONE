@@ -1,10 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   Archive,
   ArrowDown,
-  ArrowLeft,
   ArrowUp,
   CheckCircle2,
   ChevronLeft,
@@ -37,6 +35,7 @@ import {
 } from '../../utils/batesWorker'
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import BackButton from '../../components/ui/BackButton'
 
 const STEPS = { UPLOAD: 'upload', CONFIGURE: 'configure', PROCESSING: 'processing', DONE: 'done' }
 const DIGIT_OPTIONS = [3, 4, 5, 6, 7, 8]
@@ -60,10 +59,10 @@ function downloadBlob(blob, name) {
 
 function Section({ icon: Icon, title, children, aside }) {
   return (
-    <section className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm sm:p-5 dark:border-zinc-800 dark:bg-zinc-900">
+    <section className="rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-5 dark:border-stone-800 dark:bg-stone-900">
       <div className="mb-4 flex items-center justify-between gap-3">
-        <h2 className="flex items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-white">
-          <Icon size={16} className="text-emerald-600 dark:text-emerald-400" /> {title}
+        <h2 className="flex items-center gap-2 text-sm font-semibold text-stone-900 dark:text-white">
+          <Icon size={16} className="text-brand-600 dark:text-brand-400" /> {title}
         </h2>
         {aside}
       </div>
@@ -75,19 +74,19 @@ function Section({ icon: Icon, title, children, aside }) {
 function Field({ label, children, hint }) {
   return (
     <label className="flex min-w-0 flex-col gap-1.5">
-      <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">{label}</span>
+      <span className="text-xs font-medium text-stone-500 dark:text-stone-400">{label}</span>
       {children}
-      {hint && <span className="text-xs text-zinc-500 dark:text-zinc-400">{hint}</span>}
+      {hint && <span className="text-xs text-stone-500 dark:text-stone-400">{hint}</span>}
     </label>
   )
 }
 
 const inputClass =
-  'h-10 w-full rounded-lg border border-zinc-200 bg-white px-3 text-sm text-zinc-900 focus:border-emerald-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100'
+  'h-10 w-full rounded-lg border border-stone-200 bg-white px-3 text-sm text-stone-900 focus:border-brand-500 focus:outline-none dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100'
 
 function Segmented({ options, value, onChange, label }) {
   return (
-    <div className="flex flex-wrap gap-1 rounded-lg bg-zinc-100 p-1 dark:bg-zinc-800" role="radiogroup" aria-label={label}>
+    <div className="flex flex-wrap gap-1 rounded-lg bg-stone-100 p-1 dark:bg-stone-800" role="radiogroup" aria-label={label}>
       {options.map((o) => (
         <button
           key={o.value}
@@ -96,7 +95,7 @@ function Segmented({ options, value, onChange, label }) {
           aria-checked={value === o.value}
           onClick={() => onChange(o.value)}
           className={`flex-1 whitespace-nowrap rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors ${
-            value === o.value ? 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-950 dark:text-white' : 'text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200'
+            value === o.value ? 'bg-white text-stone-900 shadow-sm dark:bg-stone-950 dark:text-white' : 'text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200'
           }`}
         >
           {o.label}
@@ -195,9 +194,9 @@ function LivePreview({ doc, pageNumber, number, config, fonts, dateText, b }) {
 
   return (
     <div ref={containerRef} className="w-full">
-      <div className="relative mx-auto overflow-hidden bg-white shadow-md ring-1 ring-zinc-200 dark:ring-zinc-800" style={{ width, height }}>
+      <div className="relative mx-auto overflow-hidden bg-white shadow-md ring-1 ring-stone-200 dark:ring-stone-800" style={{ width, height }}>
         <canvas ref={canvasRef} className="absolute inset-0" style={{ width, height }} />
-        {!pdf && <LoaderCircle size={22} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-spin text-zinc-400" />}
+        {!pdf && <LoaderCircle size={22} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-spin text-stone-400" />}
         {pageSize && layout && (
           <svg className="absolute inset-0" width={width} height={height} viewBox={`0 0 ${pageSize.w} ${pageSize.h}`}>
             {config.background && (
@@ -214,14 +213,14 @@ function LivePreview({ doc, pageNumber, number, config, fonts, dateText, b }) {
               width={layout.box.w + 4}
               height={layout.box.h + 4}
               fill="none"
-              stroke="#10b981"
+              stroke="#3473ec"
               strokeWidth={0.8}
               strokeDasharray="3 2"
             />
           </svg>
         )}
         {pageSize && number === undefined && (
-          <span className="absolute inset-x-0 top-2 mx-auto w-fit rounded-full bg-zinc-900/80 px-2.5 py-1 text-[11px] font-medium text-white">
+          <span className="absolute inset-x-0 top-2 mx-auto w-fit rounded-full bg-stone-900/80 px-2.5 py-1 text-[11px] font-medium text-white">
             {b('preview.excluded')}
           </span>
         )}
@@ -422,22 +421,17 @@ export default function BatesNumberingTool() {
     plan.firstNumber !== null ? `${formatBates(plan.firstNumber, config)} → ${formatBates(plan.lastNumber, config)}` : formatBates(startValid ? config.start : 0, config)
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
-      <Link
-        to="/pdf"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
-      >
-        <ArrowLeft size={16} /> {t('common.backToTools')}
-      </Link>
+    <div className="mx-auto max-w-6xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <BackButton />
 
       <div className="flex items-center gap-4">
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm sm:h-14 sm:w-14 dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm sm:h-14 sm:w-14 dark:bg-stone-800/80 dark:text-white">
           <ListOrdered size={26} />
         </span>
         <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">{t('categories.Outils Avancés')}</p>
-          <h1 className="text-xl font-bold text-zinc-900 sm:text-2xl dark:text-white">{b('name')}</h1>
-          <p className="text-sm text-zinc-500 sm:text-base dark:text-zinc-400">{b('subtitle')}</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">{t('categories.Outils Avancés')}</p>
+          <h1 className="text-xl font-bold text-stone-900 sm:text-2xl dark:text-white">{b('name')}</h1>
+          <p className="text-sm text-stone-500 sm:text-base dark:text-stone-400">{b('subtitle')}</p>
         </div>
       </div>
 
@@ -448,7 +442,7 @@ export default function BatesNumberingTool() {
       )}
 
       {step === STEPS.UPLOAD && (
-        <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm sm:p-8 dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:bg-stone-900">
           <DragDropZone onFiles={addFiles} multiple accept="application/pdf" hint={b('dropHint')} />
         </div>
       )}
@@ -460,7 +454,7 @@ export default function BatesNumberingTool() {
             <Section
               icon={FileText}
               title={b('sections.files', { count: docs.length })}
-              aside={<span className="text-xs tabular-nums text-zinc-500 dark:text-zinc-400">{b('totalPages', { count: plan.total })}</span>}
+              aside={<span className="text-xs tabular-nums text-stone-500 dark:text-stone-400">{b('totalPages', { count: plan.total })}</span>}
             >
               <ul className="flex flex-col gap-2">
                 {docs.map((doc, index) => {
@@ -477,11 +471,11 @@ export default function BatesNumberingTool() {
                       }}
                       onDragEnd={() => setDragId(null)}
                       className={`flex items-center gap-2 rounded-xl border p-2.5 transition-colors sm:gap-3 ${
-                        dragId === doc.id ? 'border-emerald-400 opacity-60' : 'border-zinc-200 dark:border-zinc-800'
-                      } ${previewDoc?.id === doc.id ? 'bg-emerald-50/50 dark:bg-emerald-500/5' : 'bg-white dark:bg-zinc-950'}`}
+                        dragId === doc.id ? 'border-brand-400 opacity-60' : 'border-stone-200 dark:border-stone-800'
+                      } ${previewDoc?.id === doc.id ? 'bg-brand-50/50 dark:bg-brand-500/5' : 'bg-white dark:bg-stone-950'}`}
                     >
-                      <GripVertical size={16} className="hidden shrink-0 cursor-grab text-zinc-400 sm:block" />
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-zinc-100 text-xs font-semibold tabular-nums text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+                      <GripVertical size={16} className="hidden shrink-0 cursor-grab text-stone-400 sm:block" />
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-stone-100 text-xs font-semibold tabular-nums text-stone-600 dark:bg-stone-800 dark:text-stone-300">
                         {index + 1}
                       </span>
                       <button
@@ -493,8 +487,8 @@ export default function BatesNumberingTool() {
                         className="min-w-0 flex-1 text-left"
                         title={b('showPreview')}
                       >
-                        <p className="truncate text-sm font-medium text-zinc-900 dark:text-zinc-100">{doc.file.name}</p>
-                        <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+                        <p className="truncate text-sm font-medium text-stone-900 dark:text-stone-100">{doc.file.name}</p>
+                        <p className="truncate text-xs text-stone-500 dark:text-stone-400">
                           {doc.failed ? (
                             <span className="text-red-600 dark:text-red-400">{b('errors.unreadable')}</span>
                           ) : doc.pageCount === null ? (
@@ -502,7 +496,7 @@ export default function BatesNumberingTool() {
                           ) : (
                             <>
                               {b('pages', { count: doc.pageCount })} ·{' '}
-                              <span className="font-mono text-emerald-700 dark:text-emerald-400">
+                              <span className="font-mono text-brand-700 dark:text-brand-400">
                                 {item?.first !== null && item?.first !== undefined
                                   ? `${formatBates(item.first, config)} → ${formatBates(item.last, config)}`
                                   : b('noPagesNumbered')}
@@ -512,7 +506,7 @@ export default function BatesNumberingTool() {
                         </p>
                       </button>
                       <div className="flex shrink-0 items-center">
-                        <button type="button" onClick={() => move(doc.id, -1)} disabled={index === 0} aria-label={b('moveUp')} title={b('moveUp')} className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 disabled:opacity-30 dark:hover:bg-zinc-800">
+                        <button type="button" onClick={() => move(doc.id, -1)} disabled={index === 0} aria-label={b('moveUp')} title={b('moveUp')} className="rounded-md p-1.5 text-stone-500 hover:bg-stone-100 disabled:opacity-30 dark:hover:bg-stone-800">
                           <ArrowUp size={16} />
                         </button>
                         <button
@@ -521,11 +515,11 @@ export default function BatesNumberingTool() {
                           disabled={index === docs.length - 1}
                           aria-label={b('moveDown')}
                           title={b('moveDown')}
-                          className="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 disabled:opacity-30 dark:hover:bg-zinc-800"
+                          className="rounded-md p-1.5 text-stone-500 hover:bg-stone-100 disabled:opacity-30 dark:hover:bg-stone-800"
                         >
                           <ArrowDown size={16} />
                         </button>
-                        <button type="button" onClick={() => remove(doc.id)} aria-label={b('remove')} title={b('remove')} className="rounded-md p-1.5 text-zinc-500 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/10">
+                        <button type="button" onClick={() => remove(doc.id)} aria-label={b('remove')} title={b('remove')} className="rounded-md p-1.5 text-stone-500 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/10">
                           <X size={16} />
                         </button>
                       </div>
@@ -583,9 +577,9 @@ export default function BatesNumberingTool() {
                 )}
               </div>
 
-              <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50/60 px-3 py-2.5 dark:border-emerald-500/30 dark:bg-emerald-500/10">
-                <p className="text-xs font-medium text-emerald-800 dark:text-emerald-300">{b('format.example')}</p>
-                <p className="mt-0.5 break-all font-mono text-sm font-semibold text-zinc-900 dark:text-white">{exampleRange}</p>
+              <div className="mt-4 rounded-xl border border-brand-200 bg-brand-50/60 px-3 py-2.5 dark:border-brand-500/30 dark:bg-brand-500/10">
+                <p className="text-xs font-medium text-brand-800 dark:text-brand-300">{b('format.example')}</p>
+                <p className="mt-0.5 break-all font-mono text-sm font-semibold text-stone-900 dark:text-white">{exampleRange}</p>
               </div>
               {overflow && (
                 <p className="mt-2 flex items-center gap-1.5 text-xs text-amber-700 dark:text-amber-400">
@@ -598,8 +592,8 @@ export default function BatesNumberingTool() {
             <Section icon={Sliders} title={b('sections.position')}>
               <div className="grid gap-5 sm:grid-cols-[auto_minmax(0,1fr)]">
                 <div>
-                  <p className="mb-1.5 text-xs font-medium text-zinc-500 dark:text-zinc-400">{b('position.label')}</p>
-                  <div className="grid w-44 grid-cols-3 gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 p-2 dark:border-zinc-800 dark:bg-zinc-950" role="radiogroup" aria-label={b('position.label')}>
+                  <p className="mb-1.5 text-xs font-medium text-stone-500 dark:text-stone-400">{b('position.label')}</p>
+                  <div className="grid w-44 grid-cols-3 gap-1.5 rounded-xl border border-stone-200 bg-stone-50 p-2 dark:border-stone-800 dark:bg-stone-950" role="radiogroup" aria-label={b('position.label')}>
                     {POSITIONS.map((pos, i) => (
                       <button
                         key={pos}
@@ -611,18 +605,18 @@ export default function BatesNumberingTool() {
                         onClick={() => set({ position: pos })}
                         className={`flex h-9 items-center rounded-md border transition-colors ${i < 3 ? 'items-start' : 'items-end'} ${
                           pos[1] === 'l' ? 'justify-start' : pos[1] === 'c' ? 'justify-center' : 'justify-end'
-                        } p-1 ${config.position === pos ? 'border-emerald-500 bg-emerald-500/10' : 'border-zinc-200 bg-white hover:border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900'}`}
+                        } p-1 ${config.position === pos ? 'border-brand-500 bg-brand-500/10' : 'border-stone-200 bg-white hover:border-stone-300 dark:border-stone-700 dark:bg-stone-900'}`}
                       >
-                        <span className={`h-1.5 w-5 rounded-full ${config.position === pos ? 'bg-emerald-500' : 'bg-zinc-300 dark:bg-zinc-600'}`} />
+                        <span className={`h-1.5 w-5 rounded-full ${config.position === pos ? 'bg-brand-500' : 'bg-stone-300 dark:bg-stone-600'}`} />
                       </button>
                     ))}
-                    <span className="col-span-3 text-center text-[11px] font-medium text-zinc-500 dark:text-zinc-400">{b(`position.${config.position}`)}</span>
+                    <span className="col-span-3 text-center text-[11px] font-medium text-stone-500 dark:text-stone-400">{b(`position.${config.position}`)}</span>
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">{b('position.margins')}</span>
+                    <span className="text-xs font-medium text-stone-500 dark:text-stone-400">{b('position.margins')}</span>
                     <Segmented label={b('position.unit')} value={unit} onChange={setUnit} options={[{ value: 'mm', label: 'mm' }, { value: 'pt', label: 'pt' }]} />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
@@ -636,7 +630,7 @@ export default function BatesNumberingTool() {
                 </div>
               </div>
 
-              <div className="mt-5 grid gap-4 border-t border-zinc-200 pt-4 sm:grid-cols-2 dark:border-zinc-800">
+              <div className="mt-5 grid gap-4 border-t border-stone-200 pt-4 sm:grid-cols-2 dark:border-stone-800">
                 <Field label={b('style.font')}>
                   <select value={config.font} onChange={(e) => set({ font: e.target.value })} className={inputClass}>
                     {Object.entries(FONTS).map(([id, f]) => (
@@ -647,10 +641,10 @@ export default function BatesNumberingTool() {
                   </select>
                 </Field>
                 <Field label={`${b('style.size')} · ${config.fontSize} pt`}>
-                  <input type="range" min={8} max={18} value={config.fontSize} onChange={(e) => set({ fontSize: Number(e.target.value) })} className="h-10 accent-emerald-600" />
+                  <input type="range" min={8} max={18} value={config.fontSize} onChange={(e) => set({ fontSize: Number(e.target.value) })} className="h-10 accent-brand-600" />
                 </Field>
                 <div>
-                  <p className="mb-1.5 text-xs font-medium text-zinc-500 dark:text-zinc-400">{b('style.color')}</p>
+                  <p className="mb-1.5 text-xs font-medium text-stone-500 dark:text-stone-400">{b('style.color')}</p>
                   <div className="flex gap-2" role="radiogroup" aria-label={b('style.color')}>
                     {Object.entries(COLORS).map(([id, hex]) => (
                       <button
@@ -661,17 +655,17 @@ export default function BatesNumberingTool() {
                         title={b(`colors.${id}`)}
                         aria-label={b(`colors.${id}`)}
                         onClick={() => set({ color: id })}
-                        className={`h-8 w-8 rounded-full ring-offset-2 ring-offset-white dark:ring-offset-zinc-900 ${config.color === id ? 'ring-2 ring-emerald-500' : 'ring-1 ring-black/10 dark:ring-white/20'}`}
+                        className={`h-8 w-8 rounded-full ring-offset-2 ring-offset-white dark:ring-offset-stone-900 ${config.color === id ? 'ring-2 ring-brand-500' : 'ring-1 ring-black/10 dark:ring-white/20'}`}
                         style={{ backgroundColor: hex }}
                       />
                     ))}
                   </div>
                 </div>
-                <label className="flex cursor-pointer items-start gap-2.5 self-end text-sm text-zinc-700 dark:text-zinc-300">
-                  <input type="checkbox" checked={config.background} onChange={(e) => set({ background: e.target.checked })} className="mt-0.5 h-4 w-4 accent-emerald-600" />
+                <label className="flex cursor-pointer items-start gap-2.5 self-end text-sm text-stone-700 dark:text-stone-300">
+                  <input type="checkbox" checked={config.background} onChange={(e) => set({ background: e.target.checked })} className="mt-0.5 h-4 w-4 accent-brand-600" />
                   <span>
                     {b('style.background')}
-                    <span className="block text-xs text-zinc-500 dark:text-zinc-400">{b('style.backgroundHint')}</span>
+                    <span className="block text-xs text-stone-500 dark:text-stone-400">{b('style.backgroundHint')}</span>
                   </span>
                 </label>
               </div>
@@ -698,7 +692,7 @@ export default function BatesNumberingTool() {
                   {plan.invalid && <p className="mt-1.5 text-xs text-red-600 dark:text-red-400">{b('range.invalid')}</p>}
                 </div>
               )}
-              <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">{b('range.note')}</p>
+              <p className="mt-3 text-xs text-stone-500 dark:text-stone-400">{b('range.note')}</p>
             </Section>
           </div>
 
@@ -715,11 +709,11 @@ export default function BatesNumberingTool() {
                       onClick={() => setPreviewPage(Math.max(1, safePreviewPage - 1))}
                       disabled={safePreviewPage <= 1}
                       aria-label={b('preview.prev')}
-                      className="rounded-md p-1 text-zinc-500 hover:bg-zinc-100 disabled:opacity-30 dark:hover:bg-zinc-800"
+                      className="rounded-md p-1 text-stone-500 hover:bg-stone-100 disabled:opacity-30 dark:hover:bg-stone-800"
                     >
                       <ChevronLeft size={16} />
                     </button>
-                    <span className="text-xs tabular-nums text-zinc-600 dark:text-zinc-300">
+                    <span className="text-xs tabular-nums text-stone-600 dark:text-stone-300">
                       {safePreviewPage} / {previewDoc.pageCount}
                     </span>
                     <button
@@ -727,7 +721,7 @@ export default function BatesNumberingTool() {
                       onClick={() => setPreviewPage(Math.min(previewDoc.pageCount, safePreviewPage + 1))}
                       disabled={safePreviewPage >= previewDoc.pageCount}
                       aria-label={b('preview.next')}
-                      className="rounded-md p-1 text-zinc-500 hover:bg-zinc-100 disabled:opacity-30 dark:hover:bg-zinc-800"
+                      className="rounded-md p-1 text-stone-500 hover:bg-stone-100 disabled:opacity-30 dark:hover:bg-stone-800"
                     >
                       <ChevronRight size={16} />
                     </button>
@@ -735,22 +729,22 @@ export default function BatesNumberingTool() {
                 )
               }
             >
-              <div className="rounded-xl bg-zinc-100 p-3 sm:p-4 dark:bg-zinc-950">
+              <div className="rounded-xl bg-stone-100 p-3 sm:p-4 dark:bg-stone-950">
                 {previewDoc ? (
                   <div className="mx-auto max-w-70 sm:max-w-80 lg:max-w-none">
                     <LivePreview key={previewDoc.id} doc={previewDoc} pageNumber={safePreviewPage} number={previewNumber} config={config} fonts={fonts} dateText={dateText} b={b} />
                   </div>
                 ) : (
-                  <LoaderCircle size={22} className="mx-auto my-16 animate-spin text-zinc-400" />
+                  <LoaderCircle size={22} className="mx-auto my-16 animate-spin text-stone-400" />
                 )}
               </div>
-              {previewDoc && <p className="mt-2 truncate text-center text-xs text-zinc-500 dark:text-zinc-400">{previewDoc.file.name}</p>}
+              {previewDoc && <p className="mt-2 truncate text-center text-xs text-stone-500 dark:text-stone-400">{previewDoc.file.name}</p>}
 
               <button
                 type="button"
                 onClick={handleProcess}
                 disabled={!canProcess}
-                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition-colors hover:bg-emerald-500 disabled:opacity-40"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600 disabled:opacity-40"
               >
                 <ListOrdered size={18} /> {b('process', { count: plan.total })}
               </button>
@@ -760,35 +754,35 @@ export default function BatesNumberingTool() {
       )}
 
       {step === STEPS.PROCESSING && (
-        <div className="mt-6 flex flex-col items-center gap-4 rounded-2xl border border-zinc-200 bg-white p-10 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-          <LoaderCircle size={32} className="animate-spin text-emerald-600" />
-          <p className="font-semibold text-zinc-900 dark:text-white">{b('processing')}</p>
+        <div className="mt-6 flex flex-col items-center gap-4 rounded-2xl border border-stone-200 bg-white p-10 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+          <LoaderCircle size={32} className="animate-spin text-brand-600" />
+          <p className="font-semibold text-stone-900 dark:text-white">{b('processing')}</p>
           <div className="w-full max-w-sm">
-            <div className="h-2 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
-              <div className="h-full rounded-full bg-emerald-500 transition-[width] duration-300" style={{ width: `${Math.round(progress * 100)}%` }} />
+            <div className="h-2 overflow-hidden rounded-full bg-stone-100 dark:bg-stone-800" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
+              <div className="h-full rounded-full bg-brand-500 transition-[width] duration-300" style={{ width: `${Math.round(progress * 100)}%` }} />
             </div>
-            <p className="mt-2 text-center text-xs tabular-nums text-zinc-500 dark:text-zinc-400">{Math.round(progress * 100)} %</p>
+            <p className="mt-2 text-center text-xs tabular-nums text-stone-500 dark:text-stone-400">{Math.round(progress * 100)} %</p>
           </div>
         </div>
       )}
 
       {step === STEPS.DONE && (
-        <div className="mx-auto mt-6 flex max-w-2xl flex-col gap-5 rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm sm:p-8 dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="mx-auto mt-6 flex max-w-2xl flex-col gap-5 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8 dark:border-stone-800 dark:bg-stone-900">
           <div className="flex flex-col items-center gap-3 text-center">
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-100 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400">
               <CheckCircle2 size={28} />
             </span>
-            <p className="text-lg font-semibold text-zinc-900 dark:text-white">{b('done.title', { count: plan.total })}</p>
-            <p className="font-mono text-sm text-emerald-700 dark:text-emerald-400">{exampleRange}</p>
+            <p className="text-lg font-semibold text-stone-900 dark:text-white">{b('done.title', { count: plan.total })}</p>
+            <p className="font-mono text-sm text-brand-700 dark:text-brand-400">{exampleRange}</p>
           </div>
 
           <ul className="flex flex-col gap-2">
             {results.map((r) => (
-              <li key={r.id} className="flex items-center gap-3 rounded-xl border border-zinc-200 p-3 dark:border-zinc-800">
-                <FileText size={18} className="shrink-0 text-zinc-400" />
+              <li key={r.id} className="flex items-center gap-3 rounded-xl border border-stone-200 p-3 dark:border-stone-800">
+                <FileText size={18} className="shrink-0 text-stone-400" />
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-zinc-900 dark:text-zinc-100">{r.name}</p>
-                  <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+                  <p className="truncate text-sm font-medium text-stone-900 dark:text-stone-100">{r.name}</p>
+                  <p className="truncate text-xs text-stone-500 dark:text-stone-400">
                     {r.first !== null ? `${formatBates(r.first, config)} → ${formatBates(r.last, config)}` : b('noPagesNumbered')} · {formatBytes(r.blob.size)}
                   </p>
                 </div>
@@ -797,7 +791,7 @@ export default function BatesNumberingTool() {
                   onClick={() => downloadBlob(r.blob, r.name)}
                   aria-label={b('done.downloadOne', { name: r.name })}
                   title={b('done.downloadOne', { name: r.name })}
-                  className="shrink-0 rounded-lg p-2 text-zinc-500 hover:bg-zinc-100 hover:text-emerald-600 dark:hover:bg-zinc-800"
+                  className="shrink-0 rounded-lg p-2 text-stone-500 hover:bg-stone-100 hover:text-brand-600 dark:hover:bg-stone-800"
                 >
                   <Download size={18} />
                 </button>
@@ -810,7 +804,7 @@ export default function BatesNumberingTool() {
               <button
                 type="button"
                 onClick={() => downloadBlob(results[0].blob, results[0].name)}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 hover:bg-emerald-500"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-600"
               >
                 <Download size={18} /> {b('done.download')}
               </button>
@@ -819,14 +813,14 @@ export default function BatesNumberingTool() {
                 <button
                   type="button"
                   onClick={downloadZip}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 hover:bg-emerald-500"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-600"
                 >
                   <Archive size={18} /> {b('done.zip')}
                 </button>
                 <button
                   type="button"
                   onClick={downloadAll}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-zinc-200 px-6 py-3 text-sm font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-200 px-6 py-3 text-sm font-semibold text-stone-700 hover:bg-stone-50 dark:border-stone-700 dark:text-stone-200 dark:hover:bg-stone-800"
                 >
                   <Download size={18} /> {b('done.separately')}
                 </button>
@@ -835,10 +829,10 @@ export default function BatesNumberingTool() {
           </div>
 
           <div className="flex justify-center gap-5 text-sm font-medium">
-            <button type="button" onClick={() => setStep(STEPS.CONFIGURE)} className="text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200">
+            <button type="button" onClick={() => setStep(STEPS.CONFIGURE)} className="text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200">
               {b('done.adjust')}
             </button>
-            <button type="button" onClick={restart} className="text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200">
+            <button type="button" onClick={restart} className="text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200">
               {b('done.restart')}
             </button>
           </div>

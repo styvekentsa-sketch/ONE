@@ -273,7 +273,7 @@ export default function MediaEditorStudio({
   return (
     <div className="flex flex-col gap-4">
       {/* --- Aperçu + HUD flottant --- */}
-      <div className="relative overflow-hidden rounded-2xl bg-zinc-950 shadow-2xl">
+      <div className="relative overflow-hidden rounded-2xl bg-stone-950 shadow-2xl">
         {isVideo ? (
           <video
             ref={mediaRef}
@@ -287,7 +287,7 @@ export default function MediaEditorStudio({
             onPause={() => setIsPlaying(false)}
           />
         ) : (
-          <div className="flex h-56 flex-col items-center justify-center gap-3 text-zinc-500">
+          <div className="flex h-56 flex-col items-center justify-center gap-3 text-stone-500">
             <audio
               ref={mediaRef}
               src={objectUrl}
@@ -296,8 +296,8 @@ export default function MediaEditorStudio({
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
             />
-            <Volume2 size={40} className="text-zinc-700" aria-hidden="true" />
-            <p className="max-w-[80%] truncate text-sm text-zinc-500">{file.name}</p>
+            <Volume2 size={40} className="text-stone-700" aria-hidden="true" />
+            <p className="max-w-[80%] truncate text-sm text-stone-500">{file.name}</p>
           </div>
         )}
 
@@ -316,23 +316,23 @@ export default function MediaEditorStudio({
 
         {/* Pilule de contrôle flottante */}
         <div className="pointer-events-none absolute inset-x-0 bottom-3 flex justify-center px-3">
-          <div className="pointer-events-auto flex items-center gap-3 rounded-full border border-zinc-800 bg-zinc-900/90 px-4 py-2 text-white shadow-xl backdrop-blur-md">
+          <div className="pointer-events-auto flex items-center gap-3 rounded-full border border-stone-800 bg-stone-900/90 px-4 py-2 text-white shadow-xl backdrop-blur-md">
             <button
               type="button"
               onClick={togglePlay}
               aria-label={isPlaying ? 'Pause' : 'Lecture'}
-              className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-zinc-900 transition-transform duration-150 active:scale-90"
+              className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-stone-900 transition-transform duration-150 active:scale-90"
             >
               {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" className="ml-0.5" />}
             </button>
-            <span className="font-mono text-xs tabular-nums text-zinc-200">
+            <span className="font-mono text-xs tabular-nums text-stone-200">
               {formatTime(currentTime)} / {formatTime(duration)}
             </span>
             <button
               type="button"
               onClick={cycleSpeed}
               aria-label="Vitesse de lecture"
-              className="flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-zinc-200 transition-colors duration-150 hover:bg-white/10"
+              className="flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-stone-200 transition-colors duration-150 hover:bg-white/10"
             >
               <Gauge size={13} aria-hidden="true" /> {playbackRate}x
             </button>
@@ -341,7 +341,7 @@ export default function MediaEditorStudio({
       </div>
 
       {notice && (
-        <p className="rounded-lg bg-indigo-50 px-3 py-2 text-xs font-medium text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400">
+        <p className="rounded-lg bg-brand-50 px-3 py-2 text-xs font-medium text-brand-700 dark:bg-brand-500/10 dark:text-brand-400">
           {notice}
         </p>
       )}
@@ -352,7 +352,7 @@ export default function MediaEditorStudio({
           type="button"
           onClick={handleAddMore}
           aria-label="Ajouter un autre clip"
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-xl font-bold text-zinc-900 shadow-sm transition-transform duration-150 hover:scale-105 active:scale-95 dark:bg-zinc-800 dark:text-white"
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-xl font-bold text-stone-900 shadow-sm transition-transform duration-150 hover:scale-105 active:scale-95 dark:bg-stone-800 dark:text-white"
         >
           <Plus size={20} aria-hidden="true" />
         </button>
@@ -360,10 +360,10 @@ export default function MediaEditorStudio({
         <div
           ref={timelineRef}
           onClick={handleTimelineClick}
-          className="relative h-12 flex-1 touch-none select-none overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800"
+          className="relative h-12 flex-1 touch-none select-none overflow-hidden rounded-2xl bg-stone-100 dark:bg-stone-800"
         >
           {track.loading ? (
-            <div className="flex h-full items-center justify-center text-xs text-zinc-400 dark:text-zinc-500">
+            <div className="flex h-full items-center justify-center text-xs text-stone-400 dark:text-stone-500">
               Analyse du fichier…
             </div>
           ) : isVideo ? (
@@ -381,15 +381,15 @@ export default function MediaEditorStudio({
                   y={20 - Math.max(1, p * 18)}
                   width={0.7}
                   height={Math.max(2, p * 36)}
-                  className="fill-indigo-400 dark:fill-indigo-400/80"
+                  className="fill-brand-400 dark:fill-brand-400/80"
                 />
               ))}
             </svg>
           )}
 
           {/* Zones assombries hors sélection */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 bg-zinc-950/60" style={{ width: `${pct(start, duration)}%` }} />
-          <div className="pointer-events-none absolute inset-y-0 right-0 bg-zinc-950/60" style={{ width: `${100 - pct(end, duration)}%` }} />
+          <div className="pointer-events-none absolute inset-y-0 left-0 bg-stone-950/60" style={{ width: `${pct(start, duration)}%` }} />
+          <div className="pointer-events-none absolute inset-y-0 right-0 bg-stone-950/60" style={{ width: `${100 - pct(end, duration)}%` }} />
           {mode === 'remove' && (
             <div
               className="pointer-events-none absolute inset-y-0 bg-red-500/25"
@@ -403,7 +403,7 @@ export default function MediaEditorStudio({
             className="absolute inset-y-0 flex w-4 touch-none cursor-ew-resize items-center justify-center rounded-l-xl bg-white shadow-md"
             style={{ left: `calc(${pct(start, duration)}% - 8px)` }}
           >
-            <div className="h-4 w-0.5 rounded-full bg-zinc-400" />
+            <div className="h-4 w-0.5 rounded-full bg-stone-400" />
           </div>
 
           {/* Poignée droite */}
@@ -412,7 +412,7 @@ export default function MediaEditorStudio({
             className="absolute inset-y-0 flex w-4 touch-none cursor-ew-resize items-center justify-center rounded-r-xl bg-white shadow-md"
             style={{ left: `calc(${pct(end, duration)}% - 8px)` }}
           >
-            <div className="h-4 w-0.5 rounded-full bg-zinc-400" />
+            <div className="h-4 w-0.5 rounded-full bg-stone-400" />
           </div>
 
           {/* Tête de lecture */}
@@ -426,14 +426,14 @@ export default function MediaEditorStudio({
         </div>
       </div>
 
-      <p className="-mt-2 text-center text-xs text-zinc-500 dark:text-zinc-400">
+      <p className="-mt-2 text-center text-xs text-stone-500 dark:text-stone-400">
         {mode === 'remove' ? 'Segment supprimé : ' : 'Sélection : '}
         {formatTime(start)} – {formatTime(end)} ({formatTime(selectionDuration)})
         {maxRangeDuration && ` · max ${formatTime(maxRangeDuration)}`}
       </p>
 
       {/* --- Barre d'outils rapide --- */}
-      <div className="flex flex-wrap items-center justify-center gap-1.5 border-t border-zinc-100 pt-3 dark:border-white/10">
+      <div className="flex flex-wrap items-center justify-center gap-1.5 border-t border-stone-100 pt-3 dark:border-white/10">
         <ToolButton icon={Scissors} label="Scinder" onClick={handleSplit} />
         {showVolumeFade && <ToolButton icon={Volume2} label="Fondu" active={activeTool === 'volume'} onClick={() => toggleTool('volume')} />}
         {showAspectRatio && <ToolButton icon={Crop} label="Format" active={activeTool === 'aspect'} onClick={() => toggleTool('aspect')} />}
@@ -484,15 +484,15 @@ function ToolButton({ icon: Icon, label, onClick, active = false, tone = 'defaul
     tone === 'danger'
       ? 'text-red-600 dark:text-red-400'
       : active
-        ? 'text-indigo-600 dark:text-indigo-400'
-        : 'text-zinc-600 dark:text-zinc-300'
+        ? 'text-brand-600 dark:text-brand-400'
+        : 'text-stone-600 dark:text-stone-300'
 
   return (
     <button
       type="button"
       onClick={onClick}
       className={`flex flex-col items-center gap-1 rounded-xl px-3 py-2 text-[11px] font-medium transition-colors duration-150 ${
-        active ? 'bg-indigo-500/10' : tone === 'danger' ? 'bg-red-500/10' : 'hover:bg-zinc-100 dark:hover:bg-white/5'
+        active ? 'bg-brand-500/10' : tone === 'danger' ? 'bg-red-500/10' : 'hover:bg-stone-100 dark:hover:bg-white/5'
       } ${toneClasses}`}
     >
       <Icon size={18} aria-hidden="true" />
@@ -503,8 +503,8 @@ function ToolButton({ icon: Icon, label, onClick, active = false, tone = 'defaul
 
 function OptionRow({ label, children }) {
   return (
-    <div className="animate-fade-in rounded-2xl border border-zinc-200 bg-zinc-50 p-3 dark:border-white/10 dark:bg-zinc-900/60">
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{label}</p>
+    <div className="animate-fade-in rounded-2xl border border-stone-200 bg-stone-50 p-3 dark:border-white/10 dark:bg-stone-900/60">
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">{label}</p>
       {children}
     </div>
   )
@@ -517,8 +517,8 @@ function Chip({ active, onClick, children }) {
       onClick={onClick}
       className={`rounded-full border-2 px-3 py-1.5 text-xs font-semibold transition-all duration-150 active:scale-95 ${
         active
-          ? 'border-indigo-500 bg-indigo-500/5 text-indigo-600 dark:text-indigo-400'
-          : 'border-zinc-200 text-zinc-600 hover:border-zinc-300 dark:border-white/10 dark:text-zinc-300 dark:hover:border-zinc-700'
+          ? 'border-brand-500 bg-brand-500/5 text-brand-600 dark:text-brand-400'
+          : 'border-stone-200 text-stone-600 hover:border-stone-300 dark:border-white/10 dark:text-stone-300 dark:hover:border-stone-700'
       }`}
     >
       {children}
@@ -529,7 +529,7 @@ function Chip({ active, onClick, children }) {
 function FadeStepper({ label, value, onChange }) {
   return (
     <div>
-      <p className="mb-1.5 text-[11px] font-medium text-zinc-500 dark:text-zinc-400">{label}</p>
+      <p className="mb-1.5 text-[11px] font-medium text-stone-500 dark:text-stone-400">{label}</p>
       <div className="flex gap-1">
         {FADE_OPTIONS.map((s) => (
           <Chip key={s} active={value === s} onClick={() => onChange(s)}>

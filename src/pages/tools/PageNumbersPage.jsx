@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { AlignCenter, AlignLeft, AlignRight, ArrowLeft, CheckCircle2, Hash } from 'lucide-react'
+import { AlignCenter, AlignLeft, AlignRight, CheckCircle2, Hash } from 'lucide-react'
 import DragDropZone from '../../components/DragDropZone'
 import ProcessingState from '../../components/ProcessingState'
 import DownloadButton from '../../components/DownloadButton'
 import { addPageNumbers } from '../../utils/pdfWorker'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import BackButton from '../../components/ui/BackButton'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -122,25 +122,20 @@ export default function PageNumbersPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <Link
-        to="/"
-        className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
-      >
-        <ArrowLeft size={16} /> {t('common.backToTools')}
-      </Link>
+    <div className="mx-auto max-w-3xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <BackButton />
 
       <div className="flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm dark:bg-stone-800/80 dark:text-white">
           <Hash size={26} />
         </span>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">{t('tools.page-numbers.name')}</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">{t('tools.page-numbers.subtitle')}</p>
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-white">{t('tools.page-numbers.name')}</h1>
+          <p className="text-stone-500 dark:text-stone-400">{t('tools.page-numbers.subtitle')}</p>
         </div>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-white/10 dark:bg-zinc-900">
+      <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:bg-stone-900">
         {error && (
           <p className="mb-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">
             {error}
@@ -159,18 +154,18 @@ export default function PageNumbersPage() {
         {step === STEPS.CONFIGURE && file && (
           <div className="flex flex-col gap-6">
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                 {t('tools.page-numbers.position')}
               </p>
-              <div className="inline-flex rounded-full border border-zinc-200 bg-zinc-100 p-1 dark:border-white/10 dark:bg-zinc-800/60">
+              <div className="inline-flex rounded-full border border-stone-200 bg-stone-100 p-1 dark:border-white/10 dark:bg-stone-800/60">
                 {POSITIONS.map((p) => (
                   <button
                     key={p.id}
                     onClick={() => setPosition(p.id)}
                     className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 ease-in-out active:scale-[0.98] ${
                       position === p.id
-                        ? 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white'
-                        : 'text-zinc-500 dark:text-zinc-400'
+                        ? 'bg-white text-stone-900 shadow-sm dark:bg-stone-700 dark:text-white'
+                        : 'text-stone-500 dark:text-stone-400'
                     }`}
                   >
                     {p.label}
@@ -180,10 +175,10 @@ export default function PageNumbersPage() {
             </div>
 
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                 {t('tools.page-numbers.alignment')}
               </p>
-              <div className="inline-flex rounded-full border border-zinc-200 bg-zinc-100 p-1 dark:border-white/10 dark:bg-zinc-800/60">
+              <div className="inline-flex rounded-full border border-stone-200 bg-stone-100 p-1 dark:border-white/10 dark:bg-stone-800/60">
                 {ALIGNMENTS.map(({ id, label, icon: Icon }) => (
                   <button
                     key={id}
@@ -191,8 +186,8 @@ export default function PageNumbersPage() {
                     aria-label={label}
                     className={`inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 ease-in-out active:scale-[0.98] ${
                       alignment === id
-                        ? 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white'
-                        : 'text-zinc-500 dark:text-zinc-400'
+                        ? 'bg-white text-stone-900 shadow-sm dark:bg-stone-700 dark:text-white'
+                        : 'text-stone-500 dark:text-stone-400'
                     }`}
                   >
                     <Icon size={14} />
@@ -203,7 +198,7 @@ export default function PageNumbersPage() {
             </div>
 
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                 {t('tools.page-numbers.format')}
               </p>
               <div className="grid gap-3 sm:grid-cols-3">
@@ -213,8 +208,8 @@ export default function PageNumbersPage() {
                     onClick={() => setFormatId(f.id)}
                     className={`rounded-xl border-2 px-4 py-3 text-sm font-medium transition-all duration-200 ease-in-out active:scale-[0.98] ${
                       formatId === f.id
-                        ? 'border-indigo-500 bg-indigo-500/5 text-indigo-600 dark:text-indigo-400'
-                        : 'border-zinc-200 bg-white text-zinc-600 hover:border-zinc-300 dark:border-white/10 dark:bg-zinc-800/40 dark:text-zinc-300 dark:hover:border-zinc-700'
+                        ? 'border-brand-500 bg-brand-500/5 text-brand-600 dark:text-brand-400'
+                        : 'border-stone-200 bg-white text-stone-600 hover:border-stone-300 dark:border-white/10 dark:bg-stone-800/40 dark:text-stone-300 dark:hover:border-stone-700'
                     }`}
                   >
                     {f.sample}
@@ -225,9 +220,9 @@ export default function PageNumbersPage() {
 
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label htmlFor="page-numbers-size" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+                <label htmlFor="page-numbers-size" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                   <span>{t('tools.page-numbers.size')}</span>
-                  <span className="text-zinc-500 dark:text-zinc-300">{fontSize}pt</span>
+                  <span className="text-stone-500 dark:text-stone-300">{fontSize}pt</span>
                 </label>
                 <input
                   id="page-numbers-size"
@@ -236,14 +231,14 @@ export default function PageNumbersPage() {
                   max={24}
                   value={fontSize}
                   onChange={(e) => setFontSize(Number(e.target.value))}
-                  className="w-full accent-indigo-500"
+                  className="w-full accent-brand-500"
                 />
               </div>
 
               <div>
-                <label htmlFor="page-numbers-margin" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+                <label htmlFor="page-numbers-margin" className="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                   <span>{t('tools.page-numbers.margin')}</span>
-                  <span className="text-zinc-500 dark:text-zinc-300">{margin}pt</span>
+                  <span className="text-stone-500 dark:text-stone-300">{margin}pt</span>
                 </label>
                 <input
                   id="page-numbers-margin"
@@ -252,14 +247,14 @@ export default function PageNumbersPage() {
                   max={60}
                   value={margin}
                   onChange={(e) => setMargin(Number(e.target.value))}
-                  className="w-full accent-indigo-500"
+                  className="w-full accent-brand-500"
                 />
               </div>
             </div>
 
             <button
               onClick={handleApply}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all duration-200 ease-in-out hover:bg-indigo-400 active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-in-out hover:bg-brand-700 active:scale-[0.98]"
             >
               <Hash size={18} /> {t('tools.page-numbers.addButton')}
             </button>
@@ -272,17 +267,17 @@ export default function PageNumbersPage() {
 
         {step === STEPS.DONE && (
           <div className="flex flex-col items-center gap-5 py-4 text-center">
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/10">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-100 text-brand-600 dark:bg-brand-500/10">
               <CheckCircle2 size={28} />
             </span>
             <div>
-              <p className="text-lg font-semibold text-zinc-800 dark:text-white">{t('tools.page-numbers.doneTitle')}</p>
-              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{t('tools.page-numbers.doneDescription')}</p>
+              <p className="text-lg font-semibold text-stone-800 dark:text-white">{t('tools.page-numbers.doneTitle')}</p>
+              <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{t('tools.page-numbers.doneDescription')}</p>
             </div>
             <DownloadButton fileName="ONE_numbered.pdf" onDownload={handleDownload} />
             <button
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 transition-colors duration-200 hover:text-zinc-600 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-stone-500 dark:text-stone-400 transition-colors duration-200 hover:text-stone-600 dark:hover:text-stone-200"
             >
               {t('tools.page-numbers.restartLabel')}
             </button>

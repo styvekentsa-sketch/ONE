@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   AlertTriangle,
-  ArrowLeft,
   CheckCircle2,
   Download,
   FileCheck,
@@ -18,6 +16,7 @@ import ProcessingState from '../../components/ProcessingState'
 import { analyzePdf, flattenInteractive, flattenRaster } from '../../utils/flattenWorker'
 import { formatBytes } from '../../utils/formatBytes'
 import { addHistoryEntry } from '../../utils/historyStorage'
+import BackButton from '../../components/ui/BackButton'
 
 const STEPS = {
   UPLOAD: 'upload',
@@ -137,28 +136,23 @@ export default function FlattenTool() {
   const hasInteractiveContent = analysis && (analysis.fieldCount > 0 || analysis.annotationCount > 0)
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-      <Link
-        to="/pdf"
-        className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 transition-colors duration-200 hover:text-zinc-700 sm:mb-8 dark:text-zinc-400 dark:hover:text-zinc-200"
-      >
-        <ArrowLeft size={16} /> {t('common.backToTools')}
-      </Link>
+    <div className="mx-auto max-w-3xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
+      <BackButton />
 
       <div className="flex items-center gap-4">
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-zinc-100 text-zinc-700 shadow-sm sm:h-14 sm:w-14 dark:bg-zinc-800/80 dark:text-white">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-stone-100 text-stone-700 shadow-sm sm:h-14 sm:w-14 dark:bg-stone-800/80 dark:text-white">
           <Layers size={26} />
         </span>
         <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-400">
             {t('categories.Outils Avancés')}
           </p>
-          <h1 className="text-xl font-bold text-zinc-900 sm:text-2xl dark:text-white">{f('name')}</h1>
-          <p className="text-sm text-zinc-500 sm:text-base dark:text-zinc-400">{f('subtitle')}</p>
+          <h1 className="text-xl font-bold text-stone-900 sm:text-2xl dark:text-white">{f('name')}</h1>
+          <p className="text-sm text-stone-500 sm:text-base dark:text-stone-400">{f('subtitle')}</p>
         </div>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm sm:p-8 dark:border-zinc-800 dark:bg-zinc-900">
+      <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm sm:p-8 dark:border-stone-800 dark:bg-stone-900">
         {error && (
           <p className="mb-5 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600 dark:bg-red-500/10 dark:text-red-400">
             {error}
@@ -176,11 +170,11 @@ export default function FlattenTool() {
         {step === STEPS.CONFIGURE && file && analysis && (
           <div className="flex flex-col gap-6">
             {/* Fichier */}
-            <div className="flex items-center gap-3 rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 dark:border-zinc-800 dark:bg-zinc-950">
-              <FileText size={20} className="shrink-0 text-zinc-500 dark:text-zinc-400" />
+            <div className="flex items-center gap-3 rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 dark:border-stone-800 dark:bg-stone-950">
+              <FileText size={20} className="shrink-0 text-stone-500 dark:text-stone-400" />
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-zinc-900 dark:text-zinc-100">{file.name}</p>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                <p className="truncate text-sm font-medium text-stone-900 dark:text-stone-100">{file.name}</p>
+                <p className="text-xs text-stone-500 dark:text-stone-400">
                   {formatBytes(file.size)} · {f('pageCount', { count: analysis.pageCount })}
                 </p>
               </div>
@@ -189,19 +183,19 @@ export default function FlattenTool() {
             {/* Détection */}
             <div className="flex flex-col gap-2">
               {analysis.fieldCount > 0 && (
-                <p className="flex items-start gap-2 rounded-lg bg-emerald-50 px-3 py-2.5 text-sm text-emerald-800 dark:bg-emerald-500/10 dark:text-emerald-300">
+                <p className="flex items-start gap-2 rounded-lg bg-brand-50 px-3 py-2.5 text-sm text-brand-800 dark:bg-brand-500/10 dark:text-brand-300">
                   <FileCheck size={18} className="mt-0.5 shrink-0" />
                   {f('fieldsDetected', { count: analysis.fieldCount })}
                 </p>
               )}
               {analysis.annotationCount > 0 && (
-                <p className="flex items-start gap-2 rounded-lg bg-emerald-50 px-3 py-2.5 text-sm text-emerald-800 dark:bg-emerald-500/10 dark:text-emerald-300">
+                <p className="flex items-start gap-2 rounded-lg bg-brand-50 px-3 py-2.5 text-sm text-brand-800 dark:bg-brand-500/10 dark:text-brand-300">
                   <FileCheck size={18} className="mt-0.5 shrink-0" />
                   {f('annotationsDetected', { count: analysis.annotationCount })}
                 </p>
               )}
               {!hasInteractiveContent && (
-                <p className="flex items-start gap-2 rounded-lg bg-zinc-100 px-3 py-2.5 text-sm text-zinc-600 dark:bg-zinc-800/60 dark:text-zinc-300">
+                <p className="flex items-start gap-2 rounded-lg bg-stone-100 px-3 py-2.5 text-sm text-stone-600 dark:bg-stone-800/60 dark:text-stone-300">
                   <Info size={18} className="mt-0.5 shrink-0" />
                   {f('nothingDetected')}
                 </p>
@@ -222,7 +216,7 @@ export default function FlattenTool() {
 
             {/* Mode */}
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                 {f('modeLabel')}
               </p>
               <div className="grid gap-3 sm:grid-cols-2" role="radiogroup" aria-label={f('modeLabel')}>
@@ -239,20 +233,20 @@ export default function FlattenTool() {
                       onClick={() => setMode(id)}
                       className={`flex flex-col gap-2 rounded-xl border p-4 text-left transition-all duration-200 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40 ${
                         selected
-                          ? 'border-emerald-500 bg-emerald-50/60 ring-1 ring-emerald-500 dark:border-emerald-500 dark:bg-emerald-500/10'
-                          : 'border-zinc-200 bg-white hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700'
+                          ? 'border-brand-500 bg-brand-50/60 ring-1 ring-brand-500 dark:border-brand-500 dark:bg-brand-500/10'
+                          : 'border-stone-200 bg-white hover:border-stone-300 dark:border-stone-800 dark:bg-stone-950 dark:hover:border-stone-700'
                       }`}
                     >
                       <span className="flex items-center justify-between gap-2">
-                        <span className="flex items-center gap-2 font-semibold text-zinc-900 dark:text-white">
-                          <Icon size={18} className={selected ? 'text-emerald-600 dark:text-emerald-400' : 'text-zinc-500'} />
+                        <span className="flex items-center gap-2 font-semibold text-stone-900 dark:text-white">
+                          <Icon size={18} className={selected ? 'text-brand-600 dark:text-brand-400' : 'text-stone-500'} />
                           {f(`modes.${id}.title`)}
                         </span>
-                        <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-[11px] font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+                        <span className="rounded-full bg-stone-100 px-2 py-0.5 text-[11px] font-medium text-stone-600 dark:bg-stone-800 dark:text-stone-300">
                           {f(`modes.${id}.badge`)}
                         </span>
                       </span>
-                      <span className="text-sm leading-snug text-zinc-600 dark:text-zinc-400">
+                      <span className="text-sm leading-snug text-stone-600 dark:text-stone-400">
                         {f(`modes.${id}.description`)}
                       </span>
                     </button>
@@ -264,7 +258,7 @@ export default function FlattenTool() {
             {/* Résolution (rastérisation) */}
             {mode === 'raster' && (
               <div>
-                <p className="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+                <p className="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                   <Sliders size={14} /> {f('dpiLabel')}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -276,15 +270,15 @@ export default function FlattenTool() {
                       aria-pressed={dpi === value}
                       className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                         dpi === value
-                          ? 'bg-emerald-600 text-white shadow-sm'
-                          : 'border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-800'
+                          ? 'bg-brand-600 text-white shadow-sm'
+                          : 'border border-stone-200 bg-white text-stone-700 hover:bg-stone-50 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-300 dark:hover:bg-stone-800'
                       }`}
                     >
                       {value} DPI
                     </button>
                   ))}
                 </div>
-                <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">{f(`dpiHint.${dpi}`)}</p>
+                <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">{f(`dpiHint.${dpi}`)}</p>
               </div>
             )}
 
@@ -292,14 +286,14 @@ export default function FlattenTool() {
               <button
                 type="button"
                 onClick={handleRestart}
-                className="text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+                className="text-sm font-medium text-stone-500 transition-colors hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200"
               >
                 {f('changeFile')}
               </button>
               <button
                 type="button"
                 onClick={handleFlatten}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition-all duration-200 hover:bg-emerald-500 active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-brand-600 active:scale-[0.98]"
               >
                 <Layers size={18} /> {f('flattenButton')}
               </button>
@@ -316,18 +310,18 @@ export default function FlattenTool() {
             />
             <div className="w-full max-w-sm">
               <div
-                className="h-2 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800"
+                className="h-2 w-full overflow-hidden rounded-full bg-stone-100 dark:bg-stone-800"
                 role="progressbar"
                 aria-valuenow={Math.round(progress * 100)}
                 aria-valuemin={0}
                 aria-valuemax={100}
               >
                 <div
-                  className="h-full rounded-full bg-emerald-500 transition-[width] duration-300 ease-out"
+                  className="h-full rounded-full bg-brand-500 transition-[width] duration-300 ease-out"
                   style={{ width: `${Math.round(progress * 100)}%` }}
                 />
               </div>
-              <p className="mt-2 text-center text-xs tabular-nums text-zinc-500 dark:text-zinc-400">
+              <p className="mt-2 text-center text-xs tabular-nums text-stone-500 dark:text-stone-400">
                 {Math.round(progress * 100)} %
               </p>
             </div>
@@ -336,29 +330,29 @@ export default function FlattenTool() {
 
         {step === STEPS.DONE && result && (
           <div className="flex flex-col items-center gap-6 py-2 text-center">
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-100 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400">
               <CheckCircle2 size={28} />
             </span>
             <div>
-              <p className="text-lg font-semibold text-zinc-900 dark:text-white">{f('doneTitle')}</p>
-              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="text-lg font-semibold text-stone-900 dark:text-white">{f('doneTitle')}</p>
+              <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
                 {mode === 'interactive' ? f('doneInteractive') : f('doneRaster')}
               </p>
             </div>
 
             <div className="grid w-full max-w-md grid-cols-2 gap-3">
-              <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-950">
-                <p className="text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">{f('originalSize')}</p>
-                <p className="mt-1 text-lg font-semibold tabular-nums text-zinc-900 dark:text-white">
+              <div className="rounded-xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950">
+                <p className="text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400">{f('originalSize')}</p>
+                <p className="mt-1 text-lg font-semibold tabular-nums text-stone-900 dark:text-white">
                   {formatBytes(result.originalSize)}
                 </p>
               </div>
-              <div className="rounded-xl border border-emerald-200 bg-emerald-50/60 p-4 dark:border-emerald-500/30 dark:bg-emerald-500/10">
-                <p className="text-xs font-medium uppercase tracking-wide text-emerald-700 dark:text-emerald-400">{f('finalSize')}</p>
-                <p className="mt-1 text-lg font-semibold tabular-nums text-zinc-900 dark:text-white">
+              <div className="rounded-xl border border-brand-200 bg-brand-50/60 p-4 dark:border-brand-500/30 dark:bg-brand-500/10">
+                <p className="text-xs font-medium uppercase tracking-wide text-brand-700 dark:text-brand-400">{f('finalSize')}</p>
+                <p className="mt-1 text-lg font-semibold tabular-nums text-stone-900 dark:text-white">
                   {formatBytes(result.finalSize)}
                 </p>
-                <p className="text-xs tabular-nums text-zinc-500 dark:text-zinc-400">
+                <p className="text-xs tabular-nums text-stone-500 dark:text-stone-400">
                   {sizeDelta > 0 ? '+' : ''}
                   {sizeDelta} %
                 </p>
@@ -368,7 +362,7 @@ export default function FlattenTool() {
             <button
               type="button"
               onClick={handleDownload}
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition-all duration-200 hover:bg-emerald-500 active:scale-[0.98] sm:w-auto"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-brand-600 active:scale-[0.98] sm:w-auto"
             >
               <Download size={18} className="transition-transform group-hover:-translate-y-0.5" />
               {f('downloadButton')}
@@ -376,7 +370,7 @@ export default function FlattenTool() {
             <button
               type="button"
               onClick={handleRestart}
-              className="text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+              className="text-sm font-medium text-stone-500 transition-colors hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200"
             >
               {f('restartLabel')}
             </button>

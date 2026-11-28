@@ -22,38 +22,38 @@ export default function AccountProfile() {
   }).format(user.createdAt)
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-2xl px-4 pb-12 pt-5 sm:px-6 md:pt-10 lg:px-8">
       <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
-        <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-indigo-500 text-lg font-bold text-white">
+        <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-600 text-lg font-bold text-white">
           {initialsFor(user.name)}
         </span>
         <div className="min-w-0">
-          <h1 className="truncate text-xl font-bold text-zinc-900 dark:text-white">{user.name}</h1>
-          <p className="truncate text-sm text-zinc-500 dark:text-zinc-400">{user.email}</p>
+          <h1 className="truncate text-xl font-bold text-stone-900 dark:text-white">{user.name}</h1>
+          <p className="truncate text-sm text-stone-500 dark:text-stone-400">{user.email}</p>
         </div>
       </div>
 
       <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-500/10 px-3 py-1 text-xs font-semibold text-brand-600 dark:text-brand-400">
           {t('profile.planLabel')} · {t('profile.free')}
         </span>
-        <span className="text-xs text-zinc-400 dark:text-zinc-500">
+        <span className="text-xs text-stone-400 dark:text-stone-500">
           {t('profile.memberSince', { date: memberSince })}
         </span>
       </div>
 
-      <div className="mt-4 flex items-start gap-2 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-xs leading-relaxed text-emerald-700 dark:text-emerald-400">
+      <div className="mt-4 flex items-start gap-2 rounded-2xl border border-brand-500/20 bg-brand-500/5 p-4 text-xs leading-relaxed text-brand-700 dark:text-brand-400">
         <ShieldCheck size={16} className="mt-0.5 shrink-0" aria-hidden="true" />
         {t('profile.localAccountNotice')}
       </div>
 
       <div className="mt-8">
-        <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+        <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
           {t('profile.recentActivity')}
         </h2>
 
         {entries.length === 0 ? (
-          <p className="rounded-2xl border border-zinc-200 bg-white px-4 py-8 text-center text-sm text-zinc-500 dark:border-white/10 dark:bg-zinc-900 dark:text-zinc-400">
+          <p className="rounded-2xl border border-stone-200 bg-white px-4 py-8 text-center text-sm text-stone-500 dark:border-white/10 dark:bg-stone-900 dark:text-stone-400">
             {t('profile.noActivity')}
           </p>
         ) : (
@@ -64,14 +64,14 @@ export default function AccountProfile() {
               return (
                 <div
                   key={entry.id}
-                  className="flex items-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-3 dark:border-white/10 dark:bg-zinc-900"
+                  className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white px-4 py-3 dark:border-white/10 dark:bg-stone-900"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300">
                     <Icon size={16} aria-hidden="true" />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-zinc-800 dark:text-zinc-100">{entry.message}</p>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400">{formatRelativeTime(entry.timestamp)}</p>
+                    <p className="truncate text-sm font-medium text-stone-800 dark:text-stone-100">{entry.message}</p>
+                    <p className="text-xs text-stone-500 dark:text-stone-400">{formatRelativeTime(entry.timestamp)}</p>
                   </div>
                 </div>
               )

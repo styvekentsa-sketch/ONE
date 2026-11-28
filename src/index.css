@@ -2,16 +2,35 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+ * Identité ONE — « Encre & Bleu cobalt »
+ * Neutres chauds (palette stone : papier / encre) et un seul accent, le
+ * bleu cobalt (brand). Aucune autre couleur décorative : le rouge, l'ambre
+ * et le vert ne servent qu'aux états (erreur, avertissement, succès).
+ */
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  --animate-fade-up: fade-up 0.5s ease both;
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dce7fe;
+  --color-brand-200: #bed3fd;
+  --color-brand-300: #91b5fb;
+  --color-brand-400: #5c90f6;
+  --color-brand-500: #3473ec;
+  --color-brand-600: #1f5fd1;
+  --color-brand-700: #1b4ca9;
+  --color-brand-800: #1c4189;
+  --color-brand-900: #1c3970;
+  --color-brand-950: #14244a;
+
+  --animate-fade-up: fade-up 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-fade-in: fade-in 0.2s ease both;
-  --animate-scale-in: scale-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-scale-in: scale-in 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-sheet-up: sheet-up 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -21,24 +40,68 @@
 }
 
 @keyframes scale-in {
-  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  from { opacity: 0; transform: scale(0.97) translateY(6px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes sheet-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  @apply bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  @apply bg-stone-50 text-stone-900 dark:bg-stone-950 dark:text-stone-100;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  /* Pas de rebond qui fait défiler toute l'interface derrière les barres. */
+  overscroll-behavior-y: none;
+}
+
+/* Pas de flash gris au toucher (Android / iOS) : le retour visuel est
+   donné par l'état :active de chaque élément. */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Boutons et liens : pas de délai de double-tap, pas de sélection de texte
+   accidentelle lors d'un appui long. */
+button,
+a,
+[role="button"],
+[role="tab"],
+[role="radio"],
+label {
+  touch-action: manipulation;
+}
+button,
+[role="button"],
+[role="tab"] {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Focus clavier visible et cohérent ; jamais de halo au clic souris. */
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 ::selection {
-  @apply bg-indigo-500/30;
+  background-color: color-mix(in srgb, var(--color-brand-500) 22%, transparent);
 }
 
-/* Scrollbar */
+/* Barres de défilement discrètes */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -47,8 +110,28 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-zinc-300 dark:bg-zinc-700 rounded-full;
+  @apply rounded-full border-2 border-solid border-transparent bg-stone-300 bg-clip-padding dark:bg-stone-700;
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-zinc-400 dark:bg-zinc-600;
+  @apply bg-stone-400 dark:bg-stone-600;
+}
+
+/* Masque les barres des rangées défilantes horizontales (puces, onglets). */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Respect des préférences d'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
